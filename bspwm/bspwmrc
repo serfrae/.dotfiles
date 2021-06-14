@@ -1,0 +1,76 @@
+#!/bin/sh
+
+### Truncate Commands
+_bc() {
+	bspc config "$@"
+}
+
+_check() {
+	command -v "$1" > /dev/null
+}
+
+### Autostart
+sxhkd -c $XDG_CONFIG_HOME/sxhkd/sxhkdrc &
+dunst -c $XDG_CONFIG_HOME/dunst/dunstrc &
+picom -bcCG -o 0.5 -r 12 -l -17 -t -7 &
+launch.sh &
+theme.sh &
+
+### MONITORS
+bspc monitor eDP-1 -d 1 2 3 4 5 6
+
+### BSPWM Configuration
+#bspc config border_radius        8
+_bc initial_polarity 		  second_child
+_bc border_width                  1
+_bc window_gap                    5
+_bc top_padding                   18
+_bc bottom_padding                0
+_bc left_padding                  0
+_bc right_padding                 0
+_bc single_monocle                false
+_bc click_to_focus                true
+_bc split_ratio                   0.50
+_bc borderless_monocle            true
+_bc gapless_monocle               true
+_bc focus_by_distance             true
+_bc focus_follows_pointer         true
+_bc history_aware_focus           true
+_bc remove_disabled_monitors      true
+_bc merge_overlapping_monitors    true
+_bc pointer_modifier mod4
+_bc pointer_action1 move
+_bc pointer_action2 resize_side
+_bc pointer_action3 resize_corner
+
+### BSPWM Colours
+#. "${HOME}/.cache/wal/colors.sh"
+_bc normal_border_color "#282828"
+#_bc normal_border_color		      "#231f20"
+_bc active_border_color "#ebdbb2"
+#_bc active_border_color	              "#231f20"
+_bc focused_border_color "#ebdbb2"
+#_bc focused_border_color	      "#009ddc"
+_bc presel_feedback_color "#a89984"
+#_bc presel_feedback_color	      "#7291b6"
+#_bc urgent_border_color 	      "#ee2e24
+
+### Hide Polybar on Fullscreen
+xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_eDP-1)
+
+### Xmodmap
+[ -f "$XDG_CONFIG_HOME"/X11/.Xmodmap ] && xmodmap "$XDG_CONFIG_HOME"/X11/.Xmodmap
+
+### Xcape
+xcape -e "Control_L=Escape" -t 0
+
+### Keyboard Options
+#setxkbmap -option custom:hyper_esc
+
+### Cursor
+xsetroot -cursor_name left_ptr
+
+### Rules
+_check bspwm_external_rules && \
+    _bc external_rules_command \
+        "$(command -v bspwm_external_rules)"

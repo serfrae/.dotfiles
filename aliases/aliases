@@ -1,0 +1,26 @@
+#!/bin/sh
+
+alias dot="$DOTFILES"
+alias tmux='tmux -f "$XDG_CONFIG_HOME/tmux/tmux.conf"'
+alias pacrl='rm /var/lib/pacman/db.lck'
+
+### Neovim
+alias vim='nvim'
+alias vi='nvim'
+alias svim='sudoedit'
+alias dvim='nvim --noplugin -u NONE'
+
+### Exa
+alias ls='exa'
+alias la='exa -a'
+alias ll='exa -laHF'
+
+### Rust
+alias carb='cargo build'
+alias carbr='cargo build --release'
+alias cari='cargo install'
+alias carn='cargo new'
+alias carnl='cargo new --lib'
+
+### Yarn
+alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'

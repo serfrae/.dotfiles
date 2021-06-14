@@ -1,0 +1,19 @@
+!!! Modifications
+
+! Clear affected keys
+clear lock
+clear control
+
+! Caps as left Escape
+keycode 66 = Control_L 
+add control = Control_L Control_R
+
+! Alt_R = Super
+!keycode 113 = Super_L
+!remove mod1 = Super_L
+
+! Keep Super in left Win
+! keycode 133 = Super_L
+
+! Set super
+! add mod4 = Super_L Super_R

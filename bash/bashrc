@@ -1,0 +1,26 @@
+#
+# ~/.bashrc
+#
+
+export PATH=$PATH:~/bin
+export PYTHONPATH=/usr/local/bin/python3
+
+#Pywal Config
+#(cat ~/.cache/wal/sequences &)
+#source ~/.cache/wal/colors-tty.sh
+
+### LaTeX
+PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH; export PATH
+MANPATH=/usr/local/texlive/2019/texmf-dist/doc/man:$MANPATH; export MANPATH
+INFOPATH=/usr/local/texlive/2019/texmf-dist/doc/info:$INFOPATH; export INFOPATH
+
+export XDG_CONFIG_HOME="$HOME/.config"
+
+### Alias'
+alias vim='nvim'
+
+set -o vi
+
+source /usr/share/fzf/key-bindings.bash
+source /usr/share/fzf/completion.bash
+source "$HOME/.cargo/env"
