@@ -1,6 +1,7 @@
 #!/bin/sh
 
 alias dot="$DOTFILES"
+alias dots="$DOTFILES"
 alias tmux='tmux -f "$XDG_CONFIG_HOME/tmux/tmux.conf"'
 alias pacrl='rm /var/lib/pacman/db.lck'
 

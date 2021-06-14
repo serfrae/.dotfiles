@@ -1,48 +1,48 @@
-### Hotkeys{{{
+### Hotkeys {{{
 
 #Terminal
 super + Return
-    alacritty 
+    alacritty
 #Terminal + Tmux
 super + shift + Return
     alacritty -e $SHELL -i -c tmux &
 #Program Launcher
 super + d
-	rofi -show drun -sidebar-mode -config ~/.config/rofi/config.rasi
+	rofi -show drun -sidebar-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
 #Run
-super + shift + d 
-    rofi -show run -side-mode -config ~/.config/rofi/config.rasi
+super + shift + d
+    rofi -show run -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
 #Task Switcher
 alt + d
-	rofi -show window -side-mode -config ~/.config/rofi/config.rasi
+	rofi -show window -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
 #Ssh
 alt + shift + d
-	rofi -show ssh -side-mode -config ~/.config/rofi/config.rasi
+	rofi -show ssh -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
 #Screenshot
 super + z
     maim -u | xclip -selection clipboard -t image/png; \
     notify-send "Screenshot Saved to Clipboard."
 super + shift + z
-    maim -u ~/media/images/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png; \
+    maim -u $HOME/media/images/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png; \
 	notify-send "Screenshot Saved: scrn-$(date +"%Y-%m-%d-%H-%M-%S").png"
 #Screenclip
 super + x
     maim -s -u | xclip -selection clipboard -t image/png; \
     notify-send "Screenclip Saved to Clipboard."
 super + shift + x
-    maim -s -u ~/media/images/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png; \
+    maim -s -u $HOME/media/images/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png; \
     notify-send "Screenclip Saved: scrn-$(date +"%Y-%m-%d-%H-%M-%S").png"
 #Lock
-super + Escape
+super + grave
 	betterlockscreen -l dimblur
 #Logout
-super + ctrl + Escape
+super + shift + grave
 	bspc quit
 #Restart
-super + shift + Escape
+alt + grave
 	systemctl reboot
 #Shutdown
-alt + shift + Escape
+alt + shift + grave
 	systemctl poweroff
 #Sxhkd Config Reload
 super + space; z
@@ -52,7 +52,7 @@ super + space; z
 #Restart Bspwm
 super + space; x
 	bspc {wm -r}; \
-	sleep 0.5; \ 
+	sleep 0.5; \
 	notify-send 'Bspwm Restarted'
 #Close & Kill
 super + {_,shift +}q
@@ -61,37 +61,28 @@ alt + F4
 	bspc node -k
 # }}}
 
-### Desktops{{{
+### Desktops {{{
 
 #Focus/Send Node (to) Desktop(n)
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} ^{1-9,10}
+super + {_,shift + }{1-6}
+	bspc {desktop -f,node -d} ^{1-6}
 #Send Node & Follow to Desktop(n)
-super + ctrl + {1-9,0}
-	bspc node -d ^{1-9,10} --follow
+super + ctrl + {1-6}
+	bspc node -d ^{1-6} --follow
 #Summon Nodes From Desktop(n) to Focused Desktop
 #Shift = Send Nodes from Focused Desktop to Desktop(n)
-alt + {_, shift + }{1-9,0}
-	bspwm_multinode {--ds, --db} ^{1-9,10}
-alt + ctrl + {1-9,0}
-	bspwm_multinode --dsnf ^{1-9,10}
+alt + {_, shift + }{1-6}
+	bspwm_multinode {--ds, --db} ^{1-6}
+alt + ctrl + {1-6}
+	bspwm_multinode --dsnf ^{1-6}
 super + {_, shift +} a
 	bspwm_multinode {--dsnf, --db} 10
-#Follow Nodes Sent to Desktop(n)
-#alt + ctrl + {1-9,0}
-#	bspwm_multinode --dsf ^{1-9,10}
-#Send All Nodes Except Focus/Marked to Desktop(n)
-#alt + hyper + {1-9,0}
-#	bspwm_multinode  --dsnf ^{1-9,0}
 #Close/Kill Nodes in Focused Desktop
 #Excludes Focused or Marked Nodes
 alt + shift + q
 	bspwm_multinode --{close}-all-local-non-focused
 alt + shift  + F4
 	bspwm_multinode --{kill}-all-local-non-focused
-#Focus Last Window/Desktop
-#{alt,super} + grave
-	#bspc {node,desktop} -f last.local
 #Focus Next/Previous Window
 alt + {_,shift} + Tab
 	bspc node -f {next,prev}
@@ -120,7 +111,7 @@ super + {_,shift + }r
 #Circulate Leaves
 super + {_,shift + }c
 	bspc node @/ --circulate {backward,forward}
-#Make Split Ratios Equal 
+#Make Split Ratios Equal
 super + equal
 	bspc node @/ --equalize
 #Make Split Ratios Balanced
@@ -156,30 +147,28 @@ super + w
     echo "$target_node" >>  "$node_file";                \
     bspc node "$target_node" --flag hidden=on
     #bspc node -g hidden=on
-#Unhide Oldest Node
-super + shift + w
-    node_file="$XDG_RUNTIME_DIR/bspwm_hidden_nodes.txt"; \
-    target_node=$(head --lines=1 "$node_file");          \
-    sed -i '1d' "$node_file";                            \
-    bspc node "$target_node" --to-desktop focused;       \
-    bspc node "$target_node" --flag hidden=off
-    #bspc node $(bspc query -N -n .hidden | tail -n1) -g hidden=off
-#Unhide Most Recent Node
-super + ctrl + w
+super + super + w
     node_file="$XDG_RUNTIME_DIR/bspwm_hidden_nodes.txt"; \
     target_node=$(tail --lines=1 "$node_file");          \
     sed -i '$d' "$node_file";                            \
     bspc node "$target_node" --to-desktop focused;       \
     bspc node "$target_node" --flag hidden=off
+#Unhide Oldest Node
+super + ctrl + w
+    node_file="$XDG_RUNTIME_DIR/bspwm_hidden_nodes.txt"; \
+    target_node=$(head --lines=1 "$node_file");          \
+    sed -i '1d' "$node_file";                            \
+    bspc node "$target_node" --to-desktop focused;       \
+    bspc node "$target_node" --flag hidden=off
 #Scratchpad Emulation
-super + grave 
+super + a
     node_file="$XDG_RUNTIME_DIR/bspwm_hidden_nodes.txt"; \
     target_node=$(head --lines=1 "$node_file");          \
     sed -i '1d' "$node_file";                            \
     bspc node "$target_node" --to-desktop focused;       \
     bspc node "$target_node" --flag hidden=off;          \
     bspc node "$target_node" --state \~floating
-alt + grave 
+alt + a
     node_file="$XDG_RUNTIME_DIR/bspwm_hidden_nodes.txt"; \
     target_node=$(tail --lines=1 "$node_file");          \
     sed -i '$d' "$node_file";                            \
@@ -200,7 +189,7 @@ super + t
 	bspc query --nodes -n focused.tiled && state=floating || state=tiled; \
 	bspc node --state \~$state
 #Toggle Node Pseudo-Tiling
-super + g	
+super + g
 	bspc node --state \~pseudo_tiled
 #Toggle Node Fullscreen
 super + f
@@ -216,7 +205,7 @@ super + {u,i,n,m}
 ### Pre-Select{{{
 
 #Preselect Direction
-alt + shift + {h,j,k,l}
+super + ctrl + {h,j,k,l}
 	bspc node -p {west,south,north,east}
 #Preselect Ratio
 super + space; {1-9}
