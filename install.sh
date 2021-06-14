@@ -18,3 +18,4 @@ dot_install rofi
 dot_install nvim
 dot_install tmux
 dot_install dunst
+dot_install user-dirs
