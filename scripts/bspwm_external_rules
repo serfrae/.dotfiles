@@ -1,0 +1,26 @@
+#!/bin/sh
+
+### Manual Tiling
+
+# Spawn window on the newest receptacle or preselection and switch focus
+# to it.  For presels priority is given to the current desktop.
+_bspc_query() {
+	bspc query -N -n "$@"
+}
+
+recept="$(_bspc_query 'any.leaf.!window')"
+presel="$(_bspc_query 'newest.!automatic')"
+
+# Receptacles will not switch focus to the present desktop, whereas
+# preselection will.  
+
+if [ -n "$recept" ]; then
+	target="$recept"
+	attention="off"
+elif [ -n "$presel" ]; then
+	target="$presel"
+fi
+
+echo "node=${target:-focused}"
+echo "follow=${attention:-on}"
+
