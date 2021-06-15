@@ -21,10 +21,10 @@ noremap <silent>H g^
 noremap <silent>L g$
 map Y y$
 
-map <c-h> <c-w>h
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
+"map <c-h> <c-w>h
+"map <c-j> <c-w>j
+"map <c-k> <c-w>k
+"map <c-l> <c-w>l
 
 nnoremap th  :tabfirst<CR>
 nnoremap tk  :tabnext<CR>
@@ -68,6 +68,16 @@ call plug#end()
 " }}}
 
 """ Plugin Config {{{
+"vim-tmux-navigator
+let g:tmux_navigator_no_mappings = 1
+let g:tmux_navigator_save_on_switch = 2
+
+nnoremap <silent> {Left-Mapping} :TmuxNavigateLeft<cr>
+nnoremap <silent> {Down-Mapping} :TmuxNavigateDown<cr>
+nnoremap <silent> {Up-Mapping} :TmuxNavigateUp<cr>
+nnoremap <silent> {Right-Mapping} :TmuxNavigateRight<cr>
+nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
+
 "Airline
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
