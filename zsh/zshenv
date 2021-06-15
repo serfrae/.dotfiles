@@ -51,3 +51,4 @@ export PYTHONPATH=/usr/local/bin/python3
 export NPM_PATH="$XDG_CONFIG_HOME/node_modules"
 export NPM_BIN="$XDG_CONFIG_HOME/node_modules/bin"
 export NPM_CONFIG_PREFIX="$XDG_CONFIG_HOME/node_modules"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/node_modules/npmrc"
