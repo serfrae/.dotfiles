@@ -202,4 +202,4 @@ key_bindings:
   - { key: Down,     mods: Control|Shift,       action: ScrollPageDown   }
   - { key: Paste,                               action: Paste            }
   - { key: Copy,                                action: Copy             }
-  - { key: L,        mods: Control,             action: ClearLogNotice   }
+  - { key: Period,   mods: Control,             action: ClearLogNotice   }
