@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 [ "$#" -eq 1 ] || { echo "Pass only one argument: north,east,south,west"; exit 1; }
 
 # Check if argument is a valid direction.

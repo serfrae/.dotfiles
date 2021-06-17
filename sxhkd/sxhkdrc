@@ -75,8 +75,6 @@ alt + {_, shift + }{1-6}
 	bspwm_multinode {--ds, --db} ^{1-6}
 alt + ctrl + {1-6}
 	bspwm_multinode --dsnf ^{1-6}
-super + {_, shift +} a
-	bspwm_multinode {--dsnf, --db} 10
 #Close/Kill Nodes in Focused Desktop
 #Excludes Focused or Marked Nodes
 alt + shift + q
@@ -134,7 +132,7 @@ super + {shift + , ctrl + }s
 	bspwm_multinode --kill-all-receptacles \
 	}
 #Focus Node for Preselection
-alt + {p,o,comma,period}
+super + {m,comma,period,slash}
 	bspc node -f @{parent,brother,first,second}
 # }}}
 
@@ -142,54 +140,27 @@ alt + {p,o,comma,period}
 
 #Hide Node
 super + w
-    node_file="$XDG_RUNTIME_DIR/bspwm_hidden_nodes.txt"; \
-    target_node=$(bspc query -N -n focused);             \
-    echo "$target_node" >>  "$node_file";                \
-    bspc node "$target_node" --flag hidden=on
-    #bspc node -g hidden=on
-super + super + w
-    node_file="$XDG_RUNTIME_DIR/bspwm_hidden_nodes.txt"; \
-    target_node=$(tail --lines=1 "$node_file");          \
-    sed -i '$d' "$node_file";                            \
-    bspc node "$target_node" --to-desktop focused;       \
-    bspc node "$target_node" --flag hidden=off
+	bspwm_hide --nh
+#Unhide Most Recent Node
+super + shift + w
+	bspwm_hide --nur
 #Unhide Oldest Node
 super + ctrl + w
-    node_file="$XDG_RUNTIME_DIR/bspwm_hidden_nodes.txt"; \
-    target_node=$(head --lines=1 "$node_file");          \
-    sed -i '1d' "$node_file";                            \
-    bspc node "$target_node" --to-desktop focused;       \
-    bspc node "$target_node" --flag hidden=off
-#Scratchpad Emulation
-super + a
-    node_file="$XDG_RUNTIME_DIR/bspwm_hidden_nodes.txt"; \
-    target_node=$(head --lines=1 "$node_file");          \
-    sed -i '1d' "$node_file";                            \
-    bspc node "$target_node" --to-desktop focused;       \
-    bspc node "$target_node" --flag hidden=off;          \
-    bspc node "$target_node" --state \~floating
-alt + a
-    node_file="$XDG_RUNTIME_DIR/bspwm_hidden_nodes.txt"; \
-    target_node=$(tail --lines=1 "$node_file");          \
-    sed -i '$d' "$node_file";                            \
-    bspc node "$target_node" --to-desktop focused;       \
-    bspc node "$target_node" --flag hidden=off;          \
-    bspc node "$target_node" --state \~floating
-#Hide All
+	bspwm_hide --nuo
 alt + w
-    bspwm_multinode --nha
-#Unhide All Local
+    bspwm_hide --nhnf
+#Hide All Local
 alt + shift + w
-    bspwm_multinode --nlu
+    bspwm_hide --nha
 #Unhide All Global
 alt + ctrl + w
-    bspwm_multinode --nua
+    bspwm_hide --nua
 #Toggle Node Tiling
 super + t
 	bspc query --nodes -n focused.tiled && state=floating || state=tiled; \
 	bspc node --state \~$state
 #Toggle Node Pseudo-Tiling
-super + g
+super + shift + t
 	bspc node --state \~pseudo_tiled
 #Toggle Node Fullscreen
 super + f
@@ -198,7 +169,7 @@ super + f
 super + b
 	bspc desktop -l next
 #Set Node Flag
-super + {u,i,n,m}
+super + {u,p,o,i}
 	bspc node -g {sticky,private,locked,marked}
 # }}}
 
@@ -211,10 +182,10 @@ super + ctrl + {h,j,k,l}
 super + space; {1-9}
 	bspc node -o 0.{1-9}
 #Cancel Focused Node Preselection
-super + shift + space
+super + ctrl + space
 	bspc node -p cancel
 #Cancel Focused Desktop Preselection
-alt + shift + space
+super + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 # }}}
 

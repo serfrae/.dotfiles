@@ -1,0 +1,50 @@
+#!/bin/sh
+
+node_file="$XDG_RUNTIME_DIR/bspwm_hidden_nodes.txt"
+
+_query_nodes() {
+	for i in $(bspc query -N -n "$1"); do
+		"${@:2}" "$i"
+	done
+}
+
+_hide_nodes() {
+	echo "$1" >> "$node_file";
+	bspc node "$1" --flag hidden=on
+}
+
+_unhide_nodes() {
+	if [[ "$1" == --rn ]]; then
+		target_node=$(tail --lines=1 "$node_file")
+		sed -i '$d' "$node_file";
+	else
+		target_node=$(head --lines=1 "$node_file")
+		sed -i '1d' "$node_file";
+	fi
+	bspc node "$target_node" --to-desktop focused;
+	bspc node "$target_node" --flag hidden=off;
+	bspc node -f "$target_node";
+}
+
+case "$1" in
+	--nh|--hide-target-node)
+		_query_nodes 'focused' _hide_nodes
+				;;
+	--nur|--unhide-most-recent-node)
+		_unhide_nodes --rn
+		;;
+	--nuo|--unhide-oldest-node)
+		_unhide_nodes
+		;;
+	--nha|--hide-all-nodes)
+		_query_nodes '.local.window' _hide_nodes
+		;;
+	--nhnf|--hide-non-focused-nodes)
+		_query_nodes '.!focused.!marked.local.window' _hide_nodes
+		;;
+	--nua|--unhide-all-nodes)
+		while [[ -s "$node_file" ]]; do
+			_unhide_nodes
+		done
+			;;
+esac

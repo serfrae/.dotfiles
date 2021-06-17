@@ -106,16 +106,16 @@
     # and 'mod4' (windows-key)
 
     # close notification
-    close = mod4+comma 
+    close = mod4+n
 
     # close all notifications
-    close_all = mod4+shift+comma
+    close_all = mod4+shift+n
 
     # redisplay last message(s)
-    #history = mod+n
+    history = mod4+ctrl+n
 
     # context menu
-    #context = mod4+shift+i
+    #context = mod1+shift+n
 
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the '#' and following  would be interpreted as a comment.
