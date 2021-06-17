@@ -53,3 +53,7 @@ export NPM_PATH="$XDG_CONFIG_HOME/npm"
 export NPM_BIN="$XDG_CONFIG_HOME/npm/bin"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export PATH="$NPM_BIN:$PATH"
+
+# LESS
+export LESSKEY="$XDG_CONFIG_HOME/less/lesskey"
+export LESSHISTFILE="$XDG_CACHE_HOME/less/history"

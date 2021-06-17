@@ -155,6 +155,12 @@ alt + shift + w
 #Unhide All Global
 alt + ctrl + w
     bspwm_hide --nua
+#Unhide All Local
+super + a
+		bspwm_hide --nlu
+#Force Unhide Global + Clear Nodes
+super + ctrl + a
+		bspwm_hide --nfu
 #Toggle Node Tiling
 super + t
 	bspc query --nodes -n focused.tiled && state=floating || state=tiled; \
