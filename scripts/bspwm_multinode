@@ -6,10 +6,6 @@ _query_nodes() {
 	done
 }
 
-# Mnemonics for shorter options:
-# r* == receptacles
-# n* == nodes
-# d* == desktops
 case "$1" in
 	--rk|--kill-all-receptacles)
 		_query_nodes '.leaf.!window' -k

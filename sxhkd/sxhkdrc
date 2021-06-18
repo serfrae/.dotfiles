@@ -88,17 +88,18 @@ alt + {_,shift} + Tab
 super + {_,shift} + Tab
 	bspc desktop -f {next,prev}
 #Focus/Move Window to the Biggest Space
-super + {_,shift + }semicolon
-	bspc node -{f,s} biggest.local
+super + {_,shift} + semicolon
+#Hide All Non-Focused
+	bspc node -{s,f} biggest.local
+#Swap Window With Last Window
+super + {_, shift} + apostrophe
+	bspc node -{s,f} last
 #Focus Node in Given Direction
 super + {h,j,k,l}
 	bspc node -f {west,south,north,east}
 #Move Node in Given Direction
 super + shift + {h,j,k,l}
 	bspwm_move {west,south,north,east}
-#Swap Window With Last Window
-super + apostrophe
-	bspc node -s last
 # }}}
 
 ### Layout{{{
@@ -147,6 +148,7 @@ super + shift + w
 #Unhide Oldest Node
 super + ctrl + w
 	bspwm_hide --nuo
+#Hide All Non-Focused
 alt + w
     bspwm_hide --nhnf
 #Hide All Local
@@ -158,7 +160,10 @@ alt + ctrl + w
 #Unhide All Local
 super + a
 		bspwm_hide --nlu
-#Force Unhide Global + Clear Nodes
+#Summon all marked
+super + shift + a
+		bspwm_multinode --nms
+#Force Unhide Global (Also resets node file)
 super + ctrl + a
 		bspwm_hide --nfu
 #Toggle Node Tiling

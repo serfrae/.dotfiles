@@ -1,6 +1,7 @@
 #!/bin/sh
 
 ln -sf "$DOTFILES/scripts/bspwm_external_rules" "$HOME/bin/bspwm_external_rules"
+ls -sf "$DOTFILES/scripts/bspwm_hide" "$HOME/bin/bspwm_hide"
 ln -sf "$DOTFILES/scripts/bspwm_move" "$HOME/bin/bspwm_move"
 ln -sf "$DOTFILES/scripts/bspwm_multinode" "$HOME/bin/bspwm_multinode"
 ln -sf "$DOTFILES/scripts/bspwm_presel" "$HOME/bin/bspwm_presel"
