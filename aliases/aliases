@@ -19,6 +19,7 @@ alias ll='exa -laHF'
 ### Rust
 alias carb='cargo build'
 alias carbr='cargo build --release'
+alias carr='cargo run'
 alias cari='cargo install'
 alias carn='cargo new'
 alias carnl='cargo new --lib'
