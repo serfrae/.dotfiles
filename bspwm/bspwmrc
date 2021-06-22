@@ -17,7 +17,12 @@ launch.sh &
 theme.sh &
 
 ### MONITORS
+if [ -x $HOME/bin/ext_monitor ]; then
+    ext_monitor
+fi
+
 bspc monitor eDP-1 -d 1 2 3 4 5 6
+bspc monitor HDMI-1-1 -d 7 8 9 0
 
 ### BSPWM Configuration
 #bspc config border_radius        8

@@ -8,16 +8,16 @@ super + shift + Return
     alacritty -e $SHELL -i -c tmux &
 #Program Launcher
 super + d
-	rofi -show drun -sidebar-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
+	rofi -show drun -m -1 -sidebar-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
 #Run
 super + shift + d
-    rofi -show run -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
+    rofi -show run -m -1 -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
 #Task Switcher
 alt + d
-	rofi -show window -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
+	rofi -show window -m -1 -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
 #Ssh
 alt + shift + d
-	rofi -show ssh -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
+	rofi -show ssh -m -1 -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
 #Screenshot
 super + z
     maim -u | xclip -selection clipboard -t image/png; \
@@ -64,17 +64,17 @@ alt + F4
 ### Desktops {{{
 
 #Focus/Send Node (to) Desktop(n)
-super + {_,shift + }{1-6}
-	bspc {desktop -f,node -d} ^{1-6}
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} ^{1-9,10}
 #Send Node & Follow to Desktop(n)
-super + ctrl + {1-6}
-	bspc node -d ^{1-6} --follow
+super + ctrl + {1-9,0}
+	bspc node -d ^{1-9,10} --follow
 #Summon Nodes From Desktop(n) to Focused Desktop
 #Shift = Send Nodes from Focused Desktop to Desktop(n)
-alt + {_, shift + }{1-6}
-	bspwm_multinode {--ds, --db} ^{1-6}
-alt + ctrl + {1-6}
-	bspwm_multinode --dsnf ^{1-6}
+alt + {_, shift + }{1-9,0}
+	bspwm_multinode {--ds, --db} ^{1-9,10}
+alt + ctrl + {1-9,0}
+	bspwm_multinode --dsnf ^{1-9,10}
 #Close/Kill Nodes in Focused Desktop
 #Excludes Focused or Marked Nodes
 alt + shift + q

@@ -1,32 +1,24 @@
 [colors]
 ;background = ${xrdb:color0:#222}
 background = #282828
-;background = #99000000
 background-alt = #32302f
 ;background-semi = ${xrdb:color2:#222}
 background-semi = #282828
-;background-semi = #aa2F343F
 ;foreground = ${xrdb:color7:#222}
 foreground = #ebdbb2
-;foreground = #dfdfdf
 ;foreground-alt = ${xrdb:color7:#222}
 foreground-alt = #a89984
-;foreground-alt = #ffffff
 ;primary = ${xrdb:color1:#222}
-;primary = #ffb52a
 ;secondary = ${xrdb:color2:#222}
-;secondary = #e60053
 ;alert = ${xrdb:color3:#222}
 alert = #cc241d
 
 [bar/bspwm]
 monitor = eDP-1
-;monitor-fallback = ${env:MONITOR}
 width = 100%
 height = 2.5%
 offset-x = 0%
 offset-y = 0%
-;radius = 10.0
 fixed-center = true
 
 background = ${colors.background}
@@ -35,17 +27,12 @@ foreground = ${colors.foreground}
 line-size = 0
 line-color = #f00
 
-;border-size = 2
-;border-color = #00000000
-
 padding-left = 0
 padding-right = 2
 
 module-margin-left = 1
 module-margin-right = 1
 
-
-;font-0 = Material Icons:pixelsize=18;5
 font-0 = Open Sans:pixelsize=11:style=bold;2
 font-1 = Symbols Nerd Font:size=16:style=regular;4
 font-2 = Open Sans:size=20:style=regular;2
@@ -63,7 +50,49 @@ tray-padding = 0
 tray-background = ${colors.background}
 
 wm-restack = bspwm
-;override-redirect = true
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+cursor-click = pointer
+
+[bar/ext]
+monitor = HDMI-1-1
+width = 100%
+height = 2.5%
+offset-x = 0%
+offset-y = 0%
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 0
+line-color = #f00
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = Open Sans:pixelsize=11:style=bold;2
+font-1 = Symbols Nerd Font:size=16:style=regular;4
+font-2 = Open Sans:size=20:style=regular;2
+font-3 = Font Awesome 5 Brands:pixelsize=14;2
+font-4 = Font Awesome 5 Free:pixelsize=12;2
+font-5 = Symbols Nerd Font:size=18:style=Regular;4
+font-6 = Symbols Nerd Font:size=16:style=Regular;4
+
+modules-left = bspwm
+modules-center = xwindow
+modules-right = pulseaudio wlan memory cpu temperature date
+
+tray-position = right
+tray-padding = 0
+tray-background = ${colors.background}
+
+wm-restack = bspwm
 
 scroll-up = bspwm-desknext
 scroll-down = bspwm-deskprev
@@ -87,18 +116,9 @@ label-unmounted-foreground = ${colors.foreground-alt}
 
 [module/bspwm]
 type = internal/bspwm
+pin-workspaces = true
 
-;ws-icon-0 = 1;%{F#ebdbb2}ﲵ%{F-}
-;ws-icon-1 = 2;%{F#21cf5f}%{F-}
-;ws-icon-2 = 3;%{F#ff004b}%{F-}
-;ws-icon-3 = 4;%{F#00c0ff}%{F-}
-;ws-icon-4 = 5;%{F#d448ff}%{F-}
-;ws-icon-5 = 6;%{F#ffca00}%{F-}
-;ws-icon-6 = 7;%{F#2944f2}ﲹ%{F-}
-;ws-icon-7 = 8;%{F#ff8c00}ﯟ%{F-}
-;ws-icon-8 = 9;%{F#c46a4b}%{F-}
 label-focused = %{F#}%{F-}
-;label-focused-background = ${colors.foreground-alt}
 label-focused-padding = 1
 
 label-occupied = %{F#928374}%{F-}
@@ -110,7 +130,6 @@ label-urgent-background = ${colors.alert}
 label-urgent-padding = 1
 
 label-empty = %{F#928374}%{F-}
-;label-empty-foreground =
 label-empty-padding = 1
 
 [module/mpd]
@@ -144,12 +163,9 @@ card = intel_backlight
 type = internal/cpu
 interval = 2
 format-prefix = " "
-;format-prefix-foreground = #178AAA
 format-prefix-foreground = #00c0ff
 format-prefix-background = ${colors.background}
-;format-foreground = #178AAA
 format-underline = ${xrdb:color5:#222}
-;format-underline = #f47b00
 label-background = ${colors.background}
 label = %percentage:2%%
 
@@ -161,7 +177,6 @@ format-prefix = "﬘ "
 format-prefix-foreground = #d448ff
 format-prefix-background = ${colors.background}
 format-underline = ${xrdb:color4:#222}
-;format-underline = #FFDF00
 label-background = ${colors.background}
 label = %percentage_used%%
 
@@ -172,7 +187,6 @@ interval = 3.0
 
 format-connected = <ramp-signal><label-connected>
 format-connected-underline = ${xrdb:color3:#222}
-;format-connected-underline = #66ff33
 label-connected = %essid%
 label-connected-padding = 1
 label-connected-background = ${colors.background}
@@ -202,7 +216,6 @@ date-alt =
 time = %H:%M:%S
 time-alt = %H:%M
 
-;format-underline = #cc00cc
 format-underline = ${xrdb:color8:#222}
 label-background = ${colors.background}
 label = %date% %time%
@@ -227,7 +240,6 @@ ramp-volume-foreground = #ffca00
 ramp-volume-background = ${colors.background}
 
 format-volume-underline = ${xrdb:color2:#222}
-;format-volume-underline = #0099ff
 
 [module/battery2]
 type = internal/battery
@@ -308,7 +320,6 @@ warn-temperature = 75
 
 format = <ramp><label>
 format-underline = ${xrdb:color7:#222}
-;format-underline = #f50a4d
 format-warn = <ramp><label-warn>
 format-warn-underline = ${self.format-underline}
 
@@ -329,43 +340,6 @@ ramp-2-foreground = #ff004b
 ramp-3-foreground = #ff004b
 ramp-4-foreground = #ff004b
 ramp-background = ${colors.background}
-
-[module/menu]
-type = custom/menu
-
-expand-left = true
-
-format-spacing = 1
-
-label-open = "󰤆"
-label-open-foreground = ${colors.foreground-alt}
-label-close = " "
-label-close-foreground = ${colors.foreground-alt}
-label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
-
-label-open-background = ${colors.background}
-label-close-background = ${colors.background}
-label-separator-background = ${colors.background}
-
-menu-0-0 = "󰤆"
-menu-0-0-exec = systemctl poweroff
-menu-0-0-background = ${colors.background}
-menu-0-1 = 󰦛
-menu-0-1-exec = systemctl reboot
-menu-0-1-background = ${colors.background}
-menu-0-2 = 󰿅
-menu-0-2-exec = bspc quit
-menu-0-2-background = ${colors.background}
-menu-0-3 = 󰿄
-menu-0-3-exec = systemctl suspend
-menu-0-3-background = ${colors.background}
-menu-0-4 = 󱄍
-menu-0-4-exec = systemctl reboot --firmware-setup
-menu-0-4-background = ${colors.background}
-menu-0-5 = 󰜺
-menu-0-5-exec = betterlockscreen -l dimblur
-menu-0-5-background = ${colors.background}
 
 [settings]
 screenchange-reload = true
