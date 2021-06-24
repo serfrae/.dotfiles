@@ -4,12 +4,12 @@ source ./zsh/zshenv
 
 function dot_install() {
   echo -e "Installing ${1} config"
-  . $DOTFILES/install/install-${1}.sh
+  $DOTFILES/install/install-${1}.sh
 }
 
 dot_install dirs
-chmod -w $HOME
 dot_install zsh
+chmod -w $HOME
 dot_install apps
 dot_install X11
 dot_install bspwm
@@ -22,3 +22,4 @@ dot_install nvim
 dot_install tmux
 dot_install dunst
 dot_install scripts
+dot_install git
