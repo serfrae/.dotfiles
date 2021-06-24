@@ -10,16 +10,20 @@ function dot_install() {
 dot_install dirs
 dot_install zsh
 chmod -w $HOME
-dot_install apps
-dot_install X11
-dot_install bspwm
-dot_install sxhkd
-dot_install picom
+
 dot_install alacritty
+dot_install bspwm
+dot_install dunst
+dot_install git
+dot_install npm
+dot_install nvim
+dot_install picom
 dot_install polybar
 dot_install rofi
-dot_install nvim
-dot_install tmux
-dot_install dunst
 dot_install scripts
-dot_install git
+dot_install sxhkd
+dot_install tmux
+dot_install X11
+dot_install yarn
+
+dot_install apps

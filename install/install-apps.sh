@@ -4,12 +4,17 @@
 sudo pacman -S archlinux-keyring
 
 # Install packages
-sudo pacman -S alacritty alsa-utils betterlockscreen bluez bluez-utils bspwm dunst cargo exa feh fzf libnotify maim neovim openssh picom python pulseaudio ripgrep rofi rustup sxhkd tmux ttf-jetbrains-mono ttf-nerd-fonts-symbols unzip wget xcape xclip xdg-user-dirs xorg xorg-xinit xsel zsh zsh-syntax-highlighting zsh-autosuggestions
+sudo pacman -S alacritty alsa-utils betterlockscreen bluez bluez-utils bspwm cargo clang dunst exa feh fzf libnotify maim neovim npm openssh picom python pulseaudio ripgrep rofi rustup sxhkd tmux ttf-jetbrains-mono ttf-nerd-fonts-symbols unzip wget xcape xclip xdg-user-dirs xorg xorg-xinit xsel zsh zsh-syntax-highlighting zsh-autosuggestions
 
 # Install Rust
 rustup install nightly
 rustup default nightly
 rustup +nightly component add rust-analyzer-preview
+rustup target add wasm32-unknown-unknown --toolchain nightly
+
+# Install NPM Packages
+npm install -g yarn
+npm install -g typescript
 
 # Install yay
 mkdir -p $XDG_CONFIG_HOME/aur
