@@ -8,8 +8,9 @@ function dot_install() {
 }
 
 dot_install dirs
-dot_install apps
+chmod -w $HOME
 dot_install zsh
+dot_install apps
 dot_install X11
 dot_install bspwm
 dot_install sxhkd
