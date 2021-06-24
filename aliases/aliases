@@ -29,4 +29,4 @@ alias carn='cargo new'
 alias carnl='cargo new --lib'
 
 ### Yarn
-alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
+#alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
