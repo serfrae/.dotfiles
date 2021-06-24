@@ -5,16 +5,20 @@ alias dots="$DOTFILES"
 alias tmux='tmux -f "$XDG_CONFIG_HOME/tmux/tmux.conf"'
 alias pacrl='rm /var/lib/pacman/db.lck'
 
+### Exa
+alias ls='exa'
+alias la='exa -a'
+alias ll='exa -laHF'
+
 ### Neovim
 alias vim='nvim'
 alias vi='nvim'
 alias svim='sudoedit'
 alias dvim='nvim --noplugin -u NONE'
 
-### Exa
-alias ls='exa'
-alias la='exa -a'
-alias ll='exa -laHF'
+### Ripgrep
+alias rgp='rg -p'
+alias rgr='rg -uuu'
 
 ### Rust
 alias carb='cargo build'
