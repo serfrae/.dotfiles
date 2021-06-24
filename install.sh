@@ -7,6 +7,8 @@ function dot_install() {
   . $DOTFILES/install/install-${1}.sh
 }
 
+dot_install dirs
+dot_install apps
 dot_install zsh
 dot_install X11
 dot_install bspwm
