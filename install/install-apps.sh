@@ -24,10 +24,7 @@ cd yay
 makepkg -si
 
 # Install ZPRS
-cd $DOTFILES
-git clone https://github.com/a7raser/zprs.git
-cd zprs
-cargo build --release
+"$DOTFILES/install/install-zprs.sh"
 
 # Change shell
 chsh -s /usr/bin/zsh
