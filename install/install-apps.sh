@@ -4,7 +4,7 @@
 sudo pacman -S archlinux-keyring
 
 # Install packages
-sudo pacman -S alacritty alsa-utils bluez bluez-utils bspwm dunst cargo exa feh fzf maim neovim openssh picom python pulseaudio ripgrep rofi rustup sxhkd tmux ttf-jetbrains-mono ttf-nerd-fonts-symbols wget xcape xclip xdg-user-dirs xorg xorg-xinit xsel zsh zsh-syntax-highlighting zsh-autosuggestions
+sudo pacman -S alacritty alsa-utils bluez bluez-utils bspwm dunst cargo exa feh fzf libnotify maim neovim openssh picom python pulseaudio ripgrep rofi rustup sxhkd tmux ttf-jetbrains-mono ttf-nerd-fonts-symbols unzip wget xcape xclip xdg-user-dirs xorg xorg-xinit xsel zsh zsh-syntax-highlighting zsh-autosuggestions
 
 # Install Rust
 rustup install nightly
@@ -26,6 +26,7 @@ cargo build --release
 
 # Change shell
 chsh -s /usr/bin/zsh
+chsh -s /bin/zsh
 
 # Install AUR packages
 yay -S polybar brave-nightly-bin
