@@ -10,6 +10,7 @@ sudo pacman -S alacritty alsa-utils bluez bluez-utils bspwm cargo clang dunst ex
 rustup install nightly
 rustup default nightly
 rustup target add wasm32-unknown-unknown --toolchain nightly
+cargo install wasm-pack
 
 # Install NPM Packages
 npm install -g yarn
