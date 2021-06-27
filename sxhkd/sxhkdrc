@@ -24,7 +24,7 @@ super + z
     notify-send "Screenshot Saved to Clipboard."
 super + shift + z
     maim -u $HOME/media/images/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png; \
-	notify-send "Screenshot Saved: scrn-$(date +"%Y-%m-%d-%H-%M-%S").png"
+		notify-send "Screenshot Saved: scrn-$(date +"%Y-%m-%d-%H-%M-%S").png"
 #Screenclip
 super + x
     maim -s -u | xclip -selection clipboard -t image/png; \
