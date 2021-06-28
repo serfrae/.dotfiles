@@ -85,8 +85,8 @@ font-5 = Symbols Nerd Font:size=18:style=Regular;4
 font-6 = Symbols Nerd Font:size=16:style=Regular;4
 
 modules-left = bspwm
-modules-center = xwindow
-modules-right = pulseaudio wlan memory cpu temperature date
+modules-center = crypto
+modules-right = pulseaudio memory cpu date
 
 tray-position = right
 tray-padding = 0
@@ -340,6 +340,11 @@ ramp-2-foreground = #ff004b
 ramp-3-foreground = #ff004b
 ramp-4-foreground = #ff004b
 ramp-background = ${colors.background}
+
+[module/crypto]
+type = custom/script
+interval = 300
+exec = "$DOTFILES/polybar/crypto/target/release/fetch"
 
 [settings]
 screenchange-reload = true
