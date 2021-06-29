@@ -60,7 +60,6 @@ super + {_,shift +}q
 alt + F4
 	bspc node -k
 # }}}
-
 ### Desktops {{{
 
 #Focus/Send Node (to) Desktop(n)
@@ -101,7 +100,6 @@ super + {h,j,k,l}
 super + shift + {h,j,k,l}
 	bspwm_move {west,south,north,east}
 # }}}
-
 ### Layout{{{
 
 #Rotate Desktop
@@ -136,7 +134,6 @@ super + {shift + , ctrl + }s
 super + {m,comma,period,slash}
 	bspc node -f @{parent,brother,first,second}
 # }}}
-
 ### Node State{{{
 
 #Hide Node
@@ -183,7 +180,6 @@ super + b
 super + {u,p,o,i}
 	bspc node -g {sticky,private,locked,marked}
 # }}}
-
 ### Pre-Select{{{
 
 #Preselect Direction
@@ -199,7 +195,6 @@ super + ctrl + space
 super + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 # }}}
-
 ### Multimedia{{{
 
 #Audio
@@ -223,15 +218,14 @@ XF86MonBrightnessDown
 XF86MonBrightnessUp
     xbacklight -inc 5
 # }}}
-
 ### Resize{{{
 
 #Resize
-super + space: {h,j,k,l}
-    bspwm_resize {west,south,north,east} 50
+alt + {h,j,k,l}
+    bspwm_resize {west,south,north,east} 20
 #Move Float
 super + space: super + {h,j,k,l}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 #Adjust Gaps
-super + bracket{left,right}
+super + bracket{right,left}
 	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 5))# }}}

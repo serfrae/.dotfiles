@@ -4,13 +4,16 @@
 sudo pacman -S archlinux-keyring
 
 # Install packages
-sudo pacman -S alacritty alsa-utils bluez bluez-utils bspwm cargo clang dunst exa feh fzf libnotify maim neovim npm openssh picom python pulseaudio ripgrep rofi rustup rust-analyzer sxhkd tmux ttf-font-awesome ttf-jetbrains-mono ttf-nerd-fonts-symbols unzip wget xcape xclip xdg-user-dirs xorg xorg-xinit xsel zsh zsh-syntax-highlighting zsh-autosuggestions
+sudo pacman -S alacritty alsa-utils bluez bluez-utils bspwm cargo clang cmake dunst exa fd feh fzf libnotify maim neovim npm openssh picom python python-pip pulseaudio ripgrep rofi rustup rust-analyzer sxhkd tmux ttf-font-awesome ttf-jetbrains-mono ttf-nerd-fonts-symbols unzip wget xcape xclip xdg-user-dirs xorg xorg-xinit xsel zsh zsh-syntax-highlighting zsh-autosuggestions
 
 # Install Rust
 rustup install nightly
 rustup default nightly
 rustup target add wasm32-unknown-unknown --toolchain nightly
 cargo install wasm-pack
+
+# Install PIP packages
+pip install --user --upgrade pynvim
 
 # Install NPM Packages
 npm install -g yarn

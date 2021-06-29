@@ -26,7 +26,7 @@ font:
     family: JetBrains Mono
     style: Italic
 
-  size: 7.0
+  size: 7.5
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
