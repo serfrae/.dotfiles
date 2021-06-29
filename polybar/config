@@ -343,7 +343,7 @@ ramp-background = ${colors.background}
 
 [module/crypto]
 type = custom/script
-interval = 300
+interval = 60
 exec = "$DOTFILES/polybar/crypto/target/release/fetch"
 
 [settings]
