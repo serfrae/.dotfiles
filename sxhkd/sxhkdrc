@@ -10,14 +10,14 @@ super + shift + Return
 super + d
 	rofi -show drun -m -1 -sidebar-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
 #Run
-super + shift + d
-    rofi -show run -m -1 -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
+#super + shift + d
+#    rofi -show run -m -1 -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
 #Task Switcher
-alt + d
+super + shift + d
 	rofi -show window -m -1 -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
 #Ssh
-alt + shift + d
-	rofi -show ssh -m -1 -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
+#alt + shift + d
+#	rofi -show ssh -m -1 -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
 #Screenshot
 super + z
     maim -u | xclip -selection clipboard -t image/png; \

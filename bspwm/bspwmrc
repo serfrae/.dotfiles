@@ -16,7 +16,8 @@ fi
 ### Autostart
 sxhkd -c $XDG_CONFIG_HOME/sxhkd/sxhkdrc &
 dunst -c $XDG_CONFIG_HOME/dunst/dunstrc &
-picom -bcCG -o 0.5 -r 12 -l -17 -t -7 &
+picom -bG
+#picom -bcCG -o 0.5 -r 12 -l -17 -t -7 &
 launch.sh &
 theme.sh &
 
@@ -29,7 +30,7 @@ bspc monitor HDMI-1-1 -d 7 8 9 0
 _bc initial_polarity 		  second_child
 _bc border_width                  1
 _bc window_gap                    5
-_bc top_padding                   18
+_bc top_padding                   0
 _bc bottom_padding                0
 _bc left_padding                  0
 _bc right_padding                 0

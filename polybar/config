@@ -20,6 +20,7 @@ height = 2.5%
 offset-x = 0%
 offset-y = 0%
 fixed-center = true
+bottom = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -63,6 +64,7 @@ height = 2.5%
 offset-x = 0%
 offset-y = 0%
 fixed-center = true
+bottom = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
