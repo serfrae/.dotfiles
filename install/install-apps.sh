@@ -35,4 +35,4 @@ chsh -s /usr/bin/zsh
 chsh -s /bin/zsh
 
 # Install AUR packages
-yay -S polybar brave-nightly-bin betterlockscreen
+yay -S polybar brave-nightly-bin betterlockscreen autojump-rs
