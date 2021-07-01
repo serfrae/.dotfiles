@@ -1,0 +1,15 @@
+#!/bin/sh
+
+DATE=$(date +"%Y%m%d")
+FILE="$HOME/docs/todo/$DATE"
+LINES=$(cat $FILE)
+
+echo $DATE
+echo $FILE
+
+if [[ -s $FILE ]]; then
+    tput setaf 1; echo [[HIGH]]
+    for line in $(cat $FILE); do
+        echo $line
+    done
+fi

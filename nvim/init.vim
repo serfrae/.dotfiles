@@ -23,8 +23,8 @@ Plug 'chriskempson/base16-vim'
 call plug#end()
 " }}}
 """ Plugin Config {{{
-
 let g:rustfmt_autosave = 1
+let g:fzf_preview_window = []
 
 "vim-tmux-navigator
 let g:tmux_navigator_no_mappings = 1
@@ -186,6 +186,11 @@ set nowritebackup
 set updatetime=300
 set shortmess+=c
 
+" Tab for completion
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
