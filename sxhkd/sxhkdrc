@@ -61,18 +61,17 @@ alt + F4
 	bspc node -k
 # }}}
 ### Desktops {{{
-
 #Focus/Send Node (to) Desktop(n)
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} ^{1-9,10}
 #Send Node & Follow to Desktop(n)
-super + ctrl + {1-9,0}
+shift + space; {1-9,0}
 	bspc node -d ^{1-9,10} --follow
 #Summon Nodes From Desktop(n) to Focused Desktop
 #Shift = Send Nodes from Focused Desktop to Desktop(n)
-alt + {_, shift + }{1-9,0}
+ctrl + {_, super + }{1-9,0}
 	bspwm_multinode {--ds, --db} ^{1-9,10}
-alt + ctrl + {1-9,0}
+shift + space; shift + {1-9,0}
 	bspwm_multinode --dsnf ^{1-9,10}
 #Close/Kill Nodes in Focused Desktop
 #Excludes Focused or Marked Nodes
@@ -135,7 +134,6 @@ super + {m,comma,period,slash}
 	bspc node -f @{parent,brother,first,second}
 # }}}
 ### Node State{{{
-
 #Hide Node
 super + w
 	bspwm_hide --nh
@@ -221,7 +219,7 @@ XF86MonBrightnessUp
 ### Resize{{{
 
 #Resize
-alt + {h,j,k,l}
+shift + space; + {h,j,k,l}
     bspwm_resize {west,south,north,east} 20
 #Move Float
 super + space: super + {h,j,k,l}

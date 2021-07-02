@@ -178,11 +178,8 @@ alt_send_esc: true
 key_bindings:
   - { key: V,        mods: Control|Shift,       action: Paste            }
   - { key: C,        mods: Control|Shift,       action: Copy             }
-  - { key: Key0,     mods: Control|Shift,       action: ResetFontSize    }
   - { key: Equals,   mods: Control|Shift,       action: IncreaseFontSize }
   - { key: Minus,    mods: Control|Shift,       action: DecreaseFontSize }
-  - { key: Up,       mods: Control|Shift,       action: ScrollPageUp     }
-  - { key: Down,     mods: Control|Shift,       action: ScrollPageDown   }
   - { key: Paste,                               action: Paste            }
   - { key: Copy,                                action: Copy             }
   - { key: Period,   mods: Control,             action: ClearLogNotice   }
