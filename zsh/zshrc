@@ -59,3 +59,8 @@ zle -N fzf-cd-widget
 bindkey '^R' fzf-cd-widget
 bindkey -rpM viins '^['
 bindkey -rpM vicmd '^['
+bindkey -rpM viopp '^['
+bindkey -rpM visual '^['
+bindkey '^G' kill-line 
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
