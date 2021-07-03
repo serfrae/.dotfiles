@@ -1,4 +1,4 @@
-source "$XDG_CONFIG_HOME/mutt/gruvbox"
+source "$XDG_CONFIG_HOME/mutt/theme"
 source "$XDG_CONFIG_HOME/mutt/sidebar"
 
 set editor = "nvim"
@@ -11,6 +11,8 @@ set sort = "reverse-date-received"
 set signature = "$XDG_CONFIG_HOME/mutt/signature"
 set copy = no
 set imap_check_subscribed
+set sleep_time = 0
+set new_mail_command="notify-send 'New Emails' '%n new messages, %u unread.' &"
 
 set header_cache = "$XDG_CACHE_HOME/mutt/headers"
 set message_cachedir = "$XDG_CACHE_HOME/mutt/bodies"
@@ -30,6 +32,7 @@ source 'gpg -d $XDG_CONFIG_HOME/mutt/a7raser.gpg |'
 macro index,pager <f1> "<sync-mailbox><enter-command>source 'gpg -d $XDG_CONFIG_HOME/mutt/a7raser.gpg |'<enter><change-folder>!<enter>"
 macro index,pager <f2> "<sync-mailbox><enter-command>source 'gpg -d $XDG_CONFIG_HOME/mutt/synchrony.gpg |'<enter><change-folder>!<enter>"
 macro index 'c' '<change-folder>?<change-dir><home>^K=<enter>'
+macro pager \cb <pipe-entry>'urlview'<enter>
 
 bind pager j next-line
 bind pager k previous-line

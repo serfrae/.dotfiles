@@ -1,5 +1,5 @@
 [global]
-    font = Open Sans 11
+    font = Open Sans 12
 
     # <b>bold</b>
     # <i>italic</i>
@@ -15,11 +15,11 @@
     #   %i  iconname (including its path)
     #   %I  iconname (without its path)
     #   %p  progress value if set ([  0%] to [100%]) or nothing
-    format = "<span size="large"><b>%s</b></span>\n%b"
-    
+    format = "<span size="large"><b>%s</b></span>\n\n%b"
+
     # Icon settings
     icon_position = left
-    min_icon_size = 48 
+    min_icon_size = 48
     max_icon_size = 96
     icon_folders = ""
 
@@ -34,8 +34,8 @@
 
     # alignment of message text.
     # Possible values are "left", "center" and "right"
-    alignment = left 
-    vertical_alignment = center 
+    alignment = left
+    vertical_alignment = center
 
     bounce_freq = 0
 
@@ -51,10 +51,10 @@
     ignore_newline = no
 
     # geometry [{width}]x{height}][+/-{x}+/-{y}]
-    # The height is measured in number of notifications everything else in pixels. 
-    geometry = "384x5-15+42"
+    # The height is measured in number of notifications everything else in pixels.
+    geometry = "384x5-30+30"
 
-    notification_height = 0 
+    notification_height = 0
     shrink = true
     # The transparency of the window. range: [0; 100]
     transparency = 18
@@ -83,8 +83,8 @@
     separator_height = 0
 
     # padding between text and separator
-    padding = 8 
-    horizontal_padding = 8 
+    padding = 8
+    horizontal_padding = 8
 
     separator_color = frame
 
@@ -92,7 +92,7 @@
 
     # paths
     rofi = /usr/bin/rofi -p dunst:
-    browser=/usr/bin/firefox-developer-edition -new-tab 
+    browser=/usr/bin/firefox-developer-edition -new-tab
 
     mouse_left_click = close_current
     mouse_right_click= do_action, close_current

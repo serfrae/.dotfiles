@@ -1,5 +1,4 @@
 ### Hotkeys {{{
-
 #Terminal
 super + Return
     alacritty
@@ -65,13 +64,13 @@ alt + F4
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} ^{1-9,10}
 #Send Node & Follow to Desktop(n)
-shift + space; {1-9,0}
+super + ctrl + {1-9,0}
 	bspc node -d ^{1-9,10} --follow
 #Summon Nodes From Desktop(n) to Focused Desktop
 #Shift = Send Nodes from Focused Desktop to Desktop(n)
-ctrl + {_, super + }{1-9,0}
+alt + {_, shift + }{1-9,0}
 	bspwm_multinode {--ds, --db} ^{1-9,10}
-shift + space; shift + {1-9,0}
+alt + ctrl + {1-9,0}
 	bspwm_multinode --dsnf ^{1-9,10}
 #Close/Kill Nodes in Focused Desktop
 #Excludes Focused or Marked Nodes
@@ -83,15 +82,14 @@ alt + shift  + F4
 alt + {_,shift} + Tab
 	bspc node -f {next,prev}
 #Focus Next/Previous Desktop
-super + {_,shift} + Tab
-	bspc desktop -f {next,prev}
+#super + {_,shift} + Tab
+#	bspc desktop -f {next,prev}
 #Focus/Move Window to the Biggest Space
-super + {_,shift} + semicolon
-#Hide All Non-Focused
+super + {_,shift} + apostrophe
 	bspc node -{s,f} biggest.local
 #Swap Window With Last Window
-super + {_, shift} + apostrophe
-	bspc node -{s,f} last
+super + {_, shift} + semicolon
+	bspc node -{f,s} last
 #Focus Node in Given Direction
 super + {h,j,k,l}
 	bspc node -f {west,south,north,east}
@@ -154,13 +152,13 @@ alt + ctrl + w
     bspwm_hide --nua
 #Unhide All Local
 super + a
-		bspwm_hide --nlu
+    bspwm_hide --nlu
 #Summon all marked
 super + shift + a
-		bspwm_multinode --nms
+    bspwm_multinode --nms
 #Force Unhide Global (Also resets node file)
 super + ctrl + a
-		bspwm_hide --nfu
+    bspwm_hide --nfu
 #Toggle Node Tiling
 super + t
 	bspc query --nodes -n focused.tiled && state=floating || state=tiled; \
@@ -219,7 +217,7 @@ XF86MonBrightnessUp
 ### Resize{{{
 
 #Resize
-shift + space; + {h,j,k,l}
+alt + {h,j,k,l}
     bspwm_resize {west,south,north,east} 20
 #Move Float
 super + space: super + {h,j,k,l}
