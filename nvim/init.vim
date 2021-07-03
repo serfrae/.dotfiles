@@ -55,7 +55,7 @@ let g:airline_symbols.notexists = 'Ɇ'
 "Colourscheme
 let base16colorspace=256  " Access colors present in 256 colorspace
 set termguicolors
-colorscheme base16-gruvbox-dark-medium
+colorscheme base16-gruvbox-dark-hard
 " }}}
 """ Formatting {{{
 set cursorline
@@ -85,6 +85,7 @@ set scrolloff=3
 set backspace=indent,eol,start
 set matchpairs+=<:>
 
+set signcolumn
 set ruler
 set modelines=0
 set encoding=utf-8
@@ -93,7 +94,7 @@ set hidden
 set ttyfast
 set laststatus=2
 set lazyredraw
-set showmode
+set noshowmode
 set showcmd
 syntax enable
 set showbreak=↪\
@@ -118,6 +119,8 @@ noremap <silent>H g^
 noremap <silent>L g$
 map Y y$
 vnoremap <leader>y "+y<Cr>
+noremap <leader>p :read !xsel --clipboard --output<cr>
+noremap <leader>c :w !xsel -ib<cr><cr>et 
 
 nnoremap th  :tabfirst<CR>
 nnoremap tk  :tabnext<CR>
@@ -140,6 +143,12 @@ set ignorecase
 set smartcase
 set showmatch
 map <leader><space> :let @/=''<cr>
+" Center search results
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
 
 if executable("rg")
   set grepprg=rg\ --vimgrep\ --no-heading
