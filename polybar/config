@@ -155,7 +155,8 @@ card = intel_backlight
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-prefix-foreground = #00c0ff
+format-prefix-foreground = #83a598
+#format-prefix-foreground = #00c0ff
 format-prefix-background = ${colors.background}
 format-underline = ${xrdb:color5:#222}
 label-background = ${colors.background}
@@ -166,7 +167,7 @@ label = %percentage:2%%
 type = internal/memory
 interval = 2
 format-prefix = "﬘ "
-format-prefix-foreground = #d929d9
+format-prefix-foreground = #d3869b
 format-prefix-background = ${colors.background}
 format-underline = ${xrdb:color4:#222}
 label-background = ${colors.background}
@@ -192,10 +193,10 @@ ramp-signal-0 = 直
 ramp-signal-1 = 直
 ramp-signal-2 = 直
 ramp-signal-3 = 直
-ramp-signal-0-foreground = #21cf5f
-ramp-signal-1-foreground = #21cf5f
-ramp-signal-2-foreground = #21cf5f
-ramp-signal-3-foreground = #21cf5f
+ramp-signal-0-foreground = #8ec07c
+ramp-signal-1-foreground = #8ec07c
+ramp-signal-2-foreground = #8ec07c
+ramp-signal-3-foreground = #8ec07c
 ramp-signal-background = ${colors.background}
 
 [module/date]
@@ -221,14 +222,14 @@ label-volume-foreground = ${root.foreground}
 label-volume-background = ${colors.background}
 
 label-muted = ﱝ
-label-muted-foreground = #22dd99
+label-muted-foreground = #fabd2f
 label-muted-underline = #0099ff
 label-muted-background = ${colors.background}
 
 ramp-volume-0 = 
 ramp-volume-1 = 墳
 ramp-volume-2 = 
-ramp-volume-foreground = #22dd99
+ramp-volume-foreground = #fabd2f
 ramp-volume-background = ${colors.background}
 
 format-volume-underline = ${xrdb:color2:#222}
@@ -318,7 +319,7 @@ format-warn-underline = ${self.format-underline}
 label = %temperature%
 label-padding = 1
 label-warn = %temperature%
-label-warn-foreground = #ff8c00
+label-warn-foreground = #fe8019
 label-background = ${colors.background}
 
 ramp-0 = 
@@ -326,11 +327,11 @@ ramp-1 = 
 ramp-2 = 
 ramp-3 = 
 ramp-4 = 
-ramp-0-foreground = #ff004b
-ramp-1-foreground = #ff004b
-ramp-2-foreground = #ff004b
-ramp-3-foreground = #ff004b
-ramp-4-foreground = #ff004b
+ramp-0-foreground = #fb4934
+ramp-1-foreground = #fb4934
+ramp-2-foreground = #fb4934
+ramp-3-foreground = #fb4934
+ramp-4-foreground = #fb4934
 ramp-background = ${colors.background}
 
 [module/crypto]

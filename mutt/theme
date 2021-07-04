@@ -2,21 +2,21 @@ color hdrdefault brightcyan black
 color quoted lightcyan black
 color signature brightcyan black
 color attachment lightred black
-color prompt brightgreen black
-color message brightgreen black
+color prompt white black
+color message brightcyan black
 color error brightred black
-color status lightwhite blue
-color tree lightwhite black
-color normal lightwhite black
+color status lightwhite lightblack
+color tree white black
+color normal white black
 color markers brightred black
-color search lightwhite black
-color tilde brightmagenta black
-color index brightyellow black ~F
-color index brightred black "~N|~O"
+color search white black
+color tilde magenta black
+color index brightred black ~F
+color index brightyellow black "~N|~O"
 
-color indicator lightwhite blue 
+color indicator bold lightwhite lightblack
 
-color sidebar_highlight lightwhite blue 
-color sidebar_divider color8 black
+color sidebar_highlight bold lightwhite lightblack
+color sidebar_divider lightblack black
 color sidebar_flagged brightred black
 color sidebar_new brightyellow black

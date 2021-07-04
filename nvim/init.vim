@@ -1,6 +1,6 @@
-set mouse=a
 """ Plugins {{{
 filetype indent plugin on
+set nocompatible
 
 if empty(glob('$XDG_CONFIG_HOME/nvim/autoload/plug.vim'))
   silent !curl -fLo $XDG_CONFIG_HOME/nvim/autoload/plug.vim --create-dirs
@@ -40,24 +40,19 @@ nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
-let g:airline_symbols.linenr = '  '
-let g:airline_symbols.maxlinenr = ' ☰  '
-let g:airline_symbols.colnr = '℅ :'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
+let g:airline_symbols.linenr = ' '
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.colnr = ':'
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
-let g:airline_symbols.spell = 'Ꞩ'
-let g:airline_symbols.notexists = 'Ɇ'
-
 
 "Colourscheme
 let base16colorspace=256  " Access colors present in 256 colorspace
 set termguicolors
 colorscheme base16-gruvbox-dark-hard
 " }}}
-""" Formatting {{{
+""" Config {{{
+set mouse=a
 set cursorline
 
 " Number lines
@@ -66,30 +61,31 @@ set relativenumber
 
 " Spaces & Tabs
 set tabstop=4
-set expandtab
+set noexpandtab
 set shiftwidth=4
 set softtabstop=4
+
 set wrap
 set formatoptions=tcqrn1
-set noshiftround
 set autoindent
-set smartindent
-set breakindent
-" }}}
-""" Config {{{
-set nocompatible
 
+" Sane splits
+set splitright
+set splitbelow
+
+" Decent wildmenu
+set wildmenu
+set wildmode=list:longest
+set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor
+
+" GUI
 set guioptions-=T " Remove toolbar
-set visualbell
+set vb t_vb=
 set scrolloff=3
 set backspace=indent,eol,start
-set matchpairs+=<:>
 
 set signcolumn
-set ruler
-set modelines=0
 set encoding=utf-8
-set wildmenu
 set hidden
 set ttyfast
 set laststatus=2
@@ -100,36 +96,30 @@ syntax enable
 set showbreak=↪\
 set listchars=tab:▸\ ,eol:↲,nbsp:␣,trail:•,precedes:←,extends:→
 map <leader>l :set list!<CR> " Toggle tabs and EOL
-map <leader>; :terminal<CR>
 " }}}
 """ Mappings"{{{
 let mapleader = " "
 
+" <leader><leader> toggles between buffers
+nnoremap <leader><leader> <c-^>
+
 nnoremap <silent> <C-t> :Files<Cr>
 nnoremap <leader>t :Buffers<Cr>
-
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <left> <nop>
-noremap <right> <nop>
 
 noremap <silent>j gj
 noremap <silent>k gk
 noremap <silent>H g^
 noremap <silent>L g$
+
 map Y y$
 vnoremap <leader>y "+y<Cr>
 noremap <leader>p :read !xsel --clipboard --output<cr>
-noremap <leader>c :w !xsel -ib<cr><cr>et 
+noremap <leader>c :w !xsel -ib<cr><cr> 
 
-nnoremap th  :tabfirst<CR>
-nnoremap tk  :tabnext<CR>
-nnoremap tj  :tabprev<CR>
-nnoremap tl  :tablast<CR>
-nnoremap tt  :tabedit<Space>
-nnoremap tn  :tabnew<Space>
-nnoremap tm  :tabm<Space>
-nnoremap td  :tabclose<CR>
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
 "}}}
 """ Utils {{{
 " Permanent undo
@@ -142,7 +132,9 @@ set hlsearch
 set ignorecase
 set smartcase
 set showmatch
-map <leader><space> :let @/=''<cr>
+set matchpairs+=<:>
+map <leader></> :let @/=''<cr>
+
 " Center search results
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
@@ -150,12 +142,15 @@ nnoremap <silent> * *zz
 nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
 
+noremap <leader>s :Rg
+if executable('ag')
+	set grepprg=ag\ --nogroup\ --nocolor
+endif
 if executable("rg")
   set grepprg=rg\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
-noremap <leader>s :Rg
 let g:fzf_layout = { 'down': '~20%' }
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
@@ -207,6 +202,10 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" Use <c-.> to trigger completion.
+inoremap <silent><expr> <c-.> coc#refresh()
+
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -215,6 +214,16 @@ nmap <silent> gr <Plug>(coc-references)
 
 " Show documentation in a preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Scroll through float windows
 if has('nvim-0.4.0') || has('patch-8.2.0750')
