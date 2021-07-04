@@ -84,7 +84,7 @@ set vb t_vb=
 set scrolloff=3
 set backspace=indent,eol,start
 
-set signcolumn
+set signcolumn=yes
 set encoding=utf-8
 set hidden
 set ttyfast
