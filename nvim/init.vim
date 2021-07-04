@@ -67,6 +67,7 @@ set softtabstop=4
 
 set wrap
 set formatoptions=tcqrn1
+set tw=100
 set autoindent
 
 " Sane splits
@@ -103,8 +104,8 @@ let mapleader = " "
 " <leader><leader> toggles between buffers
 nnoremap <leader><leader> <c-^>
 
-nnoremap <silent> <C-t> :Files<Cr>
-nnoremap <leader>t :Buffers<Cr>
+nnoremap <leader>o :Files<Cr>
+nnoremap <leader>; :Buffers<Cr>
 
 noremap <silent>j gj
 noremap <silent>k gk
@@ -114,7 +115,7 @@ noremap <silent>L g$
 map Y y$
 vnoremap <leader>y "+y<Cr>
 noremap <leader>p :read !xsel --clipboard --output<cr>
-noremap <leader>c :w !xsel -ib<cr><cr> 
+noremap <leader>c :w !xsel -ib<cr><cr>
 
 noremap <up> <nop>
 noremap <down> <nop>
@@ -133,7 +134,7 @@ set ignorecase
 set smartcase
 set showmatch
 set matchpairs+=<:>
-map <leader></> :let @/=''<cr>
+map <leader>, :let @/=''<cr>
 
 " Center search results
 nnoremap <silent> n nzz

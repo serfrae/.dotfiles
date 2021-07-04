@@ -31,7 +31,7 @@ autoload -U compinit; compinit
 #source ~/.cache/wal/colors-tty.sh
 
 ### Aliases
-source $DOTFILES/aliases/aliases
+source $DOTFILES/alias/alias
 
 ### Vi Mode
 set -o vi
@@ -59,6 +59,6 @@ bindkey -rpM viins '^['
 bindkey -rpM vicmd '^['
 bindkey -rpM viopp '^['
 bindkey -rpM visual '^['
-bindkey '^G' kill-line 
+bindkey '^G' kill-line
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line

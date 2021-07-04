@@ -10,6 +10,7 @@ alias ls='exa'
 alias la='exa -a'
 alias ll='exa -laHF'
 alias lt='exa -T'
+alias lti-'exa -T --icons'
 
 ### Neovim
 alias vim='nvim'
@@ -22,12 +23,9 @@ alias rgp='rg -p'
 alias rgr='rg -uuu'
 
 ### Rust
-alias carb='cargo build'
-alias carbr='cargo build --release'
-alias carr='cargo run'
-alias cari='cargo install'
-alias carn='cargo new'
-alias carnl='cargo new --lib'
-
-### Yarn
-#alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
+alias cb='cargo build'
+alias cbr='cargo build --release'
+alias cr='cargo run'
+alias ci='cargo install'
+alias cnb='cargo new'
+alias cnl='cargo new --lib'

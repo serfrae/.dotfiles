@@ -217,7 +217,7 @@ XF86MonBrightnessUp
 ### Resize{{{
 
 #Resize
-alt + {h,j,k,l}
+shift + space: {h,j,k,l}
     bspwm_resize {west,south,north,east} 20
 #Move Float
 super + space: super + {h,j,k,l}
