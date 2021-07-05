@@ -51,13 +51,13 @@ _bc pointer_action3 resize_corner
 
 ### BSPWM Colours
 #. "${HOME}/.cache/wal/colors.sh"
-_bc normal_border_color "#282828"
+_bc normal_border_color "#1d2021"
 #_bc normal_border_color		      "#231f20"
-_bc active_border_color "#ebdbb2"
+_bc active_border_color "#d5c4a1"
 #_bc active_border_color	              "#231f20"
-_bc focused_border_color "#ebdbb2"
+_bc focused_border_color "#d5c4a1"
 #_bc focused_border_color	      "#009ddc"
-_bc presel_feedback_color "#a89984"
+_bc presel_feedback_color "#fbf1c7"
 #_bc presel_feedback_color	      "#7291b6"
 #_bc urgent_border_color 	      "#ee2e24
 

@@ -4,7 +4,11 @@
 sudo pacman -S archlinux-keyring
 
 # Install packages
-sudo pacman -S alacritty alsa-utils bluez bluez-utils bspwm cargo clang cmake dunst exa fd feh fzf libnotify maim mpd mutt neovim newsboat npm openssh picom python python-pip pulseaudio qutebrowser ripgrep rofi rustup rust-analyzer sxhkd tmux texlive-core ttf-font-awesome ttf-jetbrains-mono ttf-nerd-fonts-symbols unzip weechat wget xcape xclip xdg-user-dirs xorg xorg-xinit xsel youtube-dl zsh zsh-syntax-highlighting zsh-autosuggestions
+sudo pacman -S alacritty alsa-utils bluez bluez-utils bspwm cargo clang cmake dunst exa fd feh
+firefox-developer-edition fzf libnotify maim mpd mutt neovim npm openssh picom python
+python-pip pulseaudio ripgrep rofi rustup rust-analyzer sxhkd tmux texlive-core ttf-font-awesome
+ttf-jetbrains-mono ttf-nerd-fonts-symbols unzip weechat wget xcape xclip xdg-user-dirs xorg
+xorg-xinit xsel youtube-dl zip zsh zsh-syntax-highlighting zsh-autosuggestions
 
 # Install Rust
 rustup install nightly
@@ -35,4 +39,4 @@ chsh -s /usr/bin/zsh
 chsh -s /bin/zsh
 
 # Install AUR packages
-yay -S polybar brave-nightly-bin betterlockscreen autojump-rs urlview wee-slack weechat-notify-send 
+yay -S polybar betterlockscreen autojump-rs urlview wee-slack weechat-notify-send 
