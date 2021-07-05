@@ -46,7 +46,7 @@ source /usr/share/fzf/completion.zsh
 
 ### Prompt
 function zle-line-init zle-keymap-select {
-  PROMPT=`$DOTFILES/zprs/target/release/zprs precmd;$DOTFILES/zprs/target/release/zprs prompt -k "$KEYMAP" -r "$?"`
+  PROMPT=`$DOTFILES/zprs/target/release/zprs precmd;$DOTFILES/zprs/target/release/zprs prompt -k "$KEYMAP"`
   zle reset-prompt
 }
 zle -N zle-line-init
