@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "version": "1.0",
+  "version": "1.0.2",
   "name": "a7rs Humble Gruvbox",
   "theme": {
     "colors": {
@@ -8,15 +8,14 @@
       "icons_attention": "#fbf1c7",
       "ntp_background": "#1d2021",
       "ntp_text": "#d5c4a1",
-      "popup": "#3c3836",
+      "popup": "#1d2021",
       "popup_border": "#1d2021",
       "popup_highlight": "#7c6f64",
       "popup_text": "#d5c4a1",
       "sidebar": "#1d2021",
-      "sidebar_border": "#3c3836",
+      "sidebar_border": "#1d2021",
       "sidebar_highlight": "#7c6f64",
       "sidebar_text": "#d5c4a1",
-      "tab_background_separator": "black",
       "tab_line": "#1d2021",
       "tab_loading": "#fbf1c7",
       "tab_text": "#fbf1c7",
@@ -27,7 +26,9 @@
       "toolbar_field_separator": "black",
       "toolbar_field_text": "#d5c4a1",
       "toolbar_text": "#d5c4a1",
-      "toolbar_vertical_separator": "#1d2021"
+      "toolbar_vertical_separator": "#1d2021",
+	  "toolbar_bottom_separator": "#1d2021",
+	  "toolbar_top_separator": "#1d2021"
     }
   }
 }
