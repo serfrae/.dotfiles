@@ -337,7 +337,7 @@ ramp-background = ${colors.background}
 [module/crypto]
 type = custom/script
 interval = 60
-exec = "$DOTFILES/polybar/crypto/target/release/fetch"
+exec = "$DOTFILES/polybar/polybar-crypto-rs/target/release/fetch"
 
 [settings]
 screenchange-reload = true
@@ -350,5 +350,4 @@ screenchange-reload = true
 [global/wm]
 margin-top = 0
 margin-bottom = 0
-
 ; vim:ft=dosini

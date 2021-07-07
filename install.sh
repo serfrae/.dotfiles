@@ -15,11 +15,11 @@ dot_install alacritty
 dot_install bspwm
 dot_install dunst
 dot_install git
+dot_install gtk
 dot_install npm
 dot_install nvim
 dot_install picom
 dot_install polybar
-dot_install qutebrowser
 dot_install rofi
 dot_install scripts
 dot_install sxhkd
