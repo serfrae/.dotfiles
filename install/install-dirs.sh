@@ -17,3 +17,5 @@ mkdir -p "$HOME/media/images/wallpapers"
 mkdir -p "$HOME/media/video"
 
 mkdir -p "$HOME/misc/.keys"
+
+ln -sf "$DOTFILES/dirs/user-dirs.dirs" "$XDG_CONFIG_HOME/user-dirs.dirs"
