@@ -81,15 +81,14 @@ alt + shift  + F4
 #Focus Next/Previous Window
 alt + {_,shift} + Tab
 	bspc node -f {next,prev}
-#Focus Next/Previous Desktop
-#super + {_,shift} + Tab
+#Swap Window With Last Window
+super + {_,shift} + Tab
+	bspc node -{s,f} last
 #	bspc desktop -f {next,prev}
 #Focus/Move Window to the Biggest Space
 super + {_,shift} + apostrophe
 	bspc node -{s,f} biggest.local
-#Swap Window With Last Window
-super + {_, shift} + semicolon
-	bspc node -{f,s} last
+#super + {_, shift} + semicolon
 #Focus Node in Given Direction
 super + {h,j,k,l}
 	bspc node -f {west,south,north,east}
