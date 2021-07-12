@@ -1,15 +1,13 @@
 #!/bin/sh
 
 DATE=$(date +"%Y%m%d")
-FILE="$HOME/docs/todo/$DATE"
-LINES=$(cat $FILE)
+DIRPATH="$HOME/docs"
+FILE="$DIRPATH/todo/$DATE.md"
 
-echo $DATE
-echo $FILE
-
-if [[ -s $FILE ]]; then
-    tput setaf 1; echo [[HIGH]]
-    for line in $(cat $FILE); do
-        echo $line
-    done
+if [[ ! -e $FILE ]]; then
+	touch "$FILE.md"
 fi
+
+nvim $FILE
+git -C $DIRPATH add -A
+git -C $DIRPATH commit -m "TODOs for '$DATE'"
