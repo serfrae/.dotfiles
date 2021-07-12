@@ -10,6 +10,9 @@ mkdir -p "$HOME/downloads"
 mkdir -p "$HOME/docs"
 mkdir -p "$HOME/projects"
 
+mkdir -p "$HOME/docs/notes"
+mkdir -p "$HOME/docs/todo"
+
 mkdir -p "$HOME/media/audio"
 mkdir -p "$HOME/media/images/pictures"
 mkdir -p "$HOME/media/images/screenshots"
