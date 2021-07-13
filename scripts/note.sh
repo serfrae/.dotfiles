@@ -1,11 +1,24 @@
 #!/bin/sh
 
-DATE=$(date +"%Y%m%dT%H%M%S")
-NOTE_PATH="$HOME/docs/notes"
-FILE="$NOTE_PATH/$DATE.txt"
+echo $NOTES_DIR
+DATE=$(date +"%Y%m%d%H%M")
+
+file_name() {
+	if [[ -n $@ ]]; then
+		echo "$DATE-$@.md"
+	else
+		echo "$DATE.md"
+	fi
+}
+
+FILE="$NOTES_DIR/$(file_name $@)"
 
 echo $(date) > $FILE
 nvim $FILE
 
-git -C "$NOTE_PATH" add -A
-git -C "$NOTE_PATH" commit -m "test"
+CWD=$(pwd)
+cd $NOTES_DIR
+git add -A
+git commit -m "$FILE"
+ctags -R .
+cd $CWD
