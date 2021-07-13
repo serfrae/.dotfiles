@@ -74,6 +74,9 @@ set autoindent
 set splitright
 set splitbelow
 
+" Tags
+set tags+=./tags;,tags
+
 " Decent wildmenu
 set wildmenu
 set wildmode=list:longest
@@ -106,6 +109,16 @@ nnoremap <leader><leader> <c-^>
 
 nnoremap <leader>o :Files<Cr>
 nnoremap <leader>; :Buffers<Cr>
+nnoremap <leader>] :Tags<Cr>
+
+" Change directory to directory of current file
+nnoremap <leader>cd :cd %:h<CR>
+nnoremap <leader>cn :cd $NOTES_DIR<CR>
+
+" Generate ctags
+nnoremap <leader>tt :!ctags -R . <CR>
+nnoremap <leader>tn :!ctags -R $NOTES_DIR <CR>
+
 
 noremap <silent>j gj
 noremap <silent>k gk
