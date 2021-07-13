@@ -117,8 +117,6 @@ nnoremap <leader>cn :cd $NOTES_DIR<CR>
 
 " Generate ctags
 nnoremap <leader>tt :!ctags -R . <CR>
-nnoremap <leader>tn :!ctags -R $NOTES_DIR <CR>
-
 
 noremap <silent>j gj
 noremap <silent>k gk
