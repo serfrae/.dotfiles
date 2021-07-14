@@ -154,7 +154,8 @@ nnoremap <silent> * *zz
 nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
 
-noremap <leader>s :Rg
+" Ripgrep
+noremap <leader>s :Rg 
 if executable('ag')
 	set grepprg=ag\ --nogroup\ --nocolor
 endif
@@ -163,7 +164,7 @@ if executable("rg")
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
-let g:fzf_layout = { 'down': '~20%' }
+let g:fzf_layout = { 'down': '~25%' }
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
@@ -179,6 +180,24 @@ endfunction
 command! -bang -nargs=? -complete=dir Files
   \call fzf#vim#files(<q-args>, {'source': s:list_cmd(),
   \                               'options': '--tiebreak=index'}, <bang>0)
+
+" Note linking
+command! -bang -nargs=* Nf
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always -e '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+function! HandleFZF(file)
+    let filename = fnameescape(a:file)
+    let filename_wo_timestamp = fnameescape(fnamemodify(a:file, ":t:s/^[0-9]*-//"))
+    let mdlink = "[ ".filename_wo_timestamp." ]( ".filename." )"
+    put=mdlink
+endfunction
+
+command! -nargs=1 HandleFZF :call HandleFZF(<f-args>)
+nnoremap <leader>nl :call fzf#run({'sink': 'HandleFZF'}) <Cr>
+nnoremap <leader>[ :cd $NOTES_DIR<CR>:Nf \s@.+<Cr>
 
 " Quick Grep
 noremap <Leader>g :grep<space><C-r><C-w><CR>:copen<CR><CR><C-W>b

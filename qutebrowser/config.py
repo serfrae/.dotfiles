@@ -32,7 +32,7 @@ config.bind('<Ctrl-0>', 'tab-focus 10')
 
 c.fonts.tabs.selected = '10pt Jetbrains Mono'
 c.fonts.tabs.unselected = '10pt Jetbrains Mono'
-c.fonts.statusbar = '8pt Jetbrains Mono'
+c.fonts.statusbar = '10pt Jetbrains Mono'
 c.fonts.web.family.fantasy = 'Noto Sans'
 
 c.search.incremental = False
