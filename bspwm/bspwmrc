@@ -24,7 +24,7 @@ theme.sh &
 ### MONITORS
 bspc monitor eDP-1 -d 1 2 3 4 5 6
 bspc monitor HDMI-1-1 -d 7 8 9 0
-bspc monitor DP-1 -s HDMI-1-1
+bspc wm -O eDP-1 HDMI-1-1
 
 ### BSPWM Configuration
 #bspc config border_radius        8
@@ -53,13 +53,9 @@ _bc pointer_action3 resize_corner
 ### BSPWM Colours
 #. "${HOME}/.cache/wal/colors.sh"
 _bc normal_border_color "#1d2021"
-#_bc normal_border_color		      "#231f20"
 _bc active_border_color "#d5c4a1"
-#_bc active_border_color	              "#231f20"
 _bc focused_border_color "#d5c4a1"
-#_bc focused_border_color	      "#009ddc"
 _bc presel_feedback_color "#fbf1c7"
-#_bc presel_feedback_color	      "#7291b6"
 #_bc urgent_border_color 	      "#ee2e24
 
 ### Hide Polybar on Fullscreen

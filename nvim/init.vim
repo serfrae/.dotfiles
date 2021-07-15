@@ -1,9 +1,9 @@
 """ Plugins {{{
-filetype indent plugin on
+filetype plugin indent on
 set nocompatible
 
 if empty(glob('$XDG_CONFIG_HOME/nvim/autoload/plug.vim'))
-  silent !curl -fLo $XDG_CONFIG_HOME/nvim/autoload/plug.vim --create-dirs
+  silent !curl -fLo $XDG_CONFIG_HOME/nvim/autoload/plug.vim --CReate-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
@@ -30,11 +30,11 @@ let g:fzf_preview_window = []
 let g:tmux_navigator_no_mappings = 1
 let g:tmux_navigator_save_on_switch = 2
 
-nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
-nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
+nnoremap <silent> <c-h> :TmuxNavigateLeft<CR>
+nnoremap <silent> <c-j> :TmuxNavigateDown<CR>
+nnoremap <silent> <c-k> :TmuxNavigateUp<CR>
+nnoremap <silent> <c-l> :TmuxNavigateRight<CR>
+nnoremap <silent> <c-\> :TmuxNavigatePrevious<CR>
 
 "Airline
 if !exists('g:airline_symbols')
@@ -106,10 +106,12 @@ let mapleader = " "
 
 " <leader><leader> toggles between buffers
 nnoremap <leader><leader> <c-^>
+nnoremap [b :bprevious<CR>
+nnoremap ]b :bnext<CR>
 
-nnoremap <leader>o :Files<Cr>
-nnoremap <leader>; :Buffers<Cr>
-nnoremap <leader>] :Tags<Cr>
+nnoremap <leader>o :Files<CR>
+nnoremap <leader>; :Buffers<CR>
+nnoremap <leader>] :Tags<CR>
 
 " Change directory to directory of current file
 nnoremap <leader>cd :cd %:h<CR>
@@ -124,9 +126,9 @@ noremap <silent>H g^
 noremap <silent>L g$
 
 map Y y$
-vnoremap <leader>y "+y<Cr>
-noremap <leader>p :read !xsel --clipboard --output<cr>
-noremap <leader>c :w !xsel -ib<cr><cr>
+vnoremap <leader>y "+y<CR>
+noremap <leader>p :read !xsel --clipboard --output<CR>
+noremap <leader>c :w !xsel -ib<CR><CR>
 
 noremap <up> <nop>
 noremap <down> <nop>
@@ -145,7 +147,7 @@ set ignorecase
 set smartcase
 set showmatch
 set matchpairs+=<:>
-map <leader>, :let @/=''<cr>
+map <leader>, :let @/=''<CR>
 
 " Center search results
 nnoremap <silent> n nzz
@@ -156,9 +158,6 @@ nnoremap <silent> g* g*zz
 
 " Ripgrep
 noremap <leader>s :Rg 
-if executable('ag')
-	set grepprg=ag\ --nogroup\ --nocolor
-endif
 if executable("rg")
   set grepprg=rg\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m,%f:%l:%m
@@ -167,10 +166,7 @@ endif
 let g:fzf_layout = { 'down': '~25%' }
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
+  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1)
 
 function! s:list_cmd()
   let base = fnamemodify(expand('%'), ':h:.:S')
@@ -178,16 +174,20 @@ function! s:list_cmd()
 endfunction
 
 command! -bang -nargs=? -complete=dir Files
-  \call fzf#vim#files(<q-args>, {'source': s:list_cmd(),
-  \                               'options': '--tiebreak=index'}, <bang>0)
+  \ call fzf#vim#files(
+  \   <q-args>, {'source': s:list_cmd(), 'options': '--tiebreak=index'}, <bang>0)
 
-" Note linking
+" Note Search 
 command! -bang -nargs=* Nf
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always -e '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
+  \   'rg --column --line-number --no-heading --color=always -g !tags -e '
+  \   .shellescape(<q-args>), 1)
+nnoremap <leader>[ :cd $NOTES_DIR<CR>:Nf \s@.+<CR>
+
+command! -nargs=1 Ngrep grep "<args>" -g "*.md"
+nnoremap <leader>nn :cd $NOTES_DIR<CR>:Ngrep 
+
+" Note Linking
 function! HandleFZF(file)
     let filename = fnameescape(a:file)
     let filename_wo_timestamp = fnameescape(fnamemodify(a:file, ":t:s/^[0-9]*-//"))
@@ -196,18 +196,23 @@ function! HandleFZF(file)
 endfunction
 
 command! -nargs=1 HandleFZF :call HandleFZF(<f-args>)
-nnoremap <leader>nl :call fzf#run({'sink': 'HandleFZF'}) <Cr>
-nnoremap <leader>[ :cd $NOTES_DIR<CR>:Nf \s@.+<Cr>
+nnoremap <leader>nl :call fzf#run({'sink': 'HandleFZF'}) <CR>
 
 " Quick Grep
 noremap <Leader>g :grep<space><C-r><C-w><CR>:copen<CR><CR><C-W>b
 noremap <leader>r :grep<space>
-noremap ]o :copen<cr>
-noremap [o :cclose<cr>
-noremap ]q :cnext<cr>
-noremap [q :cprev<cr>
-noremap ]Q :cfirst<cr>
-noremap [Q :clast<cr>
+
+" Quick Fix
+command! Vfix botright vertical copen | vertical resize 50
+" No number column in quickfix
+au FileType qf setlocal nonumber colorcolumn= 
+noremap ]o :copen<CR>
+noremap ]O :Vfix<CR>
+noremap [o :cclose<CR>
+noremap ]q :cnext<CR>
+noremap [q :cprev<CR>
+noremap ]Q :cfirst<CR>
+noremap [Q :clast<CR>
 " }}}
 """ Folding {{{
 set foldenable

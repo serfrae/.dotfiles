@@ -6,9 +6,12 @@ if [ ! -d $VIMCONFIG ]; then
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
+mkdir -p "$VIMCONFIG/plugged"
+mkdir -p "$VIMCONFIG/ftplugin"
+
 ln -sf "$DOTFILES/nvim/init.vim" "$VIMCONFIG/init.vim"
 ln -sf "$DOTFILES/nvim/coc-settings.json" "$VIMCONFIG/coc-settings.json"
-
-mkdir -p "$VIMCONFIG/plugged"
+ln -sf "$DOTFILES/nvim/ftplugin/qf.vim" "$VIMCONFIG/ftplugin/qf.vim"
+ln -sf "$DOTFILES/nvim/ftplugin/fzf.vim" "$VIMCONFIG/ftplugin/fzf.vim"
 
 nvim +'CocInstall -sync coc-rust coc-tsserver coc-pyright coc-clangd coc-html coc-css coc-json' +qall
