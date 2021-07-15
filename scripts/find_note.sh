@@ -1,2 +1,4 @@
 #!/bin/sh
-cd $NOTES_DIR;nvim $(rg -e '\s@.+' -g !tags | fzf | sed -e 's/:.*//g')
+cd $NOTES_DIR; 
+FILE=$(rg -e '(^|[[:space:]])@(\w\S*)' -g !tags | fzf | sed -e 's/:.*//g')
+[[ $FILE ]] && nvim $FILE

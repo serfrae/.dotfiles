@@ -1,13 +1,14 @@
 #!/bin/sh
 
 DATE=$(date +"%Y%m%d")
-DIRPATH="$HOME/docs/notes"
-FILE="$DIRPATH/todo/$DATE.md"
+FILE="$NOTES_DIR/$DATE.md"
 
 if [[ ! -e $FILE ]]; then
 	touch "$FILE.md"
+	echo "# Todos for $(date +"%a %d %b %Y")  " > $FILE
+	echo "@todo" >> $FILE
 fi
 
 nvim $FILE
-git -C $DIRPATH add -A
-git -C $DIRPATH commit -m "TODOs for '$DATE'"
+git -C $NOTES_DIR add -A
+git -C $NOTES_DIR commit -m "TODOs for '$DATE'"

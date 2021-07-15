@@ -192,15 +192,20 @@ noremap <leader>r :grep<space>
 " }}}
 """ Notes {{{
 " Go to Note Directory
-nnoremap <leader>cn :cd $NOTES_DIR<CR>
+nnoremap <leader>nd :cd $NOTES_DIR<CR>
 " Ripgrep Notes
-nnoremap <leader>nn :cd $NOTES_DIR<CR>:Ngrep 
+nnoremap <leader>ng :cd $NOTES_DIR<CR>:Ngrep 
 " FZF Notes (multi-tag)
-nnoremap <leader>[ :cd $NOTES_DIR<CR>:Nf \s@.+<CR>
+nnoremap <leader>[ :cd $NOTES_DIR<CR>:Nf (^\|[[:space::]])@(\w\S*)<CR>
 " Get Questions
 nnoremap <leader>nq :grep /\*\*Q\*\*/ %<CR>
+" Create New Note
+nnoremap <leader>nn :NewNote 
 " Create Note Link
 nnoremap <leader>nl :call fzf#run({'sink': 'HandleFZF'}) <CR>
+
+" Create Note
+command! -nargs=1 NewNote :execute ":e" $NOTES_DIR . '/' . strftime("%Y%m%d%H%M") . "-<args>.md"
 
 " Note Search 
 command! -bang -nargs=* Nf
