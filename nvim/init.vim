@@ -16,6 +16,7 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'rust-lang/rust.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'cespare/vim-toml'
 
 Plug 'christoomey/vim-tmux-navigator'
 
@@ -174,7 +175,8 @@ endif
 let g:fzf_layout = { 'down': '~25%' }
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1)
+  \   'rg --column --line-number --no-heading --color=always '
+  \   .shellescape(<q-args>), 1)
 
 function! s:list_cmd()
   let base = fnamemodify(expand('%'), ':h:.:S')
@@ -182,8 +184,8 @@ function! s:list_cmd()
 endfunction
 
 command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(
-  \   <q-args>, {'source': s:list_cmd(), 'options': '--tiebreak=index'}, <bang>0)
+  \call fzf#vim#files(<q-args>, {'source': s:list_cmd(),
+  \                               'options': '--tiebreak=index'}, <bang>0)
 
 " Quick Grep
 noremap <Leader>g :grep<space><C-r><C-w><CR>:copen<CR><CR><C-W>b
@@ -200,12 +202,19 @@ nnoremap <leader>[ :cd $NOTES_DIR<CR>:Nf (^\|[[:space::]])@(\w\S*)<CR>
 " Get Questions
 nnoremap <leader>nq :grep /\*\*Q\*\*/ %<CR>
 " Create New Note
-nnoremap <leader>nn :NewNote 
+nnoremap <leader>nn :CreateNote
 " Create Note Link
 nnoremap <leader>nl :call fzf#run({'sink': 'HandleFZF'}) <CR>
 
 " Create Note
+command! -nargs=1 CreateNote :call CreateNote(<f-args>)
 command! -nargs=1 NewNote :execute ":e" $NOTES_DIR . '/' . strftime("%Y%m%d%H%M") . "-<args>.md"
+function! CreateNote(name)
+	let filename = a:name
+	:NewNote ".filename."
+	:r! date
+endfunction
+
 
 " Note Search 
 command! -bang -nargs=* Nf
