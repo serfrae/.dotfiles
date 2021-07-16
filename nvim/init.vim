@@ -119,9 +119,23 @@ nnoremap <leader>cd :cd %:h<CR>
 
 " Quickfix
 command! Vfix botright vertical copen | vertical resize 50
-noremap ]o :copen<CR>
-noremap ]O :Vfix<CR>
-noremap [o :cclose<CR>
+command! -nargs=* QFix call QFixToggle(<f-args>)
+function! QFixToggle(v, e)
+	if exists("g:qfix_win") && a:e == 1
+		cclose
+		unlet g:qfix_win
+	else
+		if a:v == 0
+			copen
+		else
+			Vfix
+		endif
+		let g:qfix_win = bufnr("$")
+	endif
+endfunction
+
+noremap <silent> ]o :QFix 0 1<CR>
+noremap <silent> [o :QFix 1 1<CR>
 noremap ]q :cnext<CR>
 noremap [q :cprev<CR>
 noremap ]Q :cfirst<CR>
@@ -188,7 +202,7 @@ command! -bang -nargs=? -complete=dir Files
   \                               'options': '--tiebreak=index'}, <bang>0)
 
 " Quick Grep
-noremap <Leader>g :grep<space><C-r><C-w><CR>:copen<CR><CR><C-W>b
+noremap <Leader>g :grep<space><C-r><C-w><CR>:QFix 0 0<CR><CR>
 noremap <leader>r :grep<space>
 
 " }}}
@@ -196,7 +210,8 @@ noremap <leader>r :grep<space>
 " Go to Note Directory
 nnoremap <leader>nd :cd $NOTES_DIR<CR>
 " Ripgrep Notes
-nnoremap <leader>ng :cd $NOTES_DIR<CR>:Ngrep 
+nnoremap <leader>ng :cd $NOTES_DIR<CR>:Ngrep<space><C-r><C-w><CR>:QFix 1 0<CR><CR>
+nnoremap <leader>nr :cd $NOTES_DIR<CR>:Ngrep 
 " FZF Notes (multi-tag)
 nnoremap <leader>] :cd $NOTES_DIR<CR>:Nf (^\|[[:space::]])@(\w\S*)<CR>
 " Get Questions
