@@ -24,6 +24,8 @@ setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
 setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
 setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
 
+setopt noflowcontrol
+
 ### Zsh Completion
 autoload -U compinit; compinit
 
@@ -60,10 +62,14 @@ zle -N fn
 ### Keybinds
 zle -N fzf-cd-widget
 bindkey '^R' fzf-cd-widget
-bindkey -M vicmd '[' fn
+bindkey '^S' fn
+bindkey -M vicmd '^S' fn
 #bindkey -rpM viins '^['
 #bindkey -rpM vicmd '^['
 #bindkey -rpM viopp '^['
 #bindkey -rpM visual '^['
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
+
+stty stop undef
+stty start undef

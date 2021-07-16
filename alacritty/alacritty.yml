@@ -143,7 +143,7 @@ launcher:
 
 # Key bindings
 key_bindings:
-  - { key: S,         mods: Control, mode: ~Search,     action: ToggleViMode   }
+  - { key: LBracket,  mods: Control, mode: ~Search,     action: ToggleViMode   }
   - { key: Period,    mods: Control,                    action: ClearLogNotice }
   - { key: Key1,      mods: Control,                    chars: "\x1b1"         }
   - { key: Key2,      mods: Control,                    chars: "\x1b2"         }

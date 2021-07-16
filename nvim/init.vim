@@ -25,6 +25,7 @@ call plug#end()
 " }}}
 """ Plugin Config {{{
 let g:rustfmt_autosave = 1
+let g:rust_use_custom_ctags_defs = 1
 let g:fzf_preview_window = []
 
 " vim-tmux-navigator
@@ -107,8 +108,10 @@ let mapleader = " "
 
 " <leader><leader> toggles between buffers
 nnoremap <leader><leader> <c-^>
-nnoremap [b :bprevious<CR>
-nnoremap ]b :bnext<CR>
+nnoremap <leader>bn :bprevious<CR>
+nnoremap <leader>bp :bnext<CR>
+nnoremap <leader>bf :bfirst<CR>
+nnoremap <leader>bl :blast<CR>
 
 nnoremap <leader>o :Files<CR>
 nnoremap <leader>; :Buffers<CR>
@@ -118,6 +121,65 @@ nnoremap <leader>] :Tags<CR>
 nnoremap <leader>cd :cd %:h<CR>
 
 " Quickfix
+noremap <silent> ]o :QFix 0 1<CR>
+noremap <silent> [o :QFix 1 1<CR>
+noremap [p :cprev<CR>
+noremap [n :cnext<CR>
+noremap [f :cfirst<CR>
+noremap [l :clast<CR>
+
+"Location List
+nnoremap <leader>[o :LList 0 1<CR>
+nnoremap <leader>]o :LList 1 1<CR>
+nnoremap <leader>[p :lprev<CR>
+nnoremap <leader>[n :lnext<CR>
+nnoremap <leader>[f :lfirst<CR>
+nnoremap <leader>[l :llast<CR>
+
+" Tags
+" Generate ctags
+nnoremap ]t :!ctags --exclude=target -R . <CR>
+nnoremap ]p :tprevious<CR>
+nnoremap ]n :tnext<CR>
+nnoremap ]f :tfirst<CR>
+nnoremap ]l :tlast<CR>
+nnoremap ]wp :ptprevious<CR>
+nnoremap ]wn :ptnext<CR>
+nnoremap ]wf :ptfirst<CR>
+nnoremap ]wl :ptlast<CR>
+
+" Tabs
+nnoremap <leader>t :tabnew<CR>
+nnoremap tc :tabclose<CR>
+nnoremap tm :tabm<CR>
+nnoremap tf :tabfirst<CR>
+nnoremap tp :tabprev<CR>
+nnoremap tn :tabnext<CR>
+nnoremap tl :tablast<CR>
+nnoremap te :tabedit<CR>
+
+" Navigation QOL
+noremap <silent>j gj
+noremap <silent>k gk
+noremap <silent>H g^
+noremap <silent>L g$
+
+map Y y$
+vnoremap <leader>y "+y<CR>
+noremap <leader>p :read !xsel --clipboard --output<CR>
+noremap <leader>c :w !xsel -ib<CR><CR>
+
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
+"]}}}
+""" Utils {{{
+" Permanent undo
+set undodir=$XDG_CACHE_HOME/.vimdid
+set undofile
+
+" Quickfix Toggle
 command! Vfix botright vertical copen | vertical resize 50
 command! -nargs=* QFix call QFixToggle(<f-args>)
 function! QFixToggle(v, e)
@@ -133,35 +195,21 @@ function! QFixToggle(v, e)
 		let g:qfix_win = bufnr("$")
 	endif
 endfunction
-
-noremap <silent> ]o :QFix 0 1<CR>
-noremap <silent> [o :QFix 1 1<CR>
-noremap ]q :cnext<CR>
-noremap [q :cprev<CR>
-noremap ]Q :cfirst<CR>
-noremap [Q :clast<CR>
-noremap <silent>j gj
-noremap <silent>k gk
-noremap <silent>H g^
-noremap <silent>L g$
-
-" Generate ctags
-nnoremap <leader>tt :!ctags -R . <CR>
-
-map Y y$
-vnoremap <leader>y "+y<CR>
-noremap <leader>p :read !xsel --clipboard --output<CR>
-noremap <leader>c :w !xsel -ib<CR><CR>
-
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <left> <nop>
-noremap <right> <nop>
-"}}}
-""" Utils {{{
-" Permanent undo
-set undodir=$XDG_CACHE_HOME/.vimdid
-set undofile
+" Location List Toggle
+command! -nargs=* LList call LListToggle (<f-args>)
+function! LListToggle(v, e)
+	if exists("g:llist_win") && a:e == 1
+		lclose
+		unlet g:llist_win
+	else
+		if a:v == 0
+			lopen
+		else
+			Vfix
+		endif
+		let g:llist_win = bufnr("$")
+	endif
+endfunction
 "}}}
 """ Search Tools {{{
 set incsearch
@@ -183,7 +231,7 @@ nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
 
 " Ripgrep
-noremap <leader>s :Rg 
+noremap <leader>s :Rg<space>
 if executable("rg")
   set grepprg=rg\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m,%f:%l:%m
@@ -192,7 +240,7 @@ endif
 let g:fzf_layout = { 'down': '~25%' }
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always '
+  \   'rg --column --line-number --no-heading --color=always -g !tags '
   \   .shellescape(<q-args>), 1)
 
 function! s:list_cmd()
@@ -205,22 +253,22 @@ command! -bang -nargs=? -complete=dir Files
   \                               'options': '--tiebreak=index'}, <bang>0)
 
 " Quick Grep
-noremap <Leader>g :grep<space><C-r><C-w><CR>:QFix 0 0<CR><CR>
-noremap <leader>r :grep<space>
+noremap <Leader>g :grep -g !tags<space><C-r><C-w><CR>:QFix 0 0<CR><CR>
+noremap <leader>r :Rg<space>
 
 " }}}
 """ Notes {{{
 " Go to Note Directory
-nnoremap <leader>nd :cd $NOTES_DIR<CR>
+nnoremap <leader>ncd :cd $NOTES_DIR<CR>
 " Ripgrep Notes
 nnoremap <leader>ng :cd $NOTES_DIR<CR>:Ngrep<space><C-r><C-w><CR>:QFix 1 0<CR><CR>
-nnoremap <leader>nr :cd $NOTES_DIR<CR>:Ngrep 
+nnoremap <leader>nr :cd $NOTES_DIR<CR>:Ngrep<space>
 " FZF Notes (multi-tag)
-nnoremap <leader>[ :cd $NOTES_DIR<CR>:Nf (^\|[[:space::]])@(\w\S*)<CR>
+nnoremap <leader>ns :cd $NOTES_DIR<CR>:Nf (^\|[[:space::]])@(\w\S*)<CR>
 " Get Questions
 nnoremap <leader>nq :grep /\*\*Q\*\*/ %<CR>
 " Create New Note
-nnoremap <leader>nn :CreateNote
+nnoremap <leader>nn :NewNote
 " Create Note Link
 nnoremap <leader>nl :call fzf#run({'sink': 'HandleFZF', 'down': '25%'}) <CR>
 
@@ -233,7 +281,7 @@ function! NewNote(name)
 	:r! date
 endfunction
 
-" Note Search 
+" Note Search
 command! -bang -nargs=* Nf
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always -g !tags -e '
