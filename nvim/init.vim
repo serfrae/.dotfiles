@@ -112,7 +112,7 @@ nnoremap ]b :bnext<CR>
 
 nnoremap <leader>o :Files<CR>
 nnoremap <leader>; :Buffers<CR>
-nnoremap <leader>] :Tags<CR>
+nnoremap <leader>[ :Tags<CR>
 
 " Change directory to directory of current file
 nnoremap <leader>cd :cd %:h<CR>
@@ -198,23 +198,22 @@ nnoremap <leader>nd :cd $NOTES_DIR<CR>
 " Ripgrep Notes
 nnoremap <leader>ng :cd $NOTES_DIR<CR>:Ngrep 
 " FZF Notes (multi-tag)
-nnoremap <leader>[ :cd $NOTES_DIR<CR>:Nf (^\|[[:space::]])@(\w\S*)<CR>
+nnoremap <leader>] :cd $NOTES_DIR<CR>:Nf (^\|[[:space::]])@(\w\S*)<CR>
 " Get Questions
 nnoremap <leader>nq :grep /\*\*Q\*\*/ %<CR>
 " Create New Note
 nnoremap <leader>nn :CreateNote
 " Create Note Link
-nnoremap <leader>nl :call fzf#run({'sink': 'HandleFZF'}) <CR>
+nnoremap <leader>nl :call fzf#run({'sink': 'HandleFZF', 'down': '25%'}) <CR>
 
 " Create Note
-command! -nargs=1 CreateNote :call CreateNote(<f-args>)
-command! -nargs=1 NewNote :execute ":e" $NOTES_DIR . '/' . strftime("%Y%m%d%H%M") . "-<args>.md"
-function! CreateNote(name)
+command! -nargs=1 NewNote :call NewNote(<f-args>)
+command! -nargs=1 CreateNote :execute ":e" $NOTES_DIR . '/' . strftime("%Y%m%d%H%M") . "-<args>.md"
+function! NewNote(name)
 	let filename = a:name
-	:NewNote ".filename."
+	:CreateNote ".filename."
 	:r! date
 endfunction
-
 
 " Note Search 
 command! -bang -nargs=* Nf

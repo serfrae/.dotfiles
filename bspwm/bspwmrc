@@ -24,7 +24,6 @@ theme.sh &
 ### MONITORS
 bspc monitor eDP-1 -d 1 2 3 4 5 6
 bspc monitor HDMI-1-1 -d 7 8 9 0
-bspc wm -O eDP-1 HDMI-1-1
 
 ### BSPWM Configuration
 #bspc config border_radius        8
@@ -66,9 +65,6 @@ xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_eDP-1)
 
 ### Xcape
 xcape -e "Control_L=Escape" -t 0
-
-### Keyboard Options
-#setxkbmap -option custom:hyper_esc
 
 ### Cursor
 xsetroot -cursor_name left_ptr
