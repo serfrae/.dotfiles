@@ -112,7 +112,7 @@ nnoremap ]b :bnext<CR>
 
 nnoremap <leader>o :Files<CR>
 nnoremap <leader>; :Buffers<CR>
-nnoremap <leader>[ :Tags<CR>
+nnoremap <leader>] :Tags<CR>
 
 " Change directory to directory of current file
 nnoremap <leader>cd :cd %:h<CR>
@@ -172,6 +172,9 @@ set showmatch
 set matchpairs+=<:>
 map <leader>, :let @/=''<CR>
 
+" Include subfolders
+set path+=**
+
 " Center search results
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
@@ -213,7 +216,7 @@ nnoremap <leader>nd :cd $NOTES_DIR<CR>
 nnoremap <leader>ng :cd $NOTES_DIR<CR>:Ngrep<space><C-r><C-w><CR>:QFix 1 0<CR><CR>
 nnoremap <leader>nr :cd $NOTES_DIR<CR>:Ngrep 
 " FZF Notes (multi-tag)
-nnoremap <leader>] :cd $NOTES_DIR<CR>:Nf (^\|[[:space::]])@(\w\S*)<CR>
+nnoremap <leader>[ :cd $NOTES_DIR<CR>:Nf (^\|[[:space::]])@(\w\S*)<CR>
 " Get Questions
 nnoremap <leader>nq :grep /\*\*Q\*\*/ %<CR>
 " Create New Note
@@ -236,7 +239,7 @@ command! -bang -nargs=* Nf
   \   'rg --column --line-number --no-heading --color=always -g !tags -e '
   \   .shellescape(<q-args>), 1)
 
-command! -nargs=1 Ngrep grep "<args>" -g "*.md"
+command! -nargs=1 Ngrep grep "<args>" -g "*.md" $NOTES_DIR
 
 " Note Linking
 function! HandleFZF(file)

@@ -4825,6 +4825,7 @@ tooltip.background.chromium {
 /**
  * Firefox
  */
+
 #MozillaGtkWidget > widget text {
   background-color: #1d2021;
 }
@@ -4920,7 +4921,6 @@ tooltip.background.chromium {
 #MozillaGtkWidget menu > separator {
   color: rgba(212, 190, 152, 0.2);
 }
-
 /**
  * Inkscape
  */
