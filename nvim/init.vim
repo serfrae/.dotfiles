@@ -106,7 +106,6 @@ map \l :set list!<CR> " Toggle tabs and EOL
 """ Mappings"{{{
 let mapleader = " "
 
-
 nnoremap <leader>o :Files<CR>
 nnoremap <leader>; :Buffers<CR>
 nnoremap <leader>] :Tags<CR>
@@ -117,48 +116,40 @@ nnoremap <leader>cd :cd %:h<CR>
 " Quickfix
 noremap <silent> ]o :QFix 1 1<CR>
 noremap <silent> [o :QFix 0 1<CR>
-noremap [p :cprev<CR>
-noremap [n :cnext<CR>
-noremap [f :cfirst<CR>
-noremap [l :clast<CR>
+noremap [q :cprev<CR>
+noremap ]q :cnext<CR>
+noremap [Q :cfirst<CR>
+noremap ]Q :clast<CR>
 
 "Location List
-nnoremap <silent> <leader>lo :LList 0 1<CR>
-nnoremap <silent> <leader>l[o :LList 1 1<CR>
-nnoremap <leader>lp :lprev<CR>
-nnoremap <leader>ln :lnext<CR>
-nnoremap <leader>lf :lfirst<CR>
-nnoremap <leader>ll :llast<CR>
+nnoremap <silent> [; :LList 0 1<CR>
+nnoremap <silent> ]; :LList 1 1<CR>
+nnoremap [l :lprev<CR>
+nnoremap ]l :lnext<CR>
+nnoremap [L :lfirst<CR>
+nnoremap ]L :llast<CR>
+" Open tags in LList
+nnoremap gl] g]<CR>:ltag<CR>:VList<CR><CR>
 
 " Tags
 " Generate ctags
-nnoremap ]t :!ctags --exclude=target -R . <CR>
-nnoremap ]p :tprevious<CR>
-nnoremap ]n :tnext<CR>
-nnoremap ]f :tfirst<CR>
-nnoremap ]l :tlast<CR>
-nnoremap ]wp :ptprevious<CR>
-nnoremap ]wn :ptnext<CR>
-nnoremap ]wf :ptfirst<CR>
-nnoremap ]wl :ptlast<CR>
+nnoremap <leader>t :!t <CR>
+nnoremap [t :tprevious<CR>
+nnoremap ]t :tnext<CR>
+nnoremap [T :tfirst<CR>
+nnoremap ]T :tlast<CR>
+nnoremap [tw :ptprevious<CR>
+nnoremap ]tw :ptnext<CR>
+nnoremap [TW :ptfirst<CR>
+nnoremap ]TW :ptlast<CR>
 
 " Buffers
-" <leader><leader> toggles between buffers
-nnoremap <leader><leader> <c-^>
-nnoremap <leader>bp :bprevious<CR>
-nnoremap <leader>bn :bnext<CR>
-nnoremap <leader>bf :bfirst<CR>
-nnoremap <leader>bl :blast<CR>
-
-" Tabs
-nnoremap <leader>t :tabnew<CR>
-nnoremap tc :tabclose<CR>
-nnoremap tm :tabm<CR>
-nnoremap tf :tabfirst<CR>
-nnoremap tp :tabprev<CR>
-nnoremap tn :tabnext<CR>
-nnoremap tl :tablast<CR>
-nnoremap te :tabedit<CR>
+" Toggle between buffers
+nnoremap <leader>b <c-^>
+nnoremap [b :bprevious<CR>
+nnoremap ]b :bnext<CR>
+nnoremap [B :bfirst<CR>
+nnoremap ]B :blast<CR>
 
 " Navigation QOL
 noremap <silent>j gj
@@ -182,7 +173,7 @@ set undodir=$XDG_CACHE_HOME/.vimdid
 set undofile
 
 " Quickfix Toggle
-command! Vfix botright vertical copen | vertical resize 50
+command! VFix botright vertical copen | vertical resize 50
 command! -nargs=* QFix call QFixToggle(<f-args>)
 function! QFixToggle(v, e)
 	if exists("g:qfix_win") && a:e == 1
@@ -192,12 +183,13 @@ function! QFixToggle(v, e)
 		if a:v == 0
 			copen
 		else
-			Vfix
+			VFix
 		endif
 		let g:qfix_win = bufnr("$")
 	endif
 endfunction
 " Location List Toggle
+command! VList botright vertical lopen | vertical resize 50
 command! -nargs=* LList call LListToggle (<f-args>)
 function! LListToggle(v, e)
 	if exists("g:llist_win") && a:e == 1
@@ -207,7 +199,7 @@ function! LListToggle(v, e)
 		if a:v == 0
 			lopen
 		else
-			Vfix
+			VList
 		endif
 		let g:llist_win = bufnr("$")
 	endif
