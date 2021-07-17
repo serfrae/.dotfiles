@@ -5,7 +5,8 @@ alias dots="$DOTFILES"
 alias tmux='tmux -f "$XDG_CONFIG_HOME/tmux/tmux.conf"'
 alias pacrl='rm /var/lib/pacman/db.lck'
 alias n="note.sh"
-alias fn="find_note.sh"
+alias nf="find_note.sh"
+alias t="ctags -R --exclude=@$DOTFILES/ctags/ctagsignore ."
 
 ### Exa
 alias ls='exa'

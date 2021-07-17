@@ -80,17 +80,17 @@ alt + shift + q
 	bspwm_multinode --{close}-all-local-non-focused
 alt + shift  + F4
 	bspwm_multinode --{kill}-all-local-non-focused
+super + {_, shift} + Tab
+	bspc desktop -f {next,prev}
 #Focus Next/Previous Window
 alt + {_,shift} + Tab
 	bspc node -f {next,prev}
 #Swap Window With Last Window
-super + {_,shift} + Tab
+super + {_,shift} + semicolon 
 	bspc node -{s,f} last
-#	bspc desktop -f {next,prev}
 #Focus/Move Window to the Biggest Space
 super + {_,shift} + apostrophe
 	bspc node -{s,f} biggest.local
-#super + {_, shift} + semicolon
 #Focus Node in Given Direction
 super + {h,j,k,l}
 	bspc node -f {west,south,north,east}

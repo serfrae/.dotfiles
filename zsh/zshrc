@@ -54,16 +54,16 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-function fn {
-	fn; zle reset-prompt; zle redisplay;
+function nf {
+	nf; zle reset-prompt; zle redisplay;
 }
-zle -N fn
+zle -N nf
 
 ### Keybinds
 zle -N fzf-cd-widget
 bindkey '^R' fzf-cd-widget
-bindkey '^S' fn
-bindkey -M vicmd '^S' fn
+bindkey '^S' nf
+bindkey -M vicmd '^S' nf
 #bindkey -rpM viins '^['
 #bindkey -rpM vicmd '^['
 #bindkey -rpM viopp '^['

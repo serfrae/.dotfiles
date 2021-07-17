@@ -101,17 +101,11 @@ set showcmd
 syntax enable
 set showbreak=↪\
 set listchars=tab:▸\ ,eol:↲,nbsp:␣,trail:•,precedes:←,extends:→
-map <leader>l :set list!<CR> " Toggle tabs and EOL
+map \l :set list!<CR> " Toggle tabs and EOL
 " }}}
 """ Mappings"{{{
 let mapleader = " "
 
-" <leader><leader> toggles between buffers
-nnoremap <leader><leader> <c-^>
-nnoremap <leader>bn :bprevious<CR>
-nnoremap <leader>bp :bnext<CR>
-nnoremap <leader>bf :bfirst<CR>
-nnoremap <leader>bl :blast<CR>
 
 nnoremap <leader>o :Files<CR>
 nnoremap <leader>; :Buffers<CR>
@@ -121,20 +115,20 @@ nnoremap <leader>] :Tags<CR>
 nnoremap <leader>cd :cd %:h<CR>
 
 " Quickfix
-noremap <silent> ]o :QFix 0 1<CR>
-noremap <silent> [o :QFix 1 1<CR>
+noremap <silent> ]o :QFix 1 1<CR>
+noremap <silent> [o :QFix 0 1<CR>
 noremap [p :cprev<CR>
 noremap [n :cnext<CR>
 noremap [f :cfirst<CR>
 noremap [l :clast<CR>
 
 "Location List
-nnoremap <leader>[o :LList 0 1<CR>
-nnoremap <leader>]o :LList 1 1<CR>
-nnoremap <leader>[p :lprev<CR>
-nnoremap <leader>[n :lnext<CR>
-nnoremap <leader>[f :lfirst<CR>
-nnoremap <leader>[l :llast<CR>
+nnoremap <silent> <leader>lo :LList 0 1<CR>
+nnoremap <silent> <leader>l[o :LList 1 1<CR>
+nnoremap <leader>lp :lprev<CR>
+nnoremap <leader>ln :lnext<CR>
+nnoremap <leader>lf :lfirst<CR>
+nnoremap <leader>ll :llast<CR>
 
 " Tags
 " Generate ctags
@@ -147,6 +141,14 @@ nnoremap ]wp :ptprevious<CR>
 nnoremap ]wn :ptnext<CR>
 nnoremap ]wf :ptfirst<CR>
 nnoremap ]wl :ptlast<CR>
+
+" Buffers
+" <leader><leader> toggles between buffers
+nnoremap <leader><leader> <c-^>
+nnoremap <leader>bp :bprevious<CR>
+nnoremap <leader>bn :bnext<CR>
+nnoremap <leader>bf :bfirst<CR>
+nnoremap <leader>bl :blast<CR>
 
 " Tabs
 nnoremap <leader>t :tabnew<CR>
@@ -229,9 +231,16 @@ nnoremap <silent> N Nzz
 nnoremap <silent> * *zz
 nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
+"}}}
+""" Grep{{{
+noremap <Leader>g :grep -g !tags<space><C-r><C-w><CR>:QFix 0 0<CR><CR>
+noremap <leader>r :grep<space>
+noremap <leader>lg :lgrep -g !tags<space><C-r><C-w><CR>:QFix 0 0<CR><CR>
+noremap <leader>lr :lgrep<space>
 
-" Ripgrep
+"Fzf grep results
 noremap <leader>s :Rg<space>
+
 if executable("rg")
   set grepprg=rg\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m,%f:%l:%m
@@ -251,11 +260,6 @@ endfunction
 command! -bang -nargs=? -complete=dir Files
   \call fzf#vim#files(<q-args>, {'source': s:list_cmd(),
   \                               'options': '--tiebreak=index'}, <bang>0)
-
-" Quick Grep
-noremap <Leader>g :grep -g !tags<space><C-r><C-w><CR>:QFix 0 0<CR><CR>
-noremap <leader>r :Rg<space>
-
 " }}}
 """ Notes {{{
 " Go to Note Directory
