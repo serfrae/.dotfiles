@@ -6,6 +6,11 @@ export DOTFILES="$HOME/.dotfiles"
 export CLICOLOR=1
 export NOTES_DIR="$HOME/docs/notes"
 
+# firefox
+export MOZ_WEBRENDER=1
+export MOZ_DISABLE_RDD_SANDBOX=1
+export MOZ_X11_EGL=1
+
 # XDG
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
