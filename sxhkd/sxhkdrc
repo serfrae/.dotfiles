@@ -76,6 +76,8 @@ super + a ; q
 	launch_switch_app qutebrowser
 super + a ; m
 	launch_switch_app spotify
+super + a ; g
+	launch_switch_app gimp
 # }}}
 ### Desktops {{{
 #Focus/Send Node (to) Desktop(n)
@@ -217,13 +219,36 @@ XF86AudioMute
 	pactl set-sink-mute @DEFAULT_SINK@ toggle
 XF86AudioMicMute
 	pactl set-source-mute @DEFAULT_SOURCE@ toggle
-XF86AudioPlay
-	playerctl play-pause @DEFAULT_SOURCE@
-XF86AudioNext
-	playerctl next @DEFAULT_SOURCE@
-XF86AudioPrev
-	playerctl prev @DEFAULT_SOURCE@
-#Brightness
+# Play / Pause
+super + m ; space
+	dbus-send \
+		--print-reply \
+		--dest=org.mpris.MediaPlayer2.spotify \
+		/org/mpris/MediaPlayer2 \
+		org.mpris.MediaPlayer2.Player.PlayPause
+# Next song
+super + m ; n
+	dbus-send \
+		--print-reply \
+		--dest=org.mpris.MediaPlayer2.spotify \
+		/org/mpris/MediaPlayer2 \
+		org.mpris.MediaPlayer2.Player.Next
+# Previous song
+super + m ; p
+	dbus-send \
+		--print-reply \
+		--dest=org.mpris.MediaPlayer2.spotify \
+		/org/mpris/MediaPlayer2 \
+		org.mpris.MediaPlayer2.Player.Prev
+# Song info
+super + m ; i
+	qdbus \
+	  --literal org.mpris.MediaPlayer2.spotify \
+	  /org/mpris/MediaPlayer2 \
+	  org.freedesktop.DBus.Properties.Get \
+	  org.mpris.MediaPlayer2.Player \
+	  Metadata 
+Brightness
 XF86MonBrightnessDown
     xbacklight -dec 5
 XF86MonBrightnessUp
