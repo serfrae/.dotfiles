@@ -25,7 +25,7 @@ folder-hook 'a7raser' source 'gpg -d $XDG_CONFIG_HOME/mutt/a7raser.gpg |'
 folder-hook 'synchrony' source 'gpg -d $XDG_CONFIG_HOME/mutt/synchrony.gpg |'
 
 ### Default
-#source 'gpg -d $XDG_CONFIG_HOME/mutt/synchrony.gpg |'
+source 'gpg -d $XDG_CONFIG_HOME/mutt/synchrony.gpg |'
 source 'gpg -d $XDG_CONFIG_HOME/mutt/a7raser.gpg |'
 
 ## Shortcuts

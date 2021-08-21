@@ -68,5 +68,10 @@ export PATH="$NPM_BIN:$PATH"
 export LESSKEY="$XDG_CONFIG_HOME/less/lesskey"
 export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
 
+# nnn
+if [ -f /usr/share/nnn/quitcd/quitcd.bash_zsh ]; then
+    source /usr/share/nnn/quitcd/quitcd.bash_zsh
+fi
+
 # Solana
 export PATH="$XDG_DATA_HOME/solana/install/active_release/bin:$PATH"

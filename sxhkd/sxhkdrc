@@ -46,12 +46,12 @@ alt + grave
 alt + shift + grave
 	systemctl poweroff
 #Sxhkd Config Reload
-super + space; z
+super + space ; z
 	pkill -USR1 -x sxhkd; \
 	sleep 0.2; \
 	notify-send 'Sxhkd Reloaded'
 #Restart Bspwm
-super + space; x
+super + space ; x
 	bspc {wm -r}; \
 	sleep 0.5; \
 	notify-send 'Bspwm Restarted'
@@ -60,6 +60,22 @@ super + {_,shift +}q
 	bspc node -{c,k}
 alt + F4
 	bspc node -k
+
+# Apps
+super + a ; d
+	launch_switch_app discord
+super + a ; s
+	launch_switch_app slack
+super + a ; t
+	launch_switch_app telegram-desktop
+super + a ; f
+	launch_switch_app firefox-developer-edition
+super + a ; b
+	launch_switch_app brave-nightly-bin
+super + a ; q
+	launch_switch_app qutebrowser
+super + a ; m
+	launch_switch_app spotify
 # }}}
 ### Desktops {{{
 #Focus/Send Node (to) Desktop(n)
@@ -99,7 +115,6 @@ super + shift + {h,j,k,l}
 	bspwm_move {west,south,north,east}
 # }}}
 ### Layout{{{
-
 #Rotate Desktop
 super + {_,shift + }r
 	bspc node @/ --rotate {90,-90}
@@ -129,7 +144,7 @@ super + {shift + , ctrl + }s
 	bspwm_multinode --kill-all-receptacles \
 	}
 #Focus Node for Preselection
-super + {m,comma,period,slash}
+super + p; {p,s,1,slash}
 	bspc node -f @{parent,brother,first,second}
 # }}}
 ### Node State{{{
@@ -143,22 +158,22 @@ super + shift + w
 super + ctrl + w
 	bspwm_hide --nuo
 #Hide All Non-Focused
-alt + w
+alt + w; n
     bspwm_hide --nhnf
 #Hide All Local
-alt + shift + w
+alt + w; l
     bspwm_hide --nha
 #Unhide All Global
-alt + ctrl + w
+alt + w; a
     bspwm_hide --nua
 #Unhide All Local
-super + a
+alt + w; super + a
     bspwm_hide --nlu
 #Summon all marked
-super + shift + a
+alt + s; m
     bspwm_multinode --nms
 #Force Unhide Global (Also resets node file)
-super + ctrl + a
+alt + w; ctrl + a
     bspwm_hide --nfu
 #Toggle Node Tiling
 super + t
@@ -168,22 +183,21 @@ super + t
 super + shift + t
 	bspc node --state \~pseudo_tiled
 #Toggle Node Fullscreen
-super + f
+super + shift + f
 	bspc node --state \~fullscreen
 #Toggle Monocle
-super + b
+super + f
 	bspc desktop -l next
 #Set Node Flag
-super + {u,p,o,i}
+super + n; {s,p,l,m}
 	bspc node -g {sticky,private,locked,marked}
 # }}}
 ### Pre-Select{{{
-
 #Preselect Direction
 super + ctrl + {h,j,k,l}
 	bspc node -p {west,south,north,east}
 #Preselect Ratio
-super + space; {1-9}
+super + space : {1-9}
 	bspc node -o 0.{1-9}
 #Cancel Focused Node Preselection
 super + ctrl + space
@@ -216,12 +230,11 @@ XF86MonBrightnessUp
     xbacklight -inc 5
 # }}}
 ### Resize{{{
-
 #Resize
-super + space: {h,j,k,l}
+super + space : {h,j,k,l}
     bspwm_resize {west,south,north,east} 20
 #Move Float
-super + space: super + {h,j,k,l}
+super + space : super + {h,j,k,l}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 #Adjust Gaps
 super + bracket{right,left}
