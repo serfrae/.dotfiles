@@ -13,7 +13,14 @@ set copy = no
 set imap_check_subscribed
 set sleep_time = 0
 set new_mail_command="notify-send 'New Emails' '%n new messages, %u unread.' &"
-
+set use_from = yes
+set envelope_from = yes
+set abort_nosubject = no
+set imap_keepalive = 300
+unset imap_passive
+set mail_check = 60
+set timeout = 10
+set sort = "reverse-date-received"
 set header_cache = "$XDG_CACHE_HOME/mutt/headers"
 set message_cachedir = "$XDG_CACHE_HOME/mutt/bodies"
 set certificate_file = "$XDG_DATA_HOME/mutt/certificates"
@@ -34,11 +41,12 @@ macro index,pager <f2> "<sync-mailbox><enter-command>source 'gpg -d $XDG_CONFIG_
 macro index 'c' '<change-folder>?<change-dir><home>^K=<enter>'
 macro pager \cb <pipe-entry>'urlview'<enter>
 
+bind index,pager g group-reply
 bind pager j next-line
 bind pager k previous-line
 bind attach,index,pager \CD next-page
 bind attach,index,pager \CU previous-page
-bind pager g top
-bind pager G bottom
-bind attach,index g first-entry
-bind attach,index G last-entry
+bind pager \Cb top
+bind pager \Cf bottom
+bind attach,index \Cf first-entry
+bind attach,index \Cb last-entry
