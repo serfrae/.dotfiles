@@ -6,7 +6,7 @@ foreground-alt = #ebdbb2
 alert = #cc241d
 
 [bar/bspwm]
-monitor = eDP-1
+monitor = eDP-1-1
 width = 100%
 height = 2.5%
 offset-x = 0%
@@ -26,8 +26,8 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = Open Sans:pixelsize=11:style=bold;2
-font-1 = Symbols Nerd Font:size=16:style=regular;4
+font-0 = Open Sans:pixelsize=18:style=bold;2
+font-1 = Symbols Nerd Font:size=24:style=regular;4
 font-2 = Open Sans:size=20:style=regular;2
 font-3 = Font Awesome 5 Brands:pixelsize=14;2
 font-4 = Font Awesome 5 Free:pixelsize=12;2
@@ -35,7 +35,7 @@ font-5 = Symbols Nerd Font:size=18:style=Regular;4
 font-6 = Symbols Nerd Font:size=16:style=Regular;4
 
 modules-left = date bspwm xwindow
-modules-right = pulseaudio wlan memory cpu temperature
+modules-right = pulseaudio wlan memory cpu battery2 temperature
 
 tray-position = right
 tray-padding = 0
@@ -49,7 +49,7 @@ scroll-down = bspwm-deskprev
 cursor-click = pointer
 
 [bar/ext]
-monitor = DP-1
+monitor = DP-1-1
 width = 100%
 height = 1.5%
 offset-x = 0%
@@ -70,8 +70,8 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = Open Sans:pixelsize=11:style=bold;2
-font-1 = Symbols Nerd Font:size=16:style=regular;4
+font-0 = Open Sans:pixelsize=16:style=bold;2
+font-1 = Symbols Nerd Font:size=22:style=regular;4
 font-2 = Open Sans:size=20:style=regular;2
 font-3 = Font Awesome 5 Brands:pixelsize=14;2
 font-4 = Font Awesome 5 Free:pixelsize=12;2
@@ -176,7 +176,7 @@ label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlp2s0
+interface = wlp0s20f3
 interval = 3.0
 
 format-connected = <ramp-signal><label-connected>
@@ -194,10 +194,10 @@ ramp-signal-0 = 直
 ramp-signal-1 = 直
 ramp-signal-2 = 直
 ramp-signal-3 = 直
-ramp-signal-0-foreground = #8ec07c
-ramp-signal-1-foreground = #8ec07c
-ramp-signal-2-foreground = #8ec07c
-ramp-signal-3-foreground = #8ec07c
+ramp-signal-0-foreground = #fe8019
+ramp-signal-1-foreground = #b8bb26
+ramp-signal-2-foreground = #b8bb26
+ramp-signal-3-foreground = #b8bb26
 ramp-signal-background = ${colors.background}
 
 [module/date]
@@ -254,7 +254,7 @@ format-discharging-foreground = ${colors.foreground}
 format-discharging-background = ${colors.background}
 
 format-full-prefix = " "
-format-full-prefix-foreground = #a3c725
+format-full-prefix-foreground = #8ec07c
 format-full-underline = #0099ff
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}
@@ -264,14 +264,14 @@ ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
+ramp-capacity-foreground = #fe8019
 
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
 animation-charging-3 = 
 animation-charging-4 = 
-animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-foreground = #fe8019
 animation-charging-framerate = 750
 
 [module/battery]

@@ -16,12 +16,6 @@ cargo install cargo-outdated
 # Install ZPRS
 "$DOTFILES/install/install-zprs.sh"
 
-# Change shell
-chsh -s /usr/bin/zsh
-chsh -s /bin/zsh
-
-zsh
-
 # Install feh
 git clone "git@github.com:a7rs/feh.git" "$XDG_DATA_HOME/feh"
 cd "$XDG_DATA_HOME/feh"
@@ -46,3 +40,8 @@ pip install --user --upgrade pynvim
 npm install -g yarn
 npm install -g typescript
 
+# Change shell
+chsh -s /usr/bin/zsh
+chsh -s /bin/zsh
+
+zsh
