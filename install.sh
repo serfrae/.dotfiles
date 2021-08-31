@@ -16,7 +16,7 @@ dot_install bspwm
 dot_install ctags
 dot_install dunst
 dot_install git
-dot_install gtk
+dot_install mutt
 dot_install npm
 dot_install nvim
 dot_install picom

@@ -16,6 +16,7 @@ alias lt='exa -T'
 alias lti-'exa -T --icons'
 
 ### Neovim
+alias sudovi='sudo nvim'
 alias vim='nvim'
 alias vi='nvim'
 alias svim='sudoedit'
@@ -32,3 +33,4 @@ alias cr='cargo run'
 alias ci='cargo install'
 alias cnb='cargo new'
 alias cnl='cargo new --lib'
+alias ct='cargo test'

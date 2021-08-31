@@ -3,3 +3,4 @@
 sudo pacman -Syu
 yay -Syu
 rustup update
+solana-install update
