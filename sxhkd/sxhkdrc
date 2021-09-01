@@ -7,7 +7,7 @@ super + shift + Return
     alacritty -e $SHELL -i -c tmux &
 #Program Launcher
 super + d
-	rofi -show drun -m -1 -sidebar-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
+	rofi -show drun -m -1 -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
 #Run
 #super + shift + d
 #    rofi -show run -m -1 -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
@@ -250,9 +250,10 @@ super + m ; i
 	  Metadata 
 Brightness
 XF86MonBrightnessDown
-    xbacklight -dec 5
+	xbacklight -dec 5 \
+	notify-send "down"
 XF86MonBrightnessUp
-    xbacklight -inc 5
+	notify-send "up"
 # }}}
 ### Resize{{{
 #Resize

@@ -1,5 +1,4 @@
 configuration {
-theme: "./colors-rofi.rasi";
 lines: 12;
 padding: 18;
 width: 30;
@@ -7,10 +6,7 @@ font: "Open Sans 24";
 location: 0;
 show-icons: true;
 kb-row-up: "super+k"; 
-kb-row-down: "super+j"; 
+kb-row-down: "super+j";
 kb-mode-next: "super+l";
 kb-mode-previous: "super+h";
 }
-
-
-
