@@ -24,7 +24,7 @@ sudo make install
 
 # Install yay
 git clone "https://aur.archlinux.org/yay.git" "$XDG_DATA_HOME/yay"
-cd yay
+cd "$XDG_DATA_HOME/yay"
 makepkg -si
 
 # Install AUR packages
