@@ -250,10 +250,9 @@ super + m ; i
 	  Metadata 
 Brightness
 XF86MonBrightnessDown
-	xbacklight -dec 5 \
-	notify-send "down"
+	xbacklight -dec 5
 XF86MonBrightnessUp
-	notify-send "up"
+	xbacklight -inc 5
 # }}}
 ### Resize{{{
 #Resize
