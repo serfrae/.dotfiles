@@ -1,10 +1,7 @@
 configuration {
-lines: 12;
-padding: 18;
-width: 30;
-font: "Open Sans 24";
-location: 0;
+theme: "./colors-rofi.rasi";
 show-icons: true;
+font: "Open Sans 24";
 kb-row-up: "super+k"; 
 kb-row-down: "super+j";
 kb-mode-next: "super+l";

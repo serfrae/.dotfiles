@@ -8,6 +8,7 @@ super + shift + Return
 #Program Launcher
 super + d
 	rofi -show drun -m -1 -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
+
 #Run
 #super + shift + d
 #    rofi -show run -m -1 -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
