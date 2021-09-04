@@ -21,11 +21,11 @@ dot_install npm
 dot_install nvim
 dot_install picom
 dot_install polybar
-dot_install qutebrowser
 dot_install rofi
 dot_install scripts
 dot_install sxhkd
 dot_install tmux
+dot_install urlview
 dot_install X11
 dot_install yarn
 

@@ -73,5 +73,8 @@ if [ -f /usr/share/nnn/quitcd/quitcd.bash_zsh ]; then
     source /usr/share/nnn/quitcd/quitcd.bash_zsh
 fi
 
+# Nvidia
+export __GL_SYNC_TO_VBLANK=0
+
 # Solana
 export PATH="$XDG_DATA_HOME/solana/install/active_release/bin:$PATH"
