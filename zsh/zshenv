@@ -6,11 +6,6 @@ export DOTFILES="$HOME/.dotfiles"
 export CLICOLOR=1
 export NOTES_DIR="$HOME/docs/notes"
 
-# firefox
-export MOZ_WEBRENDER=1
-export MOZ_DISABLE_RDD_SANDBOX=1
-export MOZ_X11_EGL=1
-
 # XDG
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -30,7 +25,6 @@ export SAVEHIST=10000
 export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export IPFS_PATH="$XDG_DATA_HOME/ipfs"
-export QUTEBROWSER="$DOTFILES/qutebrowser/open_url_in_instance.sh"
 export PATH="$QUTEBROWSER:$PATH"
 
 # fzf
@@ -72,9 +66,6 @@ export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
 if [ -f /usr/share/nnn/quitcd/quitcd.bash_zsh ]; then
     source /usr/share/nnn/quitcd/quitcd.bash_zsh
 fi
-
-# Nvidia
-export __GL_SYNC_TO_VBLANK=0
 
 # Solana
 export PATH="$XDG_DATA_HOME/solana/install/active_release/bin:$PATH"

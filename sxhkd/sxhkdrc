@@ -8,7 +8,6 @@ super + shift + Return
 #Program Launcher
 super + d
 	rofi -show drun -m -1 -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
-
 #Run
 #super + shift + d
 #    rofi -show run -m -1 -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
@@ -64,21 +63,15 @@ alt + F4
 
 # Apps
 super + a ; d
-	launch_switch_app discord
+	launch_switch_app discord -d 10
 super + a ; s
-	launch_switch_app slack
+	launch_switch_app slack -d 10
 super + a ; t
-	launch_switch_app telegram-desktop
-super + a ; f
-	launch_switch_app firefox-developer-edition
+	launch_switch_app telegram-desktop -d 10
 super + a ; b
-	launch_switch_app brave-nightly-bin
-super + a ; q
-	launch_switch_app qutebrowser
+	launch_switch_app brave-nightly
 super + a ; m
 	launch_switch_app spotify
-super + a ; g
-	launch_switch_app gimp
 # }}}
 ### Desktops {{{
 #Focus/Send Node (to) Desktop(n)
