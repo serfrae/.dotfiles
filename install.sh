@@ -28,5 +28,6 @@ dot_install tmux
 dot_install urlview
 dot_install X11
 dot_install yarn
+dot_install zathura
 
 dot_install apps
