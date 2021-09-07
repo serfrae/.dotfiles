@@ -4,7 +4,7 @@
 sudo pacman -S archlinux-keyring
 
 # Install packages
-sudo pacman -S alacritty alsa-utils bluez bluez-utils bspwm cargo clang cmake discord dunst exa fd fuse fzf github-cli libnotify maim mpv mutt neovim npm openssh picom python python-pip pulseaudio ripgrep rofi rsync rustup rust-analyzer sd sxhkd the_silver_searcher texlive-core tmux ttf-font-awesome ttf-jetbrains-mono ttf-nerd-fonts-symbols unrar unzip wget xcape xclip xdg-user-dirs xorg xorg-xinit xsel zip zsh zsh-syntax-highlighting zathura zathura-pdf-mupdf zsh-autosuggestions
+sudo pacman -S alacritty alsa-utils bluez bluez-utils bspwm cargo clang cmake discord dunst exa fd fuse fzf github-cli interception-tools interception-dual-function-keys jq libnotify maim mpv mutt neovim npm openssh picom python python-pip pulseaudio ripgrep rofi rsync rustup rust-analyzer sd sxhkd the_silver_searcher texlive-core tmux ttf-font-awesome ttf-jetbrains-mono ttf-nerd-fonts-symbols unrar unzip wget xcape xclip xdg-user-dirs xorg xorg-xinit xsel zip zsh zsh-syntax-highlighting zathura zathura-pdf-mupdf zsh-autosuggestions
 
 # Install Rust
 rustup install nightly
