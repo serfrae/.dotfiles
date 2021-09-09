@@ -11,8 +11,6 @@ set $term alacritty
 set $tmux alacritty -e $SHELL -i -c tmux &
 set $menu alacritty --class 'launcher' --command bash -c 'compgen -c | sort -u | fzf | xargs -r swaymsg -t command exec'
 for_window [app_id="^launcher$"] floating enable, resize set width 512px height 384px
-set $screenshot grim ~/media/images/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
-set $screenclip slurp | grim -g - ~/media/images/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
 
 set $cl_high #fbddbd
 set $cl_indi #d5c4a1
@@ -46,8 +44,8 @@ gaps inner 5
 
 ### Idle configuration
 exec swayidle -w \
-	  timeout 300 'swaylock -f -c 000000' \
-	  timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+	  timeout 600 'swaylock -i "~/media/images/wallpapers/koifish.jpg" \
+	  timeout 1800 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
 	  before-sleep 'swaylock -f -c 000000'
 
 ### Input configuration
@@ -79,6 +77,11 @@ input type:touchpad {
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
+
+	# Mako
+	bindsym $mod+n exec makoctl dismiss
+    bindsym $mod+Shift+n exec makoctl dismiss -a
+
 
 # Workspaces:
 #
@@ -120,16 +123,21 @@ input type:touchpad {
 	bindsym $mod+Control+h move workspace to output left
 	bindsym $mod+Control+l move workspace to output right
 
-	bindsym $mod+Control+1 move $ws1 to output left
-	bindsym $mod+Control+2 move $ws2 to output left
+	bindsym $mod+Control+1 exec sway_move 1
+	bindsym $mod+Control+2 exec sway_move 2
+	bindsym $mod+Control+3 exec sway_move 3
+	bindsym $mod+Control+4 exec sway_move 4
+	bindsym $mod+Control+5 exec sway_move 5
+	bindsym $mod+Control+6 exec sway_move 6
+	bindsym $mod+Control+7 exec sway_move 7
+	bindsym $mod+Control+8 exec sway_move 8
+	bindsym $mod+Control+9 exec sway_move 9
+	bindsym $mod+Control+0 exec sway_move 10
 
 	workspace back_and_forth yes
 	bindsym $mod+Tab workspace back_and_forth
 
 # Layout:
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
 	bindsym $mod+Ctrl+v splith
     bindsym $mod+Shift+v splitv
     bindsym $mod+v splitt
@@ -161,6 +169,24 @@ bindsym XF86AudioMute exec pactl set-sink-mute $(pacmd list-sinks |awk '/* index
 bindsym --locked XF86MonBrightnessUp exec light -A 5
 bindsym --locked XF86MonBrightnessDown exec light -U 5
 
+# Screenshots
+mode "scrn" {
+	bindsym s exec grim - | wl-copy ; mode "default"
+	bindsym c exec grim -g "$(slurp)" - | wl-copy ; mode "default"
+	bindsym f exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') - | wl-copy ; mode "default"
+	bindsym Shift+s exec grim ~/media/images/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png ; mode "default"
+	bindsym Shift+c exec slurp | grim -g - ~/media/images/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png ; mode "default"
+	bindsym Shift+f exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') ~/media/images/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png ; mode "default"
+	bindsym r exec wf-recorder -g "$$(slurp)" -f ~/media/video/recordings/rec_$(date +"%Y-%m-%d-%H-%M-%S.mp4") ; mode "default"
+	bindsym t exec wf-recorder -f ~/media/video/recordings/rec_$(date +"%Y-%m-%d-%H-%M-%S.mp4") ; mode "default"
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+c mode "scrn"
+bindsym $mod+Control+c exec killall -s SIGINT wf-recorder
+
 # Resizing containers:
 mode "resize" {
 	bindsym $left resize shrink width 10px
@@ -190,6 +216,7 @@ bindsym $mod+a mode "apps"
 
 # System:
 mode "sys" {
+	bindsym l exec swaylock -i ~/media/images/wallpapers/koifish.jpg
 	bindsym s exec systemctl poweroff
 	bindsym r exec systemctl reboot
 	bindsym e exec exit
@@ -206,13 +233,13 @@ bar {
     position bottom
     status_command i3status-rs $XDG_CONFIG_HOME/i3status-rs/config.toml
     colors {
-        separator #666666
+        separator #fbddbd
         background #1d2021
         statusline #1d2021
-        focused_workspace #0088CC #0088CC #ffffff
+        focused_workspace #458588 #458588 #d5c4a1
         active_workspace #333333 #333333 #ffffff
         inactive_workspace #333333 #333333 #888888
-        urgent_workspace #2f343a #900000 #ffffff
+        urgent_workspace #2f343a #900000 #1d2021
     }
 }
 include @sysconfdir@/sway/config.d/* 
