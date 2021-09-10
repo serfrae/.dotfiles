@@ -229,17 +229,6 @@ bindsym $mod+grave mode "sys"
 
 # Status bar
 bar {
- font pango:Jetbrains Mono, FontAwesome 10
-    position bottom
-    status_command i3status-rs $XDG_CONFIG_HOME/i3status-rs/config.toml
-    colors {
-        separator #fbddbd
-        background #1d2021
-        statusline #1d2021
-        focused_workspace #458588 #458588 #d5c4a1
-        active_workspace #333333 #333333 #ffffff
-        inactive_workspace #333333 #333333 #888888
-        urgent_workspace #2f343a #900000 #1d2021
-    }
+	swaybar_command waybar
 }
 include @sysconfdir@/sway/config.d/* 
