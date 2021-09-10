@@ -9,6 +9,7 @@ function dot_install() {
 
 dot_install dirs
 dot_install zsh
+rm -rf *bash*
 chmod -w $HOME
 
 dot_install alacritty
@@ -24,6 +25,7 @@ dot_install sway
 dot_install tmux
 dot_install urlview
 dot_install yarn
+dot_install waybar
 dot_install zathura
 
 dot_install way-apps

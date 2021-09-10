@@ -25,7 +25,6 @@ export SAVEHIST=10000
 export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export IPFS_PATH="$XDG_DATA_HOME/ipfs"
-export PATH="$QUTEBROWSER:$PATH"
 
 # fzf
 export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden"
