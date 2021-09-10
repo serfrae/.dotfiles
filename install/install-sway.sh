@@ -1,4 +1,5 @@
 #!/bin/sh
 
-sudo pacman -S sway swaybg swayidle swaylock waybar grim mako slurp xdg-desktop-portal-wlr
-pipewire wf-recorder
+mkdir -p $XDG_CONFIG_HOME/sway
+
+ln -sf "$DOTFILES/sway/config" "$XDG_CONFIG_HOME/sway/config"

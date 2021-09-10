@@ -1,7 +1,0 @@
-#!/bin/sh
-
-if [[ -n $(pidof -x "$1") ]]; then 
-    swaymsg "[instance=$1] focus"; 	
-else 
-	swaymsg "exec $1";
-fi
