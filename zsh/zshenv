@@ -6,6 +6,8 @@ export DOTFILES="$HOME/.dotfiles"
 export CLICOLOR=1
 export NOTES_DIR="$HOME/docs/notes"
 
+export GTK_USE_PORTAL=0
+
 # XDG
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
