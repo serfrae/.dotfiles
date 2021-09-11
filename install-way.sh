@@ -9,7 +9,7 @@ function dot_install() {
 
 dot_install dirs
 dot_install zsh
-rm -rf *bash*
+rm -rf $HOME/*bash*
 chmod -w $HOME
 
 dot_install alacritty

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-git clone "git@github.com:universal-ctags/ctags.git" "$XDG_DATA_HOME/ctags" \\
+git clone https://github.com/universal-ctags/ctags.git $XDG_DATA_HOME/ctags
 cd "$XDG_DATA_HOME/ctags"
 $XDG_DATA_HOME/ctags/autogen.sh \\
 $XDG_DATA_HOME/configure --prefix=$HOME \\
