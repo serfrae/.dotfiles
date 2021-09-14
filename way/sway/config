@@ -32,7 +32,7 @@ exec wayext_monitor
 
 # Output configuration
 # Wallpaper
-output * bg $HOME/media/images/wallpapers/koifish.jpg fill
+output * bg $HOME/media/images/wallpapers/PDGRrvB.png fill
 
 # Formatting
 default_border pixel 1

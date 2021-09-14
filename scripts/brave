@@ -1,0 +1,3 @@
+#!/bin/sh
+
+brave-nightly --enable-features=UseOzonePlatform --ozone-platform=wayland
