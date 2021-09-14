@@ -1,13 +1,12 @@
 #!/bin/sh
 
 alias sway="sway --my-next-gpu-wont-be-nvidia"
-alias brave="brave-nightly --enable-features=UseOzonePlatform --ozone-platform=wayland"
 alias dot="$DOTFILES"
 alias dots="$DOTFILES"
 alias tmux='tmux -f "$XDG_CONFIG_HOME/tmux/tmux.conf"'
 alias pacrl='rm /var/lib/pacman/db.lck'
-alias nn="note.sh"
-alias nf="find_note.sh"
+alias nn="note"
+alias nf="note_find"
 alias t="ctags -R --exclude=@$DOTFILES/ctags/ctagsignore ."
 
 ### Exa

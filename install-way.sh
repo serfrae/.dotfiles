@@ -28,4 +28,5 @@ dot_install yarn
 dot_install waybar
 dot_install zathura
 
+dot_install apps
 dot_install way-apps

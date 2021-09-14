@@ -31,3 +31,4 @@ dot_install yarn
 dot_install zathura
 
 dot_install apps
+dot_install x-apps
