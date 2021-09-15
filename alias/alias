@@ -4,7 +4,7 @@ alias sway="sway --my-next-gpu-wont-be-nvidia"
 alias dot="$DOTFILES"
 alias dots="$DOTFILES"
 alias tmux='tmux -f "$XDG_CONFIG_HOME/tmux/tmux.conf"'
-alias pacrl='rm /var/lib/pacman/db.lck'
+alias pacrl='sudo rm /var/lib/pacman/db.lck'
 alias nn="note"
 alias nf="note_find"
 alias t="ctags -R --exclude=@$DOTFILES/ctags/ctagsignore ."
