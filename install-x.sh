@@ -28,7 +28,7 @@ x_install picom
 x_install polybar
 x_install rofi
 dot_install scripts
-dot_install sxhkd
+x_install sxhkd
 dot_install tmux
 dot_install urlview
 x_install X11
@@ -36,4 +36,4 @@ dot_install yarn
 dot_install zathura
 
 dot_install apps
-dot_install x-apps
+x_install x-apps

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Install packages
-sudo pacman -S bspwm rofi sxhkd xclip xorg xorg-xinit xsel 
+sudo pacman -S bspwm picom rofi sxhkd xclip xorg xorg-xinit xsel 
 
 # Install feh
 git clone "git@github.com:a7rs/feh.git" "$XDG_DATA_HOME/feh"

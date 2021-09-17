@@ -1,16 +1,16 @@
 !!! Modifications
 
 ! Clear affected keys
-clear lock
-clear control
+!clear lock
+!clear control
 
 ! Caps as left Escape
-keycode 66 = Control_L 
-add control = Control_L Control_R
+!keycode 66 = Control_L 
+!add control = Control_L Control_R
 
 ! RAlt = Another LAlt
-keycode 108 = Alt_R
-add mod1 = Alt_L Alt_R
+!keycode 108 = Alt_R
+!add mod1 = Alt_L Alt_R
 
 ! Keep Super in left Win
 ! keycode 133 = Super_L
