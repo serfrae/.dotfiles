@@ -19,7 +19,7 @@ super + shift + d
 #	rofi -show ssh -m -1 -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
 #Screenshot
 ctrl + ]
-	find_note.sh
+	note_find
 super + z
     maim -u | xclip -selection clipboard -t image/png; \
     notify-send "Screenshot Saved to Clipboard."
@@ -244,9 +244,9 @@ super + m ; i
 	  Metadata 
 Brightness
 XF86MonBrightnessDown
-	xbacklight -dec 5
+	light -U 5
 XF86MonBrightnessUp
-	xbacklight -inc 5
+	light -A 5
 # }}}
 ### Resize{{{
 #Resize
