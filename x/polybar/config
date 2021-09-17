@@ -35,7 +35,7 @@ font-5 = Symbols Nerd Font:size=18:style=Regular;4
 font-6 = Symbols Nerd Font:size=16:style=Regular;4
 
 modules-left = date bspwm xwindow
-modules-right = pulseaudio wlan memory cpu battery2 temperature
+modules-right = pulseaudio xbacklight wlan memory cpu battery2 temperature
 
 tray-position = right
 tray-padding = 0
@@ -143,7 +143,7 @@ label-song-ellipsis = true
 type = internal/xbacklight
 
 format = <label>
-format-prefix = "盛 "
+format-prefix = "盛"
 format-prefix-foreground = "#ffca00"
 label = %percentage%%
 
@@ -194,7 +194,8 @@ ramp-signal-0 = 直
 ramp-signal-1 = 直
 ramp-signal-2 = 直
 ramp-signal-3 = 直
-ramp-signal-0-foreground = #fe8019
+#ramp-signal-0-foreground = #fe8019
+ramp-signal-0-foreground = #b8bb26
 ramp-signal-1-foreground = #b8bb26
 ramp-signal-2-foreground = #b8bb26
 ramp-signal-3-foreground = #b8bb26
