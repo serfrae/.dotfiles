@@ -244,9 +244,9 @@ super + m ; i
 	  Metadata 
 Brightness
 XF86MonBrightnessDown
-	light -U 5
+	light -U 10 
 XF86MonBrightnessUp
-	light -A 5
+	light -A 10
 # }}}
 ### Resize{{{
 #Resize

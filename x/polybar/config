@@ -35,7 +35,7 @@ font-5 = Symbols Nerd Font:size=18:style=Regular;4
 font-6 = Symbols Nerd Font:size=16:style=Regular;4
 
 modules-left = date bspwm xwindow
-modules-right = pulseaudio xbacklight wlan memory cpu battery2 temperature
+modules-right = pulseaudio backlight-acpi wlan memory cpu battery2 temperature
 
 tray-position = right
 tray-padding = 0
@@ -143,8 +143,8 @@ label-song-ellipsis = true
 type = internal/xbacklight
 
 format = <label>
-format-prefix = "盛"
-format-prefix-foreground = "#ffca00"
+format-prefix = "盛 "
+format-prefix-foreground = "#fe8019"
 label = %percentage%%
 
 [module/backlight-acpi]
