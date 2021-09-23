@@ -24,7 +24,7 @@ theme.sh &
 ### BSPWM Configuration
 #bspc config border_radius        8
 _bc initial_polarity 		  second_child
-_bc border_width                  1
+_bc border_width                  3
 _bc window_gap                    5
 _bc top_padding                   0
 _bc bottom_padding                0
