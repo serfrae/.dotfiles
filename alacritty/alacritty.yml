@@ -94,6 +94,8 @@ bell:
 
 background_opacity: 1
 
+gtk_theme_variant: None
+
 # Mouse bindings
 #
 # Available fields:
@@ -132,7 +134,7 @@ alt_send_esc: true
 url:
 launcher:
   #program: xdg-open
-  program: firefox-developer-edition
+  program: brave-nightly
   args: []
 
 # URL modifiers
