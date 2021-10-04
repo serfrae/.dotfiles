@@ -20,19 +20,22 @@ super + shift + d
 #Screenshot
 ctrl + ]
 	note_find
-super + z
+super + x ; s 
     maim -u | xclip -selection clipboard -t image/png; \
     notify-send "Screenshot Saved to Clipboard."
-super + shift + z
+super + x ; shift + s
     maim -u $HOME/media/images/screenshots/scrn-$(date +"%Y%m%dT%H%M%S").png; \
 		notify-send "Screenshot Saved: scrn-$(date +"%Y%m%dT%H%M%S").png"
 #Screenclip
-super + x
+super + x ; c
     maim -s -u | xclip -selection clipboard -t image/png; \
     notify-send "Screenclip Saved to Clipboard."
-super + shift + x
+super + x ; shift + c
     maim -s -u $HOME/media/images/screenshots/scrn-$(date +"%Y%m%dT%H%M%S").png; \
     notify-send "Screenclip Saved: clip-$(date +"%Y%m%dT%H%M%S").png"
+super + x ; r
+	ffmpeg -f x11grab -video_size 1920x1080 -framerate 60 -i $DISPLAY -c:v ffvhuff $HOME/media/video/recordings/rec-$(date +"%Y%m%dT%H%M%S").mkv; \
+	notify-send "Recording"
 #Lock
 super + grave
 	betterlockscreen -l dimblur
