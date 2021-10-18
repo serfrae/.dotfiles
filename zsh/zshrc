@@ -36,9 +36,9 @@ autoload -U compinit; compinit
 source $DOTFILES/alias/alias
 
 ### Vi Mode
-set -o vi
-export KEYTIMEOUT=0
-bindkey -v
+#set -o vi
+#export KEYTIMEOUT=0
+#bindkey -v
 
 ### Plugins
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
