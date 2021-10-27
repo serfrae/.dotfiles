@@ -26,7 +26,7 @@ font:
     family: JetBrains Mono
     style: Italic
 
-  size: 13 
+  size: 14 
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -134,7 +134,7 @@ alt_send_esc: true
 url:
 launcher:
   #program: xdg-open
-  program: brave-nightly
+  program: brave
   args: []
 
 # URL modifiers
