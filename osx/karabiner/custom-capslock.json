@@ -1,0 +1,32 @@
+{
+	"title": "Capslock -> Esc/Control",
+	"rules": [
+		{
+			"description": "Esc if no keychord, else Control",
+			"manipulators": [
+				{
+					"type": "basic",
+					"from": {
+						"key_code": "left_control",
+						"modifiers": {
+							"optional": [
+								"any"
+							]
+						}
+					},
+					"to": [
+						{
+							"key_code": "left_control",
+							"lazy": true
+						}
+					],
+					"to_if_alone": [
+						{
+							"key_code": "escape"
+						}
+					]
+				}
+			]
+		}
+	]
+}
