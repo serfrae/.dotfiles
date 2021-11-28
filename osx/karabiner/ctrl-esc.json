@@ -1,8 +1,8 @@
 {
-	"title": "Capslock -> Esc/Control",
+	"title": "Ctrl/Esc",
 	"rules": [
 		{
-			"description": "Esc if no keychord, else Control",
+			"description": "Ctrl when chorded else Esc",
 			"manipulators": [
 				{
 					"type": "basic",
