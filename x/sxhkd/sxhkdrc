@@ -75,6 +75,8 @@ super + a ; b
 	launch_switch_app brave-nightly
 super + a ; m
 	launch_switch_app spotify
+ctrl + shift + alt + a; d
+	launch_switch_app slack -d 10
 # }}}
 ### Desktops {{{
 #Focus/Send Node (to) Desktop(n)
