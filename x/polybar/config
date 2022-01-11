@@ -6,7 +6,7 @@ foreground-alt = #ebdbb2
 alert = #cc241d
 
 [bar/bspwm]
-monitor = eDP-1
+monitor = DP-0
 width = 100%
 height = 2.5%
 offset-x = 0%
@@ -49,7 +49,7 @@ scroll-down = bspwm-deskprev
 cursor-click = pointer
 
 [bar/ext]
-monitor = DP-1
+monitor = DP-2
 width = 100%
 height = 1.5%
 offset-x = 0%

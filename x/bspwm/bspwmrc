@@ -11,7 +11,8 @@ _check() {
 
 ### MONITORS
 [[ -x $HOME/bin/ext_monitor ]] && ext_monitor
-bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9 0
+bspc monitor DP-0 -d 1 2 3 4 5 
+bspc monitor DP-2 -d 6 7 8 9 0
 
 ### Autostart
 sxhkd -c $XDG_CONFIG_HOME/sxhkd/sxhkdrc &
@@ -53,7 +54,7 @@ _bc presel_feedback_color "#fbf1c7"
 #_bc urgent_border_color 	      "#ee2e24
 
 ### Hide Polybar on Fullscreen
-xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_eDP-1)
+xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_DP-0)
 
 ### Xmodmap
 #[ -f "$XDG_CONFIG_HOME"/X11/.Xmodmap ] && xmodmap "$XDG_CONFIG_HOME"/X11/.Xmodmap
