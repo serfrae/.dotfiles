@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ext_monitor=$(xrandr --query | rg 'DP-2')
+ext_monitor=$(xrandr --query | rg 'DP-0')
 if [[ $ext_monitor = *connected* ]]; then
-      xrandr --output DP-0 --primary --mode 5120x1440 --rotate normal --output DP-2 --mode 5120x1440 --rotate normal --left-of DP-0
+      xrandr --output DP-2 --primary --mode 5120x1440 --rotate normal --output DP-0 --mode 5120x1440 --rotate normal --right-of DP-2
 fi

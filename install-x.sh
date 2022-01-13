@@ -19,6 +19,7 @@ chmod -w $HOME
 dot_install alacritty
 x_install bspwm
 dot_install ctags
+dot_install dfk
 x_install dunst
 dot_install git
 dot_install mutt
@@ -35,5 +36,5 @@ x_install X11
 dot_install yarn
 dot_install zathura
 
-dot_install apps
 x_install x-apps
+dot_install apps
