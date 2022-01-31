@@ -92,7 +92,8 @@ bell:
   duration: 0
   color: '0xffffff'
 
-background_opacity: 1
+#background_opacity: 1
+window.background: 1
 
 gtk_theme_variant: None
 
