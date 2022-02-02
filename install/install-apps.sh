@@ -30,6 +30,9 @@ pip install --user --upgrade pynvim
 npm install -g yarn
 npm install -g typescript
 
+# Install Solana
+sh -c "$(curl -sSfL https://release.solana.com/v1.9.5/install)"
+
 # Change shell
 chsh -s /usr/bin/zsh
 chsh -s /bin/zsh
