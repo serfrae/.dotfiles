@@ -10,7 +10,7 @@ _check() {
 }
 
 ### MONITORS
-[[ -x $HOME/bin/ext_monitor ]] && ext_monitor
+ext_monitor
 bspc monitor DP-2 -d 1 2 3 4 5
 bspc monitor DP-0 -d 6 7 8 9 0
 
