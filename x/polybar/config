@@ -51,7 +51,7 @@ cursor-click = pointer
 [bar/ext]
 monitor = DP-0
 width = 100%
-height = 0.809%
+height = 1.618%
 offset-x = 0%
 offset-y = 0%
 fixed-center = true

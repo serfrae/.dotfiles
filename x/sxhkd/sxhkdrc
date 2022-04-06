@@ -78,17 +78,21 @@ super + a ; m
 # }}}
 ### Desktops {{{
 #Focus/Send Node (to) Desktop(n)
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} ^{1-9,10}
+super + {_,shift + }{1-4,5,6-9,0}
+	bspc {desktop -f,node -d} ^{6-9,10,1-4,5}
 #Send Node & Follow to Desktop(n)
-super + ctrl + {1-9,0}
-	bspc node -d ^{1-9,10} --follow
+super + ctrl + {1-4,5,6-9,0}
+	bspc node -d ^{6-9,10,1-4,5} --follow
 #Summon Nodes From Desktop(n) to Focused Desktop
 #Shift = Send Nodes from Focused Desktop to Desktop(n)
-alt + {_, shift + }{1-9,0}
-	bspwm_multinode {--ds, --db} ^{1-9,10}
-alt + ctrl + {1-9,0}
-	bspwm_multinode --dsnf ^{1-9,10}
+alt + {_, shift + }{1-4,5,6-9,0}
+	bspwm_multinode {--ds, --db} ^{6-9,10,1-4,5}
+alt + {_, shift + }{1-4,5,6-9,0}
+	bspwm_multinode {--ds, --db} ^{6-9,10,1-4,5}
+alt + ctrl + {1-4,5,6-9,0}
+	bspwm_multinode --dsnf ^{6-9,10,1-4,5}
+alt + ctrl + {1-4,5,6-9,0}
+	bspwm_multinode --dsnf ^{6-9,10,1-4,5}
 #Close/Kill Nodes in Focused Desktop
 #Excludes Focused or Marked Nodes
 alt + shift + q
