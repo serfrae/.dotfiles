@@ -2,6 +2,6 @@
 
 ext_monitor=$(xrandr --query | rg 'DP-2')
 if [[ $ext_monitor = *connected* ]]; then
-      xrandr --output DP-2 --primary --mode 5120x1440 --scale 1.5 --rotate normal --output DP-0 --mode 3440x1440 --scale 1.5 --rotate normal --above DP-2
-	  xrandr --output DP-0 --pos 1920x-1440
+	xrandr --output DP-2 --primary --mode 5120x1440 --scale 1.5 --rotate normal --output DP-0 --mode 3440x1440 --scale 1.5 --rotate left --left-of DP-2
+	xrandr --output DP-0 --pos 7680x-1440
 fi
