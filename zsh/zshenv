@@ -56,7 +56,7 @@ export RUST_LOG=solana_runtime::system_instruction_processor=trace,solana_runtim
 export GOROOT="$XDG_DATA_HOME/go"
 export GOPATH="$XDG_DATA_HOME/go"
 export GOBIN="$GOPATH/bin"
-export PATH=$PATH:$GOPATH:$GOBIN
+export PATH=$PATH:$GOPATH:$GOBIN:$GOROOT
 
 # Python
 export PYTHONPATH=/usr/local/bin/python3
