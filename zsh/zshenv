@@ -53,7 +53,8 @@ export PATH="$CARGO_HOME/bin:$PATH"
 export RUST_LOG=solana_runtime::system_instruction_processor=trace,solana_runtime::message_processor=debug,solana_bpf_loader=debug,solana_rbpf=debug
 
 # Go
-export GOROOT="$XDG_DATA_HOME/go"
+export GOROOT="/usr/lib/go/"
+export GOTOOLDIR="$GOROOT/pkg/linux_amd64"
 export GOPATH="$XDG_DATA_HOME/go"
 export GOBIN="$GOPATH/bin"
 export PATH=$PATH:$GOPATH:$GOBIN:$GOROOT
