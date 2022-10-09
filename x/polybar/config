@@ -111,7 +111,7 @@ label-unmounted-foreground = ${colors.foreground-alt}
 type = internal/bspwm
 pin-workspaces = true
 
-label-focused = %{F#}%{F-}
+label-focused = %{F#d5c4a1}%{F-}
 label-focused-padding = 1
 
 label-occupied = %{F#665c54}%{F-}
