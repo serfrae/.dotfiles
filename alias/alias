@@ -1,6 +1,5 @@
 #!/bin/sh
 
-alias sway="sway --my-next-gpu-wont-be-nvidia"
 alias dot="$DOTFILES"
 alias dots="$DOTFILES"
 alias tmux='tmux -f "$XDG_CONFIG_HOME/tmux/tmux.conf"'

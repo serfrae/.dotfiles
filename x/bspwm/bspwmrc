@@ -11,7 +11,8 @@ _check() {
 
 ### MONITORS
 bspc wm -O DP-2 DP-0
-dual_monitor
+xrandr --output DP-2 --primary --mode 5120x1440 --scale 1.5 --rotate normal --output DP-0 --mode 3440x1440 --scale 1.5 --rotate left --right-of --DP-2 
+xrandr --output DP-0 --pos 7680x0
 bspc monitor DP-2 -d 1 2 3 4 5
 bspc monitor DP-0 -d 6 7 8 9 0
 
