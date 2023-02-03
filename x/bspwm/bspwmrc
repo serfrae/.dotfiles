@@ -10,11 +10,11 @@ _check() {
 }
 
 ### MONITORS
-bspc wm -O DP-2 DP-0
-xrandr --output DP-2 --primary --mode 5120x1440 --scale 1.5 --rotate normal --output DP-0 --mode 3440x1440 --scale 1.5 --rotate left --right-of --DP-2 
-xrandr --output DP-0 --pos 7680x0
+#bspc wm -O DP-2 DP-0
+xrandr --output DP-2 --primary --mode 5120x1440 --scale 1.5 --rotate normal --output DP-4 --mode 3440x1440 --scale 1.5 --rotate right --right-of DP-2 
+xrandr --output DP-4 --pos 7680x0
 bspc monitor DP-2 -d 1 2 3 4 5
-bspc monitor DP-0 -d 6 7 8 9 0
+bspc monitor DP-4 -d 6 7 8 9 0
 
 ### Autostart
 sxhkd -c $XDG_CONFIG_HOME/sxhkd/sxhkdrc &
@@ -56,7 +56,7 @@ _bc presel_feedback_color "#fbf1c7"
 #_bc urgent_border_color 	      "#ee2e24
 
 ### Hide Polybar on Fullscreen
-xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_DP-0)
+xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_DP-2)
 
 ### Xmodmap
 #[ -f "$XDG_CONFIG_HOME"/X11/.Xmodmap ] && xmodmap "$XDG_CONFIG_HOME"/X11/.Xmodmap
