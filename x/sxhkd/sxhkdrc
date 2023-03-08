@@ -36,6 +36,8 @@ super + x ; shift + c
 super + x ; r
 	ffmpeg -f x11grab -video_size 1920x1080 -framerate 60 -i $DISPLAY -c:v ffvhuff $HOME/media/video/recordings/rec-$(date +"%Y%m%dT%H%M%S").mkv; \
 	notify-send "Recording"
+super + x; v
+    bspc_wm_switch
 #Lock
 super + grave
 	betterlockscreen -l dimblur
