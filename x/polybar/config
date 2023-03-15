@@ -49,9 +49,9 @@ scroll-down = bspwm-deskprev
 cursor-click = pointer
 
 [bar/ext]
-monitor = DP-0
+monitor = DP-4
 width = 100%
-height = 1.618%
+height = 0.809%
 offset-x = 0%
 offset-y = 0%
 fixed-center = true
