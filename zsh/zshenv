@@ -6,10 +6,7 @@ export PATH=$PATH:/usr/lib/jvm/java-17-openjdk/bin/javac
 export DOTFILES="$HOME/.dotfiles"
 export CLICOLOR=1
 export NOTES_DIR="$HOME/docs/notes"
-export PATH=$PATH:$HOME/Scripts
-
-# homebrew
-export PATH=/opt/homebrew/bin:$PATH
+export PATH=$PATH:$HOME/scripts
 
 # XDG
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -54,9 +51,9 @@ export PATH="$CARGO_HOME/bin:$PATH"
 export RUST_LOG=solana_runtime::system_instruction_processor=trace,solana_runtime::message_processor=debug,solana_bpf_loader=debug,solana_rbpf=debug
 
 # Go
-export GOROOT="$XDG_DATA_HOME/go"
-export GOPATH="$XDG_DATA_HOME/go"
-export GOBIN="$GOPATH/bin"
+export GOROOT="/usr/lib/go"
+export GOPATH="$HOME/go/src"
+export GOBIN="$HOME/go/bin"
 export PATH=$PATH:$GOPATH:$GOBIN
 
 # Python
