@@ -4,7 +4,7 @@ export PATH=$PATH:$HOME/bin:$HOME/.local/bin
 #export TERM='alacritty'
 export DOTFILES="$HOME/.dotfiles"
 export CLICOLOR=1
-export NOTES_DIR="$HOME/docs/notes"
+export NOTES_DIR="$HOME/Documents/Notes"
 export PATH=$PATH:$HOME/Scripts
 
 # homebrew
@@ -53,10 +53,10 @@ export PATH="$CARGO_HOME/bin:$PATH"
 export RUST_LOG=solana_runtime::system_instruction_processor=trace,solana_runtime::message_processor=debug,solana_bpf_loader=debug,solana_rbpf=debug
 
 # Go
-export GOROOT="/usr/lib/go/"
+export GOROOT="$(brew --prefix golang)/libexec"
 export GOTOOLDIR="$GOROOT/pkg/linux_amd64"
-export GOPATH="$XDG_DATA_HOME/go"
-export GOBIN="$GOPATH/bin"
+export GOPATH="$HOME/go"
+export GOBIN="$HOME/go/bin"
 export PATH=$PATH:$GOPATH:$GOBIN:$GOROOT
 
 # Python
