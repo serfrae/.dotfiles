@@ -85,3 +85,4 @@ export PATH="$XDG_DATA_HOME/google-cloud-sdk/bin:$PATH"
 
 # Solana
 export PATH="$XDG_DATA_HOME/solana/install/active_release/bin:$PATH"
+. "/Users/a7rs/.local/share/cargo/env"

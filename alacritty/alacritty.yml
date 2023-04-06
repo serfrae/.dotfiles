@@ -129,7 +129,6 @@ cursor:
   unfocused_hollow: true
 
 live_config_reload: true
-alt_send_esc: true
 
 #URL launcher
 url:
