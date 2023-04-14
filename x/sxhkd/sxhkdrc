@@ -20,7 +20,7 @@ super + shift + d
 #Screenshot
 ctrl + ]
 	note_find
-super + x ; s 
+super + x ; s
     maim -u | xclip -selection clipboard -t image/png; \
     notify-send "Screenshot Saved to Clipboard."
 super + x ; shift + s
@@ -60,6 +60,9 @@ super + space ; x
 	bspc {wm -r}; \
 	sleep 0.5; \
 	notify-send 'Bspwm Restarted'
+#Reload Monitor config
+super + space ; c
+    bpsc wm -0 DP-4 DP-2
 #Close & Kill
 super + {_,shift +}q
 	bspc node -{c,k}
@@ -71,12 +74,12 @@ super + a ; d
 	launch_switch_app discord -d 10
 super + a ; s
 	launch_switch_app slack -d 10
-super + a ; t
-	launch_switch_app telegram-desktop -d 10
 super + a ; b
 	launch_switch_app brave-nightly
 super + a ; m
 	launch_switch_app spotify
+super + a ; f
+    launch_switch_app firefox-developer-edition
 # }}}
 ### Desktops {{{
 #Focus/Send Node (to) Desktop(n)
@@ -107,7 +110,7 @@ super + {_, shift} + Tab
 alt + {_,shift} + Tab
 	bspc node -f {next,prev}
 #Swap Window With Last Window
-super + {_,shift} + semicolon 
+super + {_,shift} + semicolon
 	bspc node -{s,f} last
 #Focus/Move Window to the Biggest Space
 super + {_,shift} + apostrophe
@@ -250,10 +253,10 @@ super + m ; i
 	  /org/mpris/MediaPlayer2 \
 	  org.freedesktop.DBus.Properties.Get \
 	  org.mpris.MediaPlayer2.Player \
-	  Metadata 
+	  Metadata
 Brightness
 XF86MonBrightnessDown
-	light -U 10 
+	light -U 10
 XF86MonBrightnessUp
 	light -A 10
 # }}}
