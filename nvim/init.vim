@@ -2,7 +2,10 @@
 filetype plugin indent on
 set nocompatible
 
+lua require('init')
+lua require('config')
 lua require('plugins')
+
 
 " }}}
 """ Plugin Config {{{
