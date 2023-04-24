@@ -2,26 +2,8 @@
 filetype plugin indent on
 set nocompatible
 
-if empty(glob('$XDG_CONFIG_HOME/nvim/autoload/plug.vim'))
-  silent !curl -fLo $XDG_CONFIG_HOME/nvim/autoload/plug.vim --Create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+lua require('plugins')
 
-call plug#begin("$VIMCONFIG/plugged")
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-
-Plug 'rust-lang/rust.vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'cespare/vim-toml'
-
-Plug 'christoomey/vim-tmux-navigator'
-
-Plug 'chriskempson/base16-vim'
-call plug#end()
 " }}}
 """ Plugin Config {{{
 let g:rustfmt_autosave = 1
