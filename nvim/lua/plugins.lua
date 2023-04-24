@@ -21,4 +21,6 @@ return require('packer').startup(function(use)
 	use 'chriskempson/base16-vim'
 	use 'williamboman/mason.nvim'
 	use 'williamboman/mason-lspconfig.nvim'
+	use 'vim-airline/vim-airline'
+	use 'vim-airline/vim-airline-themes'
 end)
