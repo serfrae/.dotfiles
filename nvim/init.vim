@@ -2,10 +2,7 @@
 filetype plugin indent on
 set nocompatible
 
-lua require('init')
-lua require('config')
 lua require('plugins')
-
 
 " }}}
 """ Plugin Config {{{
@@ -104,6 +101,8 @@ set listchars=tab:▸\ ,eol:↲,nbsp:␣,trail:•,precedes:←,extends:→
 map \l :set list!<CR> " Toggle tabs and EOL
 " }}}
 """ Mappings"{{{
+set listchars=tab:▸\ ,eol:↲,nbsp:␣,trail:•,precedes:←,extends:→
+map \l :set list!<CR> " Toggle tabs and EOL
 let mapleader = " "
 
 nnoremap <leader>o :Files<CR>

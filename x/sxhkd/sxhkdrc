@@ -152,7 +152,7 @@ super + {shift + , ctrl + }s
 	bspwm_multinode --kill-all-receptacles \
 	}
 #Focus Node for Preselection
-super + p; {p,s,1,slash}
+super + p; {p,b,f,s}
 	bspc node -f @{parent,brother,first,second}
 # }}}
 ### Node State{{{
