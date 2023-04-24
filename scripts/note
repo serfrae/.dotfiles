@@ -14,7 +14,7 @@ file_name() {
 FILE="$NOTES_DIR/$(file_name $@)"
 
 echo $(date) > $FILE
-nvim $FILE
+helix $FILE
 
 CWD=$(pwd)
 cd $NOTES_DIR
