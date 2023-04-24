@@ -1,0 +1,17 @@
+theme = "gruvbox_dark_hard"
+
+[keys.normal]
+Z = {X = ":quit!", Z = ":write-quit!"}
+
+[editor]
+color-modes = true
+cursorline = true
+
+[editor.statusline]
+left = ["mode", "spinner"]
+center = ["file-name"]
+right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
