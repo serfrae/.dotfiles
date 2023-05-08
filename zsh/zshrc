@@ -61,7 +61,7 @@ zle -N nf
 
 ### Keybinds
 zle -N fzf-cd-widget
-bindkey '^R' fzf-cd-widget
+bindkey '^]' fzf-cd-widget
 bindkey '^S' nf
 bindkey -M vicmd '^S' nf
 #bindkey -rpM viins '^['
