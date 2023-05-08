@@ -114,7 +114,7 @@ pin-workspaces = true
 label-focused = %{F#d5c4a1}%{F-}
 label-focused-padding = 1
 
-label-occupied = %{F#665c54}%{F-}
+label-occupied = %{F#665c54}%{F-}
 label-occupied-padding = 1
 label-occupied-background = ${colors.background}
 
@@ -122,7 +122,7 @@ label-urgent = %icon%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 1
 
-label-empty = %{F#665c54}%{F-}
+label-empty = %{F#665c54}󰋙%{F-}
 label-empty-padding = 1
 
 [module/mpd]
@@ -155,7 +155,7 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = #83a598
 #format-prefix-foreground = #00c0ff
 format-prefix-background = ${colors.background}
@@ -167,7 +167,7 @@ label = %percentage:2%%
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "﬘ "
+format-prefix = " ﬘"
 format-prefix-foreground = #d3869b
 format-prefix-background = ${colors.background}
 format-underline = ${xrdb:color4:#222}
@@ -229,7 +229,7 @@ label-muted-underline = #0099ff
 label-muted-background = ${colors.background}
 
 ramp-volume-0 = 
-ramp-volume-1 = 墳
+ramp-volume-1 = 
 ramp-volume-2 = 
 ramp-volume-foreground = #fabd2f
 ramp-volume-background = ${colors.background}
