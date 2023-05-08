@@ -6,6 +6,7 @@ Z = {X = ":quit!", Z = ":write-quit!"}
 [editor]
 color-modes = true
 cursorline = true
+line-number = "relative"
 
 [editor.statusline]
 left = ["mode", "spinner"]
