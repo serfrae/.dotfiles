@@ -1,10 +1,8 @@
 """ Plugins {{{
 filetype plugin indent on
 set nocompatible
-
-lua require('plugins')
-
 " }}}
+
 """ Plugin Config {{{
 let g:rustfmt_autosave = 1
 let g:rust_use_custom_ctags_defs = 1
@@ -100,6 +98,7 @@ set showbreak=↪\
 set listchars=tab:▸\ ,eol:↲,nbsp:␣,trail:•,precedes:←,extends:→
 map \l :set list!<CR> " Toggle tabs and EOL
 " }}}
+
 """ Mappings"{{{
 set listchars=tab:▸\ ,eol:↲,nbsp:␣,trail:•,precedes:←,extends:→
 map \l :set list!<CR> " Toggle tabs and EOL

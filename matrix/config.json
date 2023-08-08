@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "martrix.org": {
+      "url": "https://matrix.org",
+      "user_id": "@serfrae:matrix.org"
+    }
+  }
+}
