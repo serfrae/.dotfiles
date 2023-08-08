@@ -36,3 +36,6 @@ alias ci='cargo install'
 alias cnb='cargo new'
 alias cnl='cargo new --lib'
 alias ct='cargo test'
+
+### Hardhat
+alias nht='npx hardhat test'
