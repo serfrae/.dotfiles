@@ -39,3 +39,4 @@ alias ct='cargo test'
 
 ### Hardhat
 alias nht='npx hardhat test'
+alias nhn='npx hardhat node'
