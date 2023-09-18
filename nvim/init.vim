@@ -1,6 +1,28 @@
 """ Plugins {{{
 filetype plugin indent on
 set nocompatible
+
+if empty(glob('$XDG_CONFIG_HOME/nvim/autoload/plug.vim'))
+  silent !curl -fLo $XDG_CONFIG_HOME/nvim/autoload/plug.vim --Create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin("$VIMCONFIG/plugged")
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+
+"Plug 'rust-lang/rust.vim'
+"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'cespare/vim-toml'
+
+Plug 'christoomey/vim-tmux-navigator'
+
+Plug 'chriskempson/base16-vim'
+call plug#end()
 " }}}
 
 """ Plugin Config {{{
