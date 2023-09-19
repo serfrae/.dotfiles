@@ -17,6 +17,7 @@ alias lti-'exa -T --icons'
 
 ### Helix
 alias hx='helix'
+
 ### Neovim
 alias sudovi='sudo nvim'
 alias vim='nvim'
