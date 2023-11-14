@@ -1,5 +1,6 @@
 #!/bin/sh
 
+
 ### Truncate Commands
 _bc() {
 	bspc config "$@"
@@ -48,10 +49,10 @@ _bc pointer_action3 resize_corner
 
 ### BSPWM Colours
 #. "${HOME}/.cache/wal/colors.sh"
-_bc normal_border_color "#1d2021"
-_bc active_border_color "#d5c4a1"
-_bc focused_border_color "#d5c4a1"
-_bc presel_feedback_color "#fbf1c7"
+_bc normal_border_color "#272a36"
+_bc active_border_color "#ff79c6"
+_bc focused_border_color "#ff79c6"
+_bc presel_feedback_color "#f8f8f2"
 #_bc urgent_border_color 	      "#ee2e24
 
 ### Hide Polybar on Fullscreen

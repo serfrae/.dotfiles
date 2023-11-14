@@ -1,4 +1,4 @@
-theme = "gruvbox_dark_hard"
+theme = "dracula"
 
 [keys.normal]
 Z = {X = ":quit!", Z = ":write-quit!"}
