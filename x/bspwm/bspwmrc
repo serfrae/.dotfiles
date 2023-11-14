@@ -51,7 +51,7 @@ _bc pointer_action3 resize_corner
 #. "${HOME}/.cache/wal/colors.sh"
 _bc normal_border_color "#272a36"
 _bc active_border_color "#ff79c6"
-_bc focused_border_color "#ff79c6"
+_bc focused_border_color "#bd93f9"
 _bc presel_feedback_color "#f8f8f2"
 #_bc urgent_border_color 	      "#ee2e24
 
