@@ -1,0 +1,11 @@
+[language-server.nomicfoundation-solidity-language-server]
+command = "nomicfoundation-solidity-language-server"
+args = ["--stdio"]
+
+[[language]]
+name = "solidity"
+language-servers = ["nomicfoundation-solidity-language-server"]
+
+[[grammar]]
+name = "solidity"
+source = { git = "https://github.com/JoranHonig/tree-sitter-solidity/grammar.js" }

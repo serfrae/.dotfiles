@@ -13,6 +13,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-umimpared'
 
 
 " Semantic language support
@@ -72,7 +73,7 @@ let g:airline_symbols.readonly = ''
 " Colourscheme
 let base16colorspace=256  " Access colors present in 256 colorspace
 set termguicolors
-colorscheme base16-gruvbox-dark-hard
+colorscheme base16-dracula
 
 " Go
 let g:go_highlight_operators = 1
@@ -89,6 +90,7 @@ let g:go_highlight_variable_assignments = 1
 let g:go_highlight_diagnostic_errors = 1
 let g:go_highlight_diagnostic_warnings = 1
 " }}}
+
 """ LSP Config {{{
 lua << END
 local cmp = require'cmp'
@@ -281,14 +283,14 @@ nnoremap gl] g]<CR>:ltag<CR>:VList<CR><CR>
 " Tags
 " Generate ctags
 nnoremap <leader>t :!t <CR>
-nnoremap [t :tprevious<CR>
-nnoremap ]t :tnext<CR>
-nnoremap [T :tfirst<CR>
-nnoremap ]T :tlast<CR>
-nnoremap [tw :ptprevious<CR>
-nnoremap ]tw :ptnext<CR>
-nnoremap [TW :ptfirst<CR>
-nnoremap ]TW :ptlast<CR>
+nnoremap [s :tprevious<CR>
+nnoremap ]s :tnext<CR>
+nnoremap [S :tfirst<CR>
+nnoremap ]S :tlast<CR>
+nnoremap [sa :ptprevious<CR>
+nnoremap ]sd :ptnext<CR>
+nnoremap [SA :ptfirst<CR>
+nnoremap ]SD :ptlast<CR>
 
 " Buffers
 " Toggle between buffers
