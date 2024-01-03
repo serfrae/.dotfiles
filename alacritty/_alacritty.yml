@@ -1,6 +1,6 @@
 window:
   dimensions:
-    columns: 0
+    columns: 2
     lines: 0
 
   padding:
@@ -106,11 +106,6 @@ selection:
   save_to_clipboard: false
 
 window.dynamic_title: true
-
-cursor:
-  style: Block
-  unfocused_hollow: true
-
 live_config_reload: true
 
 #URL launcher

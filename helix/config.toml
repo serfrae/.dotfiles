@@ -2,17 +2,35 @@ theme = "dracula"
 
 [keys.normal]
 Z = {X = ":quit!", Z = ":write-quit!"}
+y = "yank_main_selection_to_clipboard"
+p = "paste_clipboard_before"
 
 [editor]
 color-modes = true
 cursorline = true
 line-number = "relative"
+rulers = [80, 100]
 
 [editor.statusline]
-left = ["mode", "spinner"]
+left = ["mode", "spinner", "file-modification-indicator"]
 center = ["file-name"]
 right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
 separator = "│"
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
+
+[editor.indent-guides]
+render = true
+character = "┊" # Some characters that work well: "▏", "┆", "╎", "⸽"
+skip-levels = 1
+
+[editor.whitespace]
+render = "all"
+
+[editor.whitespace.characters]
+space = "·"
+nbsp = "⍽"
+tab = "→"
+newline = "⏎"
+tabpad = "·" # Tabs will look like "→···" (depending on tab width)
