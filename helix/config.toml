@@ -2,8 +2,6 @@ theme = "dracula"
 
 [keys.normal]
 Z = {X = ":quit!", Z = ":write-quit!"}
-y = "yank_main_selection_to_clipboard"
-p = "paste_clipboard_before"
 
 [editor]
 color-modes = true
