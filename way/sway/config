@@ -32,7 +32,7 @@ exec wayext_monitor
 
 # Output configuration
 # Wallpaper
-output * bg $HOME/media/images/wallpapers/PDGRrvB.png fill
+output * bg $HOME/media/images/wallpapers/koifish.jpg fill
 
 # Formatting
 default_border pixel 1
@@ -59,7 +59,7 @@ input type:touchpad {
 ### Key bindings
 # Basics:
     bindsym $mod+Return exec $term
-	bindsym $mod+Shift+Return exec $tmux
+	  bindsym $mod+Shift+Return exec $tmux
     bindsym $mod+d exec $menu
 
     bindsym $mod+q kill
@@ -79,12 +79,11 @@ input type:touchpad {
     bindsym $mod+Shift+$right move right
 
 	# Mako
-	bindsym $mod+n exec makoctl dismiss
+	  bindsym $mod+n exec makoctl dismiss
     bindsym $mod+Shift+n exec makoctl dismiss -a
 
 
 # Workspaces:
-#
 	set $ws1 workspace number 1
 	set $ws2 workspace number 2
 	set $ws3 workspace number 3
@@ -95,19 +94,20 @@ input type:touchpad {
 	set $ws8 workspace number 8
 	set $ws9 workspace number 9
 	set $ws10 workspace number 10
-    # Switch to workspace
-    bindsym $mod+1 $ws1
-    bindsym $mod+2 $ws2
-    bindsym $mod+3 $ws3
-    bindsym $mod+4 $ws4
-    bindsym $mod+5 $ws5
-    bindsym $mod+6 $ws6
-    bindsym $mod+7 $ws7
-    bindsym $mod+8 $ws8
-    bindsym $mod+9 $ws9
-    bindsym $mod+0 $ws10
 
-    # Move focused container to workspace
+	# Switch to workspace
+  	bindsym $mod+1 $ws1
+  	bindsym $mod+2 $ws2
+  	bindsym $mod+3 $ws3
+  	bindsym $mod+4 $ws4
+  	bindsym $mod+5 $ws5
+  	bindsym $mod+6 $ws6
+  	bindsym $mod+7 $ws7
+  	bindsym $mod+8 $ws8
+  	bindsym $mod+9 $ws9
+  	bindsym $mod+0 $ws10
+
+  # Move focused container to workspace
     bindsym $mod+Shift+1 move container to $ws1
     bindsym $mod+Shift+2 move container to $ws2
     bindsym $mod+Shift+3 move container to $ws3
@@ -120,8 +120,8 @@ input type:touchpad {
     bindsym $mod+Shift+0 move container to $ws10
 
 	# Move workspace to output
-	bindsym $mod+Control+h move workspace to output left
-	bindsym $mod+Control+l move workspace to output right
+		bindsym $mod+Control+h move workspace to output left
+		bindsym $mod+Control+l move workspace to output right
 
 	bindsym $mod+Control+1 exec sway_move 1
 	bindsym $mod+Control+2 exec sway_move 2
@@ -139,10 +139,10 @@ input type:touchpad {
 
 # Layout:
 	bindsym $mod+Ctrl+v splith
-    bindsym $mod+Shift+v splitv
-    bindsym $mod+v splitt
+  bindsym $mod+Shift+v splitv
+  bindsym $mod+v splitt
 
-    # Switch the current container between different layout styles
+  # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
     bindsym $mod+Shift+s layout tabbed
     bindsym $mod+e layout toggle split
@@ -151,9 +151,9 @@ input type:touchpad {
     bindsym $mod+t floating toggle
     bindsym $mod+g focus mode_toggle
 
-    # Move focus to the parent container
+  # Move focus to the parent container
     bindsym $mod+p focus parent
-	bindsym $mod+o focus child
+	  bindsym $mod+o focus child
 
 # Scratchpad:
     bindsym $mod+w move scratchpad
@@ -180,7 +180,7 @@ mode "scrn" {
 	bindsym r exec wf-recorder -g "$$(slurp)" -f ~/media/video/recordings/rec_$(date +"%Y-%m-%d-%H-%M-%S.mp4") ; mode "default"
 	bindsym t exec wf-recorder -f ~/media/video/recordings/rec_$(date +"%Y-%m-%d-%H-%M-%S.mp4") ; mode "default"
 
-    # Return to default mode
+  # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -190,11 +190,11 @@ bindsym $mod+Control+c exec killall -s SIGINT wf-recorder
 # Resizing containers:
 mode "resize" {
 	bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+  bindsym $down resize grow height 10px
+  bindsym $up resize shrink height 10px
+  bindsym $right resize grow width 10px
 
-    # Return to default mode
+  # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -208,7 +208,7 @@ mode "apps" {
 	bindsym b exec switch brave-nightly ; mode "default"
 	bindsym t exec switch telegram-desktop ; mode "default"
 
-    # Return to default mode
+  # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
