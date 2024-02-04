@@ -52,11 +52,15 @@ exec swayidle -w \
 input type:touchpad {
        dwt enabled
        tap enabled
+			 click_method clickfinger
        natural_scroll disabled
        middle_emulation enabled
 			 accel_profile "adaptive"
 	     pointer_accel 0
 }
+
+focus_follows_mouse yes
+focus_wrapping yes
 
 ### Key bindings
 # Basics:
