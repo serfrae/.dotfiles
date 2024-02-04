@@ -44,11 +44,11 @@ gaps inner 5
 
 ### Idle configuration
 exec swayidle -w \
-	  timeout 600 'swaylock -i "~/media/images/wallpapers/koifish.jpg" \
+	  timeout 600 'swaylock -i "~/media/images/wallpapers/koifish.jpg"' \
 	  timeout 1800 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
 	  before-sleep 'swaylock -f -c 000000'
 
-### Input configuration
+# Input configuration
 input type:touchpad {
        dwt enabled
        tap enabled
