@@ -1,4 +1,4 @@
-font=Sans 11
+font=Jetbrains Mono 11
 # anchor=bottom-right
 width=350
 padding=10
@@ -9,10 +9,10 @@ default-timeout=5000
 # Only for desktop, ignored when no such output exists
 output='Dell Inc. DELL U2415 08DXD49E5DUL'
 
-background-color=#231f20
-border-color=#009ddc
-text-color=#d9d8d8
+background-color=#28282A
+border-color=#50FA7B
+text-color=#F8F8F2
 
 [urgency=high]
-border-color=#ee2e24
+border-color=#FF5555
 ignore-timeout=1
