@@ -17,9 +17,13 @@ dot_install zsh
 rm -rf $HOME/*bash*
 chmod -w $HOME
 
+dot_install apps
+dot_install way-apps
+
 dot_install alacritty
 dot_install ctags
 dot_install dfk
+dot_install docker
 dot_install git
 way_install mako
 dot_install mutt
@@ -32,6 +36,3 @@ dot_install urlview
 dot_install yarn
 way_install waybar
 dot_install zathura
-
-dot_install apps
-dot_install way-apps
