@@ -12,13 +12,14 @@ function way_install() {
   $DOTFILES/install/way/install-${1}.sh
 }
 
+dot_install apps
+dot_install way-apps
+
 dot_install dirs
 dot_install zsh
 rm -rf $HOME/*bash*
 chmod -w $HOME
 
-dot_install apps
-dot_install way-apps
 
 dot_install alacritty
 dot_install ctags
