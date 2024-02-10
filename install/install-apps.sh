@@ -4,7 +4,7 @@
 sudo pacman -S archlinux-keyring
 
 # Install packages
-sudo pacman -S alacritty alsa-utils bluez bluez-utils cargo clang cmake docker eza fd fuse fzf github-cli htop interception-tools interception-dual-function-keys jq libnotify light npm openssh python python-pip pulseaudio pulseaudio-bluetooth ripgrep rustup sd texlive-core tmux ttf-font-awesome ttf-jetbrains-mono ttf-nerd-fonts-symbols wget xdg-user-dirs zsh zsh-syntax-highlighting zathura zathura-pdf-mupdf zsh-autosuggestions
+sudo pacman -S alacritty alsa-utils bluez bluez-utils cargo clang cmake docker eza fd fzf github-cli htop interception-tools interception-dual-function-keys jq libnotify npm openssh python python-pip ripgrep rustup sd texlive-core tmux ttf-font-awesome ttf-jetbrains-mono ttf-nerd-fonts-symbols wget xdg-user-dirs zsh zsh-syntax-highlighting zathura zathura-pdf-mupdf zsh-autosuggestions
 
 # Install Rust
 rustup install nightly
@@ -21,7 +21,7 @@ git clone "https://aur.archlinux.org/yay.git" "$XDG_DATA_HOME/yay"
 cd "$XDG_DATA_HOME/yay"
 makepkg -si
 
-yay -S brave-nightly-bin autojump-rs
+yay -S autojump-rs
 
 # Install PIP packages
 pip install --user --upgrade pynvim
