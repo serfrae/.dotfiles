@@ -9,11 +9,11 @@ alias nf="note_find"
 alias t="ctags -R --exclude=@$DOTFILES/ctags/ctagsignore ."
 
 ### Exa
-alias ls='exa'
-alias la='exa -a'
-alias ll='exa -laHF'
-alias lt='exa -T'
-alias lti-'exa -T --icons'
+alias ls='eza'
+alias la='eza -a'
+alias ll='eza -laHF'
+alias lt='eza -T'
+alias lti-'eza -T --icons'
 
 ### Helix
 alias hx='helix'
