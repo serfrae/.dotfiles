@@ -124,11 +124,13 @@
     format = "<span size="large">󰦕<b> %s </b></span>\n%b"
     background = "#282A36"
     foreground = "#F8F8F2"
+    frame-color = "#50FA7B"
     timeout = 3
 
 [urgency_normal]
     background = "#282A36"
     foreground = "#F8F8F2"
+    frame-color = "#50FA7B"
     timeout = 5
 
 [critical]
@@ -136,4 +138,5 @@
     format = "<span size="large">󰚌 <b>%s </b></span>\n<b>ERROR: </b>%b"
     background = "#282A36"
     foreground = "#F8F8F2"
+    frame-color = "#50FA7B"
     timeout = 5
