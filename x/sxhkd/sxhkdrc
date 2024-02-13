@@ -236,13 +236,14 @@ super + m ; n
 		--dest=org.mpris.MediaPlayer2.spotify \
 		/org/mpris/MediaPlayer2 \
 		org.mpris.MediaPlayer2.Player.Next
+# The following two commands do not work TODO: FIX
 # Previous song
 super + m ; p
-	dbus-send \
+	dbus-send \ 
 		--print-reply \
 		--dest=org.mpris.MediaPlayer2.spotify \
-		/org/mpris/MediaPlayer2 \
-		org.mpris.MediaPlayer2.Player.Prev
+	  /org/mpris/MediaPlayer2 \
+    org.mpris.MediaPlayer2.Player.Previous
 # Song info
 super + m ; i
 	qdbus \
