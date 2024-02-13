@@ -1,5 +1,5 @@
 [global]
-    font = Open Sans 12
+    font = JetBrains Mono 10
 
     # <b>bold</b>
     # <i>italic</i>
@@ -98,8 +98,8 @@
     mouse_right_click= do_action, close_current
 
 [frame]
-    width = O
-    color = "#FFFFFF"
+    width = 2
+    color = "#50FA7B"
 
 [shortcuts]
     # available modifiers are 'ctrl', 'mod1' (the alt-key), 'mod2', 'mod3'
@@ -122,18 +122,18 @@
 [low]
     msg_urgency = low
     format = "<span size="large">󰦕<b> %s </b></span>\n%b"
-    background = "#d5c4a1"
-    foreground = "#1d2021"
+    background = "#282A36"
+    foreground = "#F8F8F2"
     timeout = 3
 
 [urgency_normal]
-    background = "#d5c4a1"
-    foreground = "#1d2021"
+    background = "#282A36"
+    foreground = "#F8F8F2"
     timeout = 5
 
 [critical]
     msg_urgency = critical
     format = "<span size="large">󰚌 <b>%s </b></span>\n<b>ERROR: </b>%b"
-    background = "#d5c4a1"
-    foreground = "#1d2021"
+    background = "#282A36"
+    foreground = "#F8F8F2"
     timeout = 5

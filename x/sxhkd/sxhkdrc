@@ -60,9 +60,6 @@ super + space ; x
 	bspc {wm -r}; \
 	sleep 0.5; \
 	notify-send 'Bspwm Restarted'
-#Reload Monitor config
-super + space ; c
-    bpsc wm -0 DP-4 DP-2
 #Close & Kill
 super + {_,shift +}q
 	bspc node -{c,k}
@@ -77,27 +74,27 @@ super + a ; s
 super + a ; b
 	launch_switch_app brave-nightly
 super + a ; m
-	launch_switch_app spotify
+	launch_switch_app spotify-launcher
 super + a ; f
     launch_switch_app firefox-developer-edition
 # }}}
 ### Desktops {{{
 #Focus/Send Node (to) Desktop(n)
 super + {_,shift + }{1-4,5,6-9,0}
-	bspc {desktop -f,node -d} ^{6-9,10,1-4,5}
+	bspc {desktop -f,node -d} ^{1-4,5,6-9,0}
 #Send Node & Follow to Desktop(n)
 super + ctrl + {1-4,5,6-9,0}
 	bspc node -d ^{6-9,10,1-4,5} --follow
 #Summon Nodes From Desktop(n) to Focused Desktop
 #Shift = Send Nodes from Focused Desktop to Desktop(n)
 alt + {_, shift + }{1-4,5,6-9,0}
-	bspwm_multinode {--ds, --db} ^{6-9,10,1-4,5}
+	bspwm_multinode {--ds, --db} ^{1-4,5,6-9,0}
 alt + {_, shift + }{1-4,5,6-9,0}
-	bspwm_multinode {--ds, --db} ^{6-9,10,1-4,5}
+	bspwm_multinode {--ds, --db} ^{1-4,5,6-9,0}
 alt + ctrl + {1-4,5,6-9,0}
-	bspwm_multinode --dsnf ^{6-9,10,1-4,5}
+	bspwm_multinode --dsnf ^{1-4,5,6-9,0}
 alt + ctrl + {1-4,5,6-9,0}
-	bspwm_multinode --dsnf ^{6-9,10,1-4,5}
+	bspwm_multinode --dsnf ^{1-4,5,6-9,0}
 #Close/Kill Nodes in Focused Desktop
 #Excludes Focused or Marked Nodes
 alt + shift + q
@@ -254,11 +251,9 @@ super + m ; i
 	  org.freedesktop.DBus.Properties.Get \
 	  org.mpris.MediaPlayer2.Player \
 	  Metadata
-Brightness
-XF86MonBrightnessDown
-	light -U 10
-XF86MonBrightnessUp
-	light -A 10
+#Brightness
+XF86MonBrightness{Up,Down}
+brightnessctl s 10{+,-}
 # }}}
 ### Resize{{{
 #Resize

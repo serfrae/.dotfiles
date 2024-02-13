@@ -67,6 +67,7 @@ focus_wrapping yes
     bindsym $mod+Return exec $term
 	  bindsym $mod+Shift+Return exec $tmux
     bindsym $mod+d exec $menu
+	  #bindsym $mod+Shift+d exec wofi --show drun
 
     bindsym $mod+q kill
     floating_modifier $mod normal
@@ -229,7 +230,7 @@ mode "sys" {
 	bindsym l exec swaylock -i ~/media/images/wallpapers/koifish.jpg
 	bindsym s exec systemctl poweroff
 	bindsym r exec systemctl reboot
-	bindsym e exec exit
+	bindsym e exec sway exit
 
     # Return to default mode
     bindsym Return mode "default"
