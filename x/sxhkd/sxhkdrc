@@ -236,7 +236,6 @@ super + m ; n
 		--dest=org.mpris.MediaPlayer2.spotify \
 		/org/mpris/MediaPlayer2 \
 		org.mpris.MediaPlayer2.Player.Next
-# The following two commands do not work TODO: FIX
 # Previous song
 super + m ; p
 	dbus-send \ 
@@ -244,14 +243,14 @@ super + m ; p
 		--dest=org.mpris.MediaPlayer2.spotify \
 	  /org/mpris/MediaPlayer2 \
     org.mpris.MediaPlayer2.Player.Previous
-# Song info
+# Song info - does not work
 super + m ; i
-	qdbus \
-	  --literal org.mpris.MediaPlayer2.spotify \
-	  /org/mpris/MediaPlayer2 \
-	  org.freedesktop.DBus.Properties.Get \
-	  org.mpris.MediaPlayer2.Player \
-	  Metadata
+dbus-send --print-reply \
+          --dest=org.mpris.MediaPlayer2.spotify \
+          /org/mpris/MediaPlayer2 \
+          org.freedesktop.DBus.Properties.Get \
+          string:'org.mpris.MediaPlayer2.Player' \
+          string:'Metadata'
 #Brightness
 XF86MonBrightness{Up,Down}
 brightnessctl s 10{+,-}
