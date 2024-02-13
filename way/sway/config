@@ -56,7 +56,7 @@ input type:touchpad {
        natural_scroll disabled
        middle_emulation enabled
 			 accel_profile "adaptive"
-	     pointer_accel 0
+	     pointer_accel 0.62
 }
 
 focus_follows_mouse yes
@@ -212,7 +212,7 @@ bindsym $mod+z mode "resize"
 # Apps:
 mode "apps" {
 	#bindsym s exec switch slack ; mode "default"
-	#bindsym d exec switch discord ; mode "default"
+	bindsym d exec switch discord ; mode "default"
 	#bindsym m exec spotify ; mode "default"
 	#bindsym b exec switch brave-nightly ; mode "default"
 	#bindsym t exec switch telegram-desktop ; mode "default"

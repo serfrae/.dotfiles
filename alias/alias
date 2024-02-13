@@ -8,6 +8,8 @@ alias nn="note"
 alias nf="note_find"
 alias t="ctags -R --exclude=@$DOTFILES/ctags/ctagsignore ."
 
+alias hypr='Hyprland'
+
 ### Exa
 alias ls='eza'
 alias la='eza -a'
