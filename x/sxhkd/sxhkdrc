@@ -213,6 +213,11 @@ super + shift + space
 # }}}
 ### Multimedia{{{
 
+#Brightness
+XF86MonBrightnessUp
+	brightnessctl set 5%+
+XF86MonBrightnessDown
+	brightnessctl set 5%-
 #Audio
 XF86AudioRaiseVolume
 	pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -251,14 +256,11 @@ dbus-send --print-reply \
           org.freedesktop.DBus.Properties.Get \
           string:'org.mpris.MediaPlayer2.Player' \
           string:'Metadata'
-#Brightness
-XF86MonBrightness{Up,Down}
-brightnessctl s 10{+,-}
 # }}}
 ### Resize{{{
 #Resize
 super + space : {h,j,k,l}
-    bspwm_resize {west,south,north,east} 20
+  bspwm_resize {west,south,north,east} 20
 #Move Float
 super + space : super + {h,j,k,l}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
