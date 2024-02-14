@@ -52,7 +52,7 @@
 
     # geometry [{width}]x{height}][+/-{x}+/-{y}]
     # The height is measured in number of notifications everything else in pixels.
-    geometry = "384x5-30+30"
+    geometry = [384x5][-30-10]
 
     notification_height = 0
     shrink = true
@@ -97,40 +97,26 @@
     mouse_left_click = close_current
     mouse_right_click= do_action, close_current
 
+# IMPORTANT: colors have to be defined in quotation marks.
+# Otherwise the '#' and following  would be interpreted as a comment.
 [frame]
     width = 2
     color = "#50FA7B"
 
-[shortcuts]
-    # available modifiers are 'ctrl', 'mod1' (the alt-key), 'mod2', 'mod3'
-    # and 'mod4' (windows-key)
-
-    # close notification
-    close = mod4+n
-
-    # close all notifications
-    close_all = mod4+shift+n
-
-    # redisplay last message(s)
-    history = mod4+ctrl+n
-
-    # context menu
-    #context = mod1+shift+n
-
-    # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the '#' and following  would be interpreted as a comment.
 [low]
     msg_urgency = low
     format = "<span size="large">󰦕<b> %s </b></span>\n%b"
     background = "#282A36"
     foreground = "#F8F8F2"
     frame-color = "#50FA7B"
+    frame-width = 2
     timeout = 3
 
 [urgency_normal]
     background = "#282A36"
     foreground = "#F8F8F2"
     frame-color = "#50FA7B"
+    frame-width = 2
     timeout = 5
 
 [critical]
@@ -139,4 +125,5 @@
     background = "#282A36"
     foreground = "#F8F8F2"
     frame-color = "#50FA7B"
+    frame-width = 2
     timeout = 5

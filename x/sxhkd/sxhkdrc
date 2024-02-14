@@ -194,7 +194,7 @@ super + shift + f
 super + f
 	bspc desktop -l next
 #Set Node Flag
-super + n; {s,p,l,m}
+super + g; {s,p,l,m}
 	bspc node -g {sticky,private,locked,marked}
 # }}}
 ### Pre-Select{{{
@@ -212,6 +212,13 @@ super + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 # }}}
 ### Multimedia{{{
+#Notifications
+super + n
+	dunstctl close
+super + shift + n
+	dunstctl close-all
+super + ctrl + n
+	dunstctl history-pop
 
 #Brightness
 XF86MonBrightnessUp
