@@ -23,6 +23,9 @@
     max_icon_size = 96
     icon_folders = ""
 
+    # Maximum number of notification (0 means no limit)
+    notification_limit = 20
+
     # Indicators
     show_indicators = no
 
@@ -30,30 +33,23 @@
     sort = yes
 
     # Show how many messages are currently hidden (because of geometry)
-    indicate_hidden = false
+    indicate_hidden = yes
 
     # alignment of message text.
     # Possible values are "left", "center" and "right"
     alignment = left
     vertical_alignment = center
-
     bounce_freq = 0
 
     # show age of message if message is older than show_age_threshold seconds.
     # set to -1 to disable
     show_age_threshold = -1
-
     hide_duplicates_count = true
 
     word_wrap = yes
 
     # ignore newlines '\n' in notifications
     ignore_newline = no
-
-    # geometry [{width}]x{height}][+/-{x}+/-{y}]
-    # The height is measured in number of notifications everything else in pixels.
-    geometry = [384x5][-30-10]
-
     notification_height = 0
     shrink = true
     # The transparency of the window. range: [0; 100]
@@ -79,14 +75,37 @@
     # timeout as if it would normally do.
     sticky_history = yes
 
+    # Geometry
+    # dynamic width from 0 to 300
+    # width = (0, 300)
+    # constant width of 300
+    width = (0, 400)
+
+    # The maximum height of a single notification, excluding the frame.
+    height = 300
+
+    # Position the notification in the top right corner
+    origin = top-right
+
+    # Offset from the origin
+    offset = 20x20
+
     line_height = 0
-    separator_height = 0
+    separator_height = 5
 
     # padding between text and separator
     padding = 8
     horizontal_padding = 8
 
+    frame_color = "#50FA7B"
+    frame_width = 3
     separator_color = frame
+
+    # Size of gap to display between notifications - requires a compositor.
+    # If value is greater than 0, separator_height will be ignored and a border
+    # of size frame_width will be drawn around each notification instead.
+    # Click events on gaps do not currently propagate to applications below.
+    gap_size = 5
 
     startup_notification = false
 
@@ -97,33 +116,29 @@
     mouse_left_click = close_current
     mouse_right_click= do_action, close_current
 
-# IMPORTANT: colors have to be defined in quotation marks.
-# Otherwise the '#' and following  would be interpreted as a comment.
-[frame]
-    width = 2
-    color = "#50FA7B"
+    # Don't remove messages, if the user is idle (no mouse or keyboard input)
+    # for longer than idle_threshold seconds.
+    # Set to 0 to disable.
+    # A client can set the 'transient' hint to bypass this. See the rules
+    # section for how to disable this if necessary
+    idle_threshold = 120
 
 [low]
     msg_urgency = low
     format = "<span size="large">󰦕<b> %s </b></span>\n%b"
     background = "#282A36"
     foreground = "#F8F8F2"
-    frame-color = "#50FA7B"
-    frame-width = 2
-    timeout = 3
+    timeout = 10
 
 [urgency_normal]
     background = "#282A36"
     foreground = "#F8F8F2"
-    frame-color = "#50FA7B"
-    frame-width = 2
-    timeout = 5
+    timeout = 10
 
 [critical]
     msg_urgency = critical
     format = "<span size="large">󰚌 <b>%s </b></span>\n<b>ERROR: </b>%b"
     background = "#282A36"
     foreground = "#F8F8F2"
-    frame-color = "#50FA7B"
-    frame-width = 2
-    timeout = 5
+    frame_color = "#FF5555"
+    timeout = 0
