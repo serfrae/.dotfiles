@@ -7,6 +7,10 @@ export CLICOLOR=1
 export NOTES_DIR="$HOME/docs/notes"
 export PATH=$PATH:$HOME/scripts
 
+# AI
+export AI="$HOME/ai/llama.cpp/main"
+export MODELS="$HOME/ai/models"
+
 # XDG
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"

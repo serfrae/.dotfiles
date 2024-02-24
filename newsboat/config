@@ -1,7 +1,0 @@
-auto-reload yes
-reload-time 1
-reload-threads 10
-browser "firefox-developer-edition %u"
-notify-always no
-notify-program "/usr/bin/notify-send"
-notify-format "RSS: %d new articles (%n unread articles, %f unread feeds)"

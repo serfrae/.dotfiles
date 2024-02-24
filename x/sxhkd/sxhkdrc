@@ -7,16 +7,16 @@ super + shift + Return
     alacritty -e $SHELL -i -c tmux &
 #Program Launcher
 super + d
-	rofi -show drun -m -1 -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
+	rofi -show drun -m -1 -side-mode -config ~/.config/rofi/config.rasi
 #Run
 #super + shift + d
-#    rofi -show run -m -1 -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
+#    rofi -show run -m -1 -side-mode -config ~/.config/rofi/config.rasi
 #Task Switcher
 super + shift + d
-	rofi -show window -m -1 -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
+	rofi -show window -m -1 -side-mode -config ~/.config/rofi/config.rasi
 #Ssh
 #alt + shift + d
-#	rofi -show ssh -m -1 -side-mode -config $XDG_CONFIG_HOME/rofi/config.rasi
+#	rofi -show ssh -m -1 -side-mode -config ~/.config/rofi/config.rasi
 #Screenshot
 ctrl + ]
 	note_find
@@ -40,7 +40,7 @@ super + x; v
     bspc_wm_switch
 #Lock
 super + grave
-	betterlockscreen -l dimblur
+	betterlockscreen -l dimblur 
 #Logout
 super + shift + grave
 	bspc quit
@@ -76,7 +76,7 @@ super + a ; b
 super + a ; m
 	launch_switch_app spotify-launcher
 super + a ; f
-    launch_switch_app firefox-developer-edition
+  launch_switch_app firefox-developer-edition
 # }}}
 ### Desktops {{{
 #Focus/Send Node (to) Desktop(n)
