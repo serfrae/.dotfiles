@@ -1,3 +1,0 @@
-#!/bin/sh
-
-xrandr --output DP-2 --primary --mode 5120x1440 --scale 1.5 --rotate normal --output DP-0 --mode 3440x1440 --scale 1.5 --rotate left --right-of --DP-2 &

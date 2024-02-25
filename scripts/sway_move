@@ -1,4 +1,0 @@
-#!/bin/sh
-
-swaymsg workspace number "$1";
-swaymsg move workspace to output left;
