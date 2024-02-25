@@ -3,23 +3,22 @@ abbr -a cb 'cargo build'
 abbr -a cbr 'cargo build --release'
 abbr -a cr 'cargo run'
 abbr -a ci 'cargo install'
-abbr -a cnb 'cargo new'
-abbr -a cnl 'cargo new --lib'
 abbr -a ct 'cargo test'
-
 abbr -a g 'git'
 abbr -a gc 'git checkout'
 abbr -a ga 'git add -p'
-
 abbr -a hx 'helix'
-
 abbr -a rgp 'rg -p'
 abbr -a rgr 'rg -uuu'
+abbr -a p 'pnpm'
 
 setenv XINITRC ~/.config/X11/xinitrc
 setenv XAUTHORITY ~/.config/X11/Xauthority
+setenv EDITOR helix
+setenv BROWSER firefox-developer-edition
+setenv RUST_BACKTRACE 1
 
-set PATH $PATH ~/bin ~/.local/bin ~/.cargo/bin
+set PATH $PATH ~/bin ~/.local/bin ~/.cargo/bin ~/.local/share/solana/install/active_release/bin
 
 function fish_prompt
 	set_color white
@@ -39,12 +38,19 @@ function fish_prompt
 	set_color normal
 end
 
-# Fish git prompt
 set __fish_git_prompt_showuntrackedfiles 'yes'
 set __fish_git_prompt_showdirtystate 'yes'
 set __fish_git_prompt_showstashstate ''
 set __fish_git_prompt_showupstream 'none'
 set -g fish_prompt_pwd_dir_length 3
+
+if command -v paru > /dev/null
+	abbr -a p 'paru'
+	abbr -a up 'paru -Syu'
+else
+	abbr -a p 'sudo pacman'
+	abbr -a up 'sudo pacman -Syu'
+end
 
 if command -v eza > /dev/null
 	abbr -a l 'eza'
