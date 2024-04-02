@@ -182,7 +182,7 @@ alt + w; ctrl + a
     bspwm_hide --nfu
 #Toggle Node Tiling
 super + t
-	bspc query --nodes -n focused.tiled && state=floating || state=tiled; \
+	bspc query --nodes -n focused.tiled && --state=floating || --state=tiled; \
 	bspc node --state \~$state
 #Toggle Node Pseudo-Tiling
 super + shift + t

@@ -20,6 +20,8 @@ picom -bG &
 launch.sh &
 betterlockscreen -u "$HOME/media/images/wallpapers" &
 
+bspc rule -a Spotify desktop='^6'
+
 ### BSPWM Configuration
 #bspc config border_radius        8
 _bc initial_polarity 		  second_child

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo $NOTES_DIR
+echo "$HOME/docs/notes"
 DATE=$(date +"%Y%m%d%H%M")
 
 file_name() {
@@ -11,13 +11,13 @@ file_name() {
 	fi
 }
 
-FILE="$NOTES_DIR/$(file_name $@)"
+FILE="$HOME/docs/notes/$(file_name $@)"
 
 echo $(date) > $FILE
 helix $FILE
 
 CWD=$(pwd)
-cd $NOTES_DIR
+cd "$HOME/docs/notes"
 git add -A
 git commit -m "$FILE"
 ctags -R .
