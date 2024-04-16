@@ -1,0 +1,20 @@
+#!/bin/sh
+
+echo "$HOME/docs/notes/journal"
+DATE=$(date +"%Y%m%d")
+
+file_name() {
+		echo "$DATE.md"
+}
+
+FILE="$HOME/docs/notes/journal/$(file_name $@)"
+
+echo $(date) > $FILE
+helix $FILE
+
+CWD=$(pwd)
+cd "$HOME/docs/notes/journal"
+git add -A
+git commit -m "$FILE"
+ctags -R .
+cd $CWD
