@@ -528,10 +528,11 @@ require("lazy").setup({
 			-- Go
 			lspconfig.gopls.setup {}
 			-- JS/TS
-			lspconfig.typescript_language_server.setup {}
+			lspconfig.tsserver.setup {}
 			-- Python
 			lspconfig.pylsp.setup {}
 			-- C#
+			lspconfig.omnisharp.setup {}
 			-- Java
 			lspconfig.jdtls.setup {}
 			-- C/C++
@@ -539,7 +540,7 @@ require("lazy").setup({
 			-- Markdown
 			lspconfig.markdown_oxide.setup {}
 			-- Solidity
-			lspconfig.solidity_language_server.setup {}
+			lspconfig.solidity_ls_nomicfoundation.setup {}
 
 			-- Bash LSP
 			local configs = require 'lspconfig.configs'
