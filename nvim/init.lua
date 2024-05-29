@@ -147,6 +147,7 @@ end, { nargs = 1 })
 -- preferences
 --
 -------------------------------------------------------------------------------
+vim.opt.background = 'dark'
 vim.opt.foldenable = false
 vim.opt.foldmethod = 'manual'
 vim.opt.foldlevelstart = 99
@@ -382,19 +383,19 @@ require("lazy").setup({
 	-- main color scheme
 	{
 		'folke/tokyonight.nvim',
-		lazy = false,
-		priority = 1000,
-		config = function()
-		  vim.cmd([[colorscheme tokyonight-moon]])
-		end
+		--lazy = false,
+		--priority = 1000,
+		--config = function()
+		--  vim.cmd([[colorscheme tokyonight-moon]])
+		--end
 	},
 	{
 		'Mofiqul/dracula.nvim',
-		-- lazy = false,
-		-- priority = 1000,
-		-- config = function()
-			-- vim.cmd([[colorscheme dracula]])
-		-- end
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd([[colorscheme dracula]])
+		end
 	},
 	{
 		'catppuccin/nvim',

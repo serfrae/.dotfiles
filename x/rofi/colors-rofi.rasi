@@ -17,50 +17,38 @@
     gruvbox-dark-gray:         #a89984;
 
     /* Dracula colours */
-    dracula-bg:      #282a36;
+    dracula-bg: #282a36;
     dracula-current: #44475A;
-    dracula-fg:      #f8f8f2;
+    dracula-fg: #f8f8f2;
     dracula-comment: #6272a4;
-    dracula-cyan:    #8be9fd;
-    dracula-green:   #50fa7b;
-    dracula-orange:  #ffb86c;
-    dracula-pink:    #ff79c6;
-    dracula-purple:  #bd93f9;
-    dracula-red:     #ff5555;
-    dracula-yellow:  #f1fa8c;
-
-	/* Tokyonight colours */
-	tknight-bg:      #222436;
-	tknight-fg:      #c8d3f5;
-	tknight-black:   #1b1d2b;
-	tknight-red:     #ff757f;
-	tknight-green:   #c3e88d;
-	tknight-yellow:  #ffc777;
-	tknight-blue:    #82aaff;
-	tknight-magenta: #c099ff;
-	tknight-cyan:    #86e1fc;
-	tknight-white:   #828bb8;
+    dracula-cyan: #8be9fd;
+    dracula-green: #50fa7b;
+    dracula-orange: #ffb86c;
+    dracula-pink: #ff79c6;
+    dracula-purple: #bd93f9;
+    dracula-red: #ff5555;
+    dracula-yellow: #f1fa8c;
 
     /* Theme colors */
-    background:                  @tknight-bg;
-    background-color:            @tknight-bg;
-    foreground:                  @tknight-fg;
-    border-color:                @tknight-white;
+    background:                  @dracula-bg;
+    background-color:            @dracula-bg;
+    foreground:                  @dracula-fg;
+    border-color:                @dracula-comment;
     separatorcolor:              @active-background;
     scrollbar-handle:            @border-color;
 
-    normal-background:           @tknight-black;
+    normal-background:           @dracula-current;
     normal-foreground:           @foreground;
-    selected-normal-foreground:  @tknight-bg;  
-    selected-normal-background:  @tknight-cyan;
+    selected-normal-foreground:  @dracula-bg;  
+    selected-normal-background:  @dracula-purple;
 
-    active-background:           @tknight-blue;
-    active-foreground:           @tknight-fg;
+    active-background:           @dracula-pink;
+    active-foreground:           @dracula-fg;
     selected-active-background:  @active-background;
     selected-active-foreground:  @active-foreground;
 
-    urgent-background:           @tknight-red;
-    urgent-foreground:           @tknight-bg;
+    urgent-background:           @dracula-red;
+    urgent-foreground:           @dracula-bg;
     selected-urgent-background:  @urgent-background;
     selected-urgent-foreground:  @urgent-foreground;
 }

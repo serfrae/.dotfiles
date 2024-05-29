@@ -17,7 +17,8 @@ abbr -a nj note_journal
 
 setenv XINITRC ~/.config/X11/xinitrc
 setenv XAUTHORITY ~/.config/X11/Xauthority
-setenv EDITOR helix
+setenv TERM alacritty
+setenv EDITOR nvim 
 setenv BROWSER firefox-developer-edition
 setenv RUST_BACKTRACE 1
 set AI ~/projects/ai/llama.cpp/main
