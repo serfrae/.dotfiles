@@ -20,6 +20,9 @@ setenv XAUTHORITY ~/.config/X11/Xauthority
 setenv EDITOR helix
 setenv BROWSER firefox-developer-edition
 setenv RUST_BACKTRACE 1
+set AI ~/projects/ai/llama.cpp/main
+set MODELS ~/projects/ai/models
+set NOTES ~/docs/notes/
 
 set PATH $PATH ~/bin ~/.local/bin ~/.cargo/bin ~/.local/share/solana/install/active_release/bin
 

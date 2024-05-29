@@ -4,21 +4,155 @@ vim.g.mapleader = " "
 
 -------------------------------------------------------------------------------
 --
+-- functions
+--
+-------------------------------------------------------------------------------
+-- Quickfix Toggle
+vim.api.nvim_create_user_command('VFix', function()
+  vim.cmd('botright vertical copen')
+  vim.cmd('vertical resize 50')
+end, {})
+
+function QFixToggle(v, e)
+  if vim.g.qfix_win and e == 1 then
+    vim.cmd('cclose')
+    vim.g.qfix_win = nil
+  else
+    if v == 0 then
+      vim.cmd('copen')
+    else
+      vim.cmd('VFix')
+    end
+    vim.g.qfix_win = vim.fn.bufnr('$')
+  end
+end
+
+vim.api.nvim_create_user_command('QFix', function(opts)
+  QFixToggle(opts.args, opts.bang and 1 or 0)
+end, { nargs = '*', bang = true })
+
+-- Location List Toggle
+vim.api.nvim_create_user_command('VList', function()
+	vim.cmd('botright vertical lopen')
+	vim.cmd('vertical resize 50')
+end, {})
+
+function LListToggle(v, e)
+  if vim.g.llist_win and e == 1 then
+    vim.cmd('lclose')
+    vim.g.llist_win = nil
+  else
+    if v == 0 then
+      vim.cmd('lopen')
+    else
+      vim.cmd('VList')
+    end
+    vim.g.llist_win = vim.fn.bufnr('$')
+  end
+end
+
+vim.api.nvim_create_user_command('LList', function(opts)
+  LListToggle(opts.args, opts.bang and 1 or 0)
+end, { nargs = '*', bang = true })
+
+-- Check if "rg" is executable and set grepprg and grepformat if it is
+if vim.fn.executable("rg") == 1 then
+  vim.o.grepprg = "rg --vimgrep --no-heading"
+  vim.o.grepformat = "%f:%l:%c:%m,%f:%l:%m"
+end
+
+-- Set the global variable g:fzf_layout in Lua
+vim.g.fzf_layout = { down = '~25%' }
+vim.api.nvim_create_user_command('Rg', function(opts)
+  local args = table.concat(opts.fargs, ' ')
+  local command = 'rg --column --line-number --no-heading --color=always -g !tags ' .. vim.fn.shellescape(args)
+  vim.fn['fzf#vim#grep'](command, 1, vim.fn['fzf#vim#with_preview'](), 0)
+end, { nargs = '*', bang = true })
+
+function list_cmd()
+  local base = vim.fn.fnamemodify(vim.fn.expand('%'), ':h:.:S')
+  local command = ''
+
+  if base == '.' then
+    command = 'fd --type file --follow'
+  else
+    command = string.format('fd --type file --follow | proximity-sort %s', vim.fn.shellescape(vim.fn.expand('%')))
+  end
+
+  return command
+end
+
+-- vim.api.nvim_command('command! -bang -nargs=? -complete=dir Files call FzfFiles(<q-args>, <bang>0)')
+-- 
+-- function FzfFiles(args, bang)
+--   local list_cmd = vim.fn['s:list_cmd']()
+--   local options = '--tiebreak=index'
+-- 
+--   vim.fn['fzf#vim#files'](args, {
+--     source = list_cmd,
+--     options = options
+--   }, bang)
+-- end
+
+-- NewNote
+function NewNote(name)
+  -- Format the filename using the provided name and the current date/time
+  local filename = name
+  local filepath = vim.fn.expand('~/docs/notes/') .. '/' .. os.date('%Y%m%d%H%M') .. '-' .. filename .. '.md'
+  
+  -- Create and edit the new note
+  vim.cmd('edit ' .. filepath)
+  
+  -- Insert the current date and time into the file
+  vim.cmd('r! date')
+end
+
+vim.api.nvim_create_user_command('NewNote', function(opts)
+  NewNote(opts.args)
+end, { nargs = 1 })
+
+-- CreateNote
+vim.api.nvim_create_user_command('CreateNote', function(opts)
+  local filepath = vim.fn.expand('$NOTES') .. '/' .. os.date('%Y%m%d%H%M') .. '-' .. opts.args .. '.md'
+  vim.cmd('edit ' .. filepath)
+end, { nargs = 1 })
+
+-- Note find
+vim.api.nvim_create_user_command('Nf', function(opts)
+  local args = table.concat(opts.fargs, ' ')
+  local command = 'rg --column --line-number --no-heading --color=always -g !tags -e ' .. vim.fn.shellescape(args)
+  vim.fn['fzf#vim#grep'](command, 1)
+end, { bang = true, nargs = '*' })
+
+-- Ngrep
+vim.api.nvim_create_user_command('Ngrep', function(opts)
+  local command = string.format('grep "%s" -g "*.md" %s', opts.args, vim.fn.expand('$NOTES'))
+  vim.cmd(command)
+end, { nargs = 1 })
+
+-- HandleFZF
+local function HandleFZF(file)
+  local filename = vim.fn.fnameescape(file)
+  local filename_wo_timestamp = vim.fn.fnameescape(vim.fn.fnamemodify(file, ":t:s/^[0-9]*-//"))
+  local mdlink = string.format("[ %s ]( %s )", filename_wo_timestamp, filename)
+  vim.api.nvim_put({ mdlink }, 'c', false, true)
+end
+
+vim.api.nvim_create_user_command('HandleFZF', function(opts)
+  HandleFZF(opts.args)
+end, { nargs = 1 })
+
+-------------------------------------------------------------------------------
+--
 -- preferences
 --
 -------------------------------------------------------------------------------
--- never ever folding
 vim.opt.foldenable = false
 vim.opt.foldmethod = 'manual'
 vim.opt.foldlevelstart = 99
--- very basic "continue indent" mode (autoindent) is always on in neovim
--- could try smartindent/cindent, but meh.
 -- vim.opt.cindent = true
--- XXX
 -- vim.opt.cmdheight = 2
 -- vim.opt.completeopt = 'menuone,noinsert,noselect'
--- not setting updatedtime because I use K to manually trigger hover effects
--- and lowering it also changes how frequently files are written to swap.
 -- vim.opt.updatetime = 300
 -- if key combos seem to be "lagging"
 -- http://stackoverflow.com/questions/2158516/delay-before-o-opens-a-new-line
@@ -29,11 +163,8 @@ vim.opt.scrolloff = 2
 vim.opt.wrap = false
 -- always draw sign column. prevents buffer moving when adding/deleting sign
 vim.opt.signcolumn = 'yes'
--- sweet sweet relative line numbers
 vim.opt.relativenumber = true
--- and show the absolute line number for the current line
 vim.opt.number = true
--- keep current content top + left when splitting
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 -- infinite undo!
@@ -46,10 +177,10 @@ vim.opt.wildmode = 'list:longest'
 -- when opening a file with a command (like :e),
 -- don't suggest files like there:
 vim.opt.wildignore = '.hg,.svn,*~,*.png,*.jpg,*.gif,*.min.js,*.swp,*.o,vendor,dist,_site'
--- tabs: go big or go home
-vim.opt.shiftwidth = 8
-vim.opt.softtabstop = 8
-vim.opt.tabstop = 8
+-- tabs
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+vim.opt.tabstop = 4
 vim.opt.expandtab = false
 -- case-insensitive search/replace
 vim.opt.ignorecase = true
@@ -73,6 +204,7 @@ vim.api.nvim_create_autocmd('Filetype', { pattern = 'rust', command = 'set color
 -- show more hidden characters
 -- also, show tabs nicer
 vim.opt.listchars = 'tab:^ ,nbsp:¬,extends:»,precedes:«,trail:•'
+vim.opt.cursorline = true
 
 -------------------------------------------------------------------------------
 --
@@ -80,50 +212,26 @@ vim.opt.listchars = 'tab:^ ,nbsp:¬,extends:»,precedes:«,trail:•'
 --
 -------------------------------------------------------------------------------
 -- quick-open
-vim.keymap.set('', '<C-p>', '<cmd>Files<cr>')
+vim.keymap.set('', '<leader>o', '<cmd>Files<cr>')
 -- search buffers
 vim.keymap.set('n', '<leader>;', '<cmd>Buffers<cr>')
+-- search tags
+vim.keymap.set('n', '<leader>]', '<cmd>Tags<cr>')
 -- quick-save
 vim.keymap.set('n', '<leader>w', '<cmd>w<cr>')
+-- cd to dir of current file
+vim.keymap.set('n', '<leader>cd', ':cd %:h<cr>')
 -- make missing : less annoying
 vim.keymap.set('n', ';', ':')
--- Ctrl+j and Ctrl+k as Esc
-vim.keymap.set('n', '<C-j>', '<Esc>')
-vim.keymap.set('i', '<C-j>', '<Esc>')
-vim.keymap.set('v', '<C-j>', '<Esc>')
-vim.keymap.set('s', '<C-j>', '<Esc>')
-vim.keymap.set('x', '<C-j>', '<Esc>')
-vim.keymap.set('c', '<C-j>', '<Esc>')
-vim.keymap.set('o', '<C-j>', '<Esc>')
-vim.keymap.set('l', '<C-j>', '<Esc>')
-vim.keymap.set('t', '<C-j>', '<Esc>')
--- Ctrl-j is a little awkward unfortunately:
--- https://github.com/neovim/neovim/issues/5916
--- So we also map Ctrl+k
-vim.keymap.set('n', '<C-k>', '<Esc>')
-vim.keymap.set('i', '<C-k>', '<Esc>')
-vim.keymap.set('v', '<C-k>', '<Esc>')
-vim.keymap.set('s', '<C-k>', '<Esc>')
-vim.keymap.set('x', '<C-k>', '<Esc>')
-vim.keymap.set('c', '<C-k>', '<Esc>')
-vim.keymap.set('o', '<C-k>', '<Esc>')
-vim.keymap.set('l', '<C-k>', '<Esc>')
-vim.keymap.set('t', '<C-k>', '<Esc>')
--- Ctrl+h to stop searching
-vim.keymap.set('v', '<C-h>', '<cmd>nohlsearch<cr>')
-vim.keymap.set('n', '<C-h>', '<cmd>nohlsearch<cr>')
 -- Jump to start and end of line using the home row keys
 vim.keymap.set('', 'H', '^')
 vim.keymap.set('', 'L', '$')
+
 -- Neat X clipboard integration
 -- <leader>p will paste clipboard into buffer
--- <leader>c will copy entire buffer into clipboard
-vim.keymap.set('n', '<leader>p', '<cmd>read !wl-paste<cr>')
-vim.keymap.set('n', '<leader>c', '<cmd>w !wl-copy<cr><cr>')
--- <leader><leader> toggles between buffers
-vim.keymap.set('n', '<leader><leader>', '<c-^>')
--- <leader>, shows/hides hidden characters
-vim.keymap.set('n', '<leader>,', ':set invlist<cr>')
+vim.keymap.set('n', '<leader>p', '<cmd>read !xsel --clipboard --output<cr>')
+vim.keymap.set('n', '<leader>y', '<cmd>w !xsel -ib<cr><cr>')
+
 -- always center search results
 vim.keymap.set('n', 'n', 'nzz', { silent = true })
 vim.keymap.set('n', 'N', 'Nzz', { silent = true })
@@ -134,27 +242,77 @@ vim.keymap.set('n', 'g*', 'g*zz', { silent = true })
 vim.keymap.set('n', '?', '?\\v')
 vim.keymap.set('n', '/', '/\\v')
 vim.keymap.set('c', '%s/', '%sm/')
+vim.keymap.set('n', '<leader>,', ":let @/=''<cr>")
+
 -- open new file adjacent to current file
-vim.keymap.set('n', '<leader>o', ':e <C-R>=expand("%:p:h") . "/" <cr>')
--- no arrow keys --- force yourself to use the home row
+-- vim.keymap.set('n', '<leader>o', ':e <C-R>=expand("%:p:h") . "/" <cr>')
+
 vim.keymap.set('n', '<up>', '<nop>')
 vim.keymap.set('n', '<down>', '<nop>')
 vim.keymap.set('i', '<up>', '<nop>')
 vim.keymap.set('i', '<down>', '<nop>')
 vim.keymap.set('i', '<left>', '<nop>')
 vim.keymap.set('i', '<right>', '<nop>')
--- let the left and right arrows be useful: they can switch buffers
-vim.keymap.set('n', '<left>', ':bp<cr>')
-vim.keymap.set('n', '<right>', ':bn<cr>')
--- make j and k move by visual line, not actual line, when text is soft-wrapped
 vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'k', 'gk')
 -- handy keymap for replacing up to next _ (like in variable names)
 vim.keymap.set('n', '<leader>m', 'ct_')
--- F1 is pretty close to Esc, so you probably meant Esc
-vim.keymap.set('', '<F1>', '<Esc>')
-vim.keymap.set('i', '<F1>', '<Esc>')
 
+-- quickfix
+vim.keymap.set('n', ']o', '<cmd>QFix 1 1<cr>')
+vim.keymap.set('n', '[o', '<cmd>QFix 0 1<cr>')
+vim.keymap.set('n', '[q', '<cmd>cprev<cr>')
+vim.keymap.set('n', ']q', '<cmd>cnext<cr>')
+vim.keymap.set('n', '[Q', '<cmd>cfirst<cr>')
+vim.keymap.set('n', ']Q', '<cmd>clast<cr>')
+
+-- location list
+vim.keymap.set('n', '[;', ':LList 0 1<cr>', { noremap = true, silent = true })
+vim.keymap.set('n', '];', ':LList 1 1<cr>', { noremap = true, silent = true })
+vim.keymap.set('n', '[l', ':lprev<cr>')
+vim.keymap.set('n', ']l', ':lnext<cr>')
+vim.keymap.set('n', '[L', ':lfirst<cr>')
+vim.keymap.set('n', ']L', ':llast<cr>')
+vim.keymap.set('n', 'gl]', 'g]<cr>:ltag<cr>:VList<cr><cr>')
+
+-- tags
+vim.keymap.set('n', '<leader>t', ':!t<cr>')
+vim.keymap.set('n', '[t', ':tprevious<cr>')
+vim.keymap.set('n', ']t', ':tnext<cr>')
+vim.keymap.set('n', '[T', ':tfirst<cr>')
+vim.keymap.set('n', '[tw', ':ptprevious<cr>')
+vim.keymap.set('n', ']tw', ':ptnext<cr>')
+vim.keymap.set('n', '[TW', ':ptfirst<cr>')
+vim.keymap.set('n', ']TW', ':ptlast<cr>')
+
+-- buffer toggle
+vim.keymap.set('n', '<leader>b', '<c-^')
+vim.keymap.set('n', '[b', ':bprevious<cr>')
+vim.keymap.set('n', ']b', ':bnext<cr>')
+vim.keymap.set('n', '[B', ':bfirst<cr>')
+vim.keymap.set('n', ']B', ':blast<cr>')
+
+-- grep
+vim.keymap.set('n', '<leader>g', '<cmd>grep -g !tags<space><C-r><C-w><cr><cmd>QFix 0 0<cr><cr>')
+vim.keymap.set('n', '<leader>r', ':grep ', { noremap = true })
+vim.keymap.set('n', '<leader>lg', '<cmd>lgrep -g !tags<space><C-r><C-w><cr><cmd>QFix 0 0<cr><cr>')
+vim.keymap.set('n', '<leader>lr', ':lgrep ', { noremap = true }) 
+-- fzf grep results
+vim.keymap.set('n', '<leader>s', ':Rg ')
+
+-- notes
+vim.keymap.set('n', '<leader>ncd', ':cd ~/docs/notes/<cr>')
+-- ripgrep notes
+vim.keymap.set('n', '<leader>ng', ':cd ~/docs/notes/<cr>:Ngrep<space<C-r><C-w><cr>:QFix 1 0<cr><cr>')
+vim.keymap.set('n', '<leader>nr', ':cd ~/docs/notes/<cr>:Ngrep ')
+-- fzf notes (multi-tag)
+vim.keymap.set('n', '<Leader>ns', ':cd ~/docs/notes/<CR>:Nf (\\v<^|\\s>)@(\\w\\S*)<CR>', { noremap = true, silent = true })
+-- new note
+vim.keymap.set('n', '<leader>nn', ':NewNote')
+-- note link
+vim.keymap.set('n', '<Leader>nl', function()
+  vim.fn['fzf#run']({ sink = 'HandleFZF', down = '25%' })
+end, { noremap = true, silent = true })
 -------------------------------------------------------------------------------
 --
 -- autocommands
@@ -191,43 +349,22 @@ vim.api.nvim_create_autocmd('BufRead', { pattern = '*.pacnew', command = 'set re
 vim.api.nvim_create_autocmd('InsertLeave', { pattern = '*', command = 'set nopaste' })
 -- help filetype detection (add as needed)
 --vim.api.nvim_create_autocmd('BufRead', { pattern = '*.ext', command = 'set filetype=someft' })
--- correctly classify mutt buffers
-local email = vim.api.nvim_create_augroup('email', { clear = true })
-vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
-	pattern = '/tmp/mutt*',
-	group = email,
-	command = 'setfiletype mail',
-})
--- also, produce "flowed text" wrapping
--- https://brianbuccola.com/line-breaks-in-mutt-and-vim/
-vim.api.nvim_create_autocmd('Filetype', {
-  pattern = 'mail',
-  group = email,
-  command = 'setlocal formatoptions+=w',
-})
 -- shorter columns in text because it reads better that way
-local text = vim.api.nvim_create_augroup('text', { clear = true })
-for _, pat in ipairs({'text', 'markdown', 'mail', 'gitcommit'}) do
-	vim.api.nvim_create_autocmd('Filetype', {
-		pattern = pat,
-		group = text,
-		command = 'setlocal spell tw=72 colorcolumn=73',
-	})
-end
+--
 --- tex has so much syntax that a little wider is ok
 vim.api.nvim_create_autocmd('Filetype', {
 	pattern = 'tex',
 	group = text,
 	command = 'setlocal spell tw=80 colorcolumn=81',
 })
--- TODO: no autocomplete in text
+
 
 -------------------------------------------------------------------------------
 --
 -- plugin configuration
 --
 -------------------------------------------------------------------------------
--- first, grab the manager
+-- plugin manager
 -- https://github.com/folke/lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -241,31 +378,32 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
--- then, setup!
 require("lazy").setup({
 	-- main color scheme
 	{
-		"wincent/base16-nvim",
-		lazy = false, -- load at start
-		priority = 1000, -- load first
+		'folke/tokyonight.nvim',
+		lazy = false,
+		priority = 1000,
 		config = function()
-			vim.cmd([[colorscheme base16-dracula]])
-			vim.o.background = 'dark'
-			-- XXX: hi Normal ctermbg=NONE
-			-- Make comments more prominent -- they are important.
-			local bools = vim.api.nvim_get_hl(0, { name = 'Boolean' })
-			vim.api.nvim_set_hl(0, 'Comment', bools)
-			-- Make it clearly visible which argument we're at.
-			local marked = vim.api.nvim_get_hl(0, { name = 'PMenu' })
-			vim.api.nvim_set_hl(0, 'LspSignatureActiveParameter', { fg = marked.fg, bg = marked.bg, ctermfg = marked.ctermfg, ctermbg = marked.ctermbg, bold = true })
-			-- XXX
-			-- Would be nice to customize the highlighting of warnings and the like to make
-			-- them less glaring. But alas
-			-- https://github.com/nvim-lua/lsp_extensions.nvim/issues/21
-			-- call Base16hi("CocHintSign", g:base16_gui03, "", g:base16_cterm03, "", "", "")
+		  vim.cmd([[colorscheme tokyonight-moon]])
 		end
 	},
-	-- nice bar at the bottom
+	{
+		'Mofiqul/dracula.nvim',
+		-- lazy = false,
+		-- priority = 1000,
+		-- config = function()
+			-- vim.cmd([[colorscheme dracula]])
+		-- end
+	},
+	{
+		'catppuccin/nvim',
+		-- lazy = false,
+		-- priority = 1000,
+		-- config = function()
+		-- 	vim.cmd([[colorscheme catppuccin]])
+		-- end
+	},
 	{
 		'itchyny/lightline.vim',
 		lazy = false, -- also load at start since it's UI
@@ -328,34 +466,36 @@ require("lazy").setup({
 			require('nvim-rooter').setup()
 		end
 	},
-	-- fzf support for ^p
+	-- fzf 
+	{
+		'junegunn/fzf'
+	},
 	{
 		'junegunn/fzf.vim',
-		dependencies = {
-			{ 'junegunn/fzf', dir = '~/.fzf', build = './install --all' },
-		},
-		config = function()
-			-- stop putting a giant window over my editor
-			vim.g.fzf_layout = { down = '~20%' }
-			-- when using :Files, pass the file list through
-			--
-			--   https://github.com/jonhoo/proximity-sort
-			--
-			-- to prefer files closer to the current file.
-			function list_cmd()
-				local base = vim.fn.fnamemodify(vim.fn.expand('%'), ':h:.:S')
-				if base == '.' then
-					-- if there is no current file,
-					-- proximity-sort can't do its thing
-					return 'fd --type file --follow'
-				else
-					return vim.fn.printf('fd --type file --follow | proximity-sort %s', vim.fn.shellescape(vim.fn.expand('%')))
-				end
-			end
-			vim.api.nvim_create_user_command('Files', function(arg)
-				vim.fn['fzf#vim#files'](arg.qargs, { source = list_cmd(), options = '--tiebreak=index' }, arg.bang)
-			end, { bang = true, nargs = '?', complete = "dir" })
-		end
+		-- TODO: when invoking ':Files' twice upon the second invocation the
+		-- search box is empty
+		-- config = function()
+		-- 	-- stop putting a giant window over my editor
+		-- 	vim.g.fzf_layout = { down = '~25%' }
+		-- 	-- when using :Files, pass the file list through
+		-- 	--
+		-- 	--   https://github.com/jonhoo/proximity-sort
+		-- 	--
+		-- 	-- to prefer files closer to the current file.
+		-- 	function list_cmd()
+		-- 		local base = vim.fn.fnamemodify(vim.fn.expand('%'), ':h:.:S')
+		-- 		if base == '.' then
+		-- 			-- if there is no current file,
+		-- 			-- proximity-sort can't do its thing
+		-- 			return 'fd --type file --follow'
+		-- 		else
+		-- 			return vim.fn.printf('fd --type file --follow | proximity-sort %s', vim.fn.shellescape(vim.fn.expand('%')))
+		-- 		end
+		-- 	end
+		-- 	vim.api.nvim_create_user_command('Files', function(arg)
+		-- 		vim.fn['fzf#vim#files'](arg.qargs, { source = list_cmd(), options = '--tiebreak=index' }, arg.bang)
+		-- 	end, { bang = true, nargs = '?', complete = "dir" })
+		-- end
 	},
 	-- LSP
 	{
@@ -385,6 +525,21 @@ require("lazy").setup({
 					},
 				},
 			}
+			-- Go
+			lspconfig.gopls.setup {}
+			-- JS/TS
+			lspconfig.typescript_language_server.setup {}
+			-- Python
+			lspconfig.pylsp.setup {}
+			-- C#
+			-- Java
+			lspconfig.jdtls.setup {}
+			-- C/C++
+			lspconfig.clangd.setup {}
+			-- Markdown
+			lspconfig.markdown_oxide.setup {}
+			-- Solidity
+			lspconfig.solidity_language_server.setup {}
 
 			-- Bash LSP
 			local configs = require 'lspconfig.configs'
@@ -434,8 +589,9 @@ require("lazy").setup({
 					vim.keymap.set('n', '<leader>wl', function()
 						print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 					end, opts)
-					--vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-					vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)
+					vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+					-- TODO: remap
+					-- vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)
 					vim.keymap.set({ 'n', 'v' }, '<leader>a', vim.lsp.buf.code_action, opts)
 					vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
 					vim.keymap.set('n', '<leader>f', function()
@@ -506,6 +662,25 @@ require("lazy").setup({
 			})
 		end
 	},
+	-- treesitter
+	{
+		"nvim-treesitter/nvim-treesitter", 
+		lazy = false,
+		build = ":TSUpdate",
+		config = function()
+			local configs = require("nvim-treesitter.configs")
+			configs.setup {
+				ensure_installed = "all",
+				highlight = {
+					enable = true,
+				},
+				indent = {
+					enable = true,
+				},
+				additional_vim_regex_highlighting = false,
+			}
+		end
+	},
 	-- inline function signatures
 	{
 		"ray-x/lsp_signature.nvim",
@@ -522,11 +697,6 @@ require("lazy").setup({
 		end
 	},
 	-- language support
-	-- terraform
-	{
-		'hashivim/vim-terraform',
-		ft = { "terraform" },
-	},
 	-- svelte
 	{
 		'evanleck/vim-svelte',
@@ -575,40 +745,3 @@ require("lazy").setup({
 		end
 	},
 })
-
---[[
-
-leftover things from init.vim that i may still end up wanting
-
-" Completion
-" Better completion
-" menuone: popup even when there's only one match
-" noinsert: Do not insert text until a selection is made
-" noselect: Do not select, force user to select one from the menu
-set completeopt=menuone,noinsert,noselect
-
-" Settings needed for .lvimrc
-set exrc
-set secure
-
-" Wrapping options
-set formatoptions=tc " wrap text and comments using textwidth
-set formatoptions+=r " continue comments when pressing ENTER in I mode
-set formatoptions+=q " enable formatting of comments with gq
-set formatoptions+=n " detect lists for formatting
-set formatoptions+=b " auto-wrap in insert mode, and do not wrap old long lines
-
-" <leader>s for Rg search
-noremap <leader>s :Rg
-let g:fzf_layout = { 'down': '~20%' }
-command! -bang -nargs=* Rg
-\ call fzf#vim#grep(
-\   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-\   <bang>0 ? fzf#vim#with_preview('up:60%')
-\           : fzf#vim#with_preview('right:50%:hidden', '?'),
-\   <bang>0)
-
-" <leader>q shows stats
-nnoremap <leader>q g<c-g>
-
---]]

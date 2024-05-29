@@ -77,6 +77,8 @@ super + a ; m
 	launch_switch_app spotify-launcher
 super + a ; f
   launch_switch_app firefox-developer-edition
+super + a ; o
+ 	launch_switch_app obsidian
 # }}}
 ### Desktops {{{
 #Focus/Send Node (to) Desktop(n)
