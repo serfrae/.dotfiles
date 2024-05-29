@@ -79,6 +79,8 @@ super + a ; f
   launch_switch_app firefox-developer-edition
 super + a ; o
  	launch_switch_app obsidian
+super + a ; t
+	launch_switch_app telegram-desktop
 # }}}
 ### Desktops {{{
 #Focus/Send Node (to) Desktop(n)

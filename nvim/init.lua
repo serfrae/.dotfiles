@@ -62,7 +62,7 @@ if vim.fn.executable("rg") == 1 then
 end
 
 -- Set the global variable g:fzf_layout in Lua
-vim.g.fzf_layout = { down = '~25%' }
+-- vim.g.fzf_layout = { down = '~25%' }
 vim.api.nvim_create_user_command('Rg', function(opts)
   local args = table.concat(opts.fargs, ' ')
   local command = 'rg --column --line-number --no-heading --color=always -g !tags ' .. vim.fn.shellescape(args)
@@ -148,6 +148,7 @@ end, { nargs = 1 })
 --
 -------------------------------------------------------------------------------
 vim.opt.background = 'dark'
+vim.o.termguicolors = true
 vim.opt.foldenable = false
 vim.opt.foldmethod = 'manual'
 vim.opt.foldlevelstart = 99
@@ -161,7 +162,7 @@ vim.opt.foldlevelstart = 99
 -- keep more context on screen while scrolling
 vim.opt.scrolloff = 2
 -- never show me line breaks if they're not there
-vim.opt.wrap = false
+vim.opt.wrap = true 
 -- always draw sign column. prevents buffer moving when adding/deleting sign
 vim.opt.signcolumn = 'yes'
 vim.opt.relativenumber = true
