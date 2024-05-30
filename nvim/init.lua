@@ -28,7 +28,10 @@ function QFixToggle(v, e)
 end
 
 vim.api.nvim_create_user_command('QFix', function(opts)
-  QFixToggle(opts.args, opts.bang and 1 or 0)
+	local args = vim.split(opts.args, " ") 
+	local v = tonumber(args[1]) or 0  -- Convert the first argument to a number
+    local e = tonumber(args[2]) or (opts.bang and 1 or 0)
+	QFixToggle(v, e)
 end, { nargs = '*', bang = true })
 
 -- Location List Toggle
@@ -52,22 +55,17 @@ function LListToggle(v, e)
 end
 
 vim.api.nvim_create_user_command('LList', function(opts)
-	LListToggle(opts.args, opts.bang and 1 or 0)
+	local args = vim.split(opts.args, " ")
+	local v = tonumber(args[1]) or 0
+	local e = tonumber(args[2]) or (opts.bang and 1 or 0)
+	LListToggle(v, e)
 end, { nargs = '*', bang = true })
 
 -- Check if "rg" is executable and set grepprg and grepformat if it is
 if vim.fn.executable("rg") == 1 then
-	vim.o.grepprg = "rg --vimgrep --no-heading"
+	vim.o.grepprg = "rg --vimgrep --no-heading (commandline -q)"
 	vim.o.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 end
-
--- Set the global variable g:fzf_layout in Lua
--- vim.g.fzf_layout = { down = '~25%' }
-vim.api.nvim_create_user_command('Rg', function(opts)
-	local args = table.concat(opts.fargs, ' ')
-	local command = 'rg --column --line-number --no-heading --color=always -g !tags ' .. vim.fn.shellescape(args)
-	vim.fn['fzf#vim#grep'](command, 1, vim.fn['fzf#vim#with_preview'](), 0)
-end, { nargs = '*', bang = true })
 
 function list_cmd()
 	local base = vim.fn.fnamemodify(vim.fn.expand('%'), ':h:.:S')
@@ -106,13 +104,14 @@ vim.api.nvim_create_user_command('CreateNote', function(opts)
 end, { nargs = 1 })
 
 -- Note find
+-- TODO: Update for telescope
 vim.api.nvim_create_user_command('Nf', function(opts)
 	local args = table.concat(opts.fargs, ' ')
 	local command = 'rg --column --line-number --no-heading --color=always -g !tags -e ' .. vim.fn.shellescape(args)
 	vim.fn['fzf#vim#grep'](command, 1)
 end, { bang = true, nargs = '*' })
 
--- Ngrep
+-- Note grep
 vim.api.nvim_create_user_command('Ngrep', function(opts)
 	local command = string.format('grep "%s" -g "*.md" %s', opts.args, vim.fn.expand('$NOTES'))
 	vim.cmd(command)
@@ -158,12 +157,7 @@ vim.opt.relativenumber = true
 vim.opt.number = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
--- infinite undo!
--- NOTE: ends up in ~/.local/state/nvim/undo/
 vim.opt.undofile = true
---" Decent wildmenu
--- in completion, when there is more than one match,
--- list all matches, and only complete to longest common match
 vim.opt.wildmode = 'list:longest'
 -- when opening a file with a command (like :e),
 -- don't suggest files like there:
@@ -177,7 +171,6 @@ vim.opt.expandtab = false
 vim.opt.ignorecase = true
 -- unless uppercase in search term
 vim.opt.smartcase = true
--- never ever make my terminal beep
 vim.opt.vb = true
 -- more useful diffs (nvim -d)
 --- by ignoring whitespace
@@ -204,19 +197,17 @@ vim.opt.cursorline = true
 --
 -------------------------------------------------------------------------------
 -- quick-open
-vim.keymap.set('', '<leader>o', '<cmd>Files<cr>')
+vim.keymap.set('', '<leader>o', '<cmd>Telescope find_files<cr>')
 -- search buffers
-vim.keymap.set('n', '<leader>;', '<cmd>Buffers<cr>')
+vim.keymap.set('n', '<leader>b', '<cmd>Telescope buffers<cr>')
 -- search tags
-vim.keymap.set('n', '<leader>]', '<cmd>Tags<cr>')
+vim.keymap.set('n', '<leader>]', '<cmd>Telescope tags<cr>')
 -- make missing : less annoying
 vim.keymap.set('n', ';', ':')
--- Jump to start and end of line using the home row keys
+
 vim.keymap.set('', 'H', '^')
 vim.keymap.set('', 'L', '$')
 
--- Neat X clipboard integration
--- <leader>p will paste clipboard into buffer
 vim.keymap.set('n', '<leader>p', '<cmd>read !xsel --clipboard --output<cr>')
 vim.keymap.set('v', '<leader>y', '"+y')
 
@@ -232,9 +223,6 @@ vim.keymap.set('n', '/', '/\\v')
 vim.keymap.set('c', '%s/', '%sm/')
 vim.keymap.set('n', '<leader>,', ":let @/=''<cr>")
 
--- open new file adjacent to current file
--- vim.keymap.set('n', '<leader>o', ':e <C-R>=expand("%:p:h") . "/" <cr>')
-
 vim.keymap.set('n', '<up>', '<nop>')
 vim.keymap.set('n', '<down>', '<nop>')
 vim.keymap.set('i', '<up>', '<nop>')
@@ -247,6 +235,7 @@ vim.keymap.set('n', 'k', 'gk')
 vim.keymap.set('n', '<leader>m', 'ct_')
 
 -- quickfix
+vim.keymap.set('n', '<leader>q', '<cmd>Telescope quickfix<cr>')
 vim.keymap.set('n', ']o', '<cmd>QFix 1 1<cr>')
 vim.keymap.set('n', '[o', '<cmd>QFix 0 1<cr>')
 vim.keymap.set('n', '[q', '<cmd>cprev<cr>')
@@ -274,19 +263,17 @@ vim.keymap.set('n', '[TW', ':ptfirst<cr>')
 vim.keymap.set('n', ']TW', ':ptlast<cr>')
 
 -- buffer toggle
-vim.keymap.set('n', '<leader>b', '<c-^')
+vim.keymap.set('n', '<leader>b', ':Telescope buffers<cr>')
 vim.keymap.set('n', '[b', ':bprevious<cr>')
 vim.keymap.set('n', ']b', ':bnext<cr>')
 vim.keymap.set('n', '[B', ':bfirst<cr>')
 vim.keymap.set('n', ']B', ':blast<cr>')
 
 -- grep
-vim.keymap.set('n', '<leader>g', '<cmd>grep -g !tags<space><C-r><C-w><cr><cmd>QFix 0 0<cr><cr>')
+vim.keymap.set('n', '<leader>g', ':grep -g !tags <C-r><C-w><cr><cr><cmd>QFix 1 1<cr><cr>')
 vim.keymap.set('n', '<leader>r', ':grep ', { noremap = true })
-vim.keymap.set('n', '<leader>lg', '<cmd>lgrep -g !tags<space><C-r><C-w><cr><cmd>QFix 0 0<cr><cr>')
+vim.keymap.set('n', '<leader>lg', ':lgrep -g !tags <C-r><C-w><cr><cr><cmd>QFix 1 1<cr><cr>')
 vim.keymap.set('n', '<leader>lr', ':lgrep ', { noremap = true }) 
--- fzf grep results
-vim.keymap.set('n', '<leader>s', ':Rg ')
 
 -- notes
 vim.keymap.set('n', '<leader>ncd', ':cd ~/docs/notes/<cr>')
@@ -294,10 +281,11 @@ vim.keymap.set('n', '<leader>ncd', ':cd ~/docs/notes/<cr>')
 vim.keymap.set('n', '<leader>ng', ':cd ~/docs/notes/<cr>:Ngrep<space<C-r><C-w><cr>:QFix 1 0<cr><cr>')
 vim.keymap.set('n', '<leader>nr', ':cd ~/docs/notes/<cr>:Ngrep ')
 -- fzf notes (multi-tag)
-vim.keymap.set('n', '<Leader>ns', ':cd ~/docs/notes/<CR>:Nf (\\v<^|\\s>)@(\\w\\S*)<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>ns', ':cd ~/docs/notes/<cr>:Nf (\\v<^|\\s>)@(\\w\\S*)<CR>', { noremap = true, silent = true })
 -- new note
 vim.keymap.set('n', '<leader>nn', ':NewNote')
 -- note link
+-- TODO: Update for telescope
 vim.keymap.set('n', '<Leader>nl', function()
   vim.fn['fzf#run']({ sink = 'HandleFZF', down = '25%' })
 end, { noremap = true, silent = true })
@@ -369,14 +357,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	-- main color scheme
 	{
-		'folke/tokyonight.nvim',
-		--lazy = false,
-		--priority = 1000,
-		--config = function()
-		--  vim.cmd([[colorscheme tokyonight-moon]])
-		--end
-	},
-	{
 		'Mofiqul/dracula.nvim',
 		lazy = false,
 		priority = 1000,
@@ -384,20 +364,14 @@ require("lazy").setup({
 			vim.cmd([[colorscheme dracula]])
 		end
 	},
-	{
 		'catppuccin/nvim',
-		-- lazy = false,
-		-- priority = 1000,
-		-- config = function()
-		--     vim.cmd([[colorscheme catppuccin]])
-		-- end
-	},
+		'folke/tokyonight.nvim',
 	{
 		'nvim-lualine/lualine.nvim',
 		lazy = false,
 		config = function()
-			local lualineconfig = require('lualine')
-			lualineconfig.setup {
+			local lualine = require('lualine')
+			lualine.setup {
 				options = {
 					icons_enabled = true,
 					theme = 'auto',
@@ -453,36 +427,25 @@ require("lazy").setup({
 			vim.g.matchup_matchparen_offscreen = { method = "popup" }
 		end
 	},
-	-- fzf 
+	-- FZF 
 	{
-		'junegunn/fzf'
-	},
-	{
-		'junegunn/fzf.vim',
-		--TODO: when invoking ':Files' twice upon the second invocation the
-		--search box is empty
-		--config = function()
-		--	-- stop putting a giant window over my editor
-		--vim.g.fzf_layout = { down = '~25%' }
-		--	-- when using :Files, pass the file list through
-		--	--
-		--	--   https://github.com/jonhoo/proximity-sort
-		--	--
-		--	-- to prefer files closer to the current file.
-		--	function list_cmd()
-		--		local base = vim.fn.fnamemodify(vim.fn.expand('%'), ':h:.:S')
-		--		if base == '.' then
-		--			-- if there is no current file,
-		--			-- proximity-sort can't do its thing
-		--			return 'fd --type file --follow'
-		--		else
-		--			return vim.fn.printf('fd --type file --follow | proximity-sort %s', vim.fn.shellescape(vim.fn.expand('%')))
-		--		end
-		--	end
-		--	vim.api.nvim_create_user_command('Files', function(arg)
-		--		vim.fn['fzf#vim#files'](arg.qargs, { source = list_cmd(), options = '--tiebreak=index' }, arg.bang)
-		--	end, { bang = true, nargs = '?', complete = "dir" })
-		--end
+		'nvim-telescope/telescope.nvim',
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			'nvim-telescope/telescope-fzf-native.nvim',
+		},
+		config = function()
+			local actions = require('telescope.actions')
+			require('telescope').setup {
+				defaults = {
+					mappings = {
+						i = {
+							["<esc>"] = actions.close
+						},
+					},
+				}
+			}
+		end
 	},
 	-- LSP
 	{
@@ -554,7 +517,7 @@ require("lazy").setup({
 			vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 			vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 			vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-			vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+			--vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
 			-- Use LspAttach autocommand to only map the following keys
 			-- after the language server attaches to the current buffer
