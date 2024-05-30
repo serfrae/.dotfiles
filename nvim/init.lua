@@ -9,22 +9,22 @@ vim.g.mapleader = " "
 -------------------------------------------------------------------------------
 -- Quickfix Toggle
 vim.api.nvim_create_user_command('VFix', function()
-  vim.cmd('botright vertical copen')
-  vim.cmd('vertical resize 50')
+	vim.cmd('botright vertical copen')
+	vim.cmd('vertical resize 50')
 end, {})
 
 function QFixToggle(v, e)
-  if vim.g.qfix_win and e == 1 then
-    vim.cmd('cclose')
-    vim.g.qfix_win = nil
-  else
-    if v == 0 then
-      vim.cmd('copen')
-    else
-      vim.cmd('VFix')
-    end
-    vim.g.qfix_win = vim.fn.bufnr('$')
-  end
+	if vim.g.qfix_win and e == 1 then
+		vim.cmd('cclose')
+		vim.g.qfix_win = nil
+	else
+		if v == 0 then
+			vim.cmd('copen')
+		else
+			vim.cmd('VFix')
+		end
+		vim.g.qfix_win = vim.fn.bufnr('$')
+	end
 end
 
 vim.api.nvim_create_user_command('QFix', function(opts)
@@ -38,108 +38,96 @@ vim.api.nvim_create_user_command('VList', function()
 end, {})
 
 function LListToggle(v, e)
-  if vim.g.llist_win and e == 1 then
-    vim.cmd('lclose')
-    vim.g.llist_win = nil
-  else
-    if v == 0 then
-      vim.cmd('lopen')
-    else
-      vim.cmd('VList')
-    end
-    vim.g.llist_win = vim.fn.bufnr('$')
-  end
+	if vim.g.llist_win and e == 1 then
+		vim.cmd('lclose')
+		vim.g.llist_win = nil
+	else
+		if v == 0 then
+		  vim.cmd('lopen')
+		else
+		  vim.cmd('VList')
+		end
+		vim.g.llist_win = vim.fn.bufnr('$')
+	end
 end
 
 vim.api.nvim_create_user_command('LList', function(opts)
-  LListToggle(opts.args, opts.bang and 1 or 0)
+	LListToggle(opts.args, opts.bang and 1 or 0)
 end, { nargs = '*', bang = true })
 
 -- Check if "rg" is executable and set grepprg and grepformat if it is
 if vim.fn.executable("rg") == 1 then
-  vim.o.grepprg = "rg --vimgrep --no-heading"
-  vim.o.grepformat = "%f:%l:%c:%m,%f:%l:%m"
+	vim.o.grepprg = "rg --vimgrep --no-heading"
+	vim.o.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 end
 
 -- Set the global variable g:fzf_layout in Lua
 -- vim.g.fzf_layout = { down = '~25%' }
 vim.api.nvim_create_user_command('Rg', function(opts)
-  local args = table.concat(opts.fargs, ' ')
-  local command = 'rg --column --line-number --no-heading --color=always -g !tags ' .. vim.fn.shellescape(args)
-  vim.fn['fzf#vim#grep'](command, 1, vim.fn['fzf#vim#with_preview'](), 0)
+	local args = table.concat(opts.fargs, ' ')
+	local command = 'rg --column --line-number --no-heading --color=always -g !tags ' .. vim.fn.shellescape(args)
+	vim.fn['fzf#vim#grep'](command, 1, vim.fn['fzf#vim#with_preview'](), 0)
 end, { nargs = '*', bang = true })
 
 function list_cmd()
-  local base = vim.fn.fnamemodify(vim.fn.expand('%'), ':h:.:S')
-  local command = ''
+	local base = vim.fn.fnamemodify(vim.fn.expand('%'), ':h:.:S')
+	local command = ''
 
-  if base == '.' then
-    command = 'fd --type file --follow'
-  else
-    command = string.format('fd --type file --follow | proximity-sort %s', vim.fn.shellescape(vim.fn.expand('%')))
-  end
+	if base == '.' then
+		command = 'fd --type file --follow'
+	else
+		command = string.format('fd --type file --follow | proximity-sort %s', vim.fn.shellescape(vim.fn.expand('%')))
+	end
 
-  return command
+	return command
 end
-
--- vim.api.nvim_command('command! -bang -nargs=? -complete=dir Files call FzfFiles(<q-args>, <bang>0)')
--- 
--- function FzfFiles(args, bang)
---   local list_cmd = vim.fn['s:list_cmd']()
---   local options = '--tiebreak=index'
--- 
---   vim.fn['fzf#vim#files'](args, {
---     source = list_cmd,
---     options = options
---   }, bang)
--- end
 
 -- NewNote
 function NewNote(name)
   -- Format the filename using the provided name and the current date/time
-  local filename = name
-  local filepath = vim.fn.expand('~/docs/notes/') .. '/' .. os.date('%Y%m%d%H%M') .. '-' .. filename .. '.md'
+	local filename = name
+	local filepath = vim.fn.expand('~/docs/notes/') .. '/' .. os.date('%Y%m%d%H%M') .. '-' .. filename .. '.md'
   
   -- Create and edit the new note
-  vim.cmd('edit ' .. filepath)
+	vim.cmd('edit ' .. filepath)
   
   -- Insert the current date and time into the file
-  vim.cmd('r! date')
+	vim.cmd('r! date')
 end
 
 vim.api.nvim_create_user_command('NewNote', function(opts)
-  NewNote(opts.args)
+	NewNote(opts.args)
 end, { nargs = 1 })
 
 -- CreateNote
 vim.api.nvim_create_user_command('CreateNote', function(opts)
-  local filepath = vim.fn.expand('$NOTES') .. '/' .. os.date('%Y%m%d%H%M') .. '-' .. opts.args .. '.md'
-  vim.cmd('edit ' .. filepath)
+	local filepath = vim.fn.expand('$NOTES') .. '/' .. os.date('%Y%m%d%H%M') .. '-' .. opts.args .. '.md'
+	vim.cmd('edit ' .. filepath)
 end, { nargs = 1 })
 
 -- Note find
 vim.api.nvim_create_user_command('Nf', function(opts)
-  local args = table.concat(opts.fargs, ' ')
-  local command = 'rg --column --line-number --no-heading --color=always -g !tags -e ' .. vim.fn.shellescape(args)
-  vim.fn['fzf#vim#grep'](command, 1)
+	local args = table.concat(opts.fargs, ' ')
+	local command = 'rg --column --line-number --no-heading --color=always -g !tags -e ' .. vim.fn.shellescape(args)
+	vim.fn['fzf#vim#grep'](command, 1)
 end, { bang = true, nargs = '*' })
 
 -- Ngrep
 vim.api.nvim_create_user_command('Ngrep', function(opts)
-  local command = string.format('grep "%s" -g "*.md" %s', opts.args, vim.fn.expand('$NOTES'))
-  vim.cmd(command)
+	local command = string.format('grep "%s" -g "*.md" %s', opts.args, vim.fn.expand('$NOTES'))
+	vim.cmd(command)
 end, { nargs = 1 })
 
 -- HandleFZF
 local function HandleFZF(file)
-  local filename = vim.fn.fnameescape(file)
-  local filename_wo_timestamp = vim.fn.fnameescape(vim.fn.fnamemodify(file, ":t:s/^[0-9]*-//"))
-  local mdlink = string.format("[ %s ]( %s )", filename_wo_timestamp, filename)
-  vim.api.nvim_put({ mdlink }, 'c', false, true)
+	local filename = vim.fn.fnameescape(file)
+	local filename_wo_timestamp = vim.fn.fnameescape(vim.fn.fnamemodify(file, ":t:s/^[0-9]*-//"))
+	local mdlink = string.format("[ %s ]( %s )", filename_wo_timestamp, filename)
+	vim.api.nvim_put({ mdlink }, 'c', false, true)
 end
 
 vim.api.nvim_create_user_command('HandleFZF', function(opts)
-  HandleFZF(opts.args)
+	HandleFZF(opts.args)
 end, { nargs = 1 })
 
 -------------------------------------------------------------------------------
@@ -152,6 +140,7 @@ vim.o.termguicolors = true
 vim.opt.foldenable = false
 vim.opt.foldmethod = 'manual'
 vim.opt.foldlevelstart = 99
+vim.opt.clipboard = "unnamedplus"
 -- vim.opt.cindent = true
 -- vim.opt.cmdheight = 2
 -- vim.opt.completeopt = 'menuone,noinsert,noselect'
@@ -205,7 +194,8 @@ vim.opt.colorcolumn = '80'
 vim.api.nvim_create_autocmd('Filetype', { pattern = 'rust', command = 'set colorcolumn=100' })
 -- show more hidden characters
 -- also, show tabs nicer
-vim.opt.listchars = 'tab:^ ,nbsp:¬,extends:»,precedes:«,trail:•'
+vim.opt.listchars = 'tab:▏-,nbsp:¬,extends:»,precedes:«,trail:•'
+vim.opt.list = true
 vim.opt.cursorline = true
 
 -------------------------------------------------------------------------------
@@ -219,10 +209,6 @@ vim.keymap.set('', '<leader>o', '<cmd>Files<cr>')
 vim.keymap.set('n', '<leader>;', '<cmd>Buffers<cr>')
 -- search tags
 vim.keymap.set('n', '<leader>]', '<cmd>Tags<cr>')
--- quick-save
-vim.keymap.set('n', '<leader>w', '<cmd>w<cr>')
--- cd to dir of current file
-vim.keymap.set('n', '<leader>cd', ':cd %:h<cr>')
 -- make missing : less annoying
 vim.keymap.set('n', ';', ':')
 -- Jump to start and end of line using the home row keys
@@ -232,7 +218,7 @@ vim.keymap.set('', 'L', '$')
 -- Neat X clipboard integration
 -- <leader>p will paste clipboard into buffer
 vim.keymap.set('n', '<leader>p', '<cmd>read !xsel --clipboard --output<cr>')
-vim.keymap.set('n', '<leader>y', '<cmd>w !xsel -ib<cr><cr>')
+vim.keymap.set('v', '<leader>y', '"+y')
 
 -- always center search results
 vim.keymap.set('n', 'n', 'nzz', { silent = true })
@@ -403,47 +389,54 @@ require("lazy").setup({
 		-- lazy = false,
 		-- priority = 1000,
 		-- config = function()
-		-- 	vim.cmd([[colorscheme catppuccin]])
+		--     vim.cmd([[colorscheme catppuccin]])
 		-- end
 	},
 	{
-		'itchyny/lightline.vim',
-		lazy = false, -- also load at start since it's UI
+		'nvim-lualine/lualine.nvim',
+		lazy = false,
 		config = function()
-			-- no need to also show mode in cmd line when we have bar
-			vim.o.showmode = false
-			vim.g.lightline = {
-				active = {
-					left = {
-						{ 'mode', 'paste' },
-						{ 'readonly', 'filename', 'modified' }
+			local lualineconfig = require('lualine')
+			lualineconfig.setup {
+				options = {
+					icons_enabled = true,
+					theme = 'auto',
+					component_separators = { left = '', right = ''},
+					section_separators = { left = '', right = ''},
+					disabled_filetypes = {
+						statusline = {},
+						winbar = {},
 					},
-					right = {
-						{ 'lineinfo' },
-						{ 'percent' },
-						{ 'fileencoding', 'filetype' }
-					},
+					ignore_focus = {},
+					always_divide_middle = true,
+					globalstatus = false,
+					refresh = {
+						statusline = 1000,
+						tabline = 1000,
+						winbar = 1000,
+					}
+			    },
+				sections = {
+					lualine_a = {'mode'},
+					lualine_b = {'branch', 'diff', 'diagnostics'},
+					lualine_c = {'filename'},
+					lualine_x = {'encoding', 'fileformat', 'filetype'},
+					lualine_y = {'progress'},
+					lualine_z = {'location'}
+			    },
+				inactive_sections = {
+					lualine_a = {},
+					lualine_b = {},
+					lualine_c = {'filename'},
+					lualine_x = {'location'},
+					lualine_y = {},
+					lualine_z = {}
 				},
-				component_function = {
-					filename = 'LightlineFilename'
-				},
+				tabline = {},
+				winbar = {},
+				inactive_winbar = {},
+				extensions = {}
 			}
-			function LightlineFilenameInLua(opts)
-				if vim.fn.expand('%:t') == '' then
-					return '[No Name]'
-				else
-					return vim.fn.getreg('%')
-				end
-			end
-			-- https://github.com/itchyny/lightline.vim/issues/657
-			vim.api.nvim_exec(
-				[[
-				function! g:LightlineFilename()
-					return v:lua.LightlineFilenameInLua()
-				endfunction
-				]],
-				true
-			)
 		end
 	},
 	-- quick navigation
@@ -460,44 +453,36 @@ require("lazy").setup({
 			vim.g.matchup_matchparen_offscreen = { method = "popup" }
 		end
 	},
-	-- auto-cd to root of git project
-	-- 'airblade/vim-rooter'
-	{
-		'notjedi/nvim-rooter.lua',
-		config = function()
-			require('nvim-rooter').setup()
-		end
-	},
 	-- fzf 
 	{
 		'junegunn/fzf'
 	},
 	{
 		'junegunn/fzf.vim',
-		-- TODO: when invoking ':Files' twice upon the second invocation the
-		-- search box is empty
-		-- config = function()
-		-- 	-- stop putting a giant window over my editor
-		-- 	vim.g.fzf_layout = { down = '~25%' }
-		-- 	-- when using :Files, pass the file list through
-		-- 	--
-		-- 	--   https://github.com/jonhoo/proximity-sort
-		-- 	--
-		-- 	-- to prefer files closer to the current file.
-		-- 	function list_cmd()
-		-- 		local base = vim.fn.fnamemodify(vim.fn.expand('%'), ':h:.:S')
-		-- 		if base == '.' then
-		-- 			-- if there is no current file,
-		-- 			-- proximity-sort can't do its thing
-		-- 			return 'fd --type file --follow'
-		-- 		else
-		-- 			return vim.fn.printf('fd --type file --follow | proximity-sort %s', vim.fn.shellescape(vim.fn.expand('%')))
-		-- 		end
-		-- 	end
-		-- 	vim.api.nvim_create_user_command('Files', function(arg)
-		-- 		vim.fn['fzf#vim#files'](arg.qargs, { source = list_cmd(), options = '--tiebreak=index' }, arg.bang)
-		-- 	end, { bang = true, nargs = '?', complete = "dir" })
-		-- end
+		--TODO: when invoking ':Files' twice upon the second invocation the
+		--search box is empty
+		--config = function()
+		--	-- stop putting a giant window over my editor
+		--vim.g.fzf_layout = { down = '~25%' }
+		--	-- when using :Files, pass the file list through
+		--	--
+		--	--   https://github.com/jonhoo/proximity-sort
+		--	--
+		--	-- to prefer files closer to the current file.
+		--	function list_cmd()
+		--		local base = vim.fn.fnamemodify(vim.fn.expand('%'), ':h:.:S')
+		--		if base == '.' then
+		--			-- if there is no current file,
+		--			-- proximity-sort can't do its thing
+		--			return 'fd --type file --follow'
+		--		else
+		--			return vim.fn.printf('fd --type file --follow | proximity-sort %s', vim.fn.shellescape(vim.fn.expand('%')))
+		--		end
+		--	end
+		--	vim.api.nvim_create_user_command('Files', function(arg)
+		--		vim.fn['fzf#vim#files'](arg.qargs, { source = list_cmd(), options = '--tiebreak=index' }, arg.bang)
+		--	end, { bang = true, nargs = '?', complete = "dir" })
+		--end
 	},
 	-- LSP
 	{
