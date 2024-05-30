@@ -271,8 +271,10 @@ vim.keymap.set('n', ']B', ':blast<cr>')
 
 -- grep
 vim.keymap.set('n', '<leader>g', ':grep -g !tags <C-r><C-w><cr><cr><cmd>QFix 1 1<cr><cr>')
+vim.keymap.set('v', '<leader>g', ':grep -g !tags <C-r><C-w><cr><cr><cmd>QFix 1 1<cr><cr>')
 vim.keymap.set('n', '<leader>r', ':grep ', { noremap = true })
 vim.keymap.set('n', '<leader>lg', ':lgrep -g !tags <C-r><C-w><cr><cr><cmd>QFix 1 1<cr><cr>')
+vim.keymap.set('v', '<leader>lg', ':lgrep -g !tags <C-r><C-w><cr><cr><cmd>QFix 1 1<cr><cr>')
 vim.keymap.set('n', '<leader>lr', ':lgrep ', { noremap = true }) 
 
 -- notes
