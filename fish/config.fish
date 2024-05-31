@@ -14,6 +14,9 @@ abbr -a p pnpm
 abbr -a nn note
 abbr -a nf note_find
 abbr -a nj note_journal
+abbr -a v nvim
+abbr -a vi nvim
+abbr -a vim nvim
 
 setenv XINITRC ~/.config/X11/xinitrc
 setenv XAUTHORITY ~/.config/X11/Xauthority

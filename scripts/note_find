@@ -1,4 +1,4 @@
 #!/bin/sh
 cd $HOME/docs/notes; 
 FILE=$(rg -e '(^|[[:space:]])@(\w\S*)' -g !tags | fzf | sed -e 's/:.*//g')
-[[ $FILE ]] && helix $FILE
+[[ $FILE ]] && nvim $FILE

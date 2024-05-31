@@ -103,31 +103,47 @@ vim.api.nvim_create_user_command('CreateNote', function(opts)
 	vim.cmd('edit ' .. filepath)
 end, { nargs = 1 })
 
--- Note find
--- TODO: Update for telescope
-vim.api.nvim_create_user_command('Nf', function(opts)
-	local args = table.concat(opts.fargs, ' ')
-	local command = 'rg --column --line-number --no-heading --color=always -g !tags -e ' .. vim.fn.shellescape(args)
-	vim.fn['fzf#vim#grep'](command, 1)
-end, { bang = true, nargs = '*' })
-
 -- Note grep
 vim.api.nvim_create_user_command('Ngrep', function(opts)
 	local command = string.format('grep "%s" -g "*.md" %s', opts.args, vim.fn.expand('$NOTES'))
 	vim.cmd(command)
 end, { nargs = 1 })
 
--- HandleFZF
-local function HandleFZF(file)
-	local filename = vim.fn.fnameescape(file)
-	local filename_wo_timestamp = vim.fn.fnameescape(vim.fn.fnamemodify(file, ":t:s/^[0-9]*-//"))
-	local mdlink = string.format("[ %s ]( %s )", filename_wo_timestamp, filename)
-	vim.api.nvim_put({ mdlink }, 'c', false, true)
-end
+-- Note find
+vim.api.nvim_create_user_command('Nf', function(opts)
+    local actions = require('telescope.actions')
+    local finders = require('telescope.finders')
+    local pickers = require('telescope.pickers')
+    local conf = require('telescope.config').values
 
-vim.api.nvim_create_user_command('HandleFZF', function(opts)
-	HandleFZF(opts.args)
-end, { nargs = 1 })
+    local args = table.concat(opts.fargs, ' ')
+    local rg_args = {
+      '--column',
+      '--line-number',
+      '--no-heading',
+      '--color=always',
+      '-g',
+      '!tags',
+      '-e',
+      args
+    }
+
+    pickers.new({}, {
+      prompt_title = 'Rg',
+      finder = finders.new_oneshot_job({'rg'}, {
+        cwd = vim.fn.getcwd(),
+        args = rg_args,
+      }),
+      sorter = conf.generic_sorter(),
+      attach_mappings = function(prompt_bufnr, map)
+        map('i', '<C-x>', actions.send_to_qflist)
+        map('n', '<C-x>', actions.send_selected_to_qflist)
+        map('i', '<C-t>', actions.select_tab)
+        map('n', '<C-t>', actions.select_tab)
+        return true
+      end
+    }):find()
+end, { bang = true, nargs = '*' })
 
 -------------------------------------------------------------------------------
 --
@@ -357,7 +373,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
-	-- main color scheme
+	-- main colour scheme
 	{
 		'Mofiqul/dracula.nvim',
 		lazy = false,
@@ -366,6 +382,7 @@ require("lazy").setup({
 			vim.cmd([[colorscheme dracula]])
 		end
 	},
+	-- other colour schemes
 		'catppuccin/nvim',
 		'folke/tokyonight.nvim',
 	{
@@ -571,8 +588,6 @@ require("lazy").setup({
 		"hrsh7th/nvim-cmp",
 		-- load cmp on InsertEnter
 		event = "InsertEnter",
-		-- these dependencies will only be loaded when cmp loads
-		-- dependencies are always lazy-loaded unless specified otherwise
 		dependencies = {
 			'neovim/nvim-lspconfig',
 			"hrsh7th/cmp-nvim-lsp",
@@ -650,51 +665,7 @@ require("lazy").setup({
 		end
 	},
 	-- language support
-	-- svelte
 	{
-		'evanleck/vim-svelte',
-		ft = { "svelte" },
-	},
-	-- toml
-	'cespare/vim-toml',
-	-- yaml
-	{
-		"cuducos/yaml.nvim",
-		ft = { "yaml" },
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-		},
-	},
-	-- rust
-	{
-		'rust-lang/rust.vim',
-		ft = { "rust" },
-		config = function()
-			vim.g.rustfmt_autosave = 1
-			vim.g.rustfmt_emit_files = 1
-			vim.g.rustfmt_fail_silently = 0
-			vim.g.rust_clip_command = 'wl-copy'
-		end
-	},
-	-- fish
-	'khaveesh/vim-fish-syntax',
-	-- markdown
-	{
-		'plasticboy/vim-markdown',
-		ft = { "markdown" },
-		dependencies = {
-			'godlygeek/tabular',
-		},
-		config = function()
-			-- never ever fold!
-			vim.g.vim_markdown_folding_disabled = 1
-			-- support front-matter in .md files
-			vim.g.vim_markdown_frontmatter = 1
-			-- 'o' on a list item should insert at same level
-			vim.g.vim_markdown_new_list_item_indent = 0
-			-- don't add bullets when wrapping:
-			-- https://github.com/preservim/vim-markdown/issues/232
-			vim.g.vim_markdown_auto_insert_bullets = 0
-		end
+		"sheerun/vim-polyglot"
 	},
 })
