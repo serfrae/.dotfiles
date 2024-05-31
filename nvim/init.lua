@@ -500,6 +500,8 @@ require("lazy").setup({
 			lspconfig.tsserver.setup {}
 			-- Python
 			lspconfig.pylsp.setup {}
+			lspconfig.ruff.setup {}
+			lspconfig.ruff_lsp.setup {}
 			-- C#
 			lspconfig.omnisharp.setup {}
 			-- Java
