@@ -385,6 +385,7 @@ require("lazy").setup({
 	-- other colour schemes
 		'catppuccin/nvim',
 		'folke/tokyonight.nvim',
+		'chriskempson/base16-vim',
 	{
 		'nvim-lualine/lualine.nvim',
 		lazy = false,
@@ -499,7 +500,28 @@ require("lazy").setup({
 			-- JS/TS
 			lspconfig.tsserver.setup {}
 			-- Python
-			lspconfig.pylsp.setup {}
+			lspconfig.pylsp.setup {
+				settings = {
+					pylsp = {
+						plugins = {
+							pylsp_mypy = {
+								enabled = true,
+								live_mode = true,
+							},
+							pylsp_black = {
+								enabled = true
+							},
+							pylsp_ruff = {
+								enabled = true
+							},
+							jedi = {
+								enabled = true,
+								environment = os.getenv('VIRTUAL_ENV') or os.getenv('CONDA_PREFIX')
+							}
+						}
+					}
+				}
+			}
 			lspconfig.ruff.setup {}
 			lspconfig.ruff_lsp.setup {}
 			-- C#
