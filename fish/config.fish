@@ -16,6 +16,8 @@ abbr -a nj note_journal
 abbr -a v nvim
 abbr -a vi nvim
 abbr -a vim nvim
+abbr -a ve 'source venv/bin/activate.fish || source .venv/bin/activate.fish'
+abbr -a vd 'deactivate'
 
 setenv XINITRC ~/.config/X11/xinitrc
 setenv XAUTHORITY ~/.config/X11/Xauthority

@@ -353,20 +353,39 @@ vim.api.nvim_create_autocmd('Filetype', {
   command = 'setlocal spell tw=80 colorcolumn=81',
 })
 
--- set python path when detecting .py files
-local function pypath()
-  local handle = io.popen('$HOME/bin/pypath')
-  local py = handle:read("*a")
-
+-- set python path and virtual env when detecting .py files
+local function pyss()
+  local handle = io.popen('$HOME/bin/pyss')
+  local output = handle:read("*a")
   handle:close()
 
-  py = py:gsub("%s+$", "")
-  vim.fn.setenv('PYTHONPATH', py)
+  local lines = {}
+  for line in output:gmatch("[^\r\n]+") do
+    table.insert(lines, line)
+  end
+
+  local py1 = lines[1] or ""
+  local py2 = lines[2] or ""
+
+  -- Trim any trailing newline or spaces from the selected lines
+  py1 = py1:gsub("%s+$", "")
+  py2 = py2:gsub("%s+$", "")
+
+  if py1 ~= "" then
+    vim.fn.setenv('PYTHONPATH', py1)
+  else
+    vim.fn.setenv('PYTHONPATH', nil) 
+  end
+  if py2 ~= "" then
+    vim.fn.setenv('VIRTUAL_ENV', py2)
+  else
+    vim.fn.setenv('VIRTUAL_ENV', nil)
+  end
 end
 
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'python',
-  callback = pypath,
+  callback = function() pyss() end,
 })
 
 -------------------------------------------------------------------------------
