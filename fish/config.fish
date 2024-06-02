@@ -7,10 +7,9 @@ abbr -a ct 'cargo test'
 abbr -a g git
 abbr -a gc 'git checkout'
 abbr -a ga 'git add -p'
-abbr -a hx helix
+#abbr -a hx helix
 abbr -a rgp 'rg -p'
 abbr -a rgr 'rg -uuu'
-abbr -a p pnpm
 abbr -a nn note
 abbr -a nf note_find
 abbr -a nj note_journal
@@ -56,10 +55,8 @@ set -g fish_prompt_pwd_dir_length 3
 
 if command -v paru >/dev/null
     abbr -a p paru
-    abbr -a up 'paru -Syu'
 else
     abbr -a p 'sudo pacman'
-    abbr -a up 'sudo pacman -Syu'
 end
 
 if command -v eza >/dev/null

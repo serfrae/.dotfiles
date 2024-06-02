@@ -20,4 +20,4 @@ set PYTHON_LIB_DIR (echo "$PYTHON_LIB_DIR" | sed 's:/*$::')
 set PYTHON_LIB_DIR "$PYTHON_LIB_DIR/site-packages"
 
 set -xg PYTHONPATH "$PWD/$PYTHON_LIB_DIR"
-echo "Setting PYTHONPATH: $PYTHONPATH"
+echo $PYTHONPATH
