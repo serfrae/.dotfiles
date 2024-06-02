@@ -1,0 +1,6 @@
+#!/bin/sh
+
+#Python Source Script (PYSS)
+
+source venv/bin/activate.fish || source .venv/bin/activate.fish && source $HOME/bin/pypath
+echo "Entering virtual environment"
