@@ -427,7 +427,7 @@ require("lazy").setup({
             i = {
               ["<esc>"] = actions.close,
               -- this isn't working cannot find workaround
-              ["<C-x>"] = actions.send_selected_to_qflist + actions.open_qflist,
+              ["<C-x>"] = actions.send_selected_to_qflist,
             },
           },
         },
