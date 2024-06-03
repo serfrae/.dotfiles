@@ -4,6 +4,142 @@ vim.g.mapleader = " "
 
 -------------------------------------------------------------------------------
 --
+-- preferences
+--
+-------------------------------------------------------------------------------
+vim.opt.background = 'dark'
+vim.o.termguicolors = true
+vim.opt.foldenable = false
+vim.opt.foldmethod = 'manual'
+vim.opt.foldlevelstart = 99
+vim.opt.clipboard = "unnamedplus"
+-- vim.opt.cindent = true
+vim.opt.completeopt = 'menuone,noinsert,noselect'
+-- vim.opt.updatetime = 300
+-- if key combos seem to be "lagging"
+-- http://stackoverflow.com/questions/2158516/delay-before-o-opens-a-new-line
+-- vim.opt.timeoutlen = 300
+vim.opt.scrolloff = 2
+vim.opt.wrap = true
+vim.opt.signcolumn = 'yes'
+vim.opt.relativenumber = true
+vim.opt.number = true
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.undofile = true
+vim.opt.wildmode = 'list:longest'
+-- when opening a file with a command (like :e),
+-- ignore these:
+vim.opt.wildignore = '.hg,.svn,*~,*.png,*.jpg,*.gif,*.min.js,*.swp,*.o,vendor,dist,_site'
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+vim.opt.tabstop = 4
+vim.opt.expandtab = false
+-- case-insensitive search/replace
+vim.opt.ignorecase = true
+-- unless uppercase in search term
+vim.opt.smartcase = true
+vim.opt.vb = true
+vim.opt.colorcolumn = '80'
+vim.api.nvim_create_autocmd('Filetype', { pattern = 'rust', command = 'set colorcolumn=100' })
+vim.opt.listchars = 'tab:▏-,nbsp:¬,extends:»,precedes:«,trail:•'
+vim.opt.list = true
+vim.opt.cursorline = true
+
+-------------------------------------------------------------------------------
+--
+-- hotkeys
+--
+-------------------------------------------------------------------------------
+vim.keymap.set('', '<leader>o', '<cmd>Telescope find_files<cr>')
+vim.keymap.set('n', '<leader>b', '<cmd>Telescope buffers<cr>')
+vim.keymap.set('n', '<leader>t', '<cmd>Telescope tags<cr>')
+
+vim.keymap.set('', 'H', '^')
+vim.keymap.set('', 'L', '$')
+
+vim.keymap.set('n', '<leader>p', '<cmd>read !xsel --clipboard --output<cr>')
+vim.keymap.set('v', '<leader>y', '"+y')
+
+-- always center search results
+vim.keymap.set('n', 'n', 'nzz', { silent = true })
+vim.keymap.set('n', 'N', 'Nzz', { silent = true })
+vim.keymap.set('n', '*', '*zz', { silent = true })
+vim.keymap.set('n', '#', '#zz', { silent = true })
+vim.keymap.set('n', 'g*', 'g*zz', { silent = true })
+-- "very magic" (less escaping needed) regexes by default
+vim.keymap.set('n', '?', '?\\v')
+vim.keymap.set('n', '/', '/\\v')
+vim.keymap.set('c', '%s/', '%sm/')
+vim.keymap.set('n', '<leader>,', ":let @/=''<cr>")
+
+vim.keymap.set('n', '<up>', '<nop>')
+vim.keymap.set('n', '<down>', '<nop>')
+vim.keymap.set('i', '<up>', '<nop>')
+vim.keymap.set('i', '<down>', '<nop>')
+vim.keymap.set('i', '<left>', '<nop>')
+vim.keymap.set('i', '<right>', '<nop>')
+vim.keymap.set('n', 'j', 'gj')
+vim.keymap.set('n', 'k', 'gk')
+
+-- quickfix
+vim.keymap.set('n', '<leader>q', '<cmd>QFix 1 1<cr>')
+vim.keymap.set('n', '<leader>Q', '<cmd>QFix 0 1<cr>')
+vim.keymap.set('n', '[q', '<cmd>cprev<cr>')
+vim.keymap.set('n', ']q', '<cmd>cnext<cr>')
+vim.keymap.set('n', '[Q', '<cmd>cfirst<cr>')
+vim.keymap.set('n', ']Q', '<cmd>clast<cr>')
+
+-- location list
+vim.keymap.set('n', '<leader>l', ':LList 1 1<cr>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>L', ':LList 0 1<cr>', { noremap = true, silent = true })
+vim.keymap.set('n', '[l', ':lprev<cr>')
+vim.keymap.set('n', ']l', ':lnext<cr>')
+vim.keymap.set('n', '[L', ':lfirst<cr>')
+vim.keymap.set('n', ']L', ':llast<cr>')
+--vim.keymap.set('n', 'gl]', 'g]<cr>:ltag<cr>:VList<cr><cr>')
+
+-- tags
+--vim.keymap.set('n', '<leader>t', ':!t<cr>')
+--vim.keymap.set('n', '[t', ':tprevious<cr>')
+--vim.keymap.set('n', ']t', ':tnext<cr>')
+--vim.keymap.set('n', '[T', ':tfirst<cr>')
+--vim.keymap.set('n', '[tw', ':ptprevious<cr>')
+--vim.keymap.set('n', ']tw', ':ptnext<cr>')
+--vim.keymap.set('n', '[TW', ':ptfirst<cr>')
+--vim.keymap.set('n', ']TW', ':ptlast<cr>')
+
+-- buffer toggle
+vim.keymap.set('n', '<leader>b', ':Telescope buffers<cr>')
+vim.keymap.set('n', '[b', ':bprevious<cr>')
+vim.keymap.set('n', ']b', ':bnext<cr>')
+vim.keymap.set('n', '[B', ':bfirst<cr>')
+vim.keymap.set('n', ']B', ':blast<cr>')
+
+-- grep
+vim.keymap.set('n', '<leader>g', ':grep -g !tags <C-r><C-w><cr><cr><cmd>QFix 1 1<cr><cr>')
+vim.keymap.set('v', '<leader>g', ':grep -g !tags <C-r><C-w><cr><cr><cmd>QFix 1 1<cr><cr>')
+vim.keymap.set('n', '<leader>G', ':Telescope live_grep<CR>')
+vim.keymap.set('n', ']/', ':Telescope current_buffer_fuzzy_find<CR>')
+
+-- notes
+vim.keymap.set('n', '<leader>ncd', ':cd ~/docs/notes/<cr>')
+-- ripgrep notes
+vim.keymap.set('n', '<leader>ng', ':cd ~/docs/notes/<cr>:Ngrep<space<C-r><C-w><cr>:QFix 1 0<cr><cr>')
+vim.keymap.set('n', '<leader>nr', ':cd ~/docs/notes/<cr>:Ngrep ')
+-- fzf notes (multi-tag)
+vim.keymap.set('n', '<Leader>ns', ':cd ~/docs/notes/<cr>:Nf (\\v<^|\\s>)@(\\w\\S*)<CR>',
+  { noremap = true, silent = true })
+-- new note
+vim.keymap.set('n', '<leader>nn', ':NewNote')
+-- note link
+-- TODO: Update for telescope
+vim.keymap.set('n', '<Leader>nl', function()
+  vim.fn['fzf#run']({ sink = 'HandleFZF', down = '25%' })
+end, { noremap = true, silent = true })
+
+-------------------------------------------------------------------------------
+--
 -- functions
 --
 -------------------------------------------------------------------------------
@@ -61,7 +197,7 @@ vim.api.nvim_create_user_command('LList', function(opts)
   LListToggle(v, e)
 end, { nargs = '*', bang = true })
 
--- Check if "rg" is executable and set grepprg and grepformat if it is
+-- Check if "rg" is executable and set  repprg and grepformat if it is
 if vim.fn.executable("rg") == 1 then
   vim.o.grepprg = "rg --vimgrep --no-heading (commandline -q)"
   vim.o.grepformat = "%f:%l:%c:%m,%f:%l:%m"
@@ -109,210 +245,17 @@ vim.api.nvim_create_user_command('Ngrep', function(opts)
   vim.cmd(command)
 end, { nargs = 1 })
 
--- Note find
-vim.api.nvim_create_user_command('Nf', function(opts)
-  local actions = require('telescope.actions')
-  local finders = require('telescope.finders')
-  local pickers = require('telescope.pickers')
-  local conf = require('telescope.config').values
-
-  local args = table.concat(opts.fargs, ' ')
-  local rg_args = {
-    '--column',
-    '--line-number',
-    '--no-heading',
-    '--color=always',
-    '-g',
-    '!tags',
-    '-e',
-    args
-  }
-
-  pickers.new({}, {
-    prompt_title = 'Rg',
-    finder = finders.new_oneshot_job({ 'rg' }, {
-      cwd = vim.fn.getcwd(),
-      args = rg_args,
-    }),
-    sorter = conf.generic_sorter(),
-    attach_mappings = function(prompt_bufnr, map)
-      map('i', '<C-x>', actions.send_to_qflist)
-      map('n', '<C-x>', actions.send_selected_to_qflist)
-      map('i', '<C-t>', actions.select_tab)
-      map('n', '<C-t>', actions.select_tab)
-      return true
-    end
-  }):find()
-end, { bang = true, nargs = '*' })
-
--------------------------------------------------------------------------------
---
--- preferences
---
--------------------------------------------------------------------------------
-vim.opt.background = 'dark'
-vim.o.termguicolors = true
-vim.opt.foldenable = false
-vim.opt.foldmethod = 'manual'
-vim.opt.foldlevelstart = 99
-vim.opt.clipboard = "unnamedplus"
--- vim.opt.cindent = true
--- vim.opt.cmdheight = 2
--- vim.opt.completeopt = 'menuone,noinsert,noselect'
--- vim.opt.updatetime = 300
--- if key combos seem to be "lagging"
--- http://stackoverflow.com/questions/2158516/delay-before-o-opens-a-new-line
--- vim.opt.timeoutlen = 300
--- keep more context on screen while scrolling
-vim.opt.scrolloff = 2
--- never show me line breaks if they're not there
-vim.opt.wrap = true
--- always draw sign column. prevents buffer moving when adding/deleting sign
-vim.opt.signcolumn = 'yes'
-vim.opt.relativenumber = true
-vim.opt.number = true
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-vim.opt.undofile = true
-vim.opt.wildmode = 'list:longest'
--- when opening a file with a command (like :e),
--- don't suggest files like there:
-vim.opt.wildignore = '.hg,.svn,*~,*.png,*.jpg,*.gif,*.min.js,*.swp,*.o,vendor,dist,_site'
--- tabs
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
-vim.opt.tabstop = 4
-vim.opt.expandtab = false
--- case-insensitive search/replace
-vim.opt.ignorecase = true
--- unless uppercase in search term
-vim.opt.smartcase = true
-vim.opt.vb = true
--- more useful diffs (nvim -d)
---- by ignoring whitespace
-vim.opt.diffopt:append('iwhite')
---- and using a smarter algorithm
---- https://vimways.org/2018/the-power-of-diff/
---- https://stackoverflow.com/questions/32365271/whats-the-difference-between-git-diff-patience-and-git-diff-histogram
---- https://luppeng.wordpress.com/2020/10/10/when-to-use-each-of-the-git-diff-algorithms/
-vim.opt.diffopt:append('algorithm:histogram')
-vim.opt.diffopt:append('indent-heuristic')
--- show a column at 80 characters as a guide for long lines
-vim.opt.colorcolumn = '80'
---- except in Rust where the rule is 100 characters
-vim.api.nvim_create_autocmd('Filetype', { pattern = 'rust', command = 'set colorcolumn=100' })
--- show more hidden characters
--- also, show tabs nicer
-vim.opt.listchars = 'tab:▏-,nbsp:¬,extends:»,precedes:«,trail:•'
-vim.opt.list = true
-vim.opt.cursorline = true
-
--------------------------------------------------------------------------------
---
--- hotkeys
---
--------------------------------------------------------------------------------
--- quick-open
-vim.keymap.set('', '<leader>o', '<cmd>Telescope find_files<cr>')
--- search buffers
-vim.keymap.set('n', '<leader>b', '<cmd>Telescope buffers<cr>')
--- search tags
-vim.keymap.set('n', '<leader>]', '<cmd>Telescope tags<cr>')
--- make missing : less annoying
-vim.keymap.set('n', ';', ':')
-
-vim.keymap.set('', 'H', '^')
-vim.keymap.set('', 'L', '$')
-
-vim.keymap.set('n', '<leader>p', '<cmd>read !xsel --clipboard --output<cr>')
-vim.keymap.set('v', '<leader>y', '"+y')
-
--- always center search results
-vim.keymap.set('n', 'n', 'nzz', { silent = true })
-vim.keymap.set('n', 'N', 'Nzz', { silent = true })
-vim.keymap.set('n', '*', '*zz', { silent = true })
-vim.keymap.set('n', '#', '#zz', { silent = true })
-vim.keymap.set('n', 'g*', 'g*zz', { silent = true })
--- "very magic" (less escaping needed) regexes by default
-vim.keymap.set('n', '?', '?\\v')
-vim.keymap.set('n', '/', '/\\v')
-vim.keymap.set('c', '%s/', '%sm/')
-vim.keymap.set('n', '<leader>,', ":let @/=''<cr>")
-
-vim.keymap.set('n', '<up>', '<nop>')
-vim.keymap.set('n', '<down>', '<nop>')
-vim.keymap.set('i', '<up>', '<nop>')
-vim.keymap.set('i', '<down>', '<nop>')
-vim.keymap.set('i', '<left>', '<nop>')
-vim.keymap.set('i', '<right>', '<nop>')
-vim.keymap.set('n', 'j', 'gj')
-vim.keymap.set('n', 'k', 'gk')
--- handy keymap for replacing up to next _ (like in variable names)
-vim.keymap.set('n', '<leader>m', 'ct_')
-
--- quickfix
-vim.keymap.set('n', '<leader>q', '<cmd>Telescope quickfix<cr>')
-vim.keymap.set('n', ']o', '<cmd>QFix 1 1<cr>')
-vim.keymap.set('n', '[o', '<cmd>QFix 0 1<cr>')
-vim.keymap.set('n', '[q', '<cmd>cprev<cr>')
-vim.keymap.set('n', ']q', '<cmd>cnext<cr>')
-vim.keymap.set('n', '[Q', '<cmd>cfirst<cr>')
-vim.keymap.set('n', ']Q', '<cmd>clast<cr>')
-
--- location list
-vim.keymap.set('n', '[;', ':LList 0 1<cr>', { noremap = true, silent = true })
-vim.keymap.set('n', '];', ':LList 1 1<cr>', { noremap = true, silent = true })
-vim.keymap.set('n', '[l', ':lprev<cr>')
-vim.keymap.set('n', ']l', ':lnext<cr>')
-vim.keymap.set('n', '[L', ':lfirst<cr>')
-vim.keymap.set('n', ']L', ':llast<cr>')
-vim.keymap.set('n', 'gl]', 'g]<cr>:ltag<cr>:VList<cr><cr>')
-
--- tags
-vim.keymap.set('n', '<leader>t', ':!t<cr>')
-vim.keymap.set('n', '[t', ':tprevious<cr>')
-vim.keymap.set('n', ']t', ':tnext<cr>')
-vim.keymap.set('n', '[T', ':tfirst<cr>')
-vim.keymap.set('n', '[tw', ':ptprevious<cr>')
-vim.keymap.set('n', ']tw', ':ptnext<cr>')
-vim.keymap.set('n', '[TW', ':ptfirst<cr>')
-vim.keymap.set('n', ']TW', ':ptlast<cr>')
-
--- buffer toggle
-vim.keymap.set('n', '<leader>b', ':Telescope buffers<cr>')
-vim.keymap.set('n', '[b', ':bprevious<cr>')
-vim.keymap.set('n', ']b', ':bnext<cr>')
-vim.keymap.set('n', '[B', ':bfirst<cr>')
-vim.keymap.set('n', ']B', ':blast<cr>')
-
--- grep
-vim.keymap.set('n', '<leader>g', ':grep -g !tags <C-r><C-w><cr><cr><cmd>QFix 1 1<cr><cr>')
-vim.keymap.set('v', '<leader>g', ':grep -g !tags <C-r><C-w><cr><cr><cmd>QFix 1 1<cr><cr>')
-vim.keymap.set('n', '<leader>r', ':grep ', { noremap = true })
-vim.keymap.set('n', '<leader>lg', ':lgrep -g !tags <C-r><C-w><cr><cr><cmd>QFix 1 1<cr><cr>')
-vim.keymap.set('v', '<leader>lg', ':lgrep -g !tags <C-r><C-w><cr><cr><cmd>QFix 1 1<cr><cr>')
-vim.keymap.set('n', '<leader>lr', ':lgrep ', { noremap = true })
-
--- notes
-vim.keymap.set('n', '<leader>ncd', ':cd ~/docs/notes/<cr>')
--- ripgrep notes
-vim.keymap.set('n', '<leader>ng', ':cd ~/docs/notes/<cr>:Ngrep<space<C-r><C-w><cr>:QFix 1 0<cr><cr>')
-vim.keymap.set('n', '<leader>nr', ':cd ~/docs/notes/<cr>:Ngrep ')
--- fzf notes (multi-tag)
-vim.keymap.set('n', '<Leader>ns', ':cd ~/docs/notes/<cr>:Nf (\\v<^|\\s>)@(\\w\\S*)<CR>',
-  { noremap = true, silent = true })
--- new note
-vim.keymap.set('n', '<leader>nn', ':NewNote')
--- note link
--- TODO: Update for telescope
-vim.keymap.set('n', '<Leader>nl', function()
-  vim.fn['fzf#run']({ sink = 'HandleFZF', down = '25%' })
-end, { noremap = true, silent = true })
 -------------------------------------------------------------------------------
 --
 -- autocommands
 --
 -------------------------------------------------------------------------------
+vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+  callback = function()
+    vim.cmd('VFix')
+  end
+})
+
 -- highlight yanked text
 vim.api.nvim_create_autocmd(
   'TextYankPost',
@@ -326,7 +269,7 @@ vim.api.nvim_create_autocmd(
   'BufReadPost',
   {
     pattern = '*',
-    callback = function(ev)
+    callback = function(_)
       if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then
         -- except for in git commit messages
         -- https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
@@ -337,15 +280,6 @@ vim.api.nvim_create_autocmd(
     end
   }
 )
--- prevent accidental writes to buffers that shouldn't be edited
-vim.api.nvim_create_autocmd('BufRead', { pattern = '*.orig', command = 'set readonly' })
-vim.api.nvim_create_autocmd('BufRead', { pattern = '*.pacnew', command = 'set readonly' })
--- leave paste mode when leaving insert mode (if it was on)
-vim.api.nvim_create_autocmd('InsertLeave', { pattern = '*', command = 'set nopaste' })
--- help filetype detection (add as needed)
---vim.api.nvim_create_autocmd('BufRead', { pattern = '*.ext', command = 'set filetype=someft' })
--- shorter columns in text because it reads better that way
---
 --- tex has so much syntax that a little wider is ok
 vim.api.nvim_create_autocmd('Filetype', {
   pattern = 'tex',
@@ -374,7 +308,7 @@ local function pyss()
   if py1 ~= "" then
     vim.fn.setenv('PYTHONPATH', py1)
   else
-    vim.fn.setenv('PYTHONPATH', nil) 
+    vim.fn.setenv('PYTHONPATH', nil)
   end
   if py2 ~= "" then
     vim.fn.setenv('VIRTUAL_ENV', py2)
@@ -491,10 +425,12 @@ require("lazy").setup({
         defaults = {
           mappings = {
             i = {
-              ["<esc>"] = actions.close
+              ["<esc>"] = actions.close,
+              -- this isn't working cannot find workaround
+              ["<C-x>"] = actions.send_selected_to_qflist + actions.open_qflist,
             },
           },
-        }
+        },
       }
     end
   },
@@ -567,7 +503,15 @@ require("lazy").setup({
       -- Solidity
       lspconfig.solidity_ls_nomicfoundation.setup {}
       -- Lua
-      lspconfig.lua_ls.setup {}
+      lspconfig.lua_ls.setup {
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { "vim" },
+            },
+          }
+        }
+      }
 
       -- Bash LSP
       local configs = require 'lspconfig.configs'
@@ -589,12 +533,10 @@ require("lazy").setup({
         lspconfig.bash_lsp.setup {}
       end
 
-      -- Global mappings.
-      -- See `:help vim.diagnostic.*` for documentation on any of the below functions
       vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
       vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
       vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-      --vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+      vim.keymap.set('n', '<leader>d', vim.diagnostic.setloclist)
 
       -- Use LspAttach autocommand to only map the following keys
       -- after the language server attaches to the current buffer
@@ -604,35 +546,22 @@ require("lazy").setup({
           -- Enable completion triggered by <c-x><c-o>
           vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
-          -- Buffer local mappings.
-          -- See `:help vim.lsp.*` for documentation on any of the below functions
           local opts = { buffer = ev.buf }
+          vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+          vim.keymap.set('n', 'gR', "<cmd>Telescope lsp_references<CR>")
           vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
           vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
           vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
           vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
           vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-          vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
-          vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
-          vim.keymap.set('n', '<leader>wl', function()
-            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-          end, opts)
           vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-          -- TODO: remap
-          -- vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)
           vim.keymap.set({ 'n', 'v' }, '<leader>a', vim.lsp.buf.code_action, opts)
-          vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+          vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)
           vim.keymap.set('n', '<leader>f', function()
             vim.lsp.buf.format { async = true }
           end, opts)
 
           local client = vim.lsp.get_client_by_id(ev.data.client_id)
-
-          -- When https://neovim.io/doc/user/lsp.html#lsp-inlay_hint stabilizes
-          -- *and* there's some way to make it only apply to the current line.
-          -- if client.server_capabilities.inlayHintProvider then
-          --     vim.lsp.inlay_hint(ev.buf, true)
-          -- end
 
           -- None of this semantics tokens business.
           -- https://www.reddit.com/r/neovim/comments/143efmd/is_it_possible_to_disable_treesitter_completely/
@@ -668,16 +597,16 @@ require("lazy").setup({
           ['<C-e>'] = cmp.mapping.abort(),
           -- Accept currently selected item.
           -- Set `select` to `false` to only confirm explicitly selected items.
-          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          ['<CR>'] = cmp.mapping.confirm({ select = false }),
         }),
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
         }, {
           { name = 'path' },
         }),
-        experimental = {
-          ghost_text = true,
-        },
+        --experimental = {
+        --  ghost_text = true,
+        --},
       })
 
       -- Enable completing paths in :
@@ -712,7 +641,7 @@ require("lazy").setup({
     "ray-x/lsp_signature.nvim",
     event = "VeryLazy",
     opts = {},
-    config = function(_, opts)
+    config = function(_, _)
       -- Get signatures (and _only_ signatures) when in argument lists.
       require "lsp_signature".setup({
         doc_lines = 0,
@@ -725,5 +654,9 @@ require("lazy").setup({
   -- language support
   {
     "sheerun/vim-polyglot"
+  },
+  {
+    "stevearc/dressing.nvim",
+    event = "VeryLazy",
   },
 })
