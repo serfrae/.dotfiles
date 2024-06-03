@@ -307,13 +307,9 @@ local function pyss()
 
   if py1 ~= "" then
     vim.fn.setenv('PYTHONPATH', py1)
-  else
-    vim.fn.setenv('PYTHONPATH', nil)
   end
   if py2 ~= "" then
     vim.fn.setenv('VIRTUAL_ENV', py2)
-  else
-    vim.fn.setenv('VIRTUAL_ENV', nil)
   end
 end
 

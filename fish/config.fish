@@ -19,6 +19,7 @@ abbr -a vim nvim
 abbr -a ve 'source venv/bin/activate.fish || source .venv/bin/activate.fish'
 abbr -a vd 'deactivate'
 
+
 setenv XINITRC ~/.config/X11/xinitrc
 setenv XAUTHORITY ~/.config/X11/Xauthority
 setenv TERM alacritty
@@ -29,7 +30,7 @@ set AI ~/projects/ai/llama.cpp/main
 set MODELS ~/projects/ai/models
 set NOTES ~/docs/notes/
 
-set PATH $PATH ~/bin ~/.local/bin ~/.cargo/bin ~/.local/share/solana/install/active_release/bin
+set PATH $PATH ~/bin ~/.local/bin ~/.cargo/bin ~/.local/share/solana/install/active_release/bin ~/.pixi/bin
 
 function fish_prompt
     set_color white
@@ -76,3 +77,4 @@ function fish_user_key_bindings
     fish_default_key_bindings -M insert
     fish_vi_key_bindings --no-erase insert
 end
+pixi completion --shell fish | source

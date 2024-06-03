@@ -1,0 +1,7 @@
+{
+    "diagnostics.globals": [
+        "vim",
+        "list_cmd",
+        "text"
+    ]
+}

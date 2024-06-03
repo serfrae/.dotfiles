@@ -4,7 +4,7 @@
 sudo pacman -S archlinux-keyring
 
 # Install packages
-sudo pacman -S alacritty alsa-utils bluez bluez-utils brightnessctl cargo clang cmake docker eza fd fish fzf github-cli htop interception-tools interception-dual-function-keys jq libnotify npm openssh python python-pip ripgrep rustup sd texlive-core tmux ttf-font-awesome ttf-jetbrains-mono ttf-nerd-fonts-symbols wget
+sudo pacman -S alacritty alsa-utils bluez bluez-utils brightnessctl cargo clang cmake docker eza fd fish fzf github-cli htop interception-tools interception-dual-function-keys jq libnotify npm openssh pixi python python-pip rattler-buildrip ripgrep rustup sd texlive-core tmux ttf-font-awesome ttf-jetbrains-mono ttf-nerd-fonts-symbols wget
 
 # Install Rust
 rustup install nightly

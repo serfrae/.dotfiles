@@ -1,25 +1,32 @@
 #!/bin/fish
  
-if test -d "venv"
-	set VENV_PATH "venv"
-else if test -d ".venv" 
-	set VENV_PATH ".venv"
+if test -d "venv" || test -d ".venv"
+	if test -d ".venv"
+		set VENV_PATH ".venv"
+	else if test -d "venv"
+		set VENV_PATH "venv"
+	end
+else if test -d ".pixi"
+	set VENV_PATH ".pixi/envs/default"
 else
 	echo "No virtual environment found"
 	exit 1
 end
 
-set PYTHON_LIB_DIR (fd -t d '^python' "$VENV_PATH/lib/" --max-depth 1)
+set PYTHON_DIR (fd -t d '^python' "$VENV_PATH/lib/" --max-depth 1)
 
-if test -z "$PYTHON_LIB_DIR"
-	echo "No python library directory found in $VENV_PATH/lib"
+if test -z "$PYTHON_DIR"
+	echo "No python library directory found" 
 	exit 1
 end
 
-set PYTHON_LIB_DIR (echo "$PYTHON_LIB_DIR" | sed 's:/*$::')
-set PYTHON_LIB_DIR "$PYTHON_LIB_DIR/site-packages"
+set PYTHON_DIR (echo "$PYTHON_DIR" | sed 's:/*$::')
+set PYTHON_DIR "$PYTHON_DIR/site-packages"
 
-set -xg PYTHONPATH "$PWD/$PYTHON_LIB_DIR"
-set -xg VIRTUAL_ENV "$VENV_PATH" 
+set -xg PYTHONPATH "$PWD/$PYTHON_DIR"
 echo $PYTHONPATH
-echo $VIRTUAL_ENV
+
+if test $VENV_PATH != ".pixi/envs/default"
+	set -xg VIRTUAL_ENV $VENV_PATH
+	echo $VIRTUAL_ENV
+end
