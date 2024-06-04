@@ -16,7 +16,7 @@ abbr -a nj note_journal
 abbr -a v nvim
 abbr -a vi nvim
 abbr -a vim nvim
-abbr -a ve 'source venv/bin/activate.fish || source .venv/bin/activate.fish'
+abbr -a ve 'source .venv/bin/activate.fish > /dev/null 2&>1 || source venv/bin/activate.fish > /dev/null 2&>1'
 abbr -a vd 'deactivate'
 
 
