@@ -123,22 +123,24 @@
     # section for how to disable this if necessary
     idle_threshold = 120
 
-[low]
-    msg_urgency = low
+    [global]
+    frame_color = "#89b4fa"
+    separator_color= frame
+
+    [urgency_low]
     format = "<span size="large">󰦕<b> %s </b></span>\n%b"
-    background = "#282A36"
-    foreground = "#F8F8F2"
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
     timeout = 10
 
-[urgency_normal]
-    background = "#282A36"
-    foreground = "#F8F8F2"
+    [urgency_normal]
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
     timeout = 10
 
-[critical]
-    msg_urgency = critical
+    [urgency_critical]
     format = "<span size="large">󰚌 <b>%s </b></span>\n<b>ERROR: </b>%b"
-    background = "#282A36"
-    foreground = "#F8F8F2"
-    frame_color = "#FF5555"
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
+    frame_color = "#fab387"
     timeout = 0

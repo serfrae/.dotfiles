@@ -1,3 +1,7 @@
+import = [
+	"~/.dotfiles/alacritty/catppuccin-mocha.toml"
+]
+
 [window]
 dimensions = { columns = 2, lines = 1 }
 padding = { x = 0, y = 0}
@@ -17,23 +21,6 @@ italic = { family = "JetBrains Mono", style = "Italic"}
 size = 12
 glyph_offset = { x = 0, y = -1}
 offset = { x = 0, y = 0}
-
-[colors]
-selection = { text = "#363848", background = "#F8F8F2" }
-cursor = { text = "#282A36", cursor = "#F8F8F2" }
-
-[colors.primary]
-foreground = "#F8F8F2"
-background = "#282A36"
-
-[colors.normal]
-black = '#191A21'
-red = '#FF5555'
-green = '#50FA7B'
-yellow = '#F1FA8C'
-blue = '#8BE9FD'
-magenta = '#BD93F9'
-cyan = '#8BE9FD'
 
 [bell]
 animation = "EaseOutExpo"

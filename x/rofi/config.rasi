@@ -1,10 +1,12 @@
 configuration {
+sidebar-mode: true;
 show-icons: true;
-font: "Open Sans 24";
+font: "JetBrains Mono";
+terminal: "alacritty";
 kb-row-up: "super+k"; 
 kb-row-down: "super+j";
 kb-mode-next: "super+l";
 kb-mode-previous: "super+h";
 }
 
-@theme "./colors-rofi.rasi"
+@theme "./catppuccin.rasi"

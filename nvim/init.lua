@@ -340,13 +340,15 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   -- main colour scheme
   {
-    'Mofiqul/dracula.nvim',
+    'catppuccin/nvim',
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd([[colorscheme dracula]])
+      vim.cmd([[colorscheme catppuccin]])
     end
   },
+  'folke/tokyonight.nvim',
+  'Mofiqul/dracula.nvim',
   {
     'nvim-lualine/lualine.nvim',
     lazy = false,

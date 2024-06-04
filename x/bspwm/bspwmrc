@@ -47,11 +47,11 @@ _bc pointer_action2 resize_side
 _bc pointer_action3 resize_corner
 
 ### BSPWM Colours
-_bc normal_border_color "#272a36"
-_bc active_border_color "#ff79c6"
-_bc focused_border_color "#bd93f9"
-_bc presel_feedback_color "#f8f8f2"
-#_bc urgent_border_color 	      "#ee2e24
+_bc normal_border_color "#1e1e2e"
+_bc active_border_color "#f5e0dc"
+_bc focused_border_color "#f5c2e7"
+_bc presel_feedback_color "#cdd6f4"
+_bc urgent_border_color "#f38ba8"
 
 ### Hide Polybar on Fullscreen
 xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_eDP-1)
