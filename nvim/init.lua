@@ -54,6 +54,9 @@ vim.opt.cursorline = true
 vim.keymap.set('', '<leader>o', '<cmd>Telescope find_files<cr>')
 vim.keymap.set('n', '<leader>b', '<cmd>Telescope buffers<cr>')
 vim.keymap.set('n', '<leader>t', '<cmd>Telescope tags<cr>')
+vim.keymap.set('n', '<leader>m', '<cmd>Telescope marks<cr>')
+vim.keymap.set('n', '<leader>j', '<cmd>Telescope jumplist<cr>')
+vim.keymap.set('n', ']r', '<cmd>Telescope registers<cr>')
 
 vim.keymap.set('', 'H', '^')
 vim.keymap.set('', 'L', '$')

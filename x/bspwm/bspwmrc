@@ -49,7 +49,7 @@ _bc pointer_action3 resize_corner
 ### BSPWM Colours
 _bc normal_border_color "#1e1e2e"
 _bc active_border_color "#f5e0dc"
-_bc focused_border_color "#f5c2e7"
+_bc focused_border_color "#cba6f7"
 _bc presel_feedback_color "#cdd6f4"
 _bc urgent_border_color "#f38ba8"
 
