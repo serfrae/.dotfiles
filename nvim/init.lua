@@ -56,7 +56,10 @@ vim.keymap.set('n', '<leader>b', '<cmd>Telescope buffers<cr>')
 vim.keymap.set('n', '<leader>t', '<cmd>Telescope tags<cr>')
 vim.keymap.set('n', '<leader>m', '<cmd>Telescope marks<cr>')
 vim.keymap.set('n', '<leader>j', '<cmd>Telescope jumplist<cr>')
-vim.keymap.set('n', ']r', '<cmd>Telescope registers<cr>')
+vim.keymap.set('n', '<space>\'', '<cmd>Telescope registers<cr>')
+vim.keymap.set('n', '<leader>`', '<cmd>Telescope<cr>')
+vim.keymap.set('n', '<leader>c', ':cclose<cr>')
+vim.keymap.set('n', '<leader>h', '<cmd>Telescope highlights<cr>')
 
 vim.keymap.set('', 'H', '^')
 vim.keymap.set('', 'L', '$')
@@ -137,9 +140,9 @@ vim.keymap.set('n', '<Leader>ns', ':cd ~/docs/notes/<cr>:Nf (\\v<^|\\s>)@(\\w\\S
 vim.keymap.set('n', '<leader>nn', ':NewNote')
 -- note link
 -- TODO: Update for telescope
-vim.keymap.set('n', '<Leader>nl', function()
-  vim.fn['fzf#run']({ sink = 'HandleFZF', down = '25%' })
-end, { noremap = true, silent = true })
+--vim.keymap.set('n', '<Leader>nl', function()
+--  vim.fn['fzf#run']({ sink = 'HandleFZF', down = '25%' })
+--end, { noremap = true, silent = true })
 
 -------------------------------------------------------------------------------
 --
@@ -291,6 +294,7 @@ vim.api.nvim_create_autocmd('Filetype', {
 })
 
 -- set python path and virtual env when detecting .py files
+-- only works in the root directory of the project
 local function pyss()
   local handle = io.popen('$HOME/bin/pyss')
   local output = handle:read("*a")
@@ -549,13 +553,12 @@ require("lazy").setup({
 
           local opts = { buffer = ev.buf }
           vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-          vim.keymap.set('n', 'gR', "<cmd>Telescope lsp_references<CR>")
-          vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+          vim.keymap.set('n', 'gs', vim.lsp.buf.document_symbol, opts)
           vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+          vim.keymap.set('n', 'gD', vim.lsp.buf.type_definition, opts)
           vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
           vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
           vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-          vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
           vim.keymap.set({ 'n', 'v' }, '<leader>a', vim.lsp.buf.code_action, opts)
           vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)
           vim.keymap.set('n', '<leader>f', function()
@@ -645,10 +648,52 @@ require("lazy").setup({
     config = function(_, _)
       -- Get signatures (and _only_ signatures) when in argument lists.
       require "lsp_signature".setup({
-        doc_lines = 0,
-        handler_opts = {
-          border = "none"
-        },
+        cfg = {
+          bind = true, -- This is mandatory, otherwise border config won't get registered.
+          doc_lines = 10, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
+          -- set to 0 if you DO NOT want any API comments be shown
+          -- This setting only take effect in insert mode, it does not affect signature help in normal
+          -- mode, 10 by default
+          max_height = 12, -- max height of signature floating_window
+          max_width = 80, -- max_width of signature floating_window, line will be wrapped if exceed max_width
+          -- the value need >= 40
+          wrap = true, -- allow doc/signature text wrap inside floating_window, useful if your lsp return doc/sig is too long
+          floating_window = true,
+          floating_window_above_cur_line = true, -- try to place the floating above the current line when possible Note:
+          -- will set to true when fully tested, set to false will use whichever side has more space
+          -- this setting will be helpful if you do not want the PUM and floating win overlap
+          floating_window_off_x = 1, -- adjust float windows x position.
+          -- can be either a number or function
+          floating_window_off_y = 0, -- adjust float windows y position. e.g -2 move window up 2 lines; 2 move down 2 lines
+          -- can be either number or function, see examples
+          close_timeout = 4000, -- close floating window after ms when laster parameter is entered
+          fix_pos = false, -- set to true, the floating window will not auto-close until finish all parameters
+          hint_enable = true, -- virtual hint enable
+          hint_prefix = "🐼 ", -- Panda for parameter, NOTE: for the terminal not support emoji, might crash
+          -- or, provide a table with 3 icons
+          -- hint_prefix = {
+          --     above = "↙ ",  -- when the hint is on the line above the current line
+          --     current = "← ",  -- when the hint is on the same line
+          --     below = "↖ "  -- when the hint is on the line below the current line
+          -- }
+          hint_scheme = "String",
+          hint_inline = function() return false end, -- should the hint be inline(nvim 0.10 only)?  default false
+          hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
+          handler_opts = {
+            border = "single" -- double, rounded, single, shadow, none, or a table of borders
+          },
+          always_trigger = true, -- sometime show signature on new line or in middle of parameter can be confusing, set it to false for #58
+          auto_close_after = nil, -- autoclose signature float win after x sec, disabled if nil.
+          zindex = 200, -- by default it will be on top of all floating windows, set to <= 50 send it to bottom
+          padding = '', -- character to pad on left and right of signature can be ' ', or '|'  etc
+          transparency = 100, -- disabled by default, allow floating win transparent value 1~100
+          timer_interval = 0,                     -- default timer check interval set to lower value if you want to reduce latency
+          toggle_key_flip_floatwin_setting = false, -- true: toggle floating_windows: true|false setting after toggle key pressed
+          -- false: floating_windows setup will not change, toggle_key will pop up signature helper, but signature
+          -- may not popup when typing depends on floating_window setting
+          select_signature_key = nil, -- cycle to next signature, e.g. '<M-n>' function overloading
+          keymaps = {}, -- relate to move_cursor_key; the keymaps inside floating window, e.g. keymaps = { 'j', '<C-o>j' } this map j to <C-o>j in floating window
+        }
       })
     end
   },
@@ -659,5 +704,8 @@ require("lazy").setup({
   {
     "stevearc/dressing.nvim",
     event = "VeryLazy",
+  },
+  {
+    'github/copilot.vim'
   },
 })
