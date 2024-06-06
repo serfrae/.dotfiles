@@ -67,10 +67,10 @@ bind index,pager \Co sidebar-open
 
 # Move the highlight to the previous mailbox containing new, or flagged,
 # mail.
-bind index,pager <F5> sidebar-prev-new
+#bind index,pager <F5> sidebar-prev-new
 
 # Move the highlight to the next mailbox containing new, or flagged, mail.
-bind index,pager <F6> sidebar-next-new
+#bind index,pager <F6> sidebar-next-new
 
 # Toggle the visibility of the Sidebar.
 bind index,pager B sidebar-toggle-visible

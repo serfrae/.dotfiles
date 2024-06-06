@@ -1,3 +1,5 @@
+set -g fish_greeting
+
 abbr -a c cargo
 abbr -a cb 'cargo build'
 abbr -a cbr 'cargo build --release'

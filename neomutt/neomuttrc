@@ -1,5 +1,5 @@
-source "$XDG_CONFIG_HOME/mutt/theme"
-source "$XDG_CONFIG_HOME/mutt/sidebar"
+source ~/.config/neomutt/theme
+source ~/.config/neomutt/sidebar
 
 set editor = "nvim"
 set edit_headers = yes
@@ -8,7 +8,7 @@ set abort_nosubject = no
 set mail_check = 60
 set timeout = 10
 set sort = "reverse-date-received"
-set signature = "$XDG_CONFIG_HOME/mutt/signature"
+set signature = "$XDG_CONFIG_HOME/neomutt/signature"
 set copy = no
 set imap_check_subscribed
 set sleep_time = 0
@@ -21,25 +21,26 @@ unset imap_passive
 set mail_check = 60
 set timeout = 10
 set sort = "reverse-date-received"
-set header_cache = "$XDG_CACHE_HOME/mutt/headers"
-set message_cachedir = "$XDG_CACHE_HOME/mutt/bodies"
-set certificate_file = "$XDG_DATA_HOME/mutt/certificates"
+set header_cache = ~/.cache/neomutt/headers
+set message_cachedir = ~/.cache/neomutt/bodies"
+set certificate_file = "~/.local/share/neomutt/certificates"
+set real_name = "Andrew Fraser"
 
 ### Personal
-folder-hook 'a7raser' source 'gpg -d $XDG_CONFIG_HOME/mutt/a7raser.gpg |'
-
-### Synchrony
-#folder-hook 'synchrony' source 'gpg -d $XDG_CONFIG_HOME/mutt/synchrony.gpg |'
+folder-hook 'a7raser' source 'gpg -d ~/.config/neomutt/a7raser-gmail.gpg |'
+folder-hook 'serfrae' source 'gpg -d ~/.config/neomutt/serfrae-protonmail.gpg |'
 
 ### Default
-source 'gpg -d $XDG_CONFIG_HOME/mutt/a7raser.gpg |'
+source 'gpg -d ~/.config/neomutt/serfrae-protonmail.gpg |'
+source 'gpg -d ~/.config/neomutt/a7raser-gmail.gpg |'
 
 ## Shortcuts
-macro index,pager <f1> "<sync-mailbox><enter-command>source 'gpg -d $XDG_CONFIG_HOME/mutt/a7raser.gpg |'<enter><change-folder>!<enter>"
-macro index,pager <f2> "<sync-mailbox><enter-command>source 'gpg -d $XDG_CONFIG_HOME/mutt/synchrony.gpg |'<enter><change-folder>!<enter>"
+macro index,pager <f1> "<sync-mailbox><enter-command>source 'gpg -d ~/.config/neomutt/serfrae-protonmail.gpg |'<enter><change-folder>!<enter>"
+macro index,pager <f2> "<sync-mailbox><enter-command>source 'gpg -d ~/.config/neomutt/a7raser-gmail.gpg |'<enter><change-folder>!<enter>"
 macro index 'c' '<change-folder>?<change-dir><home>^K=<enter>'
 macro pager \cb  <pipe-entry>'urlview'<enter>
 
+bind pager g noop
 bind index,pager gr group-reply
 bind pager j next-line
 bind pager k previous-line
