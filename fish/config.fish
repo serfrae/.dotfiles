@@ -7,7 +7,6 @@ abbr -a ct 'cargo test'
 abbr -a g git
 abbr -a gc 'git checkout'
 abbr -a ga 'git add -p'
-#abbr -a hx helix
 abbr -a rgp 'rg -p'
 abbr -a rgr 'rg -uuu'
 abbr -a nn note
@@ -26,9 +25,23 @@ setenv TERM alacritty
 setenv EDITOR nvim 
 setenv BROWSER firefox-developer-edition
 setenv RUST_BACKTRACE 1
+
 set AI ~/projects/ai/llama.cpp/main
 set MODELS ~/projects/ai/models
 set NOTES ~/docs/notes/
+set DOTFILES ~/.dotfiles
+set XDG_CONFIG_HOME $HOME/.config
+set XDG_DATA_HOME $HOME/.local/share
+set XDG_CACHE_HOME $HOME/.cache
+set XDG_STATE_HOME $HOME/.local/state
+
+set -x CARGO_HOME $XDG_DATA_HOME/cargo
+set -x DOCKER_CONFIG $XDG_CONFIG_HOME/docker
+set -x GNUPGHOME $XDG_DATA_HOME/gnupg
+set -x NODE_REPL_HISTORY $XDG_DATA_HOME/node_repl_history
+set -x PYTHON_HISTORY $XDG_STATE_HOME/python/history
+set -x RUSTUP_HOME $XDG_DATA_HOME/rustup
+set -x VSCODE_PORTABLE $XDG_DATA_HOME/vscode
 
 set PATH $PATH ~/bin ~/.local/bin ~/.cargo/bin ~/.local/share/solana/install/active_release/bin ~/.pixi/bin
 

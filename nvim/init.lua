@@ -517,6 +517,7 @@ require("lazy").setup({
           }
         }
       }
+      lspconfig.sqls.setup {}
 
       -- Bash LSP
       local configs = require 'lspconfig.configs'
