@@ -26,9 +26,10 @@ set message_cachedir = ~/.cache/neomutt/bodies"
 set certificate_file = "~/.local/share/neomutt/certificates"
 set real_name = "Andrew Fraser"
 
+
 ### Personal
-folder-hook 'a7raser' source 'gpg -d ~/.config/neomutt/a7raser-gmail.gpg |'
-folder-hook 'serfrae' source 'gpg -d ~/.config/neomutt/serfrae-protonmail.gpg |'
+account-hook 'a7raser' source 'gpg -d ~/.config/neomutt/a7raser-gmail.gpg |'
+account-hook 'serfrae' source 'gpg -d ~/.config/neomutt/serfrae-protonmail.gpg |'
 
 ### Default
 source 'gpg -d ~/.config/neomutt/serfrae-protonmail.gpg |'
