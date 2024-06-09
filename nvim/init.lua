@@ -64,6 +64,7 @@ vim.keymap.set('', 'L', '$')
 
 vim.keymap.set('n', '<leader>p', '<cmd>read !xsel --clipboard --output<cr>')
 vim.keymap.set('v', '<leader>y', '"+y')
+vim.keymap.set('n', '<S-z><S-x>', ':q!<cr>')
 
 -- always center search results
 vim.keymap.set('n', 'n', 'nzz', { silent = true })
