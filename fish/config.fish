@@ -98,3 +98,4 @@ function fish_user_key_bindings
 end
 
 pixi completion --shell fish | source
+zoxide init fish --cmd j | source
