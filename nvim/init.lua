@@ -45,6 +45,7 @@ vim.api.nvim_create_autocmd('Filetype', { pattern = 'rust', command = 'set color
 vim.opt.listchars = 'tab:▏-,nbsp:¬,extends:»,precedes:«,trail:•'
 vim.opt.list = true
 vim.opt.cursorline = true
+vim.opt.tags = './tags;,tags'
 
 -------------------------------------------------------------------------------
 --
@@ -126,7 +127,7 @@ vim.keymap.set('n', '<leader>/', ':Telescope current_buffer_fuzzy_find<CR>')
 -- notes
 vim.keymap.set('n', '<leader>ncd', ':cd ~/docs/notes/<cr>')
 -- ripgrep notes
-vim.keymap.set('n', '<leader>ng', ':cd ~/docs/notes/<cr>:Ngrep<space<C-r><C-w><cr>:QFix 1 0<cr><cr>')
+vim.keymap.set('n', '<leader>ng', ':cd ~/docs/notes/<cr>:Ngrep<space><C-r><C-w><cr>:QFix 1 0<cr><cr>')
 vim.keymap.set('n', '<leader>nr', ':cd ~/docs/notes/<cr>:Ngrep ')
 -- fzf notes (multi-tag)
 vim.keymap.set('n', '<Leader>ns', ':cd ~/docs/notes/<cr>:Nf (\\v<^|\\s>)@(\\w\\S*)<CR>',
@@ -134,11 +135,62 @@ vim.keymap.set('n', '<Leader>ns', ':cd ~/docs/notes/<cr>:Nf (\\v<^|\\s>)@(\\w\\S
 -- new note
 vim.keymap.set('n', '<leader>nn', ':NewNote')
 -- note link
--- TODO: Update for telescope
---vim.keymap.set('n', '<Leader>nl', function()
---  vim.fn['fzf#run']({ sink = 'HandleFZF', down = '25%' })
---end, { noremap = true, silent = true })
+function NoteLink()
+	-- Define the action to take when a note is selected
+	local insert_link_action = function(prompt_bufnr)
+		local selection = require('telescope.actions.state').get_selected_entry(prompt_bufnr)
+		require('telescope.actions').close(prompt_bufnr)
 
+		-- Get the relative path to the selected note
+		local full_note_path = selection.value
+		local note_path = vim.fn.fnamemodify(full_note_path, ':t')
+		local date_pattern = ('%d'):rep(8) .. '%-'
+		local date_pattern_ext = ('%d'):rep(12) .. '%-'
+		local trimmed_note_path = note_path:gsub(date_pattern_ext, ''):gsub(date_pattern, '')
+		local filename_without_ext = vim.fn.fnamemodify(trimmed_note_path, ':r')
+
+		-- Insert the Markdown link at the cursor position
+		vim.api.nvim_put({ '[ ' .. filename_without_ext .. ' ]' .. '( ' .. note_path .. ' )' }, 'l', true, true)
+	end
+
+	-- Configure the finder and sorter
+	local opts = {
+		find_command = { 'rg', '--files', '--hidden', '--ignore', vim.fn.expand('$HOME/docs/notes') },
+		attach_mappings = function(_, map)
+			map('i', '<CR>', insert_link_action)
+			map('n', '<CR>', insert_link_action)
+			return true
+		end
+	}
+
+	local telescope = require('telescope.builtin')
+	telescope.find_files(opts)
+end
+
+vim.api.nvim_set_keymap('n', '<leader>nl', '<cmd>lua NoteLink()<cr>', { noremap = true, silent = true })
+
+function NoteFind()
+	local home = os.getenv("HOME")
+	local docs_path = home .. "/docs/notes"
+	local cmd = "rg -e '(^|[[:space:]])@(\\w\\S*)' -g !tags | fzf | sed -e 's/:.*//g'"
+	local handle = io.popen("cd " .. docs_path .. " && " .. cmd)
+	local result = handle:read("*a")
+	handle:close()
+	if result and result ~= "" then
+		vim.api.nvim_command('edit ' .. result)
+	end
+end
+
+vim.api.nvim_set_keymap('n', '<leader>nf', '<cmd>lua NoteFind()<cr>', { noremap = true, silent = true })
+
+function MarkdownGf()
+	local word = vim.fn.expand('<cword>')
+	vim.fn.search(word, 'W')
+	vim.api.nvim_command('normal! gf')
+end
+
+-- Map gf to the custom function in markdown files
+vim.api.nvim_command('autocmd FileType markdown nnoremap <buffer> gf :lua MarkdownGf()<CR>')
 -------------------------------------------------------------------------------
 --
 -- functions
@@ -251,6 +303,12 @@ end, { nargs = 1 })
 -- autocommands
 --
 -------------------------------------------------------------------------------
+vim.api.nvim_create_autocmd('BufWritePost', {
+	callback = function()
+		vim.cmd('silent !ctags . &')
+	end
+})
+
 vim.api.nvim_create_autocmd("QuickFixCmdPost", {
 	callback = function()
 		vim.cmd('VFix')
@@ -589,7 +647,7 @@ require("lazy").setup({
 					['<C-e>'] = cmp.mapping.abort(),
 					-- Accept currently selected item.
 					-- Set `select` to `false` to only confirm explicitly selected items.
-					['<CR>'] = cmp.mapping.confirm({ select = false }),
+					['<CR>'] = cmp.mapping.confirm({ select = true }),
 				}),
 				sources = cmp.config.sources({
 					{ name = 'nvim_lsp' },
