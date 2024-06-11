@@ -54,6 +54,7 @@ vim.opt.tags = './tags;,tags'
 -------------------------------------------------------------------------------
 vim.keymap.set('', '<leader>o', '<cmd>Telescope find_files<cr>')
 vim.keymap.set('n', '<leader>s', '<cmd>Telescope tags<cr>')
+vim.keymap.set('n', '<leader>S', '<cmd>Telescope treesitter<cr>')
 vim.keymap.set('n', '<leader>m', '<cmd>Telescope marks<cr>')
 vim.keymap.set('n', '<leader>j', '<cmd>Telescope jumplist<cr>')
 vim.keymap.set('n', '<space>rg', '<cmd>Telescope registers<cr>')
@@ -486,7 +487,8 @@ require("lazy").setup({
 					mappings = {
 						i = {
 							["<esc>"] = actions.close,
-							["<C-x>"] = actions.send_selected_to_qflist,
+							["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+							["<C-d>"] = actions.delete_buffer + actions.move_to_top,
 						},
 					},
 				},
