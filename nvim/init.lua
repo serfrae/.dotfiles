@@ -52,13 +52,11 @@ vim.opt.tags = './tags;,tags'
 -- hotkeys
 --
 -------------------------------------------------------------------------------
-vim.keymap.set('', '<leader>o', '<cmd>Telescope find_files<cr>')
-vim.keymap.set('n', '<leader>s', '<cmd>Telescope tags<cr>')
-vim.keymap.set('n', '<leader>S', '<cmd>Telescope treesitter<cr>')
-vim.keymap.set('n', '<leader>m', '<cmd>Telescope marks<cr>')
-vim.keymap.set('n', '<leader>j', '<cmd>Telescope jumplist<cr>')
-vim.keymap.set('n', '<space>rg', '<cmd>Telescope registers<cr>')
-vim.keymap.set('n', '<leader>`', '<cmd>Telescope<cr>')
+vim.keymap.set('n', '<leader>o', '<cmd>FzfLua files<cr>')
+vim.keymap.set('n', '<C-s>', '<cmd>FzfLua tags<cr>')
+vim.keymap.set('n', '<leader>s', '<cmd>FzfLua lsp_document_symbols<cr>')
+vim.keymap.set('n', '<space>rg', '<cmd>FzfLua registers<cr>')
+vim.keymap.set('n', '<leader>`', '<cmd>FzfLua<cr>')
 vim.keymap.set('n', '<leader>c', ':close<cr>')
 
 vim.keymap.set('', 'H', '^')
@@ -106,7 +104,7 @@ vim.keymap.set('n', '[L', ':lfirst<cr>')
 vim.keymap.set('n', ']L', ':llast<cr>')
 
 -- buffer toggle
-vim.keymap.set('n', '<leader>b', ':Telescope buffers<cr>')
+vim.keymap.set('n', '<leader>b', ':FzfLua buffers<cr>')
 vim.keymap.set('n', '[b', ':bprevious<cr>')
 vim.keymap.set('n', ']b', ':bnext<cr>')
 vim.keymap.set('n', '[B', ':bfirst<cr>')
@@ -122,76 +120,21 @@ vim.keymap.set('n', ']T', ':tablast<cr>')
 -- grep
 vim.keymap.set('n', '<leader>g', ':grep -g !tags <C-r><C-w><cr><cr><cmd>QFix 1 1<cr><cr>')
 vim.keymap.set('v', '<leader>g', ':grep -g !tags <C-r><C-w><cr><cr><cmd>QFix 1 1<cr><cr>')
-vim.keymap.set('n', '<leader>G', ':Telescope live_grep<CR>')
-vim.keymap.set('n', '<leader>/', ':Telescope current_buffer_fuzzy_find<CR>')
+vim.keymap.set('n', '<leader>G', ':Fzf-Lua live_grep<CR>')
+vim.keymap.set('n', '<leader>/', ':Fzf-Lua lgrep_curbuf<CR>')
 
 -- notes
 vim.keymap.set('n', '<leader>ncd', ':cd ~/docs/notes/<cr>')
 -- ripgrep notes
 vim.keymap.set('n', '<leader>ng', ':cd ~/docs/notes/<cr>:Ngrep<space><C-r><C-w><cr>:QFix 1 0<cr><cr>')
 vim.keymap.set('n', '<leader>nr', ':cd ~/docs/notes/<cr>:Ngrep ')
--- fzf notes (multi-tag)
-vim.keymap.set('n', '<Leader>ns', ':cd ~/docs/notes/<cr>:Nf (\\v<^|\\s>)@(\\w\\S*)<CR>',
-	{ noremap = true, silent = true })
 -- new note
 vim.keymap.set('n', '<leader>nn', ':NewNote')
 -- note link
-function NoteLink()
-	-- Define the action to take when a note is selected
-	local insert_link_action = function(prompt_bufnr)
-		local selection = require('telescope.actions.state').get_selected_entry(prompt_bufnr)
-		require('telescope.actions').close(prompt_bufnr)
-
-		-- Get the relative path to the selected note
-		local full_note_path = selection.value
-		local note_path = vim.fn.fnamemodify(full_note_path, ':t')
-		local date_pattern = ('%d'):rep(8) .. '%-'
-		local date_pattern_ext = ('%d'):rep(12) .. '%-'
-		local trimmed_note_path = note_path:gsub(date_pattern_ext, ''):gsub(date_pattern, '')
-		local filename_without_ext = vim.fn.fnamemodify(trimmed_note_path, ':r')
-
-		-- Insert the Markdown link at the cursor position
-		vim.api.nvim_put({ '[ ' .. filename_without_ext .. ' ]' .. '( ' .. note_path .. ' )' }, 'l', true, true)
-	end
-
-	-- Configure the finder and sorter
-	local opts = {
-		find_command = { 'rg', '--files', '--hidden', '--ignore', vim.fn.expand('$HOME/docs/notes') },
-		attach_mappings = function(_, map)
-			map('i', '<CR>', insert_link_action)
-			map('n', '<CR>', insert_link_action)
-			return true
-		end
-	}
-
-	local telescope = require('telescope.builtin')
-	telescope.find_files(opts)
-end
-
 vim.api.nvim_set_keymap('n', '<leader>nl', '<cmd>lua NoteLink()<cr>', { noremap = true, silent = true })
-
-function NoteFind()
-	local home = os.getenv("HOME")
-	local docs_path = home .. "/docs/notes"
-	local cmd = "rg -e '(^|[[:space:]])@(\\w\\S*)' -g !tags | fzf | sed -e 's/:.*//g'"
-	local handle = io.popen("cd " .. docs_path .. " && " .. cmd)
-	local result = handle:read("*a")
-	handle:close()
-	if result and result ~= "" then
-		vim.api.nvim_command('edit ' .. result)
-	end
-end
-
+-- note find
 vim.api.nvim_set_keymap('n', '<leader>nf', '<cmd>lua NoteFind()<cr>', { noremap = true, silent = true })
 
-function MarkdownGf()
-	local word = vim.fn.expand('<cword>')
-	vim.fn.search(word, 'W')
-	vim.api.nvim_command('normal! gf')
-end
-
--- Map gf to the custom function in markdown files
-vim.api.nvim_command('autocmd FileType markdown nnoremap <buffer> gf :lua MarkdownGf()<CR>')
 -------------------------------------------------------------------------------
 --
 -- functions
@@ -299,6 +242,74 @@ vim.api.nvim_create_user_command('Ngrep', function(opts)
 	vim.cmd(command)
 end, { nargs = 1 })
 
+function NoteLink()
+	function NoteLink()
+		-- Define the action to take when a note is selected
+		local insert_link_action = function(selected)
+			-- Get the relative path to the selected note
+			local full_note_path = selected[1]
+			local note_path = vim.fn.fnamemodify(full_note_path, ':t')
+			local date_pattern = ('%d'):rep(8) .. '%-'
+			local date_pattern_ext = ('%d'):rep(12) .. '%-'
+			local trimmed_note_path = note_path:gsub(date_pattern_ext, ''):gsub(date_pattern, '')
+			local filename_without_ext = vim.fn.fnamemodify(trimmed_note_path, ':r')
+
+			-- Insert the Markdown link at the cursor position
+			vim.api.nvim_put({ '[ ' .. filename_without_ext .. ' ]' .. '( ' .. note_path .. ' )' }, 'l', true, true)
+		end
+
+		-- Configure the finder
+		local opts = {
+			prompt = 'Select note: ',
+			cmd = 'rg --files --hidden --ignore ' .. vim.fn.expand('$HOME/docs/notes'),
+			actions = {
+				['default'] = insert_link_action,
+			},
+		}
+
+		local fzf = require('fzf-lua')
+		fzf.fzf_exec(opts.cmd, opts)
+	end
+end
+
+function NoteFind()
+	local home = os.getenv("HOME")
+	local docs_path = home .. "/docs/notes"
+	local rg_cmd = "rg -e '(^|[[:space:]])@(\\w\\S*)' -g '!tags' --no-heading --line-number --color=always"
+
+	local fzf = require('fzf-lua')
+
+	-- Define the function to handle the selected note
+	local function insert_link_action(selected)
+		local result = selected[1]:gsub(":%d+:.*", "") -- Remove the line number and everything after it
+		if result and result ~= "" then
+			vim.api.nvim_command('edit ' .. result)
+		end
+	end
+
+	-- Configure fzf-lua options
+	local opts = {
+		prompt = 'Select note: ',
+		cwd = docs_path, -- Set the working directory for the command
+		cmd = rg_cmd,
+		previewer = "bat",
+		actions = {
+			['default'] = insert_link_action,
+		},
+	}
+
+	-- Execute fzf-lua with the specified options
+	fzf.fzf_exec(opts.cmd, opts)
+end
+
+function MarkdownGf()
+	local word = vim.fn.expand('<cword>')
+	vim.fn.search(word, 'W')
+	vim.api.nvim_command('normal! gf')
+end
+
+-- Map gf to the custom function in markdown files
+vim.api.nvim_command('autocmd FileType markdown nnoremap <buffer> gf :lua MarkdownGf()<CR>')
 -------------------------------------------------------------------------------
 --
 -- autocommands
@@ -475,22 +486,14 @@ require("lazy").setup({
 	},
 	-- FZF
 	{
-		'nvim-telescope/telescope.nvim',
-		dependencies = {
-			'nvim-lua/plenary.nvim',
-			'nvim-telescope/telescope-fzf-native.nvim',
-		},
+		'ibhagwan/fzf-lua',
 		config = function()
-			local actions = require('telescope.actions')
-			require('telescope').setup {
-				defaults = {
-					mappings = {
-						i = {
-							["<esc>"] = actions.close,
-							["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-							["<C-d>"] = actions.delete_buffer + actions.move_to_top,
-						},
-					},
+			require('fzf-lua').setup {
+				fzf_opts = {
+					['--cycle'] = ''
+				},
+				fzf = {
+					["ctrl-a"] = "toggle-all+accept",
 				},
 			}
 		end
