@@ -12,8 +12,10 @@ file_name() {
 }
 
 FILE="$HOME/docs/notes/$(file_name $@)"
+TITLE=$(echo $@ | tr '-' ' ' | awk '{for(i=1;i<=NF;i++)sub(/./,toupper(substr($i,1,1)),$i)}1')
 
-echo $(date) > $FILE
+echo "# $TITLE" > $FILE
+echo $(date) >> $FILE
 nvim $FILE
 
 CWD=$(pwd)
