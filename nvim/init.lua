@@ -53,9 +53,9 @@ vim.opt.tags = './tags;,tags'
 --
 -------------------------------------------------------------------------------
 vim.keymap.set('n', '<leader>o', '<cmd>FzfLua files<cr>')
-vim.keymap.set('n', '<C-s>', '<cmd>FzfLua tags<cr>')
-vim.keymap.set('n', '<leader>s', '<cmd>FzfLua lsp_document_symbols<cr>')
-vim.keymap.set('n', '<space>rg', '<cmd>FzfLua registers<cr>')
+vim.keymap.set('n', '<leader>st', '<cmd>FzfLua tags<cr>')
+vim.keymap.set('n', '<leader>sd', '<cmd>FzfLua lsp_document_symbols<cr>')
+vim.keymap.set('n', '<leader>sw', '<cmd>FzfLua lsp_workspace_symbols<cr>')
 vim.keymap.set('n', '<leader>`', '<cmd>FzfLua<cr>')
 vim.keymap.set('n', '<leader>c', ':close<cr>')
 
@@ -134,6 +134,12 @@ vim.keymap.set('n', '<leader>nn', ':NewNote')
 vim.api.nvim_set_keymap('n', '<leader>nl', '<cmd>lua NoteLink()<cr>', { noremap = true, silent = true })
 -- note find
 vim.api.nvim_set_keymap('n', '<leader>nf', '<cmd>lua NoteFind()<cr>', { noremap = true, silent = true })
+
+--leap
+--vim.keymap.set('n',        's', '<Plug>(leap)')
+--vim.keymap.set('n',        'S', '<Plug>(leap-from-window)')
+--vim.keymap.set({'x', 'o'}, 's', '<Plug>(leap-forward)')
+--vim.keymap.set({'x', 'o'}, 'S', '<Plug>(leap-backward)')
 
 -------------------------------------------------------------------------------
 --
@@ -469,19 +475,42 @@ require("lazy").setup({
 		end
 	},
 	-- quick navigation
+	--{
+	--"ggandor/leap.nvim",
+	--},
 	{
 		'folke/flash.nvim',
 		event = "VeryLazy",
 		---@diagnostic disable-next-line: undefined-doc-name
 		---@type Flash.Config,
-		opts = {},
+		opts = {
+			highlight = {
+				-- The backdrop is a lot of visual noise
+				backdrop = false,
+				matches = true,
+			},
+			modes = {
+				char = {
+					highlight = {
+						backdrop = false,
+					},
+				},
+			},
+		},
+		config = function(_, opts)
+			require('flash').setup(opts)
+			--vim.api.nvim_set_hl(0, 'FlashCursor', { fg = '#ffffff', bg = '#ff0000', bold = true })
+			--vim.api.nvim_set_hl(0, 'FlashMatches', { fg = '#000000', bg = '#ffff00', bold = true })
+			--vim.api.nvim_set_hl(0, 'FlashCurrent', { fg = '#ffffff', bg = '#0000ff', bold = true })
+			vim.api.nvim_set_hl(0, 'FlashLabel', { link = 'lualine_a_insert', bold = true })
+			-- Change the color codes (#ff0000 and #ffffff) to your desired colors
+		end,
 		-- stylua: ignore
 		keys = {
-			{ "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
-			{ "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
-			{ "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
-			{ "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-			{ "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
+			{ "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+			{ "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+			{ "r", mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+			{ "R", mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
 		},
 	},
 	-- FZF
@@ -492,9 +521,11 @@ require("lazy").setup({
 				fzf_opts = {
 					['--cycle'] = ''
 				},
-				fzf = {
-					["ctrl-a"] = "toggle-all+accept",
-				},
+				keymap = {
+					fzf = {
+						["ctrl-a"] = "select-all+accept",
+					}
+				}
 			}
 		end
 	},
@@ -614,7 +645,7 @@ require("lazy").setup({
 					vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
 					vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
 					vim.keymap.set({ 'n', 'v' }, '<leader>a', vim.lsp.buf.code_action, opts)
-					vim.keymap.set('n', '<leader>re', vim.lsp.buf.rename, opts)
+					vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)
 					vim.keymap.set('n', '<leader>f', function()
 						vim.lsp.buf.format { async = true }
 					end, opts)

@@ -219,6 +219,7 @@ color	x/polybar/config.ini	/^line-color = #f00$/;"	k	section:bar/bspwm
 colors	firefox/manifest.json	/^    "colors": {$/;"	o	object:theme
 colors	x/polybar/mocha.ini	/^[colors]$/;"	s
 config	nvim/init.lua	/^		config = function()$/;"	f
+config	nvim/init.lua	/^		config = function(_, opts)$/;"	f
 connected	x/polybar/config.ini	/^format-connected = <ramp-signal><label-connected>$/;"	k	section:module/wlan
 connected	x/polybar/config.ini	/^label-connected = %essid%$/;"	k	section:module/wlan
 corners	x/picom/picom.conf	/^detect-rounded-corners = true;$/;"	k
@@ -316,11 +317,10 @@ listen	x/polybar/scripts/pavolume.sh	/^function listen {$/;"	f
 manifest_version	firefox/manifest.json	/^  "manifest_version": 2,$/;"	n
 markdowntags	ctags/md.ctags	/^--langdef=markdowntags$/;"	l
 maxlen	x/polybar/config.ini	/^label-song-maxlen = 25$/;"	k	section:module/mpd
-mode	nvim/init.lua	/^			{ "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            des/;"	f
-mode	nvim/init.lua	/^			{ "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, des/;"	f
-mode	nvim/init.lua	/^			{ "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        des/;"	f
-mode	nvim/init.lua	/^			{ "r",     mode = "o",               function() require("flash").remote() end,            des/;"	f
-mode	nvim/init.lua	/^			{ "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              des/;"	f
+mode	nvim/init.lua	/^			{ "R", mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = /;"	f
+mode	nvim/init.lua	/^			{ "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = /;"	f
+mode	nvim/init.lua	/^			{ "r", mode = "o",               function() require("flash").remote() end,            desc = /;"	f
+mode	nvim/init.lua	/^			{ "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = /;"	f
 module/backlight-acpi	x/polybar/config.ini	/^[module\/backlight-acpi]$/;"	s
 module/battery	x/polybar/config.ini	/^[module\/battery]$/;"	s
 module/battery2	x/polybar/config.ini	/^[module\/battery2]$/;"	s
