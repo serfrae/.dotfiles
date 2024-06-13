@@ -20,6 +20,8 @@ abbr -a vim nvim
 abbr -a ve 'source .venv/bin/activate.fish > /dev/null 2&>1 || source venv/bin/activate.fish > /dev/null 2&>1'
 abbr -a vd 'deactivate'
 abbr -a fzp 'fzf --preview "bat --color=always --style=header,grid --line-range :500 {}"'
+abbr -a uv 'uv pip'
+abbr -a pip 'uv pip'
 
 
 setenv XINITRC ~/.config/X11/xinitrc

@@ -316,6 +316,19 @@ end
 
 -- Map gf to the custom function in markdown files
 vim.api.nvim_command('autocmd FileType markdown nnoremap <buffer> gf :lua MarkdownGf()<CR>')
+
+-- Copilot Toggle
+local copilot_on = true
+vim.api.nvim_create_user_command("CopilotToggle", function()
+	if copilot_on then
+		vim.cmd("CopilotOff")
+		copilot_on = false
+	else
+		vim.cmd("CopilotOn")
+		copilot_on = true
+	end
+end, {})
+vim.keymap.set('', '<M-c>', ':CopilotToggle<cr>')
 -------------------------------------------------------------------------------
 --
 -- autocommands
@@ -525,6 +538,9 @@ require("lazy").setup({
 					fzf = {
 						["ctrl-a"] = "select-all+accept",
 					}
+				},
+				files = {
+					fd_opts = "--type f --hidden --follow --exclude .git --exclude node_modules --exclude .venv --exclude .mypy_cache"
 				}
 			}
 		end
