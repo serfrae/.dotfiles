@@ -321,12 +321,13 @@ vim.api.nvim_command('autocmd FileType markdown nnoremap <buffer> gf :lua Markdo
 local copilot_on = true
 vim.api.nvim_create_user_command("CopilotToggle", function()
 	if copilot_on then
-		vim.cmd("CopilotOff")
-		copilot_on = false
+		vim.cmd("Copilot disable")
+		print("Copilot OFF")
 	else
-		vim.cmd("CopilotOn")
-		copilot_on = true
+		vim.cmd("Copilot enable")
+		print("Copilot ON")
 	end
+	copilot_on = not copilot_on
 end, {})
 vim.keymap.set('', '<M-c>', ':CopilotToggle<cr>')
 -------------------------------------------------------------------------------
