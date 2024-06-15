@@ -177,15 +177,15 @@
 6	x/polybar/config.ini	/^font-6 = Symbols Nerd Font:size=16:style=Regular;4$/;"	k	section:bar/bspwm
 :root	firefox/userContent.css	/^:root {    \/* Gruvbox-dark-hard by Chris Kempson (http:\/\/chriskempson.com) *\/$/;"	s
 LListToggle	nvim/init.lua	/^function LListToggle(v, e)$/;"	f
-Let qutebrowser manage your themes:	qutebrowser/qutebrowser/README.md	/^### Let qutebrowser manage your themes:$/;"	S	section:Usage
-Manual config:	qutebrowser/qutebrowser/README.md	/^### Manual config:$/;"	S	section:Usage
+Let qutebrowser manage your themes:	qutebrowser/catppuccin/README.md	/^### Let qutebrowser manage your themes:$/;"	S	section:Usage
+Manual config:	qutebrowser/catppuccin/README.md	/^### Manual config:$/;"	S	section:Usage
 MarkdownGf	nvim/init.lua	/^function MarkdownGf()$/;"	f
 NewNote	nvim/init.lua	/^function NewNote(name)$/;"	f
 NoteFind	nvim/init.lua	/^function NoteFind()$/;"	f
 NoteLink	nvim/init.lua	/^	function NoteLink()$/;"	f
 NoteLink	nvim/init.lua	/^function NoteLink()$/;"	f
 QFixToggle	nvim/init.lua	/^function QFixToggle(v, e)$/;"	f
-Usage	qutebrowser/qutebrowser/README.md	/^## Usage$/;"	s
+Usage	qutebrowser/catppuccin/README.md	/^## Usage$/;"	s
 _bc	x/bspwm/bspwmrc	/^_bc() {$/;"	f
 _bspc_query	scripts/bspwm_external_rules	/^_bspc_query() {$/;"	f
 _bspc_query	scripts/bspwm_presel	/^_bspc_query() {$/;"	f
@@ -408,7 +408,7 @@ right	x/polybar/config.ini	/^modules-right = pulseaudio backlight-acpi wlan memo
 right	x/polybar/config.ini	/^padding-right = 2$/;"	k	section:bar/bspwm
 rule	x/picom/picom.conf	/^opacity-rule = [ "38:class_g = 'Bspwm' && class_i = 'presel_feedback'" ];$/;"	k
 settings	x/polybar/config.ini	/^[settings]$/;"	s
-setup	qutebrowser/qutebrowser/setup.py	/^def setup(c, flavour, samecolorrows = False):$/;"	f
+setup	qutebrowser/catppuccin/setup.py	/^def setup(c, flavour, samecolorrows = False):$/;"	f
 shadow	x/picom/picom.conf	/^shadow = false;$/;"	k
 sidebar	firefox/manifest.json	/^      "sidebar": "#1d2021",$/;"	s	object:theme.colors
 sidebar_border	firefox/manifest.json	/^      "sidebar_border": "#1d2021",$/;"	s	object:theme.colors
@@ -510,4 +510,4 @@ x	x/polybar/config.ini	/^offset-x = 0%$/;"	k	section:bar/bspwm
 x_install	scripts/install/install-x.sh	/^function x_install() {$/;"	f
 y	x/polybar/config.ini	/^offset-y = 0%$/;"	k	section:bar/bspwm
 zone	x/polybar/config.ini	/^thermal-zone = 1$/;"	k	section:module/temperature
-💝 Thanks to	qutebrowser/qutebrowser/README.md	/^## 💝 Thanks to$/;"	s
+💝 Thanks to	qutebrowser/catppuccin/README.md	/^## 💝 Thanks to$/;"	s

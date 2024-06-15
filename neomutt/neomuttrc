@@ -45,6 +45,9 @@ bind pager g noop
 bind index,pager gr group-reply
 bind pager j next-line
 bind pager k previous-line
+bind index l display-message
+bind index h noop
+bind pager h exit
 bind attach,index,pager \CD next-page
 bind attach,index,pager \CU previous-page
 bind attach,index,pager gg top
