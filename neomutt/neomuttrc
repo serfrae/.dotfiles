@@ -42,7 +42,11 @@ macro index 'c' '<change-folder>?<change-dir><home>^K=<enter>'
 macro pager \cb  <pipe-entry>'urlview'<enter>
 
 bind pager g noop
+bind index <Enter> noop
+bind index <Return> noop
 bind index,pager gr group-reply
+bind index,pager <Enter> sidebar-open
+bind index,pager <Return> sidebar-open
 bind pager j next-line
 bind pager k previous-line
 bind index l display-message

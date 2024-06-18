@@ -1,5 +1,5 @@
 auto-reload yes
-reload-time 1
+reload-time 30
 reload-threads 10
 browser "firefox-developer-edition %u"
 notify-always no

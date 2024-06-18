@@ -17,12 +17,11 @@ abbr -a nj note_journal
 abbr -a v nvim
 abbr -a vi nvim
 abbr -a vim nvim
-abbr -a ve 'source .venv/bin/activate.fish > /dev/null 2&>1 || source venv/bin/activate.fish > /dev/null 2&>1'
+abbr -a ve 'source .venv/bin/activate.fish > /dev/null || source venv/bin/activate.fish > /dev/null'
 abbr -a vd 'deactivate'
 abbr -a fzp 'fzf --preview "bat --color=always --style=header,grid --line-range :500 {}"'
 abbr -a uv 'uv pip'
 abbr -a pip 'uv pip'
-
 
 setenv XINITRC ~/.config/X11/xinitrc
 setenv XAUTHORITY ~/.config/X11/Xauthority
@@ -47,10 +46,20 @@ set -x NODE_REPL_HISTORY $XDG_DATA_HOME/node_repl_history
 set -x PYTHON_HISTORY $XDG_STATE_HOME/python/history
 set -x RUSTUP_HOME $XDG_DATA_HOME/rustup
 set -x VSCODE_PORTABLE $XDG_DATA_HOME/vscode
+set -x CUDA_HOME /opt/cuda
+set -x LD_LIBRARY_PATH $CUDA_HOME/lib64:$LD_LIBRARY_PATH
 
-set PATH $PATH ~/bin ~/.local/bin ~/.cargo/bin ~/.local/share/solana/install/active_release/bin ~/.pixi/bin
+set PATH $PATH $CUDA_HOME ~/bin ~/.local/bin ~/.cargo/bin ~/.local/share/solana/install/active_release/bin ~/.pixi/bin /opt/cuda/bin 
 
 function fish_prompt
+	# nix
+	set -l nix_shell_info ""
+	if test -n "$IN_NIX_SHELL"
+		set nix_shell_info "<nix> "
+	end
+	set_color blue
+	echo -n -s "$nix_shell_info"
+
     set_color white
     echo -n "["(date "+%H:%M")"] "
     set_color blue
@@ -89,6 +98,8 @@ if command -v eza >/dev/null
     abbr -a ls eza
     abbr -a ll 'eza -l'
     abbr -a lll 'eza -la'
+	abbr -a lt 'eza -T'
+	abbr -a lti 'eza -Ti'
 else
     abbr -a l ls
     abbr -a ll 'ls -l'
