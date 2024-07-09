@@ -5,7 +5,7 @@ config_file="/tmp/hyprpaper.conf"
 monitor_name=$(hyprctl monitors | grep -m 1 '^Monitor' | awk '{print $2}')
 
 echo "preload = $wallpaper" > "$config_file"
-echo "wallpaper =,${wallpaper}" >> "$config_file"
+echo "wallpaper =$monitor_name,$wallpaper" >> "$config_file"
 
 hyprpaper -c "$config_file"
 

@@ -244,6 +244,7 @@ bind	way/hypr/hyprland.conf	/^bind = $mainMod SHIFT, 3, movetoworkspacesilent, 3
 bind	way/hypr/hyprland.conf	/^bind = $mainMod SHIFT, 4, movetoworkspacesilent, 4$/;"	k
 bind	way/hypr/hyprland.conf	/^bind = $mainMod SHIFT, 5, movetoworkspacesilent, 5$/;"	k
 bind	way/hypr/hyprland.conf	/^bind = $mainMod SHIFT, 6, movetoworkspacesilent, 6$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod SHIFT, F, exec, ~\/bin\/hypr_monocle.sh g$/;"	k
 bind	way/hypr/hyprland.conf	/^bind = $mainMod SHIFT, Return, exec, alacritty -e tmux$/;"	k
 bind	way/hypr/hyprland.conf	/^bind = $mainMod SHIFT, S, movetoworkspace, special:magic$/;"	k
 bind	way/hypr/hyprland.conf	/^bind = $mainMod SHIFT, h, movewindoworgroup, l$/;"	k
@@ -260,7 +261,7 @@ bind	way/hypr/hyprland.conf	/^bind = $mainMod, 5, workspace, 5$/;"	k
 bind	way/hypr/hyprland.conf	/^bind = $mainMod, 6, workspace, 6$/;"	k
 bind	way/hypr/hyprland.conf	/^bind = $mainMod, D, exec, $menu$/;"	k
 bind	way/hypr/hyprland.conf	/^bind = $mainMod, E, exec, alacritty -e yazi$/;"	k
-bind	way/hypr/hyprland.conf	/^bind = $mainMod, F, fullscreen$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, F, exec, ~\/bin\/hypr_monocle.sh f$/;"	k
 bind	way/hypr/hyprland.conf	/^bind = $mainMod, G, togglegroup$/;"	k
 bind	way/hypr/hyprland.conf	/^bind = $mainMod, N, changegroupactive, f$/;"	k
 bind	way/hypr/hyprland.conf	/^bind = $mainMod, P, changegroupactive, b$/;"	k
@@ -464,8 +465,8 @@ ntp_background	firefox/manifest.json	/^      "ntp_background": "#1d2021",$/;"	s	
 ntp_text	firefox/manifest.json	/^      "ntp_text": "#d5c4a1",$/;"	s	object:theme.colors
 occupied	x/polybar/config.ini	/^label-occupied = $/;"	k	section:module/bspwm
 offline	x/polybar/config.ini	/^format-offline = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>$/;"	k	section:module/mpd
-once	way/hypr/hyprland.conf	/^exec-once = fd -t f -e png -e jpg -e jpeg . ~\/media\/images\/wallpapers | shuf -n 1 | xargs hyp/;"	k
 once	way/hypr/hyprland.conf	/^exec-once = mako$/;"	k
+once	way/hypr/hyprland.conf	/^exec-once = wallpaper.sh$/;"	k
 once	way/hypr/hyprland.conf	/^exec-once = waybar$/;"	k
 online	x/polybar/config.ini	/^format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>$/;"	k	section:module/mpd
 opacity	x/picom/picom.conf	/^active-opacity = 1.0;$/;"	k

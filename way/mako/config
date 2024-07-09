@@ -4,10 +4,10 @@ padding=10
 margin=10
 border-size=2
 default-timeout=5000
-background-color=#28282A
-border-color=#50FA7B
-text-color=#F8F8F2
+background-color=#1e1e2e
+border-color=#94e2d5
+text-color=#cdd6f4
 
 [urgency=high]
-border-color=#FF5555
+border-color=#f38ba8
 ignore-timeout=1
