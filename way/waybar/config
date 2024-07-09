@@ -6,7 +6,7 @@
 
     // Choose the order of the modules
     "modules-left": ["clock", "hyprland/workspaces", "hyprland/window"],
-    "modules-right": ["idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "battery", "battery#bat2", "tray"],
+    "modules-right": ["pulseaudio", "network", "cpu", "memory", "disk", "disk#disk2", "temperature", "backlight", "battery", "battery#bat2", "tray"],
 
     // Modules configuration
      "hyprland/workspaces": {
@@ -15,26 +15,26 @@
          "format": "{icon}",
          "format-icons": {
              "urgent": "",
-             "focused": "",
-             "default": ""
+             "active": "",
+             "default": ""
          },
          "persistent-workspaces": {
              "*": 6
          }
      },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
+    //"idle_inhibitor": {
+    //    "format": "{icon}",
+    //    "format-icons": {
+    //        "activated": "",
+    //        "deactivated": ""
+    //    }
+    //},
     "tray": {
         "icon-size": 12,
         "spacing": 10
     },
     "clock": {
-        // "timezone": "America/New_York",
+        // "timezone": "Europe/London",
         "format": "{:%H:%M %a}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
@@ -44,7 +44,7 @@
         "tooltip": false
     },
     "memory": {
-        "format": "{}%  "
+        "format": "{}% "
     },
     "temperature": {
         "thermal-zone": 2,
@@ -57,7 +57,7 @@
     "backlight": {
         // "device": "acpi_video1",
         "format": "{percent}% {icon}",
-        "format-icons": ["☼", "☼"]
+        "format-icons": ["", ""]
     },
     "battery": {
         "states": {
@@ -65,7 +65,7 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{capacity}% {icon}",
+        "format": "{capacity}% {icon} ",
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
@@ -78,7 +78,7 @@
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": "{essid} ({signalStrength}%)  ",
         "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
@@ -86,7 +86,7 @@
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
+        "format": "{volume}% {icon}  {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
         "format-muted": " {format_source}",
@@ -102,6 +102,17 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
+    },
+    "disk": {
+        "interval": 30,
+        "format": "{percentage_used}% ",
+        "path": "/",
+    },
+    "disk#disk2": {
+        "interval": 30,
+        "format": "{percentage_used}% 󰨣",
+        "path": "/mnt",
+
     },
     "custom/media": {
         "format": "{icon} {}",
