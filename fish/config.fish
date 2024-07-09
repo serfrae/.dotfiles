@@ -22,6 +22,7 @@ abbr -a vd 'deactivate'
 abbr -a fzp 'fzf --preview "bat --color=always --style=header,grid --line-range :500 {}"'
 abbr -a uv 'uv pip'
 abbr -a pip 'uv pip'
+abbr -a hypr 'Hyprland'
 
 setenv XINITRC ~/.config/X11/xinitrc
 setenv XAUTHORITY ~/.config/X11/Xauthority
@@ -49,7 +50,7 @@ set -x VSCODE_PORTABLE $XDG_DATA_HOME/vscode
 set -x CUDA_HOME /opt/cuda
 set -x LD_LIBRARY_PATH $CUDA_HOME/lib64:$LD_LIBRARY_PATH
 
-set PATH $PATH $CUDA_HOME ~/bin ~/.local/bin ~/.cargo/bin ~/.local/share/solana/install/active_release/bin ~/.pixi/bin /opt/cuda/bin 
+set PATH $PATH $CUDA_HOME ~/bin ~/.local/bin ~/.local/share/cargo/bin ~/.local/share/solana/install/active_release/bin ~/.pixi/bin /opt/cuda/bin 
 
 function fish_prompt
 	# nix
@@ -113,3 +114,10 @@ end
 
 pixi completion --shell fish | source
 zoxide init fish --cmd j | source
+
+# pnpm
+set -gx PNPM_HOME "/home/a7rs/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end

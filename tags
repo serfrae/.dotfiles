@@ -40,6 +40,13 @@
 !_TAG_KIND_DESCRIPTION!Python	i,module	/modules/
 !_TAG_KIND_DESCRIPTION!Python	m,member	/class members/
 !_TAG_KIND_DESCRIPTION!Python	v,variable	/variables/
+!_TAG_KIND_DESCRIPTION!SCSS	P,placeholder	/placeholder classes/
+!_TAG_KIND_DESCRIPTION!SCSS	c,class	/classes/
+!_TAG_KIND_DESCRIPTION!SCSS	f,function	/functions/
+!_TAG_KIND_DESCRIPTION!SCSS	i,id	/identities/
+!_TAG_KIND_DESCRIPTION!SCSS	m,mixin	/mixins/
+!_TAG_KIND_DESCRIPTION!SCSS	v,variable	/variables/
+!_TAG_KIND_DESCRIPTION!SCSS	z,parameter	/function parameters/
 !_TAG_KIND_DESCRIPTION!Sh	a,alias	/aliases/
 !_TAG_KIND_DESCRIPTION!Sh	f,function	/functions/
 !_TAG_KIND_DESCRIPTION!Sh	h,heredoc	/label for here document/
@@ -56,6 +63,7 @@
 !_TAG_PARSER_VERSION!Lua	0.0	/current.age/
 !_TAG_PARSER_VERSION!Markdown	1.1	/current.age/
 !_TAG_PARSER_VERSION!Python	0.0	/current.age/
+!_TAG_PARSER_VERSION!SCSS	0.0	/current.age/
 !_TAG_PARSER_VERSION!Sh	0.0	/current.age/
 !_TAG_PARSER_VERSION!Yaml	0.0	/current.age/
 !_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
@@ -90,26 +98,35 @@
 #custom-media	way/waybar/style.css	/^#custom-media,$/;"	i
 #disk	way/waybar/style.css	/^#disk {$/;"	i
 #disk	way/waybar/style.css	/^#disk,$/;"	i
+#entry	way/wofi/style.css	/^#entry {$/;"	i
+#entry arrow	way/wofi/style.css	/^#entry arrow {$/;"	s
+#entry:drop(active)	way/wofi/style.css	/^#entry:drop(active) {$/;"	i
+#entry:selected	way/wofi/style.css	/^#entry:selected {$/;"	i
+#entry:selected #text	way/wofi/style.css	/^#entry:selected #text {$/;"	i
 #idle_inhibitor	way/waybar/style.css	/^#idle_inhibitor {$/;"	i
 #idle_inhibitor	way/waybar/style.css	/^#idle_inhibitor,$/;"	i
 #idle_inhibitor.activated	way/waybar/style.css	/^#idle_inhibitor.activated {$/;"	c
+#inner-box	way/wofi/style.css	/^#inner-box {$/;"	i
+#input	way/wofi/style.css	/^#input {$/;"	i
+#input *	way/wofi/style.css	/^#input * {$/;"	s
+#input image	way/wofi/style.css	/^#input image {$/;"	s
 #memory	way/waybar/style.css	/^#memory {$/;"	i
 #memory	way/waybar/style.css	/^#memory,$/;"	i
 #mode	way/waybar/style.css	/^#mode {$/;"	i
 #mode	way/waybar/style.css	/^#mode,$/;"	i
 #mpd	way/waybar/style.css	/^#mpd {$/;"	i
-#mpd.disconnected	way/waybar/style.css	/^#mpd.disconnected {$/;"	c
-#mpd.paused	way/waybar/style.css	/^#mpd.paused {$/;"	c
-#mpd.stopped	way/waybar/style.css	/^#mpd.stopped {$/;"	c
 #network	way/waybar/style.css	/^#network {$/;"	i
 #network	way/waybar/style.css	/^#network,$/;"	i
 #network.disconnected	way/waybar/style.css	/^#network.disconnected {$/;"	c
+#outer-box	way/wofi/style.css	/^#outer-box {$/;"	i
 #pulseaudio	way/waybar/style.css	/^#pulseaudio {$/;"	i
 #pulseaudio	way/waybar/style.css	/^#pulseaudio,$/;"	i
 #pulseaudio.muted	way/waybar/style.css	/^#pulseaudio.muted {$/;"	c
+#scroll	way/wofi/style.css	/^#scroll {$/;"	i
 #temperature	way/waybar/style.css	/^#temperature {$/;"	i
 #temperature	way/waybar/style.css	/^#temperature,$/;"	i
 #temperature.critical	way/waybar/style.css	/^#temperature.critical {$/;"	c
+#text	way/wofi/style.css	/^#text {$/;"	i
 #tray	way/waybar/style.css	/^#tray {$/;"	i
 #tray	way/waybar/style.css	/^#tray,$/;"	i
 #tray > .needs-attention	way/waybar/style.css	/^#tray > .needs-attention {$/;"	c
@@ -123,9 +140,39 @@
 #workspaces button.urgent	way/waybar/style.css	/^#workspaces button.urgent {$/;"	c
 #workspaces button:hover	way/waybar/style.css	/^#workspaces button:hover {$/;"	s
 *	way/waybar/style.css	/^* {$/;"	s
+*	way/wofi/style.css	/^* {$/;"	s
 .TridactylStatusIndicator	firefox/userContent.css	/^.TridactylStatusIndicator {$/;"	c
+.background	ironbar/style.css	/^.background {$/;"	c
+.clock	ironbar/style.css	/^.clock {$/;"	c
+.clock_date	ironbar/style.css	/^.clock_date {$/;"	c
+.container	ironbar/style.css	/^.container {$/;"	c
+.focused	ironbar/style.css	/^.focused { $/;"	c
+.host tooltip	ironbar/style.css	/^.host tooltip {$/;"	s
 .modules-left > widget:first-child > #workspaces	way/waybar/style.css	/^.modules-left > widget:first-child > #workspaces {$/;"	i
 .modules-right > widget:last-child > #workspaces	way/waybar/style.css	/^.modules-right > widget:last-child > #workspaces {$/;"	i
+.popup-clock	ironbar/style.css	/^.popup-clock {$/;"	c
+.popup-clock .calendar	ironbar/style.css	/^.popup-clock .calendar {$/;"	c
+.popup-clock .calendar .header	ironbar/style.css	/^.popup-clock .calendar .header {$/;"	c
+.popup-clock .calendar-clock	ironbar/style.css	/^.popup-clock .calendar-clock {$/;"	c
+.popup-clock .calendar:selected	ironbar/style.css	/^.popup-clock .calendar:selected {$/;"	c
+.popup-volume	ironbar/style.css	/^.popup-volume {$/;"	c
+.sysinfo .item:nth-child(1)	ironbar/style.css	/^.sysinfo .item:nth-child(1) {$/;"	c
+.sysinfo .item:nth-child(2)	ironbar/style.css	/^.sysinfo .item:nth-child(2) {$/;"	c
+.sysinfo .item:nth-child(3)	ironbar/style.css	/^.sysinfo .item:nth-child(3) {$/;"	c
+.sysinfo .item:nth-child(4)	ironbar/style.css	/^.sysinfo .item:nth-child(4) {$/;"	c
+.tray	ironbar/style.css	/^.tray {$/;"	c
+.tray>.needs-attention	ironbar/style.css	/^.tray>.needs-attention {$/;"	c
+.tray>.passive	ironbar/style.css	/^.tray>.passive {$/;"	c
+.volume	ironbar/style.css	/^.volume { $/;"	c
+.work1	ironbar/style.css	/^.work1,$/;"	c
+.work2	ironbar/style.css	/^.work2,$/;"	c
+.work3	ironbar/style.css	/^.work3,$/;"	c
+.work4	ironbar/style.css	/^.work4,$/;"	c
+.work5	ironbar/style.css	/^.work5,$/;"	c
+.work6	ironbar/style.css	/^.work6$/;"	c
+.workspaces	ironbar/style.css	/^.workspaces { $/;"	c
+.workspaces .item	ironbar/style.css	/^.workspaces .item {$/;"	c
+.workspaces .item.focused	ironbar/style.css	/^.workspaces .item.focused {$/;"	c
 0	.luarc.json	/^        "undefined-doc-name"$/;"	s	array:diagnostics.disable
 0	.luarc.json	/^        "vim",$/;"	s	array:diagnostics.globals
 0	x/polybar/config.ini	/^animation-charging-0 = $/;"	k	section:module/battery
@@ -175,36 +222,73 @@
 5	x/polybar/config.ini	/^font-5 = Symbols Nerd Font:size=18:style=Regular;4$/;"	k	section:bar/bspwm
 5	x/polybar/config.ini	/^ws-icon-5 = 6;󰎆$/;"	k	section:bar/bspwm
 6	x/polybar/config.ini	/^font-6 = Symbols Nerd Font:size=16:style=Regular;4$/;"	k	section:bar/bspwm
+99	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_gimp-2.99 = \/home\/bluebyt\/Documents\/Icons\/gimp.svg$/;"	k	section:dock
 :root	firefox/userContent.css	/^:root {    \/* Gruvbox-dark-hard by Chris Kempson (http:\/\/chriskempson.com) *\/$/;"	s
+Celluloid	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_io.github.celluloid_player.Celluloid = \/home\/bluebyt\/Documents\/Icons\/mediathek/;"	k	section:dock
+Clapper	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_com.github.rafostar.Clapper = \/home\/bluebyt\/Documents\/Icons\/mpv.svg$/;"	k	section:dock
+Devel	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_net.nokyan.Resources.Devel = \/home\/bluebyt\/Documents\/Icons\/preferences-system./;"	k	section:dock
+Epiphany	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_org.gnome.Epiphany = \/home\/bluebyt\/Documents\/Icons\/web-browser.svg$/;"	k	section:dock
 LListToggle	nvim/init.lua	/^function LListToggle(v, e)$/;"	f
 Let qutebrowser manage your themes:	qutebrowser/catppuccin/README.md	/^### Let qutebrowser manage your themes:$/;"	S	section:Usage
+Loupe	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_org.gnome.Loupe = \/home\/bluebyt\/Documents\/Icons\/photos.svg$/;"	k	section:dock
 Manual config:	qutebrowser/catppuccin/README.md	/^### Manual config:$/;"	S	section:Usage
 MarkdownGf	nvim/init.lua	/^function MarkdownGf()$/;"	f
+Nautilus	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_org.gnome.Nautilus = \/home\/bluebyt\/Documents\/Icons\/file-manager.svg$/;"	k	section:dock
 NewNote	nvim/init.lua	/^function NewNote(name)$/;"	f
 NoteFind	nvim/init.lua	/^function NoteFind()$/;"	f
 NoteLink	nvim/init.lua	/^	function NoteLink()$/;"	f
 NoteLink	nvim/init.lua	/^function NoteLink()$/;"	f
 QFixToggle	nvim/init.lua	/^function QFixToggle(v, e)$/;"	f
+TextEditor	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_org.gnome.TextEditor = \/home\/bluebyt\/Documents\/Icons\/google-docs.svg$/;"	k	section:dock
 Usage	qutebrowser/catppuccin/README.md	/^## Usage$/;"	s
+WayfireSocket	temp/Wayfire-dots/config/ipc-scripts/wayfire_socket.py	/^class WayfireSocket:$/;"	c
+__init__	temp/Wayfire-dots/config/ipc-scripts/wayfire_socket.py	/^    def __init__(self, socket_name):$/;"	m	class:WayfireSocket
 _bc	x/bspwm/bspwmrc	/^_bc() {$/;"	f
 _bspc_query	scripts/bspwm_external_rules	/^_bspc_query() {$/;"	f
 _bspc_query	scripts/bspwm_presel	/^_bspc_query() {$/;"	f
 _check	x/bspwm/bspwmrc	/^_check() {$/;"	f
 _get_node	scripts/bspwm_hide	/^_get_node() {$/;"	f
+_get_thumb_rect_normal	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^function MiniMap:_get_thumb_rect_normal()$/;"	f	unknown:MiniMap
+_get_track_rect_normal	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^function MiniMap:_get_track_rect_normal()$/;"	f	unknown:MiniMap
 _hide_node	scripts/bspwm_hide	/^_hide_node() {$/;"	f
 _marked_else_focused	scripts/bspwm_presel	/^_marked_else_focused() {$/;"	f
 _query_nodes	scripts/bspwm_hide	/^_query_nodes() {$/;"	f
 _query_nodes	scripts/bspwm_move	/^_query_nodes() {$/;"	f
 _query_nodes	scripts/bspwm_multinode	/^_query_nodes() {$/;"	f
 _unhide_node	scripts/bspwm_hide	/^_unhide_node() {$/;"	f
+active	way/gBar/style.scss	/^    &.active {$/;"	c
 adapter	x/polybar/config.ini	/^adapter = AC0$/;"	k	section:module/battery
 adapter	x/polybar/config.ini	/^adapter = AC0$/;"	k	section:module/battery2
+add	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^function settings.add(section, options, plugin_name, overwrite)$/;"	f	unknown:settings
+add_control	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^local function add_control(pane, option, plugin_name)$/;"	f
+add_thread	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^local function add_thread(f)$/;"	f
+addr	temp/Wayfire-dots/config/ipc-scripts/inactive-alpha.py	/^addr = os.getenv('WAYFIRE_SOCKET')$/;"	v
+addr	temp/Wayfire-dots/config/ipc-scripts/input.py	/^addr = os.getenv('WAYFIRE_SOCKET')$/;"	v
+addr	temp/Wayfire-dots/config/ipc-scripts/ipc-rules-demo.py	/^addr = os.getenv('WAYFIRE_SOCKET')$/;"	v
+addr	temp/Wayfire-dots/config/ipc-scripts/list-methods.py	/^addr = os.getenv('WAYFIRE_SOCKET')$/;"	v
+addr	temp/Wayfire-dots/config/ipc-scripts/set-touch-state.py	/^addr = os.getenv('WAYFIRE_SOCKET')$/;"	v
+addr	temp/Wayfire-dots/config/ipc-scripts/work1.py	/^addr = os.getenv('WAYFIRE_SOCKET')$/;"	v
+addr	temp/Wayfire-dots/config/ipc-scripts/work2.py	/^addr = os.getenv('WAYFIRE_SOCKET')$/;"	v
+addr	temp/Wayfire-dots/config/ipc-scripts/work3.py	/^addr = os.getenv('WAYFIRE_SOCKET')$/;"	v
+addr	temp/Wayfire-dots/config/ipc-scripts/work4.py	/^addr = os.getenv('WAYFIRE_SOCKET')$/;"	v
+addr	temp/Wayfire-dots/config/ipc-scripts/work5.py	/^addr = os.getenv('WAYFIRE_SOCKET')$/;"	v
+addr	temp/Wayfire-dots/config/ipc-scripts/work6.py	/^addr = os.getenv('WAYFIRE_SOCKET')$/;"	v
+addr	temp/Wayfire-dots/config/ipc-scripts/workspace.py	/^addr = os.getenv('WAYFIRE_SOCKET')$/;"	v
 alacritty	tmux/tmux.conf	/^set-option -ga terminal-overrides "alacritty:Tc"$/;"	k
 alt	x/polybar/config.ini	/^date-alt = %a %b %d$/;"	k	section:module/date
 alt	x/polybar/config.ini	/^time-alt = %H:%M$/;"	k	section:module/date
+apply_keybinding	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^local function apply_keybinding(cmd, bindings, skip_save)$/;"	f
+args	temp/Wayfire-dots/config/ipc-scripts/input.py	/^args = parser.parse_args()$/;"	v
+assign_slot	temp/Wayfire-dots/config/ipc-scripts/wayfire_socket.py	/^    def assign_slot(self, view_id: int, slot: str):$/;"	m	class:WayfireSocket
 at	x/polybar/config.ini	/^full-at = 100$/;"	k	section:module/battery2
 at	x/polybar/config.ini	/^full-at = 98$/;"	k	section:module/battery
+audio-icon	way/gBar/style.scss	/^.audio-icon {$/;"	c
+audio-volume	way/gBar/style.scss	/^.audio-volume {$/;"	c
+autohide	temp/Wayfire-dots/config/wf-shell.ini	/^autohide = false$/;"	k	section:panel
+autohide_duration	temp/Wayfire-dots/config/wf-shell.ini	/^autohide_duration = 300$/;"	k	section:panel
+autohide_duration	temp/Wayfire-dots/config/wf-shell.ini	/^autohide_duration = 350$/;"	k	section:dock
 backend	x/picom/picom.conf	/^backend = "glx";$/;"	k
+background	temp/Wayfire-dots/config/wf-shell.ini	/^[background]$/;"	s
 background	x/polybar/config.ini	/^background = ${colors.base}$/;"	k	section:bar/bspwm
 background	x/polybar/config.ini	/^format-background = ${colors.background}$/;"	k	section:module/battery2
 background	x/polybar/config.ini	/^format-charging-background = ${colors.background}$/;"	k	section:module/battery2
@@ -226,55 +310,224 @@ background	x/polybar/config.ini	/^ramp-background = ${colors.background}$/;"	k	s
 background	x/polybar/config.ini	/^ramp-signal-background = ${colors.background}$/;"	k	section:module/wlan
 background	x/polybar/config.ini	/^ramp-volume-background = ${colors.background}$/;"	k	section:module/pulseaudio
 background	x/polybar/config.ini	/^tray-background = ${colors.background}$/;"	k	section:bar/bspwm
+background_color	temp/Wayfire-dots/config/wf-shell.ini	/^background_color = gtk_headerbar$/;"	k	section:panel
+bar	way/gBar/style.scss	/^.bar,tooltip{$/;"	c
 bar/bspwm	x/polybar/config.ini	/^[bar\/bspwm]$/;"	s
 battery	x/polybar/config.ini	/^battery = BAT0$/;"	k	section:module/battery
 battery	x/polybar/config.ini	/^battery = BAT0$/;"	k	section:module/battery2
+battery-charging	way/gBar/style.scss	/^.battery-charging {$/;"	c
+battery-util-progress	way/gBar/style.scss	/^.battery-util-progress {$/;"	c
+battery-warning	way/gBar/style.scss	/^.battery-warning {$/;"	c
+battery-widget	way/gBar/style.scss	/^.battery-widget * {$/;"	c
+battery_font	temp/Wayfire-dots/config/wf-shell.ini	/^battery_font = default$/;"	k	section:panel
+battery_icon_invert	temp/Wayfire-dots/config/wf-shell.ini	/^battery_icon_invert = true$/;"	k	section:panel
+battery_icon_size	temp/Wayfire-dots/config/wf-shell.ini	/^battery_icon_size = 32$/;"	k	section:panel
+battery_status	temp/Wayfire-dots/config/wf-shell.ini	/^battery_status = 0$/;"	k	section:panel
+bg	way/gBar/style.scss	/^$bg: #282a36;$/;"	v
+bind	way/hypr/hyprland.conf	/^bind = $mainMod CTRL, 1, movetoworkspace, 1$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod CTRL, 2, movetoworkspace, 2$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod CTRL, 3, movetoworkspace, 3$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod CTRL, 4, movetoworkspace, 4$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod CTRL, 5, movetoworkspace, 5$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod CTRL, 6, movetoworkspace, 6$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod SHIFT, 1, movetoworkspacesilent, 1$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod SHIFT, 2, movetoworkspacesilent, 2$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod SHIFT, 3, movetoworkspacesilent, 3$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod SHIFT, 4, movetoworkspacesilent, 4$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod SHIFT, 5, movetoworkspacesilent, 5$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod SHIFT, 6, movetoworkspacesilent, 6$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod SHIFT, Return, exec, alacritty -e tmux$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod SHIFT, S, movetoworkspace, special:magic$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod SHIFT, h, movewindoworgroup, l$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod SHIFT, j, movewindoworgroup, d$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod SHIFT, k, movewindoworgroup, u$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod SHIFT, l, movewindoworgroup, r$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod SHIFT,grave,exit$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod SHIFT,w,exec, ~\/bin\/hypr_hide s$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, 1, workspace, 1$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, 2, workspace, 2$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, 3, workspace, 3$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, 4, workspace, 4$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, 5, workspace, 5$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, 6, workspace, 6$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, D, exec, $menu$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, E, exec, alacritty -e yazi$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, F, fullscreen$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, G, togglegroup$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, N, changegroupactive, f$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, P, changegroupactive, b$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, Q, killactive,$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, Return, exec, $terminal$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, S, togglespecialworkspace, magic$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, T, togglefloating$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, V, togglesplit,$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, Y, pin$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, a, submap, apps$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, h, movefocus, l$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, j, movefocus, d$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, k, movefocus, u$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, l, movefocus, r$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, mouse_down, workspace, e+1$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, mouse_up, workspace, e-1$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, space, submap, resize$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod, x, submap, screen$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod,grave,exec,hyprlock$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = $mainMod,w,exec, ~\/bin\/hypr_hide h$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = ALT,grave,exec,reboot$/;"	k
+bind	way/hypr/hyprland.conf	/^bind = MOD1 SHIFT,grave,exec,shutdown now$/;"	k
+bind	way/hypr/hyprland.conf	/^bind =, XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_SINK@ 5%-$/;"	k
+bind	way/hypr/hyprland.conf	/^bind =, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle$/;"	k
+bind	way/hypr/hyprland.conf	/^bind =, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_SINK@ 5%+$/;"	k
+bind	way/hypr/hyprland.conf	/^bind =, XF86MonBrightnessDown, exec, brightnessctl set 5%-$/;"	k
+bind	way/hypr/hyprland.conf	/^bind =, XF86MonBrightnessUp, exec, brightnessctl set 5%+$/;"	k
+bind	way/hypr/hyprland.conf	/^bind=$mainMod, z, exec, makoctl dismiss -a$/;"	k
+bind	way/hypr/hyprland.conf	/^bind=,b, exec, launch_switch_app brave-nightly$/;"	k
+bind	way/hypr/hyprland.conf	/^bind=,b, submap, reset$/;"	k
+bind	way/hypr/hyprland.conf	/^bind=,c,exec, slurp | grim -g - - | wl-copy && notify-send "Screenclip Captured"$/;"	k
+bind	way/hypr/hyprland.conf	/^bind=,c,submap,reset$/;"	k
+bind	way/hypr/hyprland.conf	/^bind=,d, exec, launch_switch_app discord -d 10$/;"	k
+bind	way/hypr/hyprland.conf	/^bind=,d, submap, reset$/;"	k
+bind	way/hypr/hyprland.conf	/^bind=,escape,submap,reset$/;"	k
+bind	way/hypr/hyprland.conf	/^bind=,f, exec, firefox-developer-edition$/;"	k
+bind	way/hypr/hyprland.conf	/^bind=,f, submap, reset$/;"	k
+bind	way/hypr/hyprland.conf	/^bind=,m, exec, launch_switch_app spotify-launcher$/;"	k
+bind	way/hypr/hyprland.conf	/^bind=,m, submap, reset$/;"	k
+bind	way/hypr/hyprland.conf	/^bind=,r,exec,wf-recorder -f ~\/media\/video\/rec-$(date +"%Y%m%dT%H%M%S").mp4 && notify-send "Re/;"	k
+bind	way/hypr/hyprland.conf	/^bind=,r,submap,reset$/;"	k
+bind	way/hypr/hyprland.conf	/^bind=,s,exec, grim -g - - | wl-copy && notify-send "Screenshot Captured"$/;"	k
+bind	way/hypr/hyprland.conf	/^bind=,s,submap,reset$/;"	k
+bind	way/hypr/hyprland.conf	/^bind=,t, exec, launch_switch_app telegram-desktop$/;"	k
+bind	way/hypr/hyprland.conf	/^bind=,t, submap, reset$/;"	k
+bind	way/hypr/hyprland.conf	/^bind=,t,exec,pkill wf-recorder && notify-send "Recording Stopped"$/;"	k
+bind	way/hypr/hyprland.conf	/^bind=,t,submap,reset$/;"	k
+bind	way/hypr/hyprland.conf	/^bind=SHIFT,c,exec, slurp | grim -g scrn-$(date +"%Y%m%sT%H%M%S").png && notify-send "Screenclip /;"	k
+bind	way/hypr/hyprland.conf	/^bind=SHIFT,c,submap,reset$/;"	k
+bind	way/hypr/hyprland.conf	/^bind=SHIFT,s,exec, grim ~\/media\/images\/screenshots\/scrn-$(date +"%Y%m%dT%H%M%S").png && noti/;"	k
+bind	way/hypr/hyprland.conf	/^bind=SHIFT,s,submap,reset$/;"	k
+binde	way/hypr/hyprland.conf	/^binde=,h, resizeactive, -20 0$/;"	k
+binde	way/hypr/hyprland.conf	/^binde=,j, resizeactive, 0 20$/;"	k
+binde	way/hypr/hyprland.conf	/^binde=,k, resizeactive, 0 -20$/;"	k
+binde	way/hypr/hyprland.conf	/^binde=,l, resizeactive, 20 0$/;"	k
+bindm	way/hypr/hyprland.conf	/^bindm = $mainMod, mouse:272, movewindow$/;"	k
+bindm	way/hypr/hyprland.conf	/^bindm = $mainMod, mouse:273, resizewindow$/;"	k
 bottom	x/polybar/config.ini	/^bottom = true$/;"	k	section:bar/bspwm
 bottom	x/polybar/config.ini	/^margin-bottom = 0$/;"	k	section:global/wm
+bt-bg	way/gBar/style.scss	/^.bt-bg {$/;"	c
+bt-body-box	way/gBar/style.scss	/^.bt-body-box {$/;"	c
+bt-button	way/gBar/style.scss	/^.bt-button {$/;"	c
+bt-close	way/gBar/style.scss	/^.bt-close {$/;"	c
+bt-header-box	way/gBar/style.scss	/^.bt-header-box {$/;"	c
+bt-label-connected	way/gBar/style.scss	/^.bt-label-connected {$/;"	c
+bt-label-off	way/gBar/style.scss	/^.bt-label-off {$/;"	c
+bt-label-on	way/gBar/style.scss	/^.bt-label-on {$/;"	c
+bt-num	way/gBar/style.scss	/^.bt-num {$/;"	c
+bt-scan	way/gBar/style.scss	/^.bt-scan {$/;"	c
+btblue	way/gBar/style.scss	/^$btblue: #1793D1;$/;"	v
+calendar	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_gnome-calendar = \/home\/bluebyt\/Documents\/Icons\/calendar.svg$/;"	k	section:dock
+call	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^function IPC:call(destinations, name, ...)$/;"	f	unknown:IPC
+call_async	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^function IPC:call_async(destinations, name, callback, ...)$/;"	f	unknown:IPC
 callback	nvim/init.lua	/^				callback = function(ev)$/;"	f
 callback	nvim/init.lua	/^		callback = function(_)$/;"	f
 callback	nvim/init.lua	/^	callback = function() pyss() end,$/;"	f
 callback	nvim/init.lua	/^	callback = function()$/;"	f
+capitalize_first	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^local function capitalize_first(words)$/;"	f
 card	x/polybar/config.ini	/^card = intel_backlight$/;"	k	section:module/backlight-acpi
+center	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_gnome-control-center = \/home\/bluebyt\/Documents\/Icons\/preferences-system.svg$/;"	k	section:dock
 center	x/polybar/config.ini	/^fixed-center = true$/;"	k	section:bar/bspwm
 charging	x/polybar/config.ini	/^format-charging = <animation-charging> <label-charging>$/;"	k	section:module/battery
 charging	x/polybar/config.ini	/^format-charging = <animation-charging> <label-charging>$/;"	k	section:module/battery2
 charging	x/polybar/config.ini	/^label-charging = %percentage%%$/;"	k	section:module/battery2
+check_if_empty	temp/Wayfire-dots/config/scripts/Weather.sh	/^check_if_empty() {$/;"	f
 click	x/polybar/config.ini	/^cursor-click = pointer$/;"	k	section:bar/bspwm
+clock_font	temp/Wayfire-dots/config/wf-shell.ini	/^clock_font = DejaVu Sans:style=Book 12$/;"	k	section:panel
+clock_format	temp/Wayfire-dots/config/wf-shell.ini	/^clock_format = %e %a %H:%M$/;"	k	section:panel
+close	temp/Wayfire-dots/config/ipc-scripts/wayfire_socket.py	/^    def close(self):$/;"	m	class:WayfireSocket
+color	temp/Wayfire-dots/config/lite-xl/plugins/bracketmatch.lua	/^  local color = style.bracketmatch_color or style.syntax["function"]$/;"	f
 color	x/polybar/config.ini	/^line-color = #f00$/;"	k	section:bar/bspwm
 colors	firefox/manifest.json	/^    "colors": {$/;"	o	object:theme
 colors	x/polybar/mocha.ini	/^[colors]$/;"	s
+commands_sock	temp/Wayfire-dots/config/ipc-scripts/ipc-rules-demo.py	/^commands_sock = WayfireSocket(addr)$/;"	v
+compute_line_breaks	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function LineWrapping.compute_line_breaks(doc, default_font, line, width, mode)$/;"	f	unknown:LineWrapping
 config	nvim/init.lua	/^		config = function()$/;"	f
 config	nvim/init.lua	/^		config = function(_, opts)$/;"	f
+configure_input_device	temp/Wayfire-dots/config/ipc-scripts/wayfire_socket.py	/^    def configure_input_device(self, id, enabled: bool):$/;"	m	class:WayfireSocket
+configure_view	temp/Wayfire-dots/config/ipc-scripts/wayfire_socket.py	/^    def configure_view(self, view_id: int, x: int, y: int, w: int, h: int):$/;"	m	class:WayfireSocket
 connected	x/polybar/config.ini	/^format-connected = <ramp-signal><label-connected>$/;"	k	section:module/wlan
 connected	x/polybar/config.ini	/^label-connected = %essid%$/;"	k	section:module/wlan
 corners	x/picom/picom.conf	/^detect-rounded-corners = true;$/;"	k
+coroutine_key	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^    self.coroutine_key = add_thread(function()$/;"	f	unknown:self
+cpu	eww/scripts/cpu.sh	/^cpu() {$/;"	f
+cpu-box	way/gBar/style.scss	/^.cpu-box{$/;"	c
+cpu-util-progress	way/gBar/style.scss	/^.cpu-util-progress {$/;"	c
+cpu-widget	way/gBar/style.scss	/^.cpu-widget * {$/;"	c
+css_path	temp/Wayfire-dots/config/wf-shell.ini	/^css_path = \/home\/bluebyt\/.themes\/gtk.css$/;"	k	section:panel
+css_path	temp/Wayfire-dots/config/wf-shell.ini	/^css_path =$/;"	k	section:dock
+current	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^function IPC.current()$/;"	f	unknown:IPC
+cyan	way/gBar/style.scss	/^$cyan: #8be9fd;$/;"	v
+cycle_timeout	temp/Wayfire-dots/config/wf-shell.ini	/^cycle_timeout = 150$/;"	k	section:background
+darkblue	way/gBar/style.scss	/^$darkblue: #6272a4;$/;"	v
+data	temp/Wayfire-dots/config/ipc-scripts/input.py	/^    data = []$/;"	v
 date	x/polybar/config.ini	/^date = "%a %d"$/;"	k	section:module/date
 dbe	x/picom/picom.conf	/^dbe = true;$/;"	k
 delta	x/picom/picom.conf	/^fade-delta = 0.25;$/;"	k
+devices	temp/Wayfire-dots/config/ipc-scripts/input.py	/^devices = sock.list_input_devices()$/;"	v
+devices	temp/Wayfire-dots/config/ipc-scripts/set-touch-state.py	/^devices = sock.list_input_devices()$/;"	v
 diagnostics.disable	.luarc.json	/^    "diagnostics.disable": [$/;"	a
 diagnostics.globals	.luarc.json	/^    "diagnostics.globals": [$/;"	a
+disable"]	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^  ["line-wrapping:disable"] = function()$/;"	f	unknown:["line-wrapping
+disable_plugin	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^function Settings:disable_plugin(plugin)$/;"	f	unknown:Settings
 discharging	x/polybar/config.ini	/^format-discharging = <animation-discharging> <label-discharging>$/;"	k	section:module/battery
 discharging	x/polybar/config.ini	/^format-discharging = <ramp-capacity> <label-discharging>$/;"	k	section:module/battery2
 discharging	x/polybar/config.ini	/^label-discharging = %percentage%%$/;"	k	section:module/battery2
 disconnected	x/polybar/config.ini	/^format-disconnected = <label-disconnected>$/;"	k	section:module/wlan
 disconnected	x/polybar/config.ini	/^label-disconnected =  󰤮 %ifname%$/;"	k	section:module/wlan
+disk-util-progress	way/gBar/style.scss	/^.disk-util-progress {$/;"	c
+disk-widget	way/gBar/style.scss	/^.disk-widget * {$/;"	c
+dock	temp/Wayfire-dots/config/wf-shell.ini	/^[dock]$/;"	s
+dock_height	temp/Wayfire-dots/config/wf-shell.ini	/^dock_height = 64$/;"	k	section:dock
 dot_install	scripts/install/install-common.sh	/^function dot_install() {$/;"	f
 dot_install	scripts/install/install-way.sh	/^function dot_install() {$/;"	f
 dot_install	scripts/install/install-x.sh	/^function dot_install() {$/;"	f
 down	x/polybar/config.ini	/^scroll-down = bspwm-deskprev$/;"	k	section:bar/bspwm
+draw	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function DocView:draw()$/;"	f	unknown:DocView
+draw	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^function MiniMap:draw()$/;"	f	unknown:MiniMap
+draw_color_previews	temp/Wayfire-dots/config/lite-xl/plugins/colorpreview.lua	/^local function draw_color_previews(self, line, x, y, ptn, base, nibbles)$/;"	f
+draw_decoration	temp/Wayfire-dots/config/lite-xl/plugins/bracketmatch.lua	/^local function draw_decoration(dv, x, y, line, col, width)$/;"	f
+draw_guide	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function LineWrapping.draw_guide(docview)$/;"	f	unknown:LineWrapping
+draw_line_body	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function DocView:draw_line_body(line, x, y)$/;"	f	unknown:DocView
+draw_line_gutter	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function DocView:draw_line_gutter(line, x, y, width)$/;"	f	unknown:DocView
+draw_line_text	temp/Wayfire-dots/config/lite-xl/plugins/bracketmatch.lua	/^    DocView.draw_line_text = function() end$/;"	f	unknown:DocView
+draw_line_text	temp/Wayfire-dots/config/lite-xl/plugins/bracketmatch.lua	/^function DocView:draw_line_text(line, x, y)$/;"	f	unknown:DocView
+draw_line_text	temp/Wayfire-dots/config/lite-xl/plugins/colorpreview.lua	/^function DocView:draw_line_text(line, x, y)$/;"	f	unknown:DocView
+draw_line_text	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function DocView:draw_line_text(line, x, y)$/;"	f	unknown:DocView
+draw_thumb	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^function MiniMap:draw_thumb()$/;"	f	unknown:MiniMap
 ellipsis	x/polybar/config.ini	/^label-song-ellipsis = true$/;"	k	section:module/mpd
 empty	x/polybar/config.ini	/^label-empty = 󰋙$/;"	k	section:module/bspwm
+enable"]	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^  ["line-wrapping:enable"] = function()$/;"	f	unknown:["line-wrapping
+enable_plugin	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^function Settings:enable_plugin(plugin)$/;"	f	unknown:Settings
+encode_to_url_format	temp/Wayfire-dots/config/scripts/Weather.sh	/^encode_to_url_format() {$/;"	f
+end_of_line	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function translate.end_of_line(doc, line, col)$/;"	f	unknown:translate
+env	way/hypr/hyprland.conf	/^env = HYPRCURSOR_SIZE,16$/;"	k
+env	way/hypr/hyprland.conf	/^env = XCURSOR_SIZE,16$/;"	k
+events_sock	temp/Wayfire-dots/config/ipc-scripts/ipc-rules-demo.py	/^events_sock = WayfireSocket(addr)$/;"	v
 exclude	x/picom/picom.conf	/^fade-exclude = [$/;"	k
+executed	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^                    local executed = core.try(function() on_read(reply) end)$/;"	f
+executed	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^                local executed = core.try(function() on_read(message) end)$/;"	f
+exit-button	way/gBar/style.scss	/^.exit-button {$/;"	c
 expand	nvim/init.lua	/^					expand = function(args)$/;"	f
 fading	x/picom/picom.conf	/^fading = true;$/;"	k
+failed	way/gBar/style.scss	/^    &.failed {$/;"	c
 fence	x/picom/picom.conf	/^xrender-sync-fence = true;$/;"	k
+fg	way/gBar/style.scss	/^$fg: #f8f8f2;$/;"	v
 file	x/polybar/config.ini	/^include-file = $HOME\/.dotfiles\/x\/polybar\/mocha.ini$/;"	k	section:global/wm
 file_name	scripts/note	/^file_name() {$/;"	f
 file_name	scripts/note_journal	/^file_name() {$/;"	f
+find_device_id	temp/Wayfire-dots/config/ipc-scripts/input.py	/^def find_device_id(name_or_id_or_type):$/;"	f
+flush_batch	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^  local function flush_batch(type, cache)$/;"	f
 focused	x/picom/picom.conf	/^mark-ovredir-focused = true;$/;"	k
 focused	x/picom/picom.conf	/^mark-wmwin-focused = true;$/;"	k
 focused	x/polybar/config.ini	/^label-focused = $/;"	k	section:module/bspwm
+font_loaded	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^    font_loaded = core.try(function()$/;"	f
 foreground	x/polybar/config.ini	/^animation-charging-foreground = ${colors.foreground-alt}$/;"	k	section:module/battery
 foreground	x/polybar/config.ini	/^animation-charging-foreground = ${colors.green}$/;"	k	section:module/battery2
 foreground	x/polybar/config.ini	/^animation-discharging-foreground = ${colors.foreground-alt}$/;"	k	section:module/battery
@@ -312,21 +565,86 @@ framerate	x/polybar/config.ini	/^animation-charging-framerate = 750$/;"	k	sectio
 framerate	x/polybar/config.ini	/^animation-charging-framerate = 750$/;"	k	section:module/battery2
 framerate	x/polybar/config.ini	/^animation-discharging-framerate = 750$/;"	k	section:module/battery
 front	x/picom/picom.conf	/^glx-copy-from-front = false;$/;"	k
+generate_definition	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^local function generate_definition(name, params, returns)$/;"	f
+geometry_to_json	temp/Wayfire-dots/config/ipc-scripts/wayfire_socket.py	/^def geometry_to_json(x: int, y: int, w: int, h: int):$/;"	f
 getCurVol	x/polybar/scripts/pavolume.sh	/^function getCurVol {$/;"	f
 getSinkInputs	x/polybar/scripts/pavolume.sh	/^function getSinkInputs {$/;"	f
+get_active_margin	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^function MiniMap:get_active_margin() if self:is_minimap_enabled() then return 0 else return Mini/;"	f	unknown:MiniMap
+get_all_docviews	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^local function get_all_docviews(node, t)$/;"	f
+get_col_x_offset	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function DocView:get_col_x_offset(line, col, line_end)$/;"	f	unknown:DocView
+get_config_value	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^local function get_config_value(conf, path, default)$/;"	f
+get_h_scrollable_size	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function DocView:get_h_scrollable_size(...)$/;"	f	unknown:DocView
+get_idx_line_col	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^local function get_idx_line_col(docview, idx)$/;"	f
+get_idx_line_length	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^local function get_idx_line_length(docview, idx)$/;"	f
+get_installed_colors	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^local function get_installed_colors()$/;"	f
+get_installed_plugins	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^local function get_installed_plugins()$/;"	f
+get_instances	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^function IPC:get_instances()$/;"	f	unknown:IPC
+get_line_col_from_index_and_x	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^local function get_line_col_from_index_and_x(docview, idx, x)$/;"	f
+get_line_idx_col_count	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^local function get_line_idx_col_count(docview, line, col, line_end, ndoc)$/;"	f
+get_line_screen_position	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function DocView:get_line_screen_position(line, col)$/;"	f	unknown:DocView
+get_matching_bracket	temp/Wayfire-dots/config/lite-xl/plugins/bracketmatch.lua	/^local function get_matching_bracket(doc, line, col, line_limit, open_byte, close_byte, direction/;"	f
+get_message	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^function IPC:get_message(message_id)$/;"	f	unknown:IPC
+get_minimap_dimensions	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^function MiniMap:get_minimap_dimensions()$/;"	f	unknown:MiniMap
+get_msg_template	temp/Wayfire-dots/config/ipc-scripts/wayfire_socket.py	/^def get_msg_template(method: str):$/;"	f
+get_primary_instance	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^function IPC:get_primary_instance()$/;"	f	unknown:IPC
+get_reply	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^function IPC:get_reply(message_id)$/;"	f	unknown:IPC
+get_scrollable_size	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function DocView:get_scrollable_size()$/;"	f	unknown:DocView
+get_time	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^system.get_time = function()$/;"	f	unknown:system
+get_token_at	temp/Wayfire-dots/config/lite-xl/plugins/bracketmatch.lua	/^local function get_token_at(doc, line, col)$/;"	f
+get_tokens	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^local function get_tokens(doc, line)$/;"	f
+get_total_wrapped_lines	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^local function get_total_wrapped_lines(docview)$/;"	f
+get_value	temp/Wayfire-dots/config/lite-xl/plugins/bracketmatch.lua	/^      get_value = function(value)$/;"	f
+get_value	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^      get_value = function(value)$/;"	f
+get_visible_line_range	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function DocView:get_visible_line_range()$/;"	f	unknown:DocView
+get_x_offset_col	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function DocView:get_x_offset_col(line, x)$/;"	f	unknown:DocView
 global/wm	x/polybar/config.ini	/^[global\/wm]$/;"	s
+gpu-util-progress	way/gBar/style.scss	/^.gpu-util-progress {$/;"	c
+gpu-widget	way/gBar/style.scss	/^.gpu-widget * {$/;"	c
+green	way/gBar/style.scss	/^$green: #50fa7b;$/;"	v
+h	temp/Wayfire-dots/config/ipc-scripts/ipc-rules-demo.py	/^            h = workarea['height'] \/\/ 2$/;"	v
+headers	temp/Wayfire-dots/config/ipc-scripts/input.py	/^    headers = ["Name", "ID", "Type", "Vendor\/Product", "Enabled"]$/;"	v
 height	x/polybar/config.ini	/^height = 1.618%$/;"	k	section:bar/bspwm
+hide_window	scripts/hypr_hide	/^function hide_window(){$/;"	f
+hwdec	temp/Wayfire-dots/config/mpv/mpv.conf	/^hwdec=auto$/;"	k
+icon	way/wofi/style.css	/^icon {$/;"	s
+icon_height	temp/Wayfire-dots/config/wf-shell.ini	/^icon_height = 48$/;"	k	section:dock
+icon_mapping_Conky	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_Conky = \/home\/bluebyt\/Documents\/Icons\/org.xfce.panel.svg$/;"	k	section:dock
+icon_mapping_alacritty	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_alacritty = \/home\/bluebyt\/Documents\/Icons\/alacritty.svg$/;"	k	section:dock
+icon_mapping_catfish	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_catfish = \/home\/bluebyt\/Documents\/Icons\/krunner.svg$/;"	k	section:dock
+icon_mapping_chromium	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_chromium = \/home\/bluebyt\/Documents\/Icons\/chromium.svg$/;"	k	section:dock
+icon_mapping_evolution	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_evolution = \/home\/bluebyt\/Documents\/Icons\/thunderbird.svg$/;"	k	section:dock
+icon_mapping_firefox	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_firefox = \/home\/bluebyt\/Documents\/Icons\/firefox-developer-icon.svg$/;"	k	section:dock
+icon_mapping_gedit	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_gedit = \/home\/bluebyt\/Documents\/Icons\/accessories-text-editor.svg$/;"	k	section:dock
+icon_mapping_gthumb	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_gthumb = \/home\/bluebyt\/Documents\/Icons\/spectacle.svg$/;"	k	section:dock
+icon_mapping_gucharmap	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_gucharmap = \/home\/bluebyt\/Documents\/Icons\/texmaker.svg$/;"	k	section:dock
+icon_mapping_lollypop	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_lollypop = \/home\/bluebyt\/Documents\/Icons\/media-player.svg$/;"	k	section:dock
+icon_mapping_pavucontrol	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_pavucontrol = \/home\/bluebyt\/Documents\/Icons\/oomox.svg$/;"	k	section:dock
+icon_mapping_pcmanfm	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_pcmanfm = \/home\/bluebyt\/Documents\/Icons\/cs-backgrounds.svg$/;"	k	section:dock
+icon_mapping_pitivi	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_pitivi = \/home\/bluebyt\/Documents\/Icons\/mediathekview.svg$/;"	k	section:dock
+icon_mapping_shotwell	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_shotwell = \/home\/bluebyt\/Documents\/Icons\/fragments.svg$/;"	k	section:dock
+icon_mapping_thunar	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_thunar = \/home\/bluebyt\/Documents\/Icons\/org.xfce.thunar.svg$/;"	k	section:dock
+icon_mapping_tilix	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_tilix = \/home\/bluebyt\/Documents\/Icons\/org.xfce.terminal-settings.svg$/;"	k	section:dock
+icon_mapping_totem	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_totem = \/home\/bluebyt\/Documents\/Icons\/org.gnome.Totem.svg$/;"	k	section:dock
+icon_mapping_ulauncher	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_ulauncher = \/home\/bluebyt\/Documents\/Icons\/ulauncher.svg$/;"	k	section:dock
+icon_mapping_wezterm	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_wezterm = \/home\/bluebyt\/Documents\/Icons\/slack.svg$/;"	k	section:dock
 icons_attention	firefox/manifest.json	/^      "icons_attention": "#fbf1c7",$/;"	s	object:theme.colors
+image	temp/Wayfire-dots/config/wf-shell.ini	/^image = \/home\/bluebyt\/Pictures\/Wallpaper\/Nord\/Nord_wall2.jpeg       $/;"	k	section:background
+inactive	way/gBar/style.scss	/^    &.inactive {$/;"	c
+inactive	way/gBar/style.scss	/^$inactive: #44475a;$/;"	v
 include	x/picom/picom.conf	/^invert-color-include = [ ];$/;"	k
 inherit	x/polybar/config.ini	/^inherit = module\/xbacklight$/;"	k	section:module/backlight-acpi
 insert_link_action	nvim/init.lua	/^		local insert_link_action = function(selected)$/;"	f
 insert_link_action	nvim/init.lua	/^	local function insert_link_action(selected)$/;"	f
+insert_notify	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^function Highlighter:insert_notify(line, n, ...)$/;"	f	unknown:Highlighter
 interface	x/polybar/config.ini	/^interface = wlp0s20f3$/;"	k	section:module/wlan
 interval	x/polybar/config.ini	/^interval = 1$/;"	k	section:module/date
 interval	x/polybar/config.ini	/^interval = 2$/;"	k	section:module/cpu
 interval	x/polybar/config.ini	/^interval = 2$/;"	k	section:module/memory
 interval	x/polybar/config.ini	/^interval = 25$/;"	k	section:module/filesystem
 interval	x/polybar/config.ini	/^interval = 3.0$/;"	k	section:module/wlan
+invalidate	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^function Highlighter:invalidate(idx, ...)$/;"	f	unknown:Highlighter
+is_minimap_enabled	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^function MiniMap:is_minimap_enabled()$/;"	f	unknown:MiniMap
+js	temp/Wayfire-dots/config/ipc-scripts/wayfire_socket.py	/^import json as js$/;"	I	nameref:module:json
 label	x/polybar/config.ini	/^label = %date% %time%$/;"	k	section:module/date
 label	x/polybar/config.ini	/^label = %percentage%%$/;"	k	section:module/xbacklight
 label	x/polybar/config.ini	/^label = %percentage:2%%$/;"	k	section:module/cpu
@@ -334,15 +652,51 @@ label	x/polybar/config.ini	/^label = %percentage_used%%$/;"	k	section:module/mem
 label	x/polybar/config.ini	/^label = %temperature%$/;"	k	section:module/temperature
 label	x/polybar/config.ini	/^label = %title:0:30:...%$/;"	k	section:module/xwindow
 label:focus	way/waybar/style.css	/^label:focus {$/;"	s
+larger	temp/Wayfire-dots/config/mpv/mpv.conf	/^autofit-larger=30%x30%$/;"	k
+last_focused_toplevel	temp/Wayfire-dots/config/ipc-scripts/inactive-alpha.py	/^            last_focused_toplevel = new_focus$/;"	v
+last_focused_toplevel	temp/Wayfire-dots/config/ipc-scripts/inactive-alpha.py	/^last_focused_toplevel = -1$/;"	v
+launcher_chrome	temp/Wayfire-dots/config/wf-shell.ini	/^launcher_chrome = google-chrome.desktop$/;"	k	section:panel
+launcher_cmd_1	temp/Wayfire-dots/config/wf-shell.ini	/^launcher_cmd_1 = env XDG_CURRENT_DESKTOP=GNOME gnome-control-center$/;"	k	section:panel
+launcher_firefox	temp/Wayfire-dots/config/wf-shell.ini	/^launcher_firefox = firefox.desktop$/;"	k	section:panel
+launcher_gedit	temp/Wayfire-dots/config/wf-shell.ini	/^launcher_gedit = org.gnome.gedit.desktop$/;"	k	section:panel
+launcher_icon_1	temp/Wayfire-dots/config/wf-shell.ini	/^launcher_icon_1 = \/usr\/share\/icons\/gnome\/48x48\/categories\/preferences-system.png$/;"	k	section:panel
+launcher_nau	temp/Wayfire-dots/config/wf-shell.ini	/^launcher_nau = org.gnome.Nautilus.desktop$/;"	k	section:panel
+launcher_size	temp/Wayfire-dots/config/wf-shell.ini	/^launcher_size = 42$/;"	k	section:panel
+launcher_terminal1	temp/Wayfire-dots/config/wf-shell.ini	/^launcher_terminal1 = terminator.desktop$/;"	k	section:panel
+launcher_terminal2	temp/Wayfire-dots/config/wf-shell.ini	/^launcher_terminal2 = org.gnome.Terminal.desktop$/;"	k	section:panel
+launchers_size	temp/Wayfire-dots/config/wf-shell.ini	/^launchers_size = 42$/;"	k	section:panel
+launchers_spacing	temp/Wayfire-dots/config/wf-shell.ini	/^launchers_spacing = 4$/;"	k	section:panel
+layer	temp/Wayfire-dots/config/wf-shell.ini	/^layer = top$/;"	k	section:panel
 leader	x/picom/picom.conf	/^detect-client-leader = true;$/;"	k
 left	x/polybar/config.ini	/^module-margin-left = 1$/;"	k	section:bar/bspwm
 left	x/polybar/config.ini	/^modules-left = date bspwm xwindow$/;"	k	section:bar/bspwm
 left	x/polybar/config.ini	/^padding-left = 2 $/;"	k	section:bar/bspwm
+line_highlight_color	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^function MiniMap:line_highlight_color(line_index)$/;"	f	unknown:MiniMap
 list_cmd	nvim/init.lua	/^function list_cmd()$/;"	f
+list_input_devices	temp/Wayfire-dots/config/ipc-scripts/wayfire_socket.py	/^    def list_input_devices(self):$/;"	m	class:WayfireSocket
+list_views	temp/Wayfire-dots/config/ipc-scripts/wayfire_socket.py	/^    def list_views(self):$/;"	m	class:WayfireSocket
 listen	x/polybar/scripts/pavolume.sh	/^function listen {$/;"	f
+listen_message	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^function IPC:listen_message(name, callback, message_type)$/;"	f	unknown:IPC
+listen_signal	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^function IPC:listen_signal(name, callback)$/;"	f	unknown:IPC
+load_color_settings	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^function Settings:load_color_settings()$/;"	f	unknown:Settings
+load_core_settings	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^function Settings:load_core_settings()$/;"	f	unknown:Settings
+load_keymap_settings	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^function Settings:load_keymap_settings()$/;"	f	unknown:Settings
+load_plugin_settings	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^function Settings:load_plugin_settings()$/;"	f	unknown:Settings
+load_settings	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^local function load_settings()$/;"	f
+lock-button	way/gBar/style.scss	/^.lock-button {$/;"	c
+manager	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_blueman-manager = \/home\/bluebyt\/Documents\/Icons\/blueman.svg$/;"	k	section:dock
 manifest_version	firefox/manifest.json	/^  "manifest_version": 2,$/;"	n
 markdowntags	ctags/md.ctags	/^--langdef=markdowntags$/;"	l
 maxlen	x/polybar/config.ini	/^label-song-maxlen = 25$/;"	k	section:module/mpd
+menu_fuzzy_search	temp/Wayfire-dots/config/wf-shell.ini	/^menu_fuzzy_search = true$/;"	k	section:panel
+menu_icon	temp/Wayfire-dots/config/wf-shell.ini	/^menu_icon = $/;"	k	section:panel
+menu_logout_command	temp/Wayfire-dots/config/wf-shell.ini	/^menu_logout_command = wayland-logout$/;"	k	section:panel
+merge_font_settings	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^local function merge_font_settings(option, path, saved_value)$/;"	f
+merge_plugin_settings	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^local function merge_plugin_settings(plugin_name, options)$/;"	f
+merge_settings	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^local function merge_settings()$/;"	f
+mic-icon	way/gBar/style.scss	/^.mic-icon {$/;"	c
+mic-volume	way/gBar/style.scss	/^.mic-volume {$/;"	c
+minimal_height	temp/Wayfire-dots/config/wf-shell.ini	/^minimal_height = 24$/;"	k	section:panel
 mode	nvim/init.lua	/^			{ "R", mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = /;"	f
 mode	nvim/init.lua	/^			{ "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = /;"	f
 mode	nvim/init.lua	/^			{ "r", mode = "o",               function() require("flash").remote() end,            desc = /;"	f
@@ -361,20 +715,94 @@ module/temperature	x/polybar/config.ini	/^[module\/temperature]$/;"	s
 module/wlan	x/polybar/config.ini	/^[module\/wlan]$/;"	s
 module/xbacklight	x/polybar/config.ini	/^[module\/xbacklight]$/;"	s
 module/xwindow	x/polybar/config.ini	/^[module\/xwindow]$/;"	s
+monitor	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_gnome-system-monitor = \/home\/bluebyt\/Documents\/Icons\/utilities-system-monitor./;"	k	section:dock
+monitor	way/hypr/hyprland.conf	/^monitor=,preferred,auto,1.333333$/;"	k
 monitor	x/polybar/config.ini	/^monitor = eDP-1$/;"	k	section:bar/bspwm
 mounted	x/polybar/config.ini	/^label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%$/;"	k	section:module/filesystem
+move-to-matching"]	temp/Wayfire-dots/config/lite-xl/plugins/bracketmatch.lua	/^  ["bracket-match:move-to-matching"] = function(dv)$/;"	f	unknown:["bracket-match
+move_all_to_workspace	temp/Wayfire-dots/config/ipc-scripts/move-to-workspace.py	/^def move_all_to_workspace(app_id, x, y):$/;"	f
+move_to_workspace	temp/Wayfire-dots/config/ipc-scripts/chatgpt.py	/^def move_to_workspace(output_id, workspace_x, workspace_y):$/;"	f
+move_to_workspace	temp/Wayfire-dots/config/ipc-scripts/move-to-workspace.py	/^def move_to_workspace(s: WayfireSocket, view, ws_x: int, ws_y: int):$/;"	f
+msg	temp/Wayfire-dots/config/ipc-scripts/inactive-alpha.py	/^    msg = sock.read_message()$/;"	v
+msg	temp/Wayfire-dots/config/ipc-scripts/ipc-rules-demo.py	/^    msg = events_sock.read_message()$/;"	v
+msg	temp/Wayfire-dots/config/ipc-scripts/work1.py	/^msg = get_msg_template('vswitch\/set-workspace')$/;"	v
+msg	temp/Wayfire-dots/config/ipc-scripts/work2.py	/^msg = get_msg_template('vswitch\/set-workspace')$/;"	v
+msg	temp/Wayfire-dots/config/ipc-scripts/work3.py	/^msg = get_msg_template('vswitch\/set-workspace')$/;"	v
+msg	temp/Wayfire-dots/config/ipc-scripts/work4.py	/^msg = get_msg_template('vswitch\/set-workspace')$/;"	v
+msg	temp/Wayfire-dots/config/ipc-scripts/work5.py	/^msg = get_msg_template('vswitch\/set-workspace')$/;"	v
+msg	temp/Wayfire-dots/config/ipc-scripts/work6.py	/^msg = get_msg_template('vswitch\/set-workspace')$/;"	v
+msg	temp/Wayfire-dots/config/ipc-scripts/workspace.py	/^msg = get_msg_template('vswitch\/set-workspace')$/;"	v
+msg	temp/Wayfire-dots/config/mpv/mpv.conf	/^term-status-msg="Time: ${time-pos}"$/;"	k
 muted	x/polybar/config.ini	/^label-muted = 󰝟$/;"	k	section:module/pulseaudio
 name	firefox/manifest.json	/^  "name": "a7rs Humble Gruvbox",$/;"	s
+network-data-text	way/gBar/style.scss	/^.network-data-text {$/;"	c
+network-down-high	way/gBar/style.scss	/^.network-down-high {$/;"	c
+network-down-low	way/gBar/style.scss	/^.network-down-low {$/;"	c
+network-down-mid-high	way/gBar/style.scss	/^.network-down-mid-high {$/;"	c
+network-down-mid-low	way/gBar/style.scss	/^.network-down-mid-low {$/;"	c
+network-down-over	way/gBar/style.scss	/^.network-down-over {$/;"	c
+network-down-under	way/gBar/style.scss	/^.network-down-under {$/;"	c
+network-up-high	way/gBar/style.scss	/^.network-up-high {$/;"	c
+network-up-low	way/gBar/style.scss	/^.network-up-low {$/;"	c
+network-up-mid-high	way/gBar/style.scss	/^.network-up-mid-high {$/;"	c
+network-up-mid-low	way/gBar/style.scss	/^.network-up-mid-low {$/;"	c
+network-up-over	way/gBar/style.scss	/^.network-up-over {$/;"	c
+network-up-under	way/gBar/style.scss	/^.network-up-under {$/;"	c
+network_icon_invert_color	temp/Wayfire-dots/config/wf-shell.ini	/^network_icon_invert_color = true$/;"	k	section:panel
+network_icon_size	temp/Wayfire-dots/config/wf-shell.ini	/^network_icon_size = 32$/;"	k	section:panel
+network_onclick_command	temp/Wayfire-dots/config/wf-shell.ini	/^network_onclick_command = default$/;"	k	section:panel
+network_status	temp/Wayfire-dots/config/wf-shell.ini	/^network_status = 0$/;"	k	section:panel
+network_status_font	temp/Wayfire-dots/config/wf-shell.ini	/^network_status_font = DejaVu Sans:style=Book 10$/;"	k	section:panel
+network_status_use_color	temp/Wayfire-dots/config/wf-shell.ini	/^network_status_use_color = false$/;"	k	section:panel
+new	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^function IPC:new(id)$/;"	f	unknown:IPC
+new	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function DocView:new(doc)$/;"	f	unknown:DocView
+new	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^function DocView:new(doc)$/;"	f	unknown:DocView
+new	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^function MiniMap:new(dv)$/;"	f	unknown:MiniMap
+new	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^function Settings:new()$/;"	f	unknown:Settings
+new	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^function View:new()$/;"	f	unknown:View
+new_focus	temp/Wayfire-dots/config/ipc-scripts/inactive-alpha.py	/^        new_focus = view["id"] if view and view["type"] == "toplevel" else -1$/;"	v
 next	x/polybar/config.ini	/^icon-next = $/;"	k	section:module/mpd
+next_line	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function DocView.translate.next_line(doc, line, col, dv)$/;"	f	unknown:DocView.translate
 ntp_background	firefox/manifest.json	/^      "ntp_background": "#1d2021",$/;"	s	object:theme.colors
 ntp_text	firefox/manifest.json	/^      "ntp_text": "#d5c4a1",$/;"	s	object:theme.colors
 occupied	x/polybar/config.ini	/^label-occupied = $/;"	k	section:module/bspwm
 offline	x/polybar/config.ini	/^format-offline = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>$/;"	k	section:module/mpd
+on_apply	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^      on_apply = function(value)$/;"	f
+on_apply	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^      on_apply = function()$/;"	f
+on_apply	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^      on_apply = function(enabled)$/;"	f
+on_apply	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^      on_apply = function(value)$/;"	f
+on_change	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^      function toggle:on_change(value)$/;"	f	unknown:toggle
+on_change	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^    function widget:on_change(value)$/;"	f	unknown:widget
+on_change	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^  function textbox:on_change(value)$/;"	f	unknown:textbox
+on_click	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^        function button:on_click()$/;"	f	unknown:button
+on_click	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^      on_click = function()$/;"	f
+on_click	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^  function button:on_click() open_link("https:\/\/lite-xl.com\/") end$/;"	f	unknown:button
+on_color_draw	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^local function on_color_draw(self, row, x, y, font, color, only_calc)$/;"	f
+on_mouse_moved	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^function RootView:on_mouse_moved(x, y, dx, dy)$/;"	f	unknown:RootView
+on_mouse_moved	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^function MiniMap:on_mouse_moved(x, y, dx, dy)$/;"	f	unknown:MiniMap
+on_mouse_moved	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^  function ToolbarView:on_mouse_moved(px, py, ...)$/;"	f	unknown:ToolbarView
+on_mouse_pressed	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^function MiniMap:on_mouse_pressed(button, x, y, clicks)$/;"	f	unknown:MiniMap
+on_mouse_pressed	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^  function listbox:on_mouse_pressed(button, x, y, clicks)$/;"	f	unknown:listbox
+on_mouse_released	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^function RootView:on_mouse_released(button, x, y, ...)$/;"	f	unknown:RootView
+on_reply	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^    on_reply = callback and function(reply)$/;"	f
+on_reset	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^function keymap_dialog:on_reset()$/;"	f	unknown:keymap_dialog
+on_row_click	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^  function contributors:on_row_click(_, data) open_link(data) end$/;"	f	unknown:contributors
+on_row_click	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^  function listbox:on_row_click(idx, data)$/;"	f	unknown:listbox
+on_save	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^function keymap_dialog:on_save(bindings)$/;"	f	unknown:keymap_dialog
+on_text_input	temp/Wayfire-dots/config/lite-xl/plugins/autowrap.lua	/^DocView.on_text_input = function(self, ...)$/;"	f	unknown:DocView
+once	way/hypr/hyprland.conf	/^exec-once = fd -t f -e png -e jpg -e jpeg . ~\/media\/images\/wallpapers | shuf -n 1 | xargs hyp/;"	k
+once	way/hypr/hyprland.conf	/^exec-once = mako$/;"	k
+once	way/hypr/hyprland.conf	/^exec-once = waybar$/;"	k
 online	x/polybar/config.ini	/^format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>$/;"	k	section:module/mpd
 opacity	x/picom/picom.conf	/^active-opacity = 1.0;$/;"	k
 opacity	x/picom/picom.conf	/^detect-client-opacity = true;$/;"	k
 opacity	x/picom/picom.conf	/^frame-opacity = 0.7;$/;"	k
+open_link	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^  local function open_link(link)$/;"	f
+orange	way/gBar/style.scss	/^$orange: #ffb86c;$/;"	v
 output	x/polybar/scripts/pavolume.sh	/^function output() {$/;"	f
+output_data	temp/Wayfire-dots/config/ipc-scripts/ipc-rules-demo.py	/^            output_data = commands_sock.query_output(view["output"])$/;"	v
+output_id	temp/Wayfire-dots/config/ipc-scripts/chatgpt.py	/^    output_id = int(sys.argv[1])$/;"	v
+package-outofdate	way/gBar/style.scss	/^.package-outofdate {$/;"	c
 padding	x/polybar/config.ini	/^label-connected-padding = 1$/;"	k	section:module/wlan
 padding	x/polybar/config.ini	/^label-empty-padding = 1$/;"	k	section:module/bspwm
 padding	x/polybar/config.ini	/^label-focused-padding = 1$/;"	k	section:module/bspwm
@@ -382,54 +810,149 @@ padding	x/polybar/config.ini	/^label-occupied-padding = 1$/;"	k	section:module/b
 padding	x/polybar/config.ini	/^label-padding = 1$/;"	k	section:module/temperature
 padding	x/polybar/config.ini	/^label-urgent-padding = 1$/;"	k	section:module/bspwm
 padding	x/polybar/config.ini	/^tray-padding = 0$/;"	k	section:bar/bspwm
+panel	temp/Wayfire-dots/config/wf-shell.ini	/^[panel]$/;"	s
+parser	temp/Wayfire-dots/config/ipc-scripts/input.py	/^parser = argparse.ArgumentParser()$/;"	v
+pattern	temp/Wayfire-dots/config/lite-xl/plugins/language_conf.lua	/^    { pattern = "[A-Za-z0-9_%.%-]+%s*%f[=]", type = "function" },$/;"	f
+pattern	temp/Wayfire-dots/config/lite-xl/plugins/language_corn.lua	/^    { pattern = "[A-Za-z0-9_%.%-]+%s*%f[=]", type = "function" },$/;"	f
+pattern	temp/Wayfire-dots/config/lite-xl/plugins/language_ini.lua	/^    { pattern = "[A-Za-z0-9_%.%-]+%s*%f[=]", type = "function" },$/;"	f
+pattern	temp/Wayfire-dots/config/lite-xl/plugins/language_toml.lua	/^    { pattern = "[A-Za-z0-9_%.%-]+%s*%f[=]", type = "function" },$/;"	f
 pause	x/polybar/config.ini	/^icon-pause = $/;"	k	section:module/mpd
+pink	way/gBar/style.scss	/^$pink: #ff79c6;$/;"	v
 pixmap	x/picom/picom.conf	/^glx-no-rebind-pixmap = true;$/;"	k
 play	x/polybar/config.ini	/^icon-play = $/;"	k	section:module/mpd
 popup	firefox/manifest.json	/^      "popup": "#1d2021",$/;"	s	object:theme.colors
+popup	way/gBar/style.scss	/^.popup {$/;"	c
 popup_border	firefox/manifest.json	/^      "popup_border": "#1d2021",$/;"	s	object:theme.colors
 popup_highlight	firefox/manifest.json	/^      "popup_highlight": "#7c6f64",$/;"	s	object:theme.colors
 popup_text	firefox/manifest.json	/^      "popup_text": "#d5c4a1",$/;"	s	object:theme.colors
+position	temp/Wayfire-dots/config/wf-shell.ini	/^position = bottom$/;"	k	section:dock
+position	temp/Wayfire-dots/config/wf-shell.ini	/^position = bottom$/;"	k	section:panel
 position	x/polybar/config.ini	/^tray-position = right$/;"	k	section:bar/bspwm
 possible	x/picom/picom.conf	/^unredir-if-possible = true;$/;"	k
+power-box	way/gBar/style.scss	/^.power-box {$/;"	c
+power-box-expand	way/gBar/style.scss	/^.power-box-expand {$/;"	c
+power-button	way/gBar/style.scss	/^.power-button {$/;"	c
 prefix	x/polybar/config.ini	/^format-full-prefix = " "$/;"	k	section:module/battery
 prefix	x/polybar/config.ini	/^format-full-prefix = " "$/;"	k	section:module/battery2
 prefix	x/polybar/config.ini	/^format-prefix = "  "$/;"	k	section:module/memory
 prefix	x/polybar/config.ini	/^format-prefix = " "$/;"	k	section:module/cpu
 prefix	x/polybar/config.ini	/^format-prefix = "󰃠 "$/;"	k	section:module/backlight-acpi
 prefix	x/polybar/config.ini	/^format-prefix = "󰃠 "$/;"	k	section:module/xbacklight
+preserve_aspect	temp/Wayfire-dots/config/wf-shell.ini	/^preserve_aspect = false$/;"	k	section:background
+prettify_name	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^local function prettify_name(name)$/;"	f
 prev	x/polybar/config.ini	/^icon-prev = $/;"	k	section:module/mpd
+previous_line	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function DocView.translate.previous_line(doc, line, col, dv)$/;"	f	unknown:DocView.translate
+purple	way/gBar/style.scss	/^$purple: #bd93f9;$/;"	v
 pyss	nvim/init.lua	/^local function pyss()$/;"	f
+query	temp/Wayfire-dots/config/ipc-scripts/list-methods.py	/^query = ws.get_msg_template('list-methods')$/;"	v
+query	temp/Wayfire-dots/config/ipc-scripts/list-methods.py	/^query = ws.get_msg_template('wayfire\/configuration')$/;"	v
+query_output	temp/Wayfire-dots/config/ipc-scripts/wayfire_socket.py	/^    def query_output(self, output_id: int):$/;"	m	class:WayfireSocket
+ram-util-progress	way/gBar/style.scss	/^.ram-util-progress {$/;"	c
+ram-widget	way/gBar/style.scss	/^.ram-widget * {$/;"	c
+randomize	temp/Wayfire-dots/config/wf-shell.ini	/^randomize = false$/;"	k	section:background
 rate	x/picom/picom.conf	/^refresh-rate = 60;$/;"	k
+raw_insert	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function Doc:raw_insert(line, col, text, undo_stack, time)$/;"	f	unknown:Doc
+raw_remove	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function Doc:raw_remove(line1, col1, line2, col2, undo_stack, time)$/;"	f	unknown:Doc
+read_exact	temp/Wayfire-dots/config/ipc-scripts/wayfire_socket.py	/^    def read_exact(self, n):$/;"	m	class:WayfireSocket
+read_message	temp/Wayfire-dots/config/ipc-scripts/wayfire_socket.py	/^    def read_message(self):$/;"	m	class:WayfireSocket
+read_messages	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^function IPC:read_messages()$/;"	f	unknown:IPC
+read_replies	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^function IPC:read_replies()$/;"	f	unknown:IPC
+reboot-button	way/gBar/style.scss	/^.reboot-button {$/;"	c
+reconstruct_breaks	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function LineWrapping.reconstruct_breaks(docview, default_font, width, line_offset)$/;"	f	unknown:LineWrapping
+red	way/gBar/style.scss	/^$red: #ff5555;$/;"	v
+redraw_char	temp/Wayfire-dots/config/lite-xl/plugins/bracketmatch.lua	/^local function redraw_char(dv, x, y, line, col, bg_color, char_color)$/;"	f
+register_method	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^function IPC:register_method(name, method, params, returns)$/;"	f	unknown:IPC
+register_signal	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^function IPC:register_signal(name, params)$/;"	f	unknown:IPC
 reload	x/polybar/config.ini	/^screenchange-reload = true$/;"	k	section:settings
 reloadSink	x/polybar/scripts/pavolume.sh	/^reloadSink() {$/;"	f
+remove_message	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^function IPC:remove_message(message_id)$/;"	f	unknown:IPC
+remove_notify	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^function Highlighter:remove_notify(line, n, ...)$/;"	f	unknown:Highlighter
+render_highlight	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^  local function render_highlight(idx, line_y)$/;"	f
+reset_cache	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^local function reset_cache()$/;"	f
+reset_cache_if_needed	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^local function reset_cache_if_needed()$/;"	f
+resolve_screen_position	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function DocView:resolve_screen_position(x, y)$/;"	f	unknown:DocView
+response	temp/Wayfire-dots/config/ipc-scripts/list-methods.py	/^response = sock.send_json(query)$/;"	v
 restack	x/polybar/config.ini	/^wm-restack = bspwm$/;"	k	section:bar/bspwm
+right	way/gBar/style.scss	/^.right {$/;"	c
 right	x/polybar/config.ini	/^module-margin-right = 1$/;"	k	section:bar/bspwm
 right	x/polybar/config.ini	/^modules-right = pulseaudio backlight-acpi wlan memory cpu battery2 temperature$/;"	k	section:bar/bspwm
 right	x/polybar/config.ini	/^padding-right = 2$/;"	k	section:bar/bspwm
 rule	x/picom/picom.conf	/^opacity-rule = [ "38:class_g = 'Bspwm' && class_i = 'presel_feedback'" ];$/;"	k
+run	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^core.run = function()$/;"	f	unknown:core
+run	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^function core.run()$/;"	f	unknown:core
+run_threads	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^local run_threads = coroutine.wrap(function()$/;"	f
+save_settings	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^local function save_settings()$/;"	f
+scan_plugins_spec	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^local function scan_plugins_spec()$/;"	f
+scroll_to_line	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function DocView:scroll_to_line(...)$/;"	f	unknown:DocView
+scroll_to_make_visible	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function DocView:scroll_to_make_visible(line, col)$/;"	f	unknown:DocView
+scroll_to_make_visible	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^function DocView:scroll_to_make_visible(line, col, ...)$/;"	f	unknown:DocView
+seek	temp/Wayfire-dots/config/mpv/mpv.conf	/^hr-seek=always$/;"	k
+select-to-matching"]	temp/Wayfire-dots/config/lite-xl/plugins/bracketmatch.lua	/^  ["bracket-match:select-to-matching"] = function(dv)$/;"	f	unknown:["bracket-match
+send_json	temp/Wayfire-dots/config/ipc-scripts/wayfire_socket.py	/^    def send_json(self, msg):$/;"	m	class:WayfireSocket
+send_message	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^function IPC:send_message(name, options, message_type)$/;"	f	unknown:IPC
+server	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_gnome-terminal-server = \/home\/bluebyt\/Documents\/Icons\/terminal.svg$/;"	k	section:dock
+set_always_on_top	temp/Wayfire-dots/config/ipc-scripts/wayfire_socket.py	/^    def set_always_on_top(self, view_id: int, always_on_top: bool):$/;"	m	class:WayfireSocket
+set_config_value	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^local function set_config_value(conf, path, value)$/;"	f
+set_focus	temp/Wayfire-dots/config/ipc-scripts/wayfire_socket.py	/^    def set_focus(self, view_id: int):$/;"	m	class:WayfireSocket
+set_value	temp/Wayfire-dots/config/lite-xl/plugins/bracketmatch.lua	/^      set_value = function(value)$/;"	f
+set_value	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^      set_value = function(value)$/;"	f
+set_view_alpha	temp/Wayfire-dots/config/ipc-scripts/wayfire_socket.py	/^    def set_view_alpha(self, view_id: int, alpha: float):$/;"	m	class:WayfireSocket
 settings	x/polybar/config.ini	/^[settings]$/;"	s
+settings"]	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^  ["ui:settings"] = function()$/;"	f	unknown:["ui
 setup	qutebrowser/catppuccin/setup.py	/^def setup(c, flavour, samecolorrows = False):$/;"	f
+setup_about	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^function Settings:setup_about()$/;"	f	unknown:Settings
 shadow	x/picom/picom.conf	/^shadow = false;$/;"	k
+show_fatal_error	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^system.show_fatal_error = function(title, message)$/;"	f	unknown:system
+show_window	scripts/hypr_hide	/^function show_window(){$/;"	f
 sidebar	firefox/manifest.json	/^      "sidebar": "#1d2021",$/;"	s	object:theme.colors
 sidebar_border	firefox/manifest.json	/^      "sidebar_border": "#1d2021",$/;"	s	object:theme.colors
 sidebar_highlight	firefox/manifest.json	/^      "sidebar_highlight": "#7c6f64",$/;"	s	object:theme.colors
 sidebar_text	firefox/manifest.json	/^      "sidebar_text": "#d5c4a1",$/;"	s	object:theme.colors
+signal	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^function IPC:signal(destinations, name, ...)$/;"	f	unknown:IPC
+signal_cb	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^  local signal_cb = function(message)$/;"	f
 size	x/polybar/config.ini	/^line-size = 0$/;"	k	section:bar/bspwm
+sleep-button	way/gBar/style.scss	/^.sleep-button {$/;"	c
+sock	temp/Wayfire-dots/config/ipc-scripts/inactive-alpha.py	/^sock = WayfireSocket(addr)$/;"	v
+sock	temp/Wayfire-dots/config/ipc-scripts/input.py	/^sock = ws.WayfireSocket(addr)$/;"	v
+sock	temp/Wayfire-dots/config/ipc-scripts/list-methods.py	/^sock = ws.WayfireSocket(addr)$/;"	v
+sock	temp/Wayfire-dots/config/ipc-scripts/set-touch-state.py	/^sock = ws.WayfireSocket(addr)$/;"	v
+sock	temp/Wayfire-dots/config/ipc-scripts/work1.py	/^sock = WayfireSocket(addr)$/;"	v
+sock	temp/Wayfire-dots/config/ipc-scripts/work2.py	/^sock = WayfireSocket(addr)$/;"	v
+sock	temp/Wayfire-dots/config/ipc-scripts/work3.py	/^sock = WayfireSocket(addr)$/;"	v
+sock	temp/Wayfire-dots/config/ipc-scripts/work4.py	/^sock = WayfireSocket(addr)$/;"	v
+sock	temp/Wayfire-dots/config/ipc-scripts/work5.py	/^sock = WayfireSocket(addr)$/;"	v
+sock	temp/Wayfire-dots/config/ipc-scripts/work6.py	/^sock = WayfireSocket(addr)$/;"	v
+sock	temp/Wayfire-dots/config/ipc-scripts/workspace.py	/^sock = WayfireSocket(addr)$/;"	v
+soft_reset	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^function Highlighter:soft_reset(...)$/;"	f	unknown:Highlighter
+spew_tokens	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^local function spew_tokens(doc, line) if line < math.huge then return math.huge, "normal", doc.l/;"	f
+start	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^function IPC:start()$/;"	f	unknown:IPC
+start_of_line	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function translate.start_of_line(doc, line, col)$/;"	f	unknown:translate
+state	temp/Wayfire-dots/config/ipc-scripts/set-touch-state.py	/^state: bool = sys.argv[1] == 'enabled'$/;"	v	typeref:typename:bool
 stencil	x/picom/picom.conf	/^glx-no-stencil = true;$/;"	k
 step	x/picom/picom.conf	/^fade-in-step = 0.02;$/;"	k
 step	x/picom/picom.conf	/^fade-out-step = 0.02;$/;"	k
+stop	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^function IPC:stop()$/;"	f	unknown:IPC
 stop	x/polybar/config.ini	/^icon-stop = $/;"	k	section:module/mpd
+store_default_keybindings	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^local function store_default_keybindings()$/;"	f
 style fg	tmux/tmux.conf	/^set-option -g status-right-style fg=${thm_black},bg=${thm_yellow},bold$/;"	k
 style fg	tmux/tmux.conf	/^set-window-option -g window-status-activity-style fg=${thm_red},bold$/;"	k
 style fg	tmux/tmux.conf	/^set-window-option -g window-status-bell-style fg=${thm_red}$/;"	k
 style fg	tmux/tmux.conf	/^set-window-option -g window-status-current-style fg=${thm_bg},bg=${thm_magenta},bold,italics$/;"	k
 subbuffermesa	x/picom/picom.conf	/^glx-use-copy-subbuffermesa = true;$/;"	k
+submap	way/hypr/hyprland.conf	/^submap = apps$/;"	k
+submap	way/hypr/hyprland.conf	/^submap = reset$/;"	k
+submap	way/hypr/hyprland.conf	/^submap = resize $/;"	k
+submap	way/hypr/hyprland.conf	/^submap = screen$/;"	k
+submap	way/hypr/hyprland.conf	/^submap=reset$/;"	k
+system-confirm	way/gBar/style.scss	/^.system-confirm {$/;"	c
 tab_background_text	firefox/manifest.json	/^      "tab_background_text": "#d5c4a1",$/;"	s	object:theme.colors
 tab_line	firefox/manifest.json	/^      "tab_line": "#1d2021",$/;"	s	object:theme.colors
 tab_loading	firefox/manifest.json	/^      "tab_loading": "#fbf1c7",$/;"	s	object:theme.colors
 tab_text	firefox/manifest.json	/^      "tab_text": "#fbf1c7",$/;"	s	object:theme.colors
 tag	ctags/md.ctags	/^--kinddef-markdowntags=t,tag,tags$/;"	k	langdef:markdowntags
 temperature	x/polybar/config.ini	/^warn-temperature = 75$/;"	k	section:module/temperature
+terminal	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_xfce4-terminal = \/home\/bluebyt\/Documents\/Icons\/cinnamon-panel-launcher.svg$/;"	k	section:dock
+textsize	way/gBar/style.scss	/^$textsize: 16px;$/;"	v
 theme	firefox/manifest.json	/^  "theme": {$/;"	o
 thm_bg	tmux/tmux.conf	/^thm_bg="#1e1e2e"$/;"	k
 thm_black	tmux/tmux.conf	/^thm_black="#181825"$/;"	k
@@ -445,6 +968,14 @@ thm_pink	tmux/tmux.conf	/^thm_pink="#f5c2e7"$/;"	k
 thm_red	tmux/tmux.conf	/^thm_red="#f38ba8"$/;"	k
 thm_yellow	tmux/tmux.conf	/^thm_yellow="#f9e2af"$/;"	k
 time	x/polybar/config.ini	/^time = "%H:%M"$/;"	k	section:module/date
+time-text	way/gBar/style.scss	/^.time-text {$/;"	c
+title-text	way/gBar/style.scss	/^.title-text {$/;"	c
+toggle"]	temp/Wayfire-dots/config/lite-xl/plugins/autowrap.lua	/^  ["auto-wrap:toggle"] = function()$/;"	f	unknown:["auto-wrap
+toggle"]	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^  ["line-wrapping:toggle"] = function()$/;"	f	unknown:["line-wrapping
+toggle-syntax-highlighting"]	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^  ["minimap:toggle-syntax-highlighting"] = function()$/;"	f	unknown:["minimap
+toggle-visibility"]	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^  ["minimap:toggle-visibility"] = function()$/;"	f	unknown:["minimap
+toggle-visibility-for-current-view"]	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^  ["minimap:toggle-visibility-for-current-view"] = function(dv)$/;"	f	unknown:["minimap
+tokenize_line	temp/Wayfire-dots/config/lite-xl/plugins/minimap.lua	/^function Highlighter:tokenize_line(idx, state, ...)$/;"	f	unknown:Highlighter
 toolbar	firefox/manifest.json	/^      "toolbar": "#1d2021",$/;"	s	object:theme.colors
 toolbar_bottom_separator	firefox/manifest.json	/^	  "toolbar_bottom_separator": "#1d2021",$/;"	s	object:theme.colors
 toolbar_field	firefox/manifest.json	/^      "toolbar_field": "black",$/;"	s	object:theme.colors
@@ -454,8 +985,11 @@ toolbar_field_text	firefox/manifest.json	/^      "toolbar_field_text": "#d5c4a1"
 toolbar_text	firefox/manifest.json	/^      "toolbar_text": "#d5c4a1",$/;"	s	object:theme.colors
 toolbar_top_separator	firefox/manifest.json	/^	  "toolbar_top_separator": "#1d2021"$/;"	s	object:theme.colors
 toolbar_vertical_separator	firefox/manifest.json	/^      "toolbar_vertical_separator": "#1d2021",$/;"	s	object:theme.colors
+tooltip *	ironbar/style.css	/^tooltip * {$/;"	s
+tooltip.background	ironbar/style.css	/^tooltip.background {$/;"	c
 top	x/polybar/config.ini	/^margin-top = 0$/;"	k	section:global/wm
 transient	x/picom/picom.conf	/^detect-transient = true;$/;"	k
+tweaks	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_gnome-tweaks = \/home\/bluebyt\/Documents\/Icons\/jockey.svg$/;"	k	section:dock
 type	x/polybar/config.ini	/^type = internal\/backlight$/;"	k	section:module/backlight-acpi
 type	x/polybar/config.ini	/^type = internal\/battery$/;"	k	section:module/battery
 type	x/polybar/config.ini	/^type = internal\/battery$/;"	k	section:module/battery2
@@ -487,8 +1021,20 @@ underline	x/polybar/config.ini	/^format-warn-underline = ${self.format-underline
 underline	x/polybar/config.ini	/^label-muted-underline = #0099ff$/;"	k	section:module/pulseaudio
 unmounted	x/polybar/config.ini	/^label-unmounted = %mountpoint% not mounted$/;"	k	section:module/filesystem
 up	x/polybar/config.ini	/^scroll-up = bspwm-desknext$/;"	k	section:bar/bspwm
+update	temp/Wayfire-dots/config/lite-xl/plugins/bracketmatch.lua	/^function DocView:update(...)$/;"	f	unknown:DocView
+update	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function DocView:update()$/;"	f	unknown:DocView
+update	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^function Settings:update()$/;"	f	unknown:Settings
+update_breaks	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function LineWrapping.update_breaks(docview, old_line1, old_line2, net_lines)$/;"	f	unknown:LineWrapping
+update_docview_breaks	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^function LineWrapping.update_docview_breaks(docview)$/;"	f	unknown:LineWrapping
+update_file	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^local function update_file(self)$/;"	f
+update_positions	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^  function self.about:update_positions()$/;"	f	unknown:self.about
+update_positions	temp/Wayfire-dots/config/lite-xl/plugins/settings.lua	/^  function self.keybinds:update_positions()$/;"	f	unknown:self.keybinds
+update_state	temp/Wayfire-dots/config/lite-xl/plugins/bracketmatch.lua	/^local function update_state(line_limit)$/;"	f
 urgent	x/polybar/config.ini	/^label-urgent = %icon%$/;"	k	section:module/bspwm
 version	firefox/manifest.json	/^  "version": "1.0.2",$/;"	s
+view	temp/Wayfire-dots/config/ipc-scripts/inactive-alpha.py	/^        view = msg["view"]$/;"	v
+view	temp/Wayfire-dots/config/ipc-scripts/ipc-rules-demo.py	/^        view = msg["view"]$/;"	v
+vo	temp/Wayfire-dots/config/mpv/mpv.conf	/^vo=gpu$/;"	k
 volDown	x/polybar/scripts/pavolume.sh	/^function volDown {$/;"	f
 volMute	x/polybar/scripts/pavolume.sh	/^function volMute {$/;"	f
 volMuteStatus	x/polybar/scripts/pavolume.sh	/^function volMuteStatus {$/;"	f
@@ -496,18 +1042,47 @@ volSync	x/polybar/scripts/pavolume.sh	/^function volSync {$/;"	f
 volUp	x/polybar/scripts/pavolume.sh	/^function volUp {$/;"	f
 volume	x/polybar/config.ini	/^format-volume = <ramp-volume> <label-volume>$/;"	k	section:module/pulseaudio
 volume	x/polybar/config.ini	/^label-volume = %percentage%%$/;"	k	section:module/pulseaudio
+volume_display_timeout	temp/Wayfire-dots/config/wf-shell.ini	/^volume_display_timeout = 2.500000$/;"	k	section:panel
+vram-util-progress	way/gBar/style.scss	/^.vram-util-progress {$/;"	c
+vram-widget	way/gBar/style.scss	/^.vram-widget * {$/;"	c
 vsync	x/picom/picom.conf	/^vsync = true;$/;"	k
+w	temp/Wayfire-dots/config/ipc-scripts/ipc-rules-demo.py	/^            w = workarea['width'] \/\/ 2$/;"	v
+wait_event	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^system.wait_event = function(timeout)$/;"	f	unknown:system
+wait_for_messages	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^function IPC:wait_for_messages()$/;"	f	unknown:IPC
+wait_for_replies	temp/Wayfire-dots/config/lite-xl/plugins/ipc.lua	/^function IPC:wait_for_replies(message_id)$/;"	f	unknown:IPC
 warn	x/polybar/config.ini	/^format-warn = <ramp><label-warn>$/;"	k	section:module/temperature
 warn	x/polybar/config.ini	/^label-warn = %temperature%$/;"	k	section:module/temperature
+watch	temp/Wayfire-dots/config/ipc-scripts/wayfire_socket.py	/^    def watch(self, events = None):$/;"	m	class:WayfireSocket
 way_install	scripts/install/install-way.sh	/^function way_install() {$/;"	f
+widgets_center	temp/Wayfire-dots/config/wf-shell.ini	/^widgets_center = spacing64 spacing64 spacing64 spacing64 spacing64 spacing64 spacing64 spacing64/;"	k	section:panel
+widgets_left	temp/Wayfire-dots/config/wf-shell.ini	/^widgets_left =$/;"	k	section:panel
+widgets_right	temp/Wayfire-dots/config/wf-shell.ini	/^widgets_right =$/;"	k	section:panel
+width	temp/Wayfire-dots/config/lite-xl/plugins/linewrapping.lua	/^  local width = (type(config.plugins.linewrapping.width_override) == "function" and config.plugi/;"	f
 width	x/polybar/config.ini	/^width = 100%$/;"	k	section:bar/bspwm
 win	x/picom/picom.conf	/^use-ewmh-active-win = true;$/;"	k
+window	way/wofi/style.css	/^window {$/;"	s
 window#waybar	way/waybar/style.css	/^window#waybar {$/;"	i
 window#waybar.hidden	way/waybar/style.css	/^window#waybar.hidden {$/;"	c
+windowrulev2	way/hypr/hyprland.conf	/^windowrulev2 = suppressevent maximize, class:.* # You'll probably like this.$/;"	k
 wintypes	x/picom/picom.conf	/^wintypes:$/;"	k
+workarea	temp/Wayfire-dots/config/ipc-scripts/ipc-rules-demo.py	/^            workarea = output_data["workarea"]$/;"	v
+workspace_x	temp/Wayfire-dots/config/ipc-scripts/chatgpt.py	/^    workspace_x = int(sys.argv[2])$/;"	v
+workspace_y	temp/Wayfire-dots/config/ipc-scripts/chatgpt.py	/^    workspace_y = int(sys.argv[3])$/;"	v
 workspaces	x/polybar/config.ini	/^pin-workspaces = true$/;"	k	section:module/bspwm
+ws	temp/Wayfire-dots/config/ipc-scripts/input.py	/^import wayfire_socket as ws$/;"	I	nameref:module:wayfire_socket
+ws	temp/Wayfire-dots/config/ipc-scripts/list-methods.py	/^import wayfire_socket as ws$/;"	I	nameref:module:wayfire_socket
+ws	temp/Wayfire-dots/config/ipc-scripts/set-touch-state.py	/^import wayfire_socket as ws$/;"	I	nameref:module:wayfire_socket
+ws-active	way/gBar/style.scss	/^.ws-active {$/;"	c
+ws-current	way/gBar/style.scss	/^.ws-current {$/;"	c
+ws-dead	way/gBar/style.scss	/^.ws-dead {$/;"	c
+ws-inactive	way/gBar/style.scss	/^.ws-inactive {$/;"	c
+ws-visible	way/gBar/style.scss	/^.ws-visible {$/;"	c
+x	temp/Wayfire-dots/config/ipc-scripts/ipc-rules-demo.py	/^            x = 200$/;"	v
 x	x/polybar/config.ini	/^offset-x = 0%$/;"	k	section:bar/bspwm
 x_install	scripts/install/install-x.sh	/^function x_install() {$/;"	f
+xl	temp/Wayfire-dots/config/wf-shell.ini	/^icon_mapping_lite-xl = \/home\/bluebyt\/Documents\/Icons\/accessories-text-editor.svg$/;"	k	section:dock
+y	temp/Wayfire-dots/config/ipc-scripts/ipc-rules-demo.py	/^            y = 200$/;"	v
 y	x/polybar/config.ini	/^offset-y = 0%$/;"	k	section:bar/bspwm
+yellow	way/gBar/style.scss	/^$yellow: #f1fa8c;$/;"	v
 zone	x/polybar/config.ini	/^thermal-zone = 1$/;"	k	section:module/temperature
 💝 Thanks to	qutebrowser/catppuccin/README.md	/^## 💝 Thanks to$/;"	s

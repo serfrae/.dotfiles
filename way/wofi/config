@@ -1,0 +1,15 @@
+[settings]
+terminal=alacritty
+show=drun
+show_icons=true
+drun_icon_size=32
+allow_images=true
+columns=2
+prompt=
+insensitive=true
+always_parse_args=true
+
+key_up=Ctrl-k
+key_down=Ctrl-j
+key_left=Ctrl-h
+key_right=Ctrl-l

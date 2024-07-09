@@ -41,5 +41,7 @@ dot_install	install/install-way.sh	/^function dot_install() {$/;"	f
 dot_install	install/install-x.sh	/^function dot_install() {$/;"	f
 file_name	note	/^file_name() {$/;"	f
 file_name	note_journal	/^file_name() {$/;"	f
+hide_window	hypr_hide	/^function hide_window(){$/;"	f
+show_window	hypr_hide	/^function show_window(){$/;"	f
 way_install	install/install-way.sh	/^function way_install() {$/;"	f
 x_install	install/install-x.sh	/^function x_install() {$/;"	f

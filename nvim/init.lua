@@ -317,19 +317,19 @@ end
 -- Map gf to the custom function in markdown files
 vim.api.nvim_command('autocmd FileType markdown nnoremap <buffer> gf :lua MarkdownGf()<CR>')
 
--- Copilot Toggle
-local copilot_on = true
-vim.api.nvim_create_user_command("CopilotToggle", function()
-	if copilot_on then
-		vim.cmd("Copilot disable")
-		print("Copilot OFF")
-	else
-		vim.cmd("Copilot enable")
-		print("Copilot ON")
-	end
-	copilot_on = not copilot_on
-end, {})
-vim.keymap.set('', '<M-c>', ':CopilotToggle<cr>')
+---- Copilot Toggle
+--local copilot_on = true
+--vim.api.nvim_create_user_command("CopilotToggle", function()
+--	if copilot_on then
+--		vim.cmd("Copilot disable")
+--		print("Copilot OFF")
+--	else
+--		vim.cmd("Copilot enable")
+--		print("Copilot ON")
+--	end
+--	copilot_on = not copilot_on
+--end, {})
+--vim.keymap.set('', '<M-c>', ':CopilotToggle<cr>')
 -------------------------------------------------------------------------------
 --
 -- autocommands
@@ -738,9 +738,6 @@ require("lazy").setup({
 				additional_vim_regex_highlighting = false,
 			}
 		end
-	},
-	{
-		'github/copilot.vim'
 	},
 	{
 		"stevearc/dressing.nvim",
