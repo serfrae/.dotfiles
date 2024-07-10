@@ -4,7 +4,7 @@ stack_file="/tmp/window_pid_stack.txt"
 
 function hide_window(){
     pid=$(hyprctl activewindow -j | jq '.pid')
-    hyprctl dispatch movetoworkspacesilent 88,pid:$pid
+    hyprctl dispatch movetoworkspacesilent special:hidden,pid:$pid
     echo $pid >> $stack_file
 }
 

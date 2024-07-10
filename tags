@@ -229,7 +229,9 @@ background	x/polybar/config.ini	/^ramp-background = ${colors.background}$/;"	k	s
 background	x/polybar/config.ini	/^ramp-signal-background = ${colors.background}$/;"	k	section:module/wlan
 background	x/polybar/config.ini	/^ramp-volume-background = ${colors.background}$/;"	k	section:module/pulseaudio
 background	x/polybar/config.ini	/^tray-background = ${colors.background}$/;"	k	section:bar/bspwm
+background_update	btop/btop.conf	/^background_update = True$/;"	k
 bar/bspwm	x/polybar/config.ini	/^[bar\/bspwm]$/;"	s
+base_10_sizes	btop/btop.conf	/^base_10_sizes = False$/;"	k
 battery	x/polybar/config.ini	/^battery = BAT0$/;"	k	section:module/battery
 battery	x/polybar/config.ini	/^battery = BAT0$/;"	k	section:module/battery2
 bind	way/hypr/hyprland.conf	/^bind = $mainMod CTRL, 1, movetoworkspace, 1$/;"	k
@@ -335,8 +337,11 @@ center	x/polybar/config.ini	/^fixed-center = true$/;"	k	section:bar/bspwm
 charging	x/polybar/config.ini	/^format-charging = <animation-charging> <label-charging>$/;"	k	section:module/battery
 charging	x/polybar/config.ini	/^format-charging = <animation-charging> <label-charging>$/;"	k	section:module/battery2
 charging	x/polybar/config.ini	/^label-charging = %percentage%%$/;"	k	section:module/battery2
+check_temp	btop/btop.conf	/^check_temp = True$/;"	k
 click	x/polybar/config.ini	/^cursor-click = pointer$/;"	k	section:bar/bspwm
+clock_format	btop/btop.conf	/^clock_format = "%X"$/;"	k
 color	x/polybar/config.ini	/^line-color = #f00$/;"	k	section:bar/bspwm
+color_theme	btop/btop.conf	/^color_theme = ~\/.config\/btop\/themes\/catppuccin_mocha.theme$/;"	k
 colors	firefox/manifest.json	/^    "colors": {$/;"	o	object:theme
 colors	x/polybar/mocha.ini	/^[colors]$/;"	s
 config	nvim/init.lua	/^		config = function()$/;"	f
@@ -344,6 +349,20 @@ config	nvim/init.lua	/^		config = function(_, opts)$/;"	f
 connected	x/polybar/config.ini	/^format-connected = <ramp-signal><label-connected>$/;"	k	section:module/wlan
 connected	x/polybar/config.ini	/^label-connected = %essid%$/;"	k	section:module/wlan
 corners	x/picom/picom.conf	/^detect-rounded-corners = true;$/;"	k
+cpu_bottom	btop/btop.conf	/^cpu_bottom = False$/;"	k
+cpu_core_map	btop/btop.conf	/^cpu_core_map = ""$/;"	k
+cpu_graph_lower	btop/btop.conf	/^cpu_graph_lower = "iowait"$/;"	k
+cpu_graph_upper	btop/btop.conf	/^cpu_graph_upper = "total"$/;"	k
+cpu_invert_lower	btop/btop.conf	/^cpu_invert_lower = True$/;"	k
+cpu_sensor	btop/btop.conf	/^cpu_sensor = "Auto"$/;"	k
+cpu_single_graph	btop/btop.conf	/^cpu_single_graph = False$/;"	k
+custom_cpu_name	btop/btop.conf	/^custom_cpu_name = ""$/;"	k
+custom_gpu_name0	btop/btop.conf	/^custom_gpu_name0 = ""$/;"	k
+custom_gpu_name1	btop/btop.conf	/^custom_gpu_name1 = ""$/;"	k
+custom_gpu_name2	btop/btop.conf	/^custom_gpu_name2 = ""$/;"	k
+custom_gpu_name3	btop/btop.conf	/^custom_gpu_name3 = ""$/;"	k
+custom_gpu_name4	btop/btop.conf	/^custom_gpu_name4 = ""$/;"	k
+custom_gpu_name5	btop/btop.conf	/^custom_gpu_name5 = ""$/;"	k
 date	x/polybar/config.ini	/^date = "%a %d"$/;"	k	section:module/date
 dbe	x/picom/picom.conf	/^dbe = true;$/;"	k
 delta	x/picom/picom.conf	/^fade-delta = 0.25;$/;"	k
@@ -354,6 +373,8 @@ discharging	x/polybar/config.ini	/^format-discharging = <ramp-capacity> <label-d
 discharging	x/polybar/config.ini	/^label-discharging = %percentage%%$/;"	k	section:module/battery2
 disconnected	x/polybar/config.ini	/^format-disconnected = <label-disconnected>$/;"	k	section:module/wlan
 disconnected	x/polybar/config.ini	/^label-disconnected =  󰤮 %ifname%$/;"	k	section:module/wlan
+disk_free_priv	btop/btop.conf	/^disk_free_priv = True$/;"	k
+disks_filter	btop/btop.conf	/^disks_filter = ""$/;"	k
 dot_install	scripts/install/install-common.sh	/^function dot_install() {$/;"	f
 dot_install	scripts/install/install-way.sh	/^function dot_install() {$/;"	f
 dot_install	scripts/install/install-x.sh	/^function dot_install() {$/;"	f
@@ -372,6 +393,7 @@ file_name	scripts/note_journal	/^file_name() {$/;"	f
 focused	x/picom/picom.conf	/^mark-ovredir-focused = true;$/;"	k
 focused	x/picom/picom.conf	/^mark-wmwin-focused = true;$/;"	k
 focused	x/polybar/config.ini	/^label-focused = $/;"	k	section:module/bspwm
+force_tty	btop/btop.conf	/^force_tty = False$/;"	k
 foreground	x/polybar/config.ini	/^animation-charging-foreground = ${colors.foreground-alt}$/;"	k	section:module/battery
 foreground	x/polybar/config.ini	/^animation-charging-foreground = ${colors.green}$/;"	k	section:module/battery2
 foreground	x/polybar/config.ini	/^animation-discharging-foreground = ${colors.foreground-alt}$/;"	k	section:module/battery
@@ -412,6 +434,13 @@ front	x/picom/picom.conf	/^glx-copy-from-front = false;$/;"	k
 getCurVol	x/polybar/scripts/pavolume.sh	/^function getCurVol {$/;"	f
 getSinkInputs	x/polybar/scripts/pavolume.sh	/^function getSinkInputs {$/;"	f
 global/wm	x/polybar/config.ini	/^[global\/wm]$/;"	s
+gpu_mirror_graph	btop/btop.conf	/^gpu_mirror_graph = True$/;"	k
+graph_symbol	btop/btop.conf	/^graph_symbol = "braille"$/;"	k
+graph_symbol_cpu	btop/btop.conf	/^graph_symbol_cpu = "default"$/;"	k
+graph_symbol_gpu	btop/btop.conf	/^graph_symbol_gpu = "default"$/;"	k
+graph_symbol_mem	btop/btop.conf	/^graph_symbol_mem = "default"$/;"	k
+graph_symbol_net	btop/btop.conf	/^graph_symbol_net = "default"$/;"	k
+graph_symbol_proc	btop/btop.conf	/^graph_symbol_proc = "default"$/;"	k
 height	x/polybar/config.ini	/^height = 1.618%$/;"	k	section:bar/bspwm
 hide_window	scripts/hypr_hide	/^function hide_window(){$/;"	f
 icon	way/wofi/style.css	/^icon {$/;"	s
@@ -426,6 +455,9 @@ interval	x/polybar/config.ini	/^interval = 2$/;"	k	section:module/cpu
 interval	x/polybar/config.ini	/^interval = 2$/;"	k	section:module/memory
 interval	x/polybar/config.ini	/^interval = 25$/;"	k	section:module/filesystem
 interval	x/polybar/config.ini	/^interval = 3.0$/;"	k	section:module/wlan
+io_graph_combined	btop/btop.conf	/^io_graph_combined = True$/;"	k
+io_graph_speeds	btop/btop.conf	/^io_graph_speeds = ""$/;"	k
+io_mode	btop/btop.conf	/^io_mode = True$/;"	k
 label	x/polybar/config.ini	/^label = %date% %time%$/;"	k	section:module/date
 label	x/polybar/config.ini	/^label = %percentage%%$/;"	k	section:module/xbacklight
 label	x/polybar/config.ini	/^label = %percentage:2%%$/;"	k	section:module/cpu
@@ -439,9 +471,12 @@ left	x/polybar/config.ini	/^modules-left = date bspwm xwindow$/;"	k	section:bar/
 left	x/polybar/config.ini	/^padding-left = 2 $/;"	k	section:bar/bspwm
 list_cmd	nvim/init.lua	/^function list_cmd()$/;"	f
 listen	x/polybar/scripts/pavolume.sh	/^function listen {$/;"	f
+log_level	btop/btop.conf	/^log_level = "WARNING"$/;"	k
 manifest_version	firefox/manifest.json	/^  "manifest_version": 2,$/;"	n
 markdowntags	ctags/md.ctags	/^--langdef=markdowntags$/;"	l
 maxlen	x/polybar/config.ini	/^label-song-maxlen = 25$/;"	k	section:module/mpd
+mem_below_net	btop/btop.conf	/^mem_below_net = False$/;"	k
+mem_graphs	btop/btop.conf	/^mem_graphs = True$/;"	k
 mode	nvim/init.lua	/^			{ "R", mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = /;"	f
 mode	nvim/init.lua	/^			{ "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = /;"	f
 mode	nvim/init.lua	/^			{ "r", mode = "o",               function() require("flash").remote() end,            desc = /;"	f
@@ -465,15 +500,22 @@ monitor	x/polybar/config.ini	/^monitor = eDP-1$/;"	k	section:bar/bspwm
 mounted	x/polybar/config.ini	/^label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%$/;"	k	section:module/filesystem
 muted	x/polybar/config.ini	/^label-muted = 󰝟$/;"	k	section:module/pulseaudio
 name	firefox/manifest.json	/^  "name": "a7rs Humble Gruvbox",$/;"	s
+net_auto	btop/btop.conf	/^net_auto = True$/;"	k
+net_download	btop/btop.conf	/^net_download = 100$/;"	k
+net_iface	btop/btop.conf	/^net_iface = ""$/;"	k
+net_sync	btop/btop.conf	/^net_sync = True$/;"	k
+net_upload	btop/btop.conf	/^net_upload = 100$/;"	k
 next	x/polybar/config.ini	/^icon-next = $/;"	k	section:module/mpd
 ntp_background	firefox/manifest.json	/^      "ntp_background": "#1d2021",$/;"	s	object:theme.colors
 ntp_text	firefox/manifest.json	/^      "ntp_text": "#d5c4a1",$/;"	s	object:theme.colors
+nvml_measure_pcie_speeds	btop/btop.conf	/^nvml_measure_pcie_speeds = True$/;"	k
 occupied	x/polybar/config.ini	/^label-occupied = $/;"	k	section:module/bspwm
 offline	x/polybar/config.ini	/^format-offline = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>$/;"	k	section:module/mpd
 once	way/hypr/hyprland.conf	/^exec-once = mako$/;"	k
 once	way/hypr/hyprland.conf	/^exec-once = wallpaper.sh$/;"	k
 once	way/hypr/hyprland.conf	/^exec-once = waybar$/;"	k
 online	x/polybar/config.ini	/^format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>$/;"	k	section:module/mpd
+only_physical	btop/btop.conf	/^only_physical = True$/;"	k
 opacity	x/picom/picom.conf	/^active-opacity = 1.0;$/;"	k
 opacity	x/picom/picom.conf	/^detect-client-opacity = true;$/;"	k
 opacity	x/picom/picom.conf	/^frame-opacity = 0.7;$/;"	k
@@ -500,7 +542,20 @@ prefix	x/polybar/config.ini	/^format-prefix = "  "$/;"	k	section:module/memor
 prefix	x/polybar/config.ini	/^format-prefix = " "$/;"	k	section:module/cpu
 prefix	x/polybar/config.ini	/^format-prefix = "󰃠 "$/;"	k	section:module/backlight-acpi
 prefix	x/polybar/config.ini	/^format-prefix = "󰃠 "$/;"	k	section:module/xbacklight
+presets	btop/btop.conf	/^presets = "cpu:1:default,proc:0:default cpu:0:default,mem:0:default,net:0:default cpu:0:block,ne/;"	k
 prev	x/polybar/config.ini	/^icon-prev = $/;"	k	section:module/mpd
+proc_aggregate	btop/btop.conf	/^proc_aggregate = False$/;"	k
+proc_colors	btop/btop.conf	/^proc_colors = True$/;"	k
+proc_cpu_graphs	btop/btop.conf	/^proc_cpu_graphs = True$/;"	k
+proc_filter_kernel	btop/btop.conf	/^proc_filter_kernel = False$/;"	k
+proc_gradient	btop/btop.conf	/^proc_gradient = True$/;"	k
+proc_info_smaps	btop/btop.conf	/^proc_info_smaps = False$/;"	k
+proc_left	btop/btop.conf	/^proc_left = False$/;"	k
+proc_mem_bytes	btop/btop.conf	/^proc_mem_bytes = False$/;"	k
+proc_per_core	btop/btop.conf	/^proc_per_core = True$/;"	k
+proc_reversed	btop/btop.conf	/^proc_reversed = False$/;"	k
+proc_sorting	btop/btop.conf	/^proc_sorting = "cpu direct"$/;"	k
+proc_tree	btop/btop.conf	/^proc_tree = True$/;"	k
 pyss	nvim/init.lua	/^local function pyss()$/;"	f
 rate	x/picom/picom.conf	/^refresh-rate = 60;$/;"	k
 reload	x/polybar/config.ini	/^screenchange-reload = true$/;"	k	section:settings
@@ -509,11 +564,22 @@ restack	x/polybar/config.ini	/^wm-restack = bspwm$/;"	k	section:bar/bspwm
 right	x/polybar/config.ini	/^module-margin-right = 1$/;"	k	section:bar/bspwm
 right	x/polybar/config.ini	/^modules-right = pulseaudio backlight-acpi wlan memory cpu battery2 temperature$/;"	k	section:bar/bspwm
 right	x/polybar/config.ini	/^padding-right = 2$/;"	k	section:bar/bspwm
+rounded_corners	btop/btop.conf	/^rounded_corners = True$/;"	k
 rule	x/picom/picom.conf	/^opacity-rule = [ "38:class_g = 'Bspwm' && class_i = 'presel_feedback'" ];$/;"	k
+selected_battery	btop/btop.conf	/^selected_battery = "Auto"$/;"	k
 settings	x/polybar/config.ini	/^[settings]$/;"	s
 setup	qutebrowser/catppuccin/setup.py	/^def setup(c, flavour, samecolorrows = False):$/;"	f
 shadow	x/picom/picom.conf	/^shadow = false;$/;"	k
+show_battery	btop/btop.conf	/^show_battery = True$/;"	k
+show_coretemp	btop/btop.conf	/^show_coretemp = True$/;"	k
+show_cpu_freq	btop/btop.conf	/^show_cpu_freq = True$/;"	k
+show_disks	btop/btop.conf	/^show_disks = True$/;"	k
+show_gpu_info	btop/btop.conf	/^show_gpu_info = "Auto"$/;"	k
+show_io_stat	btop/btop.conf	/^show_io_stat = True$/;"	k
+show_swap	btop/btop.conf	/^show_swap = True$/;"	k
+show_uptime	btop/btop.conf	/^show_uptime = True$/;"	k
 show_window	scripts/hypr_hide	/^function show_window(){$/;"	f
+shown_boxes	btop/btop.conf	/^shown_boxes = "cpu mem net proc"$/;"	k
 sidebar	firefox/manifest.json	/^      "sidebar": "#1d2021",$/;"	s	object:theme.colors
 sidebar_border	firefox/manifest.json	/^      "sidebar_border": "#1d2021",$/;"	s	object:theme.colors
 sidebar_highlight	firefox/manifest.json	/^      "sidebar_highlight": "#7c6f64",$/;"	s	object:theme.colors
@@ -533,13 +599,16 @@ submap	way/hypr/hyprland.conf	/^submap = reset$/;"	k
 submap	way/hypr/hyprland.conf	/^submap = resize $/;"	k
 submap	way/hypr/hyprland.conf	/^submap = screen$/;"	k
 submap	way/hypr/hyprland.conf	/^submap=reset$/;"	k
+swap_disk	btop/btop.conf	/^swap_disk = True$/;"	k
 tab_background_text	firefox/manifest.json	/^      "tab_background_text": "#d5c4a1",$/;"	s	object:theme.colors
 tab_line	firefox/manifest.json	/^      "tab_line": "#1d2021",$/;"	s	object:theme.colors
 tab_loading	firefox/manifest.json	/^      "tab_loading": "#fbf1c7",$/;"	s	object:theme.colors
 tab_text	firefox/manifest.json	/^      "tab_text": "#fbf1c7",$/;"	s	object:theme.colors
 tag	ctags/md.ctags	/^--kinddef-markdowntags=t,tag,tags$/;"	k	langdef:markdowntags
+temp_scale	btop/btop.conf	/^temp_scale = "celsius"$/;"	k
 temperature	x/polybar/config.ini	/^warn-temperature = 75$/;"	k	section:module/temperature
 theme	firefox/manifest.json	/^  "theme": {$/;"	o
+theme_background	btop/btop.conf	/^theme_background = True$/;"	k
 thm_bg	tmux/tmux.conf	/^thm_bg="#1e1e2e"$/;"	k
 thm_black	tmux/tmux.conf	/^thm_black="#181825"$/;"	k
 thm_black4	tmux/tmux.conf	/^thm_black4="#585b70"$/;"	k
@@ -565,6 +634,7 @@ toolbar_top_separator	firefox/manifest.json	/^	  "toolbar_top_separator": "#1d20
 toolbar_vertical_separator	firefox/manifest.json	/^      "toolbar_vertical_separator": "#1d2021",$/;"	s	object:theme.colors
 top	x/polybar/config.ini	/^margin-top = 0$/;"	k	section:global/wm
 transient	x/picom/picom.conf	/^detect-transient = true;$/;"	k
+truecolor	btop/btop.conf	/^truecolor = True$/;"	k
 type	x/polybar/config.ini	/^type = internal\/backlight$/;"	k	section:module/backlight-acpi
 type	x/polybar/config.ini	/^type = internal\/battery$/;"	k	section:module/battery
 type	x/polybar/config.ini	/^type = internal\/battery$/;"	k	section:module/battery2
@@ -596,8 +666,11 @@ underline	x/polybar/config.ini	/^format-warn-underline = ${self.format-underline
 underline	x/polybar/config.ini	/^label-muted-underline = #0099ff$/;"	k	section:module/pulseaudio
 unmounted	x/polybar/config.ini	/^label-unmounted = %mountpoint% not mounted$/;"	k	section:module/filesystem
 up	x/polybar/config.ini	/^scroll-up = bspwm-desknext$/;"	k	section:bar/bspwm
+update_ms	btop/btop.conf	/^update_ms = 2000$/;"	k
 urgent	x/polybar/config.ini	/^label-urgent = %icon%$/;"	k	section:module/bspwm
+use_fstab	btop/btop.conf	/^use_fstab = False$/;"	k
 version	firefox/manifest.json	/^  "version": "1.0.2",$/;"	s
+vim_keys	btop/btop.conf	/^vim_keys = True$/;"	k
 volDown	x/polybar/scripts/pavolume.sh	/^function volDown {$/;"	f
 volMute	x/polybar/scripts/pavolume.sh	/^function volMute {$/;"	f
 volMuteStatus	x/polybar/scripts/pavolume.sh	/^function volMuteStatus {$/;"	f
@@ -620,5 +693,7 @@ workspaces	x/polybar/config.ini	/^pin-workspaces = true$/;"	k	section:module/bsp
 x	x/polybar/config.ini	/^offset-x = 0%$/;"	k	section:bar/bspwm
 x_install	scripts/install/install-x.sh	/^function x_install() {$/;"	f
 y	x/polybar/config.ini	/^offset-y = 0%$/;"	k	section:bar/bspwm
+zfs_arc_cached	btop/btop.conf	/^zfs_arc_cached = True$/;"	k
+zfs_hide_datasets	btop/btop.conf	/^zfs_hide_datasets = False$/;"	k
 zone	x/polybar/config.ini	/^thermal-zone = 1$/;"	k	section:module/temperature
 💝 Thanks to	qutebrowser/catppuccin/README.md	/^## 💝 Thanks to$/;"	s

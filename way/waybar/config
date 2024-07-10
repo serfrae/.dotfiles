@@ -1,7 +1,7 @@
 {
 	"layer": "top",
     "position": "bottom", 
-    "height": 8,
+    "height": 12,
     // "width": 1280, // Waybar width
 
     // Choose the order of the modules
