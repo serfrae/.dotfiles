@@ -23,6 +23,7 @@ abbr -a fzp 'fzf --preview "bat --color=always --style=header,grid --line-range 
 abbr -a uv 'uv pip'
 abbr -a pip 'uv pip'
 abbr -a hypr 'Hyprland'
+abbr -a splt2 'spl-token --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb'
 
 setenv XINITRC ~/.config/X11/xinitrc
 setenv XAUTHORITY ~/.config/X11/Xauthority
@@ -39,6 +40,9 @@ set XDG_CONFIG_HOME $HOME/.config
 set XDG_DATA_HOME $HOME/.local/share
 set XDG_CACHE_HOME $HOME/.cache
 set XDG_STATE_HOME $HOME/.local/state
+
+set -x ELECTRON_OZONE_PLATFORM_HINT auto
+set -x GDK_BACKEND wayland
 
 set -x CARGO_HOME $XDG_DATA_HOME/cargo
 set -x DOCKER_CONFIG $XDG_CONFIG_HOME/docker

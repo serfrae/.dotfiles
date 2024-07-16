@@ -88,8 +88,8 @@ window#waybar.solo {
     border-radius: 12;
     padding: 0 10px;
     font-weight: bold;
-    background-color: @text;
-    color: #cdd6f4;
+    background-color: #b4befe;
+    color: @text;
 }
 
 #battery {
@@ -176,7 +176,7 @@ label:focus {
 }
 
 #tray {
-    background-color: #282a36;
+    background-color: #cba6f7;
 }
 
 #tray > .passive {
