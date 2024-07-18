@@ -578,28 +578,6 @@ require("lazy").setup({
             { "r", mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
             { "R", mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
         },
-        vim.api.nvim_create_user_command("TroubleFlash", function()
-            require("flash").jump({
-                pattern = "^",
-                label = { after = { 0, 0 } },
-                search = {
-                    mode = "search",
-                    max_length = 0,
-                },
-                jump = {
-                    pos = "range",
-                    inclusive = false,
-                },
-            })
-        end, {}),
-
-        -- Optional: Add keybinding for Trouble windows
-        vim.api.nvim_create_autocmd("FileType", {
-            pattern = "Trouble",
-            callback = function()
-                vim.keymap.set("n", "s", ":TroubleFlash<CR>", { buffer = true, silent = true })
-            end,
-        })
     },
     -- FZF
     {
@@ -841,44 +819,6 @@ require("lazy").setup({
                 additional_vim_regex_highlighting = false,
             }
         end
-    },
-    {
-        "folke/trouble.nvim",
-        opts = {}, -- for default options, refer to the configuration section for custom setup.
-        cmd = "Trouble",
-        keys = {
-            {
-                "<leader>xx",
-                "<cmd>Trouble diagnostics toggle<cr>",
-                desc = "Diagnostics (Trouble)",
-            },
-            {
-                "<leader>xX",
-                "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-                desc = "Buffer Diagnostics (Trouble)",
-            },
-            {
-                "<leader>cs",
-                "<cmd>Trouble symbols toggle focus=false<cr>",
-                desc = "Symbols (Trouble)",
-            },
-            {
-                "<leader>cl",
-                "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-                desc = "LSP Definitions / references / ... (Trouble)",
-            },
-            {
-                "<leader>xL",
-                "<cmd>Trouble loclist toggle<cr>",
-                desc = "Location List (Trouble)",
-            },
-            {
-                "<leader>xQ",
-                "<cmd>Trouble qflist toggle win.position=right<cr>",
-                desc = "Quickfix List (Trouble)",
-            },
-        },
-
     },
     {
         "stevearc/dressing.nvim",
