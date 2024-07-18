@@ -24,6 +24,7 @@ abbr -a uv 'uv pip'
 abbr -a pip 'uv pip'
 abbr -a hypr 'Hyprland'
 abbr -a splt2 'spl-token --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb'
+abbr -a py "python"
 
 setenv XINITRC ~/.config/X11/xinitrc
 setenv XAUTHORITY ~/.config/X11/Xauthority

@@ -185,10 +185,11 @@ Manual config:	qutebrowser/catppuccin/README.md	/^### Manual config:$/;"	S	secti
 MarkdownGf	nvim/init.lua	/^function MarkdownGf()$/;"	f
 NewNote	nvim/init.lua	/^function NewNote(name)$/;"	f
 NoteFind	nvim/init.lua	/^function NoteFind()$/;"	f
-NoteLink	nvim/init.lua	/^	function NoteLink()$/;"	f
+NoteLink	nvim/init.lua	/^    function NoteLink()$/;"	f
 NoteLink	nvim/init.lua	/^function NoteLink()$/;"	f
 QFixToggle	nvim/init.lua	/^function QFixToggle(v, e)$/;"	f
 Usage	qutebrowser/catppuccin/README.md	/^## Usage$/;"	s
+["default"]	nvim/init.lua	/^                    ["default"] = function(selected)$/;"	f
 _bc	x/bspwm/bspwmrc	/^_bc() {$/;"	f
 _bspc_query	scripts/bspwm_external_rules	/^_bspc_query() {$/;"	f
 _bspc_query	scripts/bspwm_presel	/^_bspc_query() {$/;"	f
@@ -329,10 +330,11 @@ bindm	way/hypr/hyprland.conf	/^bindm = $mainMod, mouse:272, movewindow$/;"	k
 bindm	way/hypr/hyprland.conf	/^bindm = $mainMod, mouse:273, resizewindow$/;"	k
 bottom	x/polybar/config.ini	/^bottom = true$/;"	k	section:bar/bspwm
 bottom	x/polybar/config.ini	/^margin-bottom = 0$/;"	k	section:global/wm
-callback	nvim/init.lua	/^				callback = function(ev)$/;"	f
-callback	nvim/init.lua	/^		callback = function(_)$/;"	f
-callback	nvim/init.lua	/^	callback = function() pyss() end,$/;"	f
-callback	nvim/init.lua	/^	callback = function()$/;"	f
+callback	nvim/init.lua	/^                callback = function(ev)$/;"	f
+callback	nvim/init.lua	/^            callback = function()$/;"	f
+callback	nvim/init.lua	/^        callback = function(_)$/;"	f
+callback	nvim/init.lua	/^    callback = function() pyss() end,$/;"	f
+callback	nvim/init.lua	/^    callback = function()$/;"	f
 card	x/polybar/config.ini	/^card = intel_backlight$/;"	k	section:module/backlight-acpi
 center	x/polybar/config.ini	/^fixed-center = true$/;"	k	section:bar/bspwm
 charging	x/polybar/config.ini	/^format-charging = <animation-charging> <label-charging>$/;"	k	section:module/battery
@@ -345,8 +347,8 @@ color	x/polybar/config.ini	/^line-color = #f00$/;"	k	section:bar/bspwm
 color_theme	btop/btop.conf	/^color_theme = "\/home\/a7rs\/.config\/btop\/themes\/catppuccin_mocha.theme"$/;"	k
 colors	firefox/manifest.json	/^    "colors": {$/;"	o	object:theme
 colors	x/polybar/mocha.ini	/^[colors]$/;"	s
-config	nvim/init.lua	/^		config = function()$/;"	f
-config	nvim/init.lua	/^		config = function(_, opts)$/;"	f
+config	nvim/init.lua	/^        config = function()$/;"	f
+config	nvim/init.lua	/^        config = function(_, opts)$/;"	f
 connected	x/polybar/config.ini	/^format-connected = <ramp-signal><label-connected>$/;"	k	section:module/wlan
 connected	x/polybar/config.ini	/^label-connected = %essid%$/;"	k	section:module/wlan
 corners	x/picom/picom.conf	/^detect-rounded-corners = true;$/;"	k
@@ -364,6 +366,7 @@ custom_gpu_name2	btop/btop.conf	/^custom_gpu_name2 = ""$/;"	k
 custom_gpu_name3	btop/btop.conf	/^custom_gpu_name3 = ""$/;"	k
 custom_gpu_name4	btop/btop.conf	/^custom_gpu_name4 = ""$/;"	k
 custom_gpu_name5	btop/btop.conf	/^custom_gpu_name5 = ""$/;"	k
+custom_qf_text	nvim/init.lua	/^_G.custom_qf_text = function(info)$/;"	f	unknown:_G
 date	x/polybar/config.ini	/^date = "%a %d"$/;"	k	section:module/date
 dbe	x/picom/picom.conf	/^dbe = true;$/;"	k
 delta	x/picom/picom.conf	/^fade-delta = 0.25;$/;"	k
@@ -385,7 +388,7 @@ empty	x/polybar/config.ini	/^label-empty = 󰋙$/;"	k	section:module/bspwm
 env	way/hypr/hyprland.conf	/^env = HYPRCURSOR_SIZE,16$/;"	k
 env	way/hypr/hyprland.conf	/^env = XCURSOR_SIZE,16$/;"	k
 exclude	x/picom/picom.conf	/^fade-exclude = [$/;"	k
-expand	nvim/init.lua	/^					expand = function(args)$/;"	f
+expand	nvim/init.lua	/^                    expand = function(args)$/;"	f
 fading	x/picom/picom.conf	/^fading = true;$/;"	k
 fence	x/picom/picom.conf	/^xrender-sync-fence = true;$/;"	k
 file	x/polybar/config.ini	/^include-file = $HOME\/.dotfiles\/x\/polybar\/mocha.ini$/;"	k	section:global/wm
@@ -448,8 +451,8 @@ icon	way/wofi/style.css	/^icon {$/;"	s
 icons_attention	firefox/manifest.json	/^      "icons_attention": "#fbf1c7",$/;"	s	object:theme.colors
 include	x/picom/picom.conf	/^invert-color-include = [ ];$/;"	k
 inherit	x/polybar/config.ini	/^inherit = module\/xbacklight$/;"	k	section:module/backlight-acpi
-insert_link_action	nvim/init.lua	/^		local insert_link_action = function(selected)$/;"	f
-insert_link_action	nvim/init.lua	/^	local function insert_link_action(selected)$/;"	f
+insert_link_action	nvim/init.lua	/^        local insert_link_action = function(selected)$/;"	f
+insert_link_action	nvim/init.lua	/^    local function insert_link_action(selected)$/;"	f
 interface	x/polybar/config.ini	/^interface = wlp0s20f3$/;"	k	section:module/wlan
 interval	x/polybar/config.ini	/^interval = 1$/;"	k	section:module/date
 interval	x/polybar/config.ini	/^interval = 2$/;"	k	section:module/cpu
@@ -478,10 +481,10 @@ markdowntags	ctags/md.ctags	/^--langdef=markdowntags$/;"	l
 maxlen	x/polybar/config.ini	/^label-song-maxlen = 25$/;"	k	section:module/mpd
 mem_below_net	btop/btop.conf	/^mem_below_net = False$/;"	k
 mem_graphs	btop/btop.conf	/^mem_graphs = True$/;"	k
-mode	nvim/init.lua	/^			{ "R", mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = /;"	f
-mode	nvim/init.lua	/^			{ "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = /;"	f
-mode	nvim/init.lua	/^			{ "r", mode = "o",               function() require("flash").remote() end,            desc = /;"	f
-mode	nvim/init.lua	/^			{ "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = /;"	f
+mode	nvim/init.lua	/^            { "R", mode = { "o", "x" },      function() require("flash").treesitter_search() end/;"	f
+mode	nvim/init.lua	/^            { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end,      /;"	f
+mode	nvim/init.lua	/^            { "r", mode = "o",               function() require("flash").remote() end,          /;"	f
+mode	nvim/init.lua	/^            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,            /;"	f
 module/backlight-acpi	x/polybar/config.ini	/^[module\/backlight-acpi]$/;"	s
 module/battery	x/polybar/config.ini	/^[module\/battery]$/;"	s
 module/battery2	x/polybar/config.ini	/^[module\/battery2]$/;"	s
