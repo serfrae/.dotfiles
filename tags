@@ -429,6 +429,7 @@ interval	x/polybar/config.ini	/^interval = 2$/;"	k	section:module/cpu
 interval	x/polybar/config.ini	/^interval = 2$/;"	k	section:module/memory
 interval	x/polybar/config.ini	/^interval = 25$/;"	k	section:module/filesystem
 interval	x/polybar/config.ini	/^interval = 3.0$/;"	k	section:module/wlan
+is_vim	tmux/tmux.conf	/^is_vim="ps -o state= -o comm= -t '#{pane_tty}' \\$/;"	k
 label	x/polybar/config.ini	/^label = %date% %time%$/;"	k	section:module/date
 label	x/polybar/config.ini	/^label = %percentage%%$/;"	k	section:module/xbacklight
 label	x/polybar/config.ini	/^label = %percentage:2%%$/;"	k	section:module/cpu
@@ -557,6 +558,7 @@ thm_pink	tmux/tmux.conf	/^thm_pink="#f5c2e7"$/;"	k
 thm_red	tmux/tmux.conf	/^thm_red="#f38ba8"$/;"	k
 thm_yellow	tmux/tmux.conf	/^thm_yellow="#f9e2af"$/;"	k
 time	x/polybar/config.ini	/^time = "%H:%M"$/;"	k	section:module/date
+tmux_version	tmux/tmux.conf	/^tmux_version='$(tmux -V | sed -En "s\/^tmux ([0-9]+(.[0-9]+)?).*\/\\1\/p")'$/;"	k
 toolbar	firefox/manifest.json	/^      "toolbar": "#1d2021",$/;"	s	object:theme.colors
 toolbar_bottom_separator	firefox/manifest.json	/^	  "toolbar_bottom_separator": "#1d2021",$/;"	s	object:theme.colors
 toolbar_field	firefox/manifest.json	/^      "toolbar_field": "black",$/;"	s	object:theme.colors
@@ -619,6 +621,7 @@ window#waybar	way/waybar/style.css	/^window#waybar {$/;"	i
 window#waybar.hidden	way/waybar/style.css	/^window#waybar.hidden {$/;"	c
 windowrulev2	way/hypr/hyprland.conf	/^windowrulev2 = suppressevent maximize, class:.* # You'll probably like this.$/;"	k
 wintypes	x/picom/picom.conf	/^wintypes:$/;"	k
+workspace_diagnostics_to_loclist	nvim/init.lua	/^local function workspace_diagnostics_to_loclist()$/;"	f
 workspaces	x/polybar/config.ini	/^pin-workspaces = true$/;"	k	section:module/bspwm
 x	x/polybar/config.ini	/^offset-x = 0%$/;"	k	section:bar/bspwm
 x_install	scripts/install/install-x.sh	/^function x_install() {$/;"	f

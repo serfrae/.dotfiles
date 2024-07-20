@@ -56,6 +56,7 @@ vim.keymap.set('n', '<leader>o', '<cmd>FzfLua files<cr>')
 vim.keymap.set('n', '<leader>st', '<cmd>FzfLua tags<cr>')
 vim.keymap.set('n', '<leader>sd', '<cmd>FzfLua lsp_document_symbols<cr>')
 vim.keymap.set('n', '<leader>sw', '<cmd>FzfLua lsp_workspace_symbols<cr>')
+vim.keymap.set('n', '<leader>wd', '<cmd> FzfLua lsp_workspace_diagnostics<cr>')
 vim.keymap.set('n', '<leader>`', '<cmd>FzfLua<cr>')
 vim.keymap.set('n', '<leader>c', ':close<cr>')
 
@@ -237,23 +238,40 @@ end
 _G.custom_qf_text = function(info)
     local items = vim.fn.getqflist({ id = info.id, items = 0 }).items
     local lines = {}
+    local max_length = 0
+
+    -- First pass: determine the maximum length of the combined indent, symbol type, and name
+    for i = info.start_idx, info.end_idx do
+        local item = items[i]
+        if item then
+            local text = item.text
+            local indent = text:match("^(%s*)")
+            local symbol_type = text:match("%[([^%s%]]+)")
+            local symbol_name = text:match("%]%s*(.-)%s*$") or text
+            local combined = indent .. (symbol_type or "") .. (symbol_type and " " or "") .. symbol_name
+            max_length = math.max(max_length, vim.fn.strdisplaywidth(combined))
+        end
+    end
+
+    -- Add 1 to max_length for the extra space
+    max_length = max_length + 1
+
+    -- Second pass: format the lines
     for i = info.start_idx, info.end_idx do
         local item = items[i]
         if item then
             local filename = vim.fn.bufname(item.bufnr)
             filename = vim.fn.fnamemodify(filename, ":t")
-            local text = item.text:gsub("^%s*(.-)%s*$", "%1")
+            local text = item.text
 
-            -- Extract the symbol up to the first space within brackets, without including the brackets
-            local symbol = text:match("%[([^%s%]]+)")
+            local indent = text:match("^(%s*)")
+            local symbol_type = text:match("%[([^%s%]]+)")
+            local symbol_name = text:match("%]%s*(.-)%s*$") or text
 
-            -- Remove everything within square brackets
-            text = text:gsub("%[.-%]%s*", "")
+            local combined = indent .. (symbol_type or "") .. (symbol_type and " " or "") .. symbol_name
+            local padding = string.rep(" ", max_length - vim.fn.strdisplaywidth(combined))
 
-            -- Combine symbol and text
-            local combined = (symbol or "") .. (symbol and " " or "") .. text
-
-            local line = string.format("%s | %s | [%d:%d]", combined, filename, item.lnum, item.col)
+            local line = string.format("%s%s| %s | [%d:%d]", combined, padding, filename, item.lnum, item.col)
             lines[#lines + 1] = line
         end
     end
@@ -463,6 +481,12 @@ vim.api.nvim_create_autocmd('FileType', {
     pattern = 'python',
     callback = function() pyss() end,
 })
+
+local function workspace_diagnostics_to_loclist()
+  local diagnostics = vim.diagnostic.get(nil, {severity = {min=vim.diagnostic.severity.HINT}})
+  local items = vim.diagnostic.toqflist(diagnostics)
+  vim.fn.setloclist(0, {}, ' ', {title = 'Workspace Diagnostics', items = items})
+end
 
 -------------------------------------------------------------------------------
 --
@@ -727,7 +751,6 @@ require("lazy").setup({
                     vim.keymap.set('n', 'gD', vim.lsp.buf.type_definition, opts)
                     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
                     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-                    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
                     vim.keymap.set({ 'n', 'v' }, '<leader>a', vim.lsp.buf.code_action, opts)
                     vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)
                     vim.keymap.set('n', '<leader>f', function()
@@ -823,5 +846,20 @@ require("lazy").setup({
     {
         "stevearc/dressing.nvim",
         event = "VeryLazy",
+    },
+    {
+        "christoomey/vim-tmux-navigator",
+        cmd = {
+            "TmuxNavigateLeft",
+            "TmuxNavigateDown",
+            "TmuxNavigateUp",
+            "TmuxNavigateRight",
+        },
+        keys = {
+            { "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
+            { "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
+            { "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
+            { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
+        },
     }
 })
