@@ -23,18 +23,14 @@ abbr -a fzp 'fzf --preview "bat --color=always --style=header,grid --line-range 
 abbr -a uv 'uv pip'
 abbr -a pip 'uv pip'
 abbr -a hypr 'Hyprland'
-abbr -a splt2 'spl-token --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb'
+abbr -a spl-t2 'spl-token --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb'
 abbr -a py "python"
 
-setenv XINITRC ~/.config/X11/xinitrc
-setenv XAUTHORITY ~/.config/X11/Xauthority
 setenv TERM alacritty
 setenv EDITOR nvim 
 setenv BROWSER firefox-developer-edition
 setenv RUST_BACKTRACE 1
 
-set AI ~/projects/ai/llama.cpp/main
-set MODELS ~/projects/ai/models
 set NOTES ~/docs/notes/
 set DOTFILES ~/.dotfiles
 set XDG_CONFIG_HOME $HOME/.config
@@ -51,21 +47,11 @@ set -x GNUPGHOME $XDG_DATA_HOME/gnupg
 set -x NODE_REPL_HISTORY $XDG_DATA_HOME/node_repl_history
 set -x PYTHON_HISTORY $XDG_STATE_HOME/python/history
 set -x RUSTUP_HOME $XDG_DATA_HOME/rustup
-set -x VSCODE_PORTABLE $XDG_DATA_HOME/vscode
-set -x CUDA_HOME /opt/cuda
-set -x LD_LIBRARY_PATH $CUDA_HOME/lib64:$LD_LIBRARY_PATH
+set -gx PNPM_HOME $XDG_DATA_HOME/pnpm
 
-set PATH $PATH $CUDA_HOME ~/bin ~/.local/bin ~/.local/share/cargo/bin ~/.local/share/solana/install/active_release/bin ~/.pixi/bin /opt/cuda/bin 
+set PATH $PATH $RUSTUP_HOME ~/bin ~/.local/bin ~/.local/share/cargo/bin ~/.local/share/solana/install/active_release/bin ~/.pixi/bin
 
 function fish_prompt
-	# nix
-	set -l nix_shell_info ""
-	if test -n "$IN_NIX_SHELL"
-		set nix_shell_info "<nix> "
-	end
-	set_color blue
-	echo -n -s "$nix_shell_info"
-
     set_color white
     echo -n "["(date "+%H:%M")"] "
     set_color blue
@@ -121,7 +107,6 @@ pixi completion --shell fish | source
 zoxide init fish --cmd j | source
 
 # pnpm
-set -gx PNPM_HOME "/home/a7rs/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end

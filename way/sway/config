@@ -1,4 +1,5 @@
 ### Variables
+font pango: Jetbrains Mono 9
 
 set $mod Mod4
 
@@ -9,16 +10,14 @@ set $right l
 
 set $term alacritty
 set $tmux alacritty -e $SHELL -i -c tmux &
-set $menu alacritty --class 'launcher' --command bash -c 'compgen -c | sort -u | fzf | xargs -r swaymsg -t command exec'
-for_window [app_id="^launcher$"] floating enable, resize set width 512px height 384px
+set $menu dmenu_path | wmenu-run -l 12 -n "#cdd6f4" -N "#1e1e2e" -s "#1e1e2e" -S "#b4befe" -f "Jetbrains Mono 12" | xargs swaymsg exec --
 
-set $cl_high #fbddbd
+set $cl_high #b4befe
 set $cl_indi #d5c4a1
 set $cl_back #1d2021
 set $cl_fore #d5c4a1 
 set $cl_urge #cc241d
 
-font pango: Jetbrains Mono 9
 
 # Colours                border   bg       text     indi     childborder
 client.focused          $cl_high $cl_high $cl_back $cl_indi $cl_high
@@ -28,11 +27,12 @@ client.urgent           $cl_urge $cl_urge $cl_fore $cl_urge $cl_urge
 
 # Autostart
 exec mako
-exec wayext_monitor
 
 # Output configuration
+output eDP-1 scale 1.3 
 # Wallpaper
-output * bg $HOME/media/images/wallpapers/koifish.jpg fill
+
+output * bg $HOME/media/images/wallpapers/portal.jpg fill
 
 # Formatting
 default_border pixel 1
@@ -40,7 +40,7 @@ smart_gaps on
 smart_borders on
 hide_edge_borders smart
 
-gaps inner 5
+gaps inner 1
 
 ### Idle configuration
 exec swayidle -w \
@@ -65,9 +65,9 @@ focus_wrapping yes
 ### Key bindings
 # Basics:
     bindsym $mod+Return exec $term
-	  bindsym $mod+Shift+Return exec $tmux
+	bindsym $mod+Shift+Return exec $tmux
     bindsym $mod+d exec $menu
-	  #bindsym $mod+Shift+d exec wofi --show drun
+    bindsym $mod+Shift+d exec $wmenu
 
     bindsym $mod+q kill
     floating_modifier $mod normal
@@ -86,7 +86,7 @@ focus_wrapping yes
     bindsym $mod+Shift+$right move right
 
 	# Mako
-	  bindsym $mod+n exec makoctl dismiss
+	bindsym $mod+n exec makoctl dismiss
     bindsym $mod+Shift+n exec makoctl dismiss -a
 
 
@@ -97,10 +97,6 @@ focus_wrapping yes
 	set $ws4 workspace number 4
 	set $ws5 workspace number 5
 	set $ws6 workspace number 6
-	set $ws7 workspace number 7
-	set $ws8 workspace number 8
-	set $ws9 workspace number 9
-	set $ws10 workspace number 10
 
 	# Switch to workspace
   	bindsym $mod+1 $ws1
@@ -109,10 +105,6 @@ focus_wrapping yes
   	bindsym $mod+4 $ws4
   	bindsym $mod+5 $ws5
   	bindsym $mod+6 $ws6
-  	bindsym $mod+7 $ws7
-  	bindsym $mod+8 $ws8
-  	bindsym $mod+9 $ws9
-  	bindsym $mod+0 $ws10
 
   # Move focused container to workspace
     bindsym $mod+Shift+1 move container to $ws1
@@ -121,14 +113,10 @@ focus_wrapping yes
     bindsym $mod+Shift+4 move container to $ws4
     bindsym $mod+Shift+5 move container to $ws5
     bindsym $mod+Shift+6 move container to $ws6
-    bindsym $mod+Shift+7 move container to $ws7
-    bindsym $mod+Shift+8 move container to $ws8
-    bindsym $mod+Shift+9 move container to $ws9
-    bindsym $mod+Shift+0 move container to $ws10
 
 	# Move workspace to output
-		bindsym $mod+Control+h move workspace to output left
-		bindsym $mod+Control+l move workspace to output right
+	#bindsym $mod+Control+h move workspace to output left
+	#bindsym $mod+Control+l move workspace to output right
 
 	bindsym $mod+Control+1 exec sway_move 1
 	bindsym $mod+Control+2 exec sway_move 2
@@ -136,18 +124,14 @@ focus_wrapping yes
 	bindsym $mod+Control+4 exec sway_move 4
 	bindsym $mod+Control+5 exec sway_move 5
 	bindsym $mod+Control+6 exec sway_move 6
-	bindsym $mod+Control+7 exec sway_move 7
-	bindsym $mod+Control+8 exec sway_move 8
-	bindsym $mod+Control+9 exec sway_move 9
-	bindsym $mod+Control+0 exec sway_move 10
 
 	workspace back_and_forth yes
 	bindsym $mod+Tab workspace back_and_forth
 
 # Layout:
-	bindsym $mod+Ctrl+v splith
-  bindsym $mod+Shift+v splitv
-  bindsym $mod+v splitt
+    bindsym $mod+Ctrl+v splith
+    bindsym $mod+Shift+v splitv
+    bindsym $mod+v splitt
 
   # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
@@ -160,20 +144,16 @@ focus_wrapping yes
 
   # Move focus to the parent container
     bindsym $mod+p focus parent
-	  bindsym $mod+o focus child
+	bindsym $mod+o focus child
 
 # Scratchpad:
     bindsym $mod+w move scratchpad
     bindsym $mod+Shift+w scratchpad show
 
 # Media:
-# Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+  
 bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-  
 bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-#bindsym XF86AudioRaiseVolume exec pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') +5%
-#bindsym XF86AudioLowerVolume exec pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') -5%
-#bindsym XF86AudioMute exec pactl set-sink-mute $(pacmd list-sinks |awk '/* index:/{print $3}') toggle
 
 # Brightness
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
@@ -199,10 +179,10 @@ bindsym $mod+Control+c exec killall -s SIGINT wf-recorder
 
 # Resizing containers:
 mode "resize" {
-	bindsym $left resize shrink width 10px
-  bindsym $down resize grow height 10px
-  bindsym $up resize shrink height 10px
-  bindsym $right resize grow width 10px
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
 
   # Return to default mode
     bindsym Return mode "default"
@@ -212,11 +192,7 @@ bindsym $mod+z mode "resize"
 
 # Apps:
 mode "apps" {
-	#bindsym s exec switch slack ; mode "default"
-	bindsym d exec switch discord ; mode "default"
-	#bindsym m exec spotify ; mode "default"
-	#bindsym b exec switch brave-nightly ; mode "default"
-	#bindsym t exec switch telegram-desktop ; mode "default"
+	bindsym t exec switch telegram-desktop ; mode "default"
 	bindsym f exec firefox-developer-edition ; mode "default"
 
   # Return to default mode

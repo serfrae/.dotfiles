@@ -1,0 +1,3 @@
+#!/bin/sh
+
+wmenu -n "#cdd6f4" -N "#1e1e2e" -s "#1e1e2e" -S "#b4befe" -f "Jetbrains Mono 12"
