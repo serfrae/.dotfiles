@@ -405,12 +405,6 @@ vim.api.nvim_command('autocmd FileType markdown nnoremap <buffer> gf :lua Markdo
 -- autocommands
 --
 -------------------------------------------------------------------------------
-vim.api.nvim_create_autocmd('BufWritePost', {
-    callback = function()
-        vim.cmd('silent !ctags . &')
-    end
-})
-
 vim.api.nvim_create_autocmd("QuickFixCmdPost", {
     callback = function()
         vim.cmd('VFix')

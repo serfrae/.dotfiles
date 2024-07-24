@@ -5,11 +5,11 @@
     // "width": 1280, // Waybar width
 
     // Choose the order of the modules
-    "modules-left": ["clock", "sway/workspaces", "sway/window", "sway/mode"],
+    "modules-left": ["clock", "hyprland/workspaces", "hyprland/window"],
     "modules-right": ["pulseaudio", "network", "cpu", "memory", "disk", "disk#disk2", "temperature", "backlight", "battery", "battery#bat2", "tray"],
 
     // Modules configuration
-     "sway/workspaces": {
+     "hyprland/workspaces": {
          "persistent-workspaces": {
              "1": [],
              "2": [],
@@ -24,8 +24,7 @@
          "format-icons": {
              "urgent": "",
              "focused": "",
-             "default": "",
-             "persistent": "",
+             "default": "",
          },
      },
     //"idle_inhibitor": {

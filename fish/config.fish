@@ -41,15 +41,17 @@ set XDG_STATE_HOME $HOME/.local/state
 set -x ELECTRON_OZONE_PLATFORM_HINT auto
 set -x GDK_BACKEND wayland
 
+set -x RUSTUP_HOME $XDG_DATA_HOME/rustup
 set -x CARGO_HOME $XDG_DATA_HOME/cargo
+set -x GOPATH $XDG_DATA_HOME/go
+set -x GOMODCACHE $XDG_CACHE_HOME/go/pkg/mod
 set -x DOCKER_CONFIG $XDG_CONFIG_HOME/docker
 set -x GNUPGHOME $XDG_DATA_HOME/gnupg
 set -x NODE_REPL_HISTORY $XDG_DATA_HOME/node_repl_history
 set -x PYTHON_HISTORY $XDG_STATE_HOME/python/history
-set -x RUSTUP_HOME $XDG_DATA_HOME/rustup
 set -gx PNPM_HOME $XDG_DATA_HOME/pnpm
 
-set PATH $PATH $RUSTUP_HOME ~/bin ~/.local/bin ~/.local/share/cargo/bin ~/.local/share/solana/install/active_release/bin ~/.pixi/bin
+set PATH $PATH $RUSTUP_HOME $CARGO_HOME/bin $GOPATH/bin ~/bin ~/.local/bin ~/.local/share/solana/install/active_release/bin ~/.pixi/bin
 
 function fish_prompt
     set_color white
