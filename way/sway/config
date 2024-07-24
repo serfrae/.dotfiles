@@ -13,10 +13,10 @@ set $tmux alacritty -e $SHELL -i -c tmux &
 set $menu dmenu_path | wmenu-run -l 12 -n "#cdd6f4" -N "#1e1e2e" -s "#1e1e2e" -S "#b4befe" -f "Jetbrains Mono 12" | xargs swaymsg exec --
 
 set $cl_high #b4befe
-set $cl_indi #d5c4a1
-set $cl_back #1d2021
-set $cl_fore #d5c4a1 
-set $cl_urge #cc241d
+set $cl_indi #cdd6f4
+set $cl_back #1e1e2e
+set $cl_fore #cdd6f4
+set $cl_urge #f38ba8
 
 
 # Colours                border   bg       text     indi     childborder
@@ -47,6 +47,7 @@ exec swayidle -w \
 	  timeout 600 'swaylock -i "~/media/images/wallpapers/koifish.jpg"' \
 	  timeout 1800 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
 	  before-sleep 'swaylock -f -c 000000'
+
 
 # Input configuration
 input type:touchpad {
@@ -117,7 +118,6 @@ focus_wrapping yes
 	# Move workspace to output
 	#bindsym $mod+Control+h move workspace to output left
 	#bindsym $mod+Control+l move workspace to output right
-
 	bindsym $mod+Control+1 exec sway_move 1
 	bindsym $mod+Control+2 exec sway_move 2
 	bindsym $mod+Control+3 exec sway_move 3
@@ -141,6 +141,7 @@ focus_wrapping yes
 
     bindsym $mod+t floating toggle
     bindsym $mod+g focus mode_toggle
+    bindsym $mod+y floating toggle
 
   # Move focus to the parent container
     bindsym $mod+p focus parent
@@ -218,4 +219,8 @@ bindsym $mod+grave mode "sys"
 bar {
 	swaybar_command waybar
 }
+
+# Stick picture-in-picture
+for_window [app_id="firefox" title="^Picture-in-Picture$"] border none, floating enable, sticky enable
+
 include @sysconfdir@/sway/config.d/* 
