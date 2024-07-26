@@ -124,6 +124,12 @@ vim.keymap.set('v', '<leader>g', ':grep -g !tags <C-r><C-w><cr><cr><cmd>QFix 1 1
 vim.keymap.set('n', '<leader>G', ':Fzf-Lua live_grep<CR>')
 vim.keymap.set('n', '<leader>/', ':Fzf-Lua lgrep_curbuf<CR>')
 
+--resize
+vim.keymap.set('n', '<C-S-l>', ':resize +2<cr>')
+vim.keymap.set('n', '<C-S-h>', ':resize -2<cr>')
+vim.keymap.set('n', '<C-S-j>', ':vertical resize +2<cr>')
+vim.keymap.set('n', '<C-S-k>', ':vertical resize -2<cr>')
+
 -- notes
 vim.keymap.set('n', '<leader>ncd', ':cd ~/docs/notes/<cr>')
 -- ripgrep notes
@@ -135,6 +141,11 @@ vim.keymap.set('n', '<leader>nn', ':NewNote')
 vim.api.nvim_set_keymap('n', '<leader>nl', '<cmd>lua NoteLink()<cr>', { noremap = true, silent = true })
 -- note find
 vim.api.nvim_set_keymap('n', '<leader>nf', '<cmd>lua NoteFind()<cr>', { noremap = true, silent = true })
+
+vim.keymap.set('n', '<M-S-l>', ':vertical resize +2<cr>')
+vim.keymap.set('n', '<M-S-h>', ':vertical resize -2<cr>')
+vim.keymap.set('n', '<M-S-j>', ':resize +2<cr>')
+vim.keymap.set('n', '<M-S-k>', ':resize -2<cr>')
 
 --leap
 --vim.keymap.set('n',        's', '<Plug>(leap)')
@@ -850,51 +861,52 @@ require("lazy").setup({
             "TmuxNavigateRight",
         },
         keys = {
-            { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-            { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-            { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-            { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+            { "<M-h>", "<cmd>TmuxNavigateLeft<cr>", { noremap = true } },
+            { "<M-j>", "<cmd>TmuxNavigateDown<cr>", { noremap = true } },
+            { "<M-k>", "<cmd>TmuxNavigateUp<cr>", { noremap = true } },
+            { "<M-l>", "<cmd>TmuxNavigateRight<cr>", { noremap = true } },
         },
-        {
-            "folke/trouble.nvim",
-            opts = {
-                keys = {
-                    s = false
-                },
-            }, -- for default options, refer to the configuration section for custom setup.
-            cmd = "Trouble",
+    },
+    {
+        "folke/trouble.nvim",
+        opts = {
             keys = {
-                {
-                    "<leader>xx",
-                    "<cmd>Trouble diagnostics toggle<cr>",
-                    desc = "Diagnostics (Trouble)",
-                },
-                {
-                    "<leader>xX",
-                    "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-                    desc = "Buffer Diagnostics (Trouble)",
-                },
-                {
-                    "<leader>cs",
-                    "<cmd>Trouble symbols toggle focus=false<cr>",
-                    desc = "Symbols (Trouble)",
-                },
-                {
-                    "<leader>cl",
-                    "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-                    desc = "LSP Definitions / references / ... (Trouble)",
-                },
-                {
-                    "<leader>xL",
-                    "<cmd>Trouble loclist toggle<cr>",
-                    desc = "Location List (Trouble)",
-                },
-                {
-                    "<leader>xQ",
-                    "<cmd>Trouble qflist toggle<cr>",
-                    desc = "Quickfix List (Trouble)",
-                },
+                s = false
             },
-        }
+        }, -- for default options, refer to the configuration section for custom setup.
+        cmd = "Trouble",
+        keys = {
+            {
+                "<leader>xx",
+                "<cmd>Trouble diagnostics toggle<cr>",
+                desc = "Diagnostics (Trouble)",
+            },
+            {
+                "<leader>xX",
+                "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+                desc = "Buffer Diagnostics (Trouble)",
+            },
+            {
+                "<leader>cs",
+                "<cmd>Trouble symbols toggle focus=false<cr>",
+                desc = "Symbols (Trouble)",
+            },
+            {
+                "<leader>cl",
+                "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+                desc = "LSP Definitions / references / ... (Trouble)",
+            },
+            {
+                "<leader>xL",
+                "<cmd>Trouble loclist toggle<cr>",
+                desc = "Location List (Trouble)",
+            },
+            {
+                "<leader>xQ",
+                "<cmd>Trouble qflist toggle<cr>",
+                desc = "Quickfix List (Trouble)",
+            },
+        },
     }
 })
+

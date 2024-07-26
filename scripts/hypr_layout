@@ -1,0 +1,29 @@
+#!/bin/sh
+
+LAYOUT=$(hyprctl -j getoption general:layout | jq '.str' | sed 's/"//g')
+
+case $LAYOUT in
+"master")
+  hyprctl keyword general:layout dwindle
+  hyprctl keyword unbind SUPER,I
+  hyprctl keyword unbind SUPER,O
+  hyprctl keyword unbind SUPER,semicolon
+  hyprctl keyword unbind SUPER,period
+  hyprctl keyword unbind SUPER,comma
+  hyprctl keyword bind SUPER,I,swapsplit
+  hyprctl keyword bind SUPER,O,togglesplit
+  notify-send -i "$HOME/.config/hypr/mako/icons/hyprland.png" "Layout" "Dwindle"
+  ;;
+"dwindle")
+  hyprctl keyword general:layout master
+  hyprctl keyword bind SUPER,I,layoutmsg,addmaster
+  hyprctl keyword bind SUPER,O,layoutmsg,removemaster
+  hyprctl keyword bind SUPER,semicolon,layoutmsg,swapwithmaster
+  hyprctl keyword bind SUPER,period,layoutmsg,orientationnext
+  hyprctl keyword bind SUPER,comma,layoutmsg,orientationprev
+  hyprctl keyword bind SUPERSHIFT,semicolon,layoutmsg,focusmaster
+  notify-send -i "$HOME/.config/hypr/mako/icons/hyprland.png" "Layout" "Master"
+  ;;
+*) ;;
+
+esac
