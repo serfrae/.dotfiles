@@ -42,7 +42,7 @@ vim.opt.smartcase = true
 vim.opt.vb = true
 vim.opt.colorcolumn = '80'
 vim.api.nvim_create_autocmd('Filetype', { pattern = 'rust', command = 'set colorcolumn=100' })
-vim.opt.listchars = 'tab:▏-,nbsp:¬,extends:»,precedes:«,trail:•'
+vim.opt.listchars = 'tab:▏-,nbsp:¬,extends:»,precedes:«,trail:•,multispace:▏---'
 vim.opt.list = true
 vim.opt.cursorline = true
 vim.opt.tags = './tags;,tags'
@@ -549,7 +549,7 @@ require("lazy").setup({
                 sections = {
                     lualine_a = { 'mode' },
                     lualine_b = { 'branch', 'diff', 'diagnostics' },
-                    lualine_c = { 'filename' },
+                    lualine_c = { { 'filename', file_status = true, path = 1 } },
                     lualine_x = { 'encoding', 'fileformat', 'filetype' },
                     lualine_y = { 'progress' },
                     lualine_z = { 'location' }
@@ -655,7 +655,9 @@ require("lazy").setup({
                 settings = {
                     ["rust-analyzer"] = {
                         cargo = {
-                            allFeatures = true,
+                            -- Have to set to false for:
+                            -- https://github.com/coral-xyz/anchor/issues/3042
+                            allFeatures = false,
                         },
                         imports = {
                             group = {
@@ -861,9 +863,9 @@ require("lazy").setup({
             "TmuxNavigateRight",
         },
         keys = {
-            { "<M-h>", "<cmd>TmuxNavigateLeft<cr>", { noremap = true } },
-            { "<M-j>", "<cmd>TmuxNavigateDown<cr>", { noremap = true } },
-            { "<M-k>", "<cmd>TmuxNavigateUp<cr>", { noremap = true } },
+            { "<M-h>", "<cmd>TmuxNavigateLeft<cr>",  { noremap = true } },
+            { "<M-j>", "<cmd>TmuxNavigateDown<cr>",  { noremap = true } },
+            { "<M-k>", "<cmd>TmuxNavigateUp<cr>",    { noremap = true } },
             { "<M-l>", "<cmd>TmuxNavigateRight<cr>", { noremap = true } },
         },
     },
@@ -907,6 +909,12 @@ require("lazy").setup({
                 desc = "Quickfix List (Trouble)",
             },
         },
-    }
+    },
+    {
+        'stevearc/oil.nvim',
+        opts = {},
+        -- Optional dependencies
+        dependencies = { { "echasnovski/mini.icons", opts = {} } },
+        -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+    },
 })
-

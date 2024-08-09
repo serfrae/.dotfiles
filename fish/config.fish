@@ -43,6 +43,7 @@ set -x GDK_BACKEND wayland
 
 set -x RUSTUP_HOME $XDG_DATA_HOME/rustup
 set -x CARGO_HOME $XDG_DATA_HOME/cargo
+set -x RUST_LOG debug
 set -x GOPATH $XDG_DATA_HOME/go
 set -x GOMODCACHE $XDG_CACHE_HOME/go/pkg/mod
 set -x DOCKER_CONFIG $XDG_CONFIG_HOME/docker
@@ -50,8 +51,9 @@ set -x GNUPGHOME $XDG_DATA_HOME/gnupg
 set -x NODE_REPL_HISTORY $XDG_DATA_HOME/node_repl_history
 set -x PYTHON_HISTORY $XDG_STATE_HOME/python/history
 set -gx PNPM_HOME $XDG_DATA_HOME/pnpm
+set -x AVM_HOME $XDG_DATA_HOME/avm
 
-set PATH $PATH $RUSTUP_HOME $CARGO_HOME/bin $GOPATH/bin ~/bin ~/.local/bin ~/.local/share/solana/install/active_release/bin ~/.pixi/bin
+set PATH $PATH $RUSTUP_HOME $CARGO_HOME/bin $GOPATH/bin $AVM_HOME $AVM_HOME/bin ~/bin ~/.local/bin ~/.local/share/solana/install/active_release/bin ~/.pixi/bin
 
 function fish_prompt
     set_color white
@@ -113,3 +115,7 @@ if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
+
+# bun
+set --export BUN_INSTALL "$XDG_DATA_HOME/bun"
+set --export PATH $BUN_INSTALL/bin $PATH
