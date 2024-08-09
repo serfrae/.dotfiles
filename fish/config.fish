@@ -52,8 +52,9 @@ set -x NODE_REPL_HISTORY $XDG_DATA_HOME/node_repl_history
 set -x PYTHON_HISTORY $XDG_STATE_HOME/python/history
 set -gx PNPM_HOME $XDG_DATA_HOME/pnpm
 set -x AVM_HOME $XDG_DATA_HOME/avm
+set -x AGAVE $XDG_DATA_HOME/agave/target/debug
 
-set PATH $PATH $RUSTUP_HOME $CARGO_HOME/bin $GOPATH/bin $AVM_HOME $AVM_HOME/bin ~/bin ~/.local/bin ~/.local/share/solana/install/active_release/bin ~/.pixi/bin
+set PATH $PATH $RUSTUP_HOME $CARGO_HOME/bin $AGAVE $GOPATH/bin $AVM_HOME $AVM_HOME/bin ~/bin ~/.local/bin ~/.local/share/solana/install/active_release/bin ~/.pixi/bin
 
 function fish_prompt
     set_color white

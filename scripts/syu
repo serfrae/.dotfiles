@@ -2,4 +2,4 @@
 
 paru -Syu
 rustup update
-solana-install update
+agave-install update
