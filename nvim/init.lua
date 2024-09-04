@@ -53,6 +53,7 @@ vim.opt.tags = './tags;,tags'
 --
 -------------------------------------------------------------------------------
 vim.keymap.set('n', '<leader>o', '<cmd>FzfLua files<cr>')
+vim.keymap.set('n', '<leader>i', '<cmd>:Oil<cr>')
 vim.keymap.set('n', '<leader>st', '<cmd>FzfLua tags<cr>')
 vim.keymap.set('n', '<leader>sd', '<cmd>FzfLua lsp_document_symbols<cr>')
 vim.keymap.set('n', '<leader>sw', '<cmd>FzfLua lsp_workspace_symbols<cr>')
