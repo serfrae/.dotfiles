@@ -676,7 +676,7 @@ require("lazy").setup({
             -- Go
             lspconfig.gopls.setup {}
             -- JS/TS
-            lspconfig.tsserver.setup {}
+            lspconfig.ts_ls.setup {}
             -- Python
             lspconfig.pylsp.setup {
                 settings = {
