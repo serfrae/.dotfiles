@@ -14,5 +14,5 @@ echo "Git username set as $USER"
 git config --global user.email "$EMAIL"
 echo "Git email set as $EMAIL"
 
-git config --global init.defaultBranch main
-echo "Default branch name is 'main'"
+git config --global init.defaultBranch master 
+echo "Default branch name is 'master'"
