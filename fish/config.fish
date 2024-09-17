@@ -43,7 +43,7 @@ set -x GDK_BACKEND wayland
 
 set -x RUSTUP_HOME $XDG_DATA_HOME/rustup
 set -x CARGO_HOME $XDG_DATA_HOME/cargo
-set -x RUST_LOG debug
+set -x RUST_LOG info 
 set -x GOPATH $XDG_DATA_HOME/go
 set -x GOMODCACHE $XDG_CACHE_HOME/go/pkg/mod
 set -x DOCKER_CONFIG $XDG_CONFIG_HOME/docker
