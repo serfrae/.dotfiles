@@ -402,14 +402,14 @@ vim.api.nvim_command('autocmd FileType markdown nnoremap <buffer> gf :lua Markdo
 -- Copilot Toggle
 local copilot_on = true
 vim.api.nvim_create_user_command("CopilotToggle", function()
-	if copilot_on then
-		vim.cmd("Copilot disable")
-		print("Copilot OFF")
-	else
-		vim.cmd("Copilot enable")
-		print("Copilot ON")
-	end
-	copilot_on = not copilot_on
+    if copilot_on then
+        vim.cmd("Copilot disable")
+        print("Copilot OFF")
+    else
+        vim.cmd("Copilot enable")
+        print("Copilot ON")
+    end
+    copilot_on = not copilot_on
 end, {})
 vim.keymap.set('', '<M-c>', ':CopilotToggle<cr>')
 -------------------------------------------------------------------------------
@@ -850,6 +850,33 @@ require("lazy").setup({
                     enable = true,
                 },
                 additional_vim_regex_highlighting = false,
+            }
+        end
+    },
+    {
+        "mfussenegger/nvim-jdtls",
+        config = function()
+            require('jdtls').start_or_attach({ cmd = { 'jdtls' } })
+        end
+    },
+    {
+        "mfussenegger/nvim-dap",
+        config = function()
+            require('dap').adapters.java = {
+                type = 'executable',
+                command = 'java',
+                args = {
+                    '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005'
+                }
+            }
+            require('dap').configurations.java = {
+                {
+                    type = 'java',
+                    name = 'Debug (Attach)',
+                    request = 'attach',
+                    hostName = 'localhost',
+                    port = 5005
+                }
             }
         end
     },
