@@ -53,6 +53,7 @@ set -x PYTHON_HISTORY $XDG_STATE_HOME/python/history
 set -gx PNPM_HOME $XDG_DATA_HOME/pnpm
 set -x AVM_HOME $XDG_DATA_HOME/avm
 set -x AGAVE $XDG_DATA_HOME/agave/target/debug
+set -x SOLANA_SDK_PATH $XDG_DATA_HOME/solana/install/active_release/bin/solana/sdk
 
 set PATH $PATH $RUSTUP_HOME $CARGO_HOME/bin $AGAVE $GOPATH/bin $AVM_HOME $AVM_HOME/bin ~/bin ~/.local/bin ~/.local/share/solana/install/active_release/bin ~/.pixi/bin
 

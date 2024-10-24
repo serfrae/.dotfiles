@@ -1,13 +1,10 @@
-import = [
-	"~/.dotfiles/alacritty/catppuccin-mocha.toml"
-]
 
 [window]
 dimensions = { columns = 2, lines = 1 }
 padding = { x = 0, y = 0}
 dynamic_padding = false
 decorations = "None"
-startup_mode = "Windowed"
+startup_mode = "Maximized"
 dynamic_title = true
 
 [scrolling]
@@ -51,4 +48,9 @@ bindings = [
  { key = "Key8",      mods = "Control",                    chars = "\u001b8"         },
  { key = "Key9",      mods = "Control",                    chars = "\u001b9"         },
  { key = "Key0",      mods = "Control",                    chars = "\u001b0"         },
+]
+
+[general]
+import = [
+	"~/.dotfiles/alacritty/catppuccin-mocha.toml"
 ]
