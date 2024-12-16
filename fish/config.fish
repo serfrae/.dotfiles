@@ -31,19 +31,16 @@ setenv EDITOR nvim
 setenv BROWSER firefox-developer-edition
 setenv RUST_BACKTRACE 1
 
-set NOTES ~/docs/notes/
+set NOTES ~/Documents/Notes/
 set DOTFILES ~/.dotfiles
 set XDG_CONFIG_HOME $HOME/.config
 set XDG_DATA_HOME $HOME/.local/share
 set XDG_CACHE_HOME $HOME/.cache
 set XDG_STATE_HOME $HOME/.local/state
 
-set -x ELECTRON_OZONE_PLATFORM_HINT auto
-set -x GDK_BACKEND wayland
-
 set -x RUSTUP_HOME $XDG_DATA_HOME/rustup
-set -x CARGO_HOME $XDG_DATA_HOME/cargo
-set -x RUST_LOG info 
+set -x CARGO_HOME $HOME/.cargo
+set -x RUST_LOG info
 set -x GOPATH $XDG_DATA_HOME/go
 set -x GOMODCACHE $XDG_CACHE_HOME/go/pkg/mod
 set -x DOCKER_CONFIG $XDG_CONFIG_HOME/docker
@@ -51,17 +48,20 @@ set -x GNUPGHOME $XDG_DATA_HOME/gnupg
 set -x NODE_REPL_HISTORY $XDG_DATA_HOME/node_repl_history
 set -x PYTHON_HISTORY $XDG_STATE_HOME/python/history
 set -gx PNPM_HOME $XDG_DATA_HOME/pnpm
+set -x NVM_DIR $HOME/.nvm
 set -x AVM_HOME $XDG_DATA_HOME/avm
 set -x AGAVE $XDG_DATA_HOME/agave/target/debug
 set -x SOLANA_SDK_PATH $XDG_DATA_HOME/solana/install/active_release/bin/solana/sdk
+set -x HOMEBREW /opt/homebrew
+set -x HOMEBREW_NO_ENV_HINTS true
 
-set PATH $PATH $RUSTUP_HOME $CARGO_HOME/bin $AGAVE $GOPATH/bin $AVM_HOME $AVM_HOME/bin ~/bin ~/.local/bin ~/.local/share/solana/install/active_release/bin ~/.pixi/bin
+set PATH $PATH $RUSTUP_HOME $CARGO_HOME/bin $HOMEBREW/bin $AGAVE $GOPATH/bin $AVM_HOME $AVM_HOME/bin ~/bin ~/.local/bin ~/.local/share/solana/install/active_release/bin ~/.pixi/bin
 
 function fish_prompt
     set_color white
     echo -n "["(date "+%H:%M")"] "
     set_color blue
-    echo -n (hostnamectl hostname)
+    echo -n $USER
     if [ $PWD != $HOME ]
         set_color magenta
         echo -n ':'
@@ -121,3 +121,6 @@ end
 # bun
 set --export BUN_INSTALL "$XDG_DATA_HOME/bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+
+# nvm
+set --universal nvm_default_version latest 
