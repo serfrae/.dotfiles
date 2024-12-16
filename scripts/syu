@@ -1,5 +1,4 @@
 #!/bin/sh
 
-paru -Syu
 rustup update
 agave-install update

@@ -1,8 +1,0 @@
-#!/bin/sh
-
-ext_monitor=$(swaymsg -t get_outputs | rg -e "\bDP-1");
-
-if [[ -n $ext_monitor ]]; then
-	swaymsg output eDP-1 pos 0 0 res 3456x2160 
-	swaymsg output DP-1 pos 1728 0 res 1920x1080 transform 90 
-fi
