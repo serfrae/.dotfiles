@@ -1,0 +1,107 @@
+" Leader key configuration
+let mapleader=" "
+
+" Basic Settings
+set clipboard+=unnamed
+set scrolloff=10
+set relativenumber
+set number
+set ignorecase
+set smartcase
+set visualbell
+set incsearch
+set hlsearch
+set showmode
+set showcmd
+set history=1000
+set wrapscan
+
+" Enable IdeaVim plugins
+set nerdtree
+set sneak
+set surround
+set multiple-cursors
+set commentary
+set argtextobj
+set exchange
+set highlightedyank
+set textobj-entire
+set ReplaceWithRegister
+set AceAction
+
+map s :action AceAction<CR>
+map S :action AceLineAction<CR>
+
+" Basic mappings
+map H ^
+map L $
+
+" Clear search highlighting
+nnoremap <leader>, :nohl<CR>
+
+" Disable arrow keys to enforce hjkl usage
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
+
+" Window navigation
+nnoremap <M-h> <C-w>h
+nnoremap <M-j> <C-w>j
+nnoremap <M-k> <C-w>k
+nnoremap <M-l> <C-w>l
+
+" Window resizing
+nnoremap <C-S-h> :resize -2<CR>
+nnoremap <C-S-j> :resize +2<CR>
+nnoremap <C-S-k> :vertical resize -2<CR>
+nnoremap <C-S-l> :vertical resize +2<CR>
+
+" Buffer navigation
+nnoremap ]b :action NextTab<CR>
+nnoremap [b :action PreviousTab<CR>
+nnoremap ]B :action GoToLastTab<CR>
+nnoremap [B :action GoToFirstTab<CR>
+
+" Quick window actions
+nnoremap <leader>c :q<CR>
+
+" IDE specific actions
+nnoremap <leader>o :action GotoFile<CR>
+nnoremap <leader>b :action RecentFiles<CR>
+nnoremap <leader>f :action ReformatCode<CR>
+nnoremap <leader>d :action ShowErrorDescription<CR>
+nnoremap gr :action FindUsages<CR>
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gu :action ShowUsages<CR>
+nnoremap gf :action Forward<CR>
+nnoremap gb :action Back<CR>
+nnoremap K :action QuickJavaDoc<CR>
+nnoremap <leader>r :action RenameElement<CR>
+nnoremap <leader>a :action ShowIntentionActions<CR>
+nnoremap <leader>x :NERDTeeToggle<CR>
+nnoremap <leader>c :action CommentLineByComment
+nnoremap [[ :action MethodUp
+nnoremap ]] :action MethodDown
+
+" Search everywhere
+nnoremap <leader>st :action GotoSymbol<CR>
+nnoremap <leader>sd :action FileStructurePopup<CR>
+nnoremap <leader>sw :action SearchEverywhere<CR>
+
+" Error navigation
+nnoremap ]d :action GotoNextError<CR>
+nnoremap [d :action GotoPreviousError<CR>
+
+" Always center search results
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+
+" IDE specific features
+set ideajoin
+set idearefactormode=keep
+set ideastatusicon=gray
