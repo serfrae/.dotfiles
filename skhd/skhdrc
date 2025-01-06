@@ -32,39 +32,19 @@ shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
 # make floating window fill right-half of screen
 shift + alt - right  : yabai -m window --grid 1:2:1:0:1:1
 
-# create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
-shift + cmd - n : yabai -m space --create && \
-                  index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
-                  yabai -m window --space "${index}" && \
-                  yabai -m space --focus "${index}"
-
-# create desktop and follow focus - uses jq for parsing json (brew install jq)
-cmd + alt - n : yabai -m space --create && \
-                index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
-                yabai -m space --focus "${index}"
-
-# destroy desktop
-cmd + alt - w : yabai -m space --destroy
-
 # fast focus desktop
-alt - x : yabai -m space --focus recent
-alt - z : yabai -m space --focus prev || skhd -k "ctrl + alt + cmd - z"
-alt - c : yabai -m space --focus next || skhd -k "ctrl + alt + cmd - c"
-alt - 1 : yabai -m space --focus  1 || skhd -k "ctrl + alt + cmd - 1"
-alt - 2 : yabai -m space --focus  2 || skhd -k "ctrl + alt + cmd - 2"
-alt - 3 : yabai -m space --focus  3 || skhd -k "ctrl + alt + cmd - 3"
-alt - 4 : yabai -m space --focus  4 || skhd -k "ctrl + alt + cmd - 4"
-alt - 5 : yabai -m space --focus  5 || skhd -k "ctrl + alt + cmd - 5"
-alt - 6 : yabai -m space --focus  6 || skhd -k "ctrl + alt + cmd - 6"
-alt - 7 : yabai -m space --focus  7 || skhd -k "ctrl + alt + cmd - 7"
-alt - 8 : yabai -m space --focus  8 || skhd -k "ctrl + alt + cmd - 8"
-alt - 9 : yabai -m space --focus  9 || skhd -k "ctrl + alt + cmd - 9"
-alt - 0 : yabai -m space --focus 10 || skhd -k "ctrl + alt + cmd - 0"
+ctrl - 1 : yabai -m space --focus 1
+ctrl - 2 : yabai -m space --focus 2
+ctrl - 3 : yabai -m space --focus 3
+ctrl - 4 : yabai -m space --focus 4
+ctrl - 5 : yabai -m space --focus 5
+ctrl - 6 : yabai -m space --focus 6
+ctrl - 7 : yabai -m space --focus 7
+ctrl - 8 : yabai -m space --focus 8
+ctrl - 9 : yabai -m space --focus 9
+ctrl - 0 : yabai -m space --focus 10
 
 # send window to desktop and follow focus
-alt + ctrl - x : yabai -m window --space recent && yabai -m space --focus recent
-alt + ctrl - z : yabai -m window --space prev && yabai -m space --focus prev
-alt + ctrl - c : yabai -m window --space next && yabai -m space --focus next
 alt + ctrl - 1 : yabai -m window --space  1 && yabai -m space --focus 1
 alt + ctrl - 2 : yabai -m window --space  2 && yabai -m space --focus 2
 alt + ctrl - 3 : yabai -m window --space  3 && yabai -m space --focus 3
@@ -77,9 +57,6 @@ alt + ctrl - 9 : yabai -m window --space  9 && yabai -m space --focus 9
 alt + ctrl - 0 : yabai -m window --space 10 && yabai -m space --focus 10
 
 # send window to desktop
-cmd + ctrl - x : yabai -m window --space recent
-cmd + ctrl - z : yabai -m window --space prev
-cmd + ctrl - c : yabai -m window --space next
 cmd + ctrl - 1 : yabai -m window --space  1
 cmd + ctrl - 2 : yabai -m window --space  2
 cmd + ctrl - 3 : yabai -m window --space  3
@@ -143,6 +120,7 @@ alt - x : yabai -m space --mirror x-axis
 
 # toggle desktop offset
 #alt - a : yabai -m space --toggle padding && yabai -m space --toggle gap
+alt - b : yabai -m space --toggle padding && yabai -m space --toggle gap
 
 # toggle window parent zoom
 alt - d : yabai -m window --toggle zoom-parent
@@ -175,10 +153,15 @@ ctrl + alt - a : yabai -m space --layout bsp
 ctrl + alt - d : yabai -m space --layout float
 #ctrl + alt - s : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
 
+# Terminal
+cmd - return : ghostty
+alt - 1 : osascript -e 'tell application "Ghostty" to activate' -e 'tell application "Ghostty" to reopen'
+alt - 2 : osascript -e 'tell application "Intellij IDEA" to activate' -e 'tell application "Intellij IDEA" to reopen'
+
+
 # Applications
 :: apps
 alt - s ; apps
-apps < a : osascript -e 'tell application "Alacritty" to activate' -e 'tell application "Alacritty" to reopen' ; skhd -k 'escape'
 apps < t : osascript -e 'tell application "Telegram" to activate' -e 'tell application "Telegram" to reopen' ; skhd -k 'escape'
 apps < s : osascript -e 'tell application "Slack" to activate' -e 'tell application "Slack" to reopen' ; skhd -k 'escape'
 apps < d : osascript -e 'tell application "Discord" to activate' -e 'tell application "Discord" to reopen'; skhd -k 'escape'
@@ -195,7 +178,7 @@ apps < escape ; default
 alt - a ; eng
 
 eng < t : osascript -e 'tell application "Ghostty" to activate' -e 'tell application "Ghostty" to reopen' ; skhd -k 'escape'
-eng < a : osascript -e 'tell application "Intellij IDEA" to activate' -e 'tell application "Intellij IDEA" to reopen' ; skhd -k 'escape'
+eng < e : osascript -e 'tell application "Intellij IDEA" to activate' -e 'tell application "Intellij IDEA" to reopen' ; skhd -k 'escape'
 eng < d : osascript -e 'tell application "DataGrip" to activate' -e 'tell application "DataGrip" to reopen' ; skhd -k 'escape'
 eng < w : osascript -e 'tell application "WebStorm" to activate' -e 'tell application "WebStorm" to reopen' ; skhd -k 'escape'
 eng < r : osascript -e 'tell application "RustRover" to activate' -e 'tell application "RustRover" to reopen' ; skhd -k 'escape'

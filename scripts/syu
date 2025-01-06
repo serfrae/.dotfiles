@@ -1,4 +1,5 @@
 #!/bin/sh
 
+brew upgrade
 rustup update
 agave-install update
