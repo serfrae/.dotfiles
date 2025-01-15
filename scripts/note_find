@@ -1,4 +1,4 @@
 #!/bin/sh
-cd $HOME/docs/notes; 
+cd $HOME/Notes
 FILE=$(rg -e '(^|[[:space:]])@(\w\S*)' -g !tags | fzf | sed -e 's/:.*//g')
 [[ $FILE ]] && nvim $FILE

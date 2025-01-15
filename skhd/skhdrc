@@ -157,7 +157,7 @@ ctrl + alt - d : yabai -m space --layout float
 cmd - return : ghostty
 alt - 1 : osascript -e 'tell application "Ghostty" to activate' -e 'tell application "Ghostty" to reopen'
 alt - 2 : osascript -e 'tell application "Intellij IDEA" to activate' -e 'tell application "Intellij IDEA" to reopen'
-
+alt - 3 : osascript -e 'tell application "WebStorm" to activate' -e 'tell application "WebStorm" to reopen'
 
 # Applications
 :: apps
@@ -177,10 +177,9 @@ apps < escape ; default
 :: eng
 alt - a ; eng
 
-eng < t : osascript -e 'tell application "Ghostty" to activate' -e 'tell application "Ghostty" to reopen' ; skhd -k 'escape'
-eng < e : osascript -e 'tell application "Intellij IDEA" to activate' -e 'tell application "Intellij IDEA" to reopen' ; skhd -k 'escape'
+eng < e : open -a "Intellij IDEA" ; skhd -k 'escape'
+eng < w : open -a "WebStorm" ; skhd -k 'escape'
 eng < d : osascript -e 'tell application "DataGrip" to activate' -e 'tell application "DataGrip" to reopen' ; skhd -k 'escape'
-eng < w : osascript -e 'tell application "WebStorm" to activate' -e 'tell application "WebStorm" to reopen' ; skhd -k 'escape'
 eng < r : osascript -e 'tell application "RustRover" to activate' -e 'tell application "RustRover" to reopen' ; skhd -k 'escape'
 eng < g : osascript -e 'tell application "GoLand" to activate' -e 'tell application "GoLand" to reopen' ; skhd -k 'escape'
 eng < p : osascript -e 'tell application "Postman" to activate' -e 'tell application "Postman" to reopen' ; skhd -k 'escape'

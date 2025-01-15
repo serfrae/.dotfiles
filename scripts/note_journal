@@ -1,6 +1,7 @@
 #!/bin/sh
 
-echo "$HOME/docs/notes/journal"
+NOTES_DIR="$HOME/Notes/"
+echo "$NOTES_DIR/journal"
 DATE=$(date +"%Y%m%d")
 
 file_name() {
@@ -11,13 +12,13 @@ file_name() {
 	fi
 }
 
-FILE="$HOME/docs/notes/journal/$(file_name $@)"
+FILE="$NOTES_DIR/journal/$(file_name $@)"
 
 echo $(date) > $FILE
 nvim $FILE
 
 CWD=$(pwd)
-cd "$HOME/docs/notes/journal"
+cd "$NOTES_DIR/journal"
 git add -A
 git commit -m "$FILE"
 ctags -R .
