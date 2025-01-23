@@ -1,5 +1,5 @@
-#!/bin/fish
- 
+#!/usr/bin/env fish
+
 if test -d "venv" || test -d ".venv"
 	if test -d ".venv"
 		set VENV_PATH ".venv"

@@ -120,10 +120,9 @@ vim.keymap.set('n', '[T', ':tabfirst<cr>')
 vim.keymap.set('n', ']T', ':tablast<cr>')
 
 -- grep
-vim.keymap.set('n', '<leader>g', ':grep -g !tags <C-r><C-w><cr><cr><cmd>QFix 1 1<cr><cr>')
-vim.keymap.set('v', '<leader>g', ':grep -g !tags <C-r><C-w><cr><cr><cmd>QFix 1 1<cr><cr>')
-vim.keymap.set('n', '<leader>G', ':Fzf-Lua live_grep<CR>')
-vim.keymap.set('n', '<leader>/', ':Fzf-Lua lgrep_curbuf<CR>')
+vim.keymap.set('n', '<leader>g', ':FzfLua live_grep<CR>')
+vim.keymap.set('v', '<leader>g', ':FzfLua live_grep<CR>')
+vim.keymap.set('n', '<leader>/', ':FzfLua lgrep_curbuf<CR>')
 
 --resize
 vim.keymap.set('n', '<C-S-l>', ':resize +2<cr>')
@@ -363,7 +362,7 @@ end
 function NoteFind()
     local home = os.getenv("HOME")
     local docs_path = home .. "/docs/notes"
-    local rg_cmd = "rg -e '(^|[[:space:]])@(\\w\\S*)' -g '!tags' --no-heading --line-number --color=always"
+    local rg_cmd = "rg -e '(^|[[:space:]])#(\\w\\S*)' -g '!tags' --no-heading --line-number --color=always"
 
     local fzf = require('fzf-lua')
 
@@ -585,9 +584,6 @@ require("lazy").setup({
         end
     },
     -- quick navigation
-    --{
-    --"ggandor/leap.nvim",
-    --},
     {
         'folke/flash.nvim',
         event = "VeryLazy",
@@ -634,7 +630,22 @@ require("lazy").setup({
                 keymap = {
                     fzf = {
                         ["ctrl-a"] = "select-all+accept",
-                        ["ctrl-s"] = "select-all+accept",
+                        ["ctrl-s"] = {
+                            fn = function(selected)
+                                require('trouble').open({
+                                    mode = "quickfix",
+                                    items = vim.tbl_map(function(entry)
+                                        local file, line, col, text = entry:match("([^:]+):(%d+):(%d+):(.*)")
+                                        return {
+                                            filename = file or entry,
+                                            lnum = tonumber(line) or 1,
+                                            col = tonumber(col) or 1,
+                                            text = text or entry,
+                                        }
+                                    end, selected)
+                                })
+                            end
+                        }
                     }
                 },
                 files = {
@@ -690,7 +701,22 @@ require("lazy").setup({
             -- Go
             lspconfig.gopls.setup {}
             -- JS/TS
-            lspconfig.ts_ls.setup {}
+            lspconfig.ts_ls.setup {
+                settings = {
+                    typescript = {
+                        format = {
+                            indentSize = 2,
+                            convertTabsToSpaces = true,
+                        }
+                    },
+                    javascript = {
+                        format = {
+                            indentSize = 2,
+                            convertTabsToSpaces = true,
+                        }
+                    }
+                }
+            }
             -- Python
             lspconfig.pylsp.setup {
                 settings = {
@@ -717,7 +743,6 @@ require("lazy").setup({
                     }
                 }
             }
-            lspconfig.omnisharp.setup {}
             lspconfig.jdtls.setup {}
             lspconfig.clangd.setup {}
             lspconfig.markdown_oxide.setup {}

@@ -15,10 +15,23 @@ shift + alt - k : yabai -m window --swap north
 shift + alt - l : yabai -m window --swap east
 
 # move window
-shift + cmd - h : yabai -m window --warp west
-shift + cmd - j : yabai -m window --warp south
-shift + cmd - k : yabai -m window --warp north
-shift + cmd - l : yabai -m window --warp east
+ctrl + alt - h : yabai -m window --warp west
+ctrl + alt - j : yabai -m window --warp south
+ctrl + alt - k : yabai -m window --warp north
+ctrl + alt - l : yabai -m window --warp east
+
+# stack window
+cmd + alt + shift - h : yabai -m window --stack west
+cmd + alt + shift - j : yabai -m window --stack south
+cmd + alt + shift - k : yabai -m window --stack north
+cmd + alt + shift - l : yabai -m window --stack east
+
+# set insertion point in focused container
+ctrl + alt + cmd + shift - h : yabai -m window --insert west
+ctrl + alt + cmd + shift - j : yabai -m window --insert south
+ctrl + alt + cmd + shift - k : yabai -m window --insert north
+ctrl + alt + cmd + shift - l : yabai -m window --insert east
+ctrl + alt + cmd + shift - i : yabai -m window --insert stack
 
 # balance size of windows
 shift + alt - 0 : yabai -m space -balance
@@ -69,20 +82,20 @@ cmd + ctrl - 9 : yabai -m window --space  9
 cmd + ctrl - 0 : yabai -m window --space 10
 
 # focus monitor
-alt + shift - x  : yabai -m display --focus recent
-alt + shift - z  : yabai -m display --focus prev
-alt + shift - c  : yabai -m display --focus next
-alt + shift - 1  : yabai -m display --focus 1
-alt + shift - 2  : yabai -m display --focus 2
-alt + shift - 3  : yabai -m display --focus 3
+alt + shift + cmd - x  : yabai -m display --focus recent
+alt + shift + cmd - z  : yabai -m display --focus prev
+alt + shift + cmd - c  : yabai -m display --focus next
+alt + shift + cmd - 1  : yabai -m display --focus 1
+alt + shift + cmd - 2  : yabai -m display --focus 2
+alt + shift + cmd - 3  : yabai -m display --focus 3
 
 # send window to monitor and follow focus
-alt + cmd - x  : yabai -m window --display recent && yabai -m display --focus recent
-alt + cmd - z  : yabai -m window --display prev && yabai -m display --focus prev
-alt + cmd - c  : yabai -m window --display next && yabai -m display --focus next
-alt + cmd - 1  : yabai -m window --display 1 && yabai -m display --focus 1
-alt + cmd - 2  : yabai -m window --display 2 && yabai -m display --focus 2
-alt + cmd - 3  : yabai -m window --display 3 && yabai -m display --focus 3
+ctrl + alt + shift + cmd - x  : yabai -m window --display recent && yabai -m display --focus recent
+ctrl + alt + shift + cmd - z  : yabai -m window --display prev && yabai -m display --focus prev
+ctrl + alt + shift + cmd - c  : yabai -m window --display next && yabai -m display --focus next
+ctrl + alt + shift + cmd - 1  : yabai -m window --display 1 && yabai -m display --focus 1
+ctrl + alt + shift + cmd - 2  : yabai -m window --display 2 && yabai -m display --focus 2
+ctrl + alt + shift + cmd - 3  : yabai -m window --display 3 && yabai -m display --focus 3
 
 # move window
 shift + ctrl - a : yabai -m window --move rel:-20:0
@@ -102,34 +115,25 @@ shift + cmd - s : yabai -m window --resize bottom:0:-20
 shift + cmd - w : yabai -m window --resize top:0:20
 shift + cmd - d : yabai -m window --resize right:-20:0
 
-# set insertion point in focused container
-ctrl + alt - h : yabai -m window --insert west
-ctrl + alt - j : yabai -m window --insert south
-ctrl + alt - k : yabai -m window --insert north
-ctrl + alt - l : yabai -m window --insert east
-ctrl + alt - i : yabai -m window --insert stack
-
 # rotate tree
 alt - r : yabai -m space --rotate 90
+alt + shift - r : yabai -m space --rotate 270
 
 # mirror tree y-axis
-alt - y : yabai -m space --mirror y-axis
+alt - v : yabai -m space --mirror y-axis
 
 # mirror tree x-axis
-alt - x : yabai -m space --mirror x-axis
-
-# toggle desktop offset
-#alt - a : yabai -m space --toggle padding && yabai -m space --toggle gap
-alt - b : yabai -m space --toggle padding && yabai -m space --toggle gap
+alt + shift - v : yabai -m space --mirror x-axis
 
 # toggle window parent zoom
-alt - d : yabai -m window --toggle zoom-parent
+#alt - d : yabai -m window --toggle zoom-parent
 
 # toggle window fullscreen zoom
-alt - f : yabai -m window --toggle zoom-fullscreen
+alt - f : yabai -m space --toggle padding && yabai -m space --toggle gap && yabai -m window --toggle zoom-fullscreen
+alt + shift - f : yabai -m window --toggle zoom-fullscreen
 
 # toggle window native fullscreen
-shift + alt - f : yabai -m window --toggle native-fullscreen
+#shift + alt - f : yabai -m window --toggle native-fullscreen
 
 # toggle window split type
 alt - e : yabai -m window --toggle split
@@ -139,7 +143,7 @@ alt - e : yabai -m window --toggle split
 alt - t : yabai -m window --toggle float && yabai -m window --grid 4:4:1:1:2:2
 
 # toggle sticky (show on all spaces)
-#alt - s : yabai -m window --toggle sticky
+alt - y : yabai -m window --toggle sticky
 
 # toggle topmost (keep above other windows)
 alt - o : yabai -m window --toggle topmost
@@ -151,7 +155,11 @@ alt - p : yabai -m window --toggle border && \
 # change layout of desktop
 ctrl + alt - a : yabai -m space --layout bsp
 ctrl + alt - d : yabai -m space --layout float
-#ctrl + alt - s : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
+ctrl + alt - s : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
+
+
+# Focus window of same app
+alt - tab: yabai -m window --focus "$(yabai -m query --windows | jq -re "map(select(.app == \"$(yabai -m query --windows --window | jq -re '.app')\" and .\"has-focus\" == false))[0].id")"
 
 # Terminal
 cmd - return : ghostty
@@ -187,3 +195,7 @@ eng < v : osascript -e 'tell application "Visual Studio Code" to activate' -e 't
 
 eng < return ; default
 eng < escape ; default
+
+cmd + shift - k : \
+    yabai -m space --focus $(yabai -m query --spaces --space next || yabai -m query --spaces --space first) && \
+    yabai -m window --focus $(yabai -m query --spaces --space | jq -r '.windows[0]')

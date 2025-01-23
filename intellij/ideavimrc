@@ -63,14 +63,20 @@ nnoremap [b :action PreviousTab<CR>
 nnoremap ]B :action GoToLastTab<CR>
 nnoremap [B :action GoToFirstTab<CR>
 
-" Quick window actions
-nnoremap <leader>c :q<CR>
+" Window naviation
+nnoremap ]t :action NextWindow<CR>
+nnoremap [t :action PreviousWindow<CR>
+nnoremap ]T :action LastWindow<CR>
+nnoremap [T :action FirstWindow<CR>
+
+nnoremap <leader>c :q
 
 " IDE specific actions
 nnoremap <leader>o :action GotoFile<CR>
 nnoremap <leader>b :action RecentFiles<CR>
 nnoremap <leader>f :action ReformatCode<CR>
-nnoremap <leader>d :action ShowErrorDescription<CR>
+nnoremap <leader>e :action ShowErrorDescription<CR>
+nnoremap gs :action ViewSource<CR>
 nnoremap gr :action FindUsages<CR>
 nnoremap gd :action GotoDeclaration<CR>
 nnoremap gi :action GotoImplementation<CR>
@@ -80,8 +86,8 @@ nnoremap gb :action Back<CR>
 nnoremap K :action QuickJavaDoc<CR>
 nnoremap <leader>r :action RenameElement<CR>
 nnoremap <leader>a :action ShowIntentionActions<CR>
-nnoremap <leader>x :NERDTeeToggle<CR>
-nnoremap <leader>c :action CommentLineByComment
+nnoremap <leader>x :NERDTreeToggle<CR>
+nnoremap <leader>d :action Problems<CR>
 nnoremap [[ :action MethodUp
 nnoremap ]] :action MethodDown
 
