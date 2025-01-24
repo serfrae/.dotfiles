@@ -13,7 +13,9 @@ else
 	exit 1
 end
 
-set PYTHON_DIR (fd -t d '^python' "$VENV_PATH/lib/" --max-depth 1)
+set PYTHON_DIR (find "$VENV_PATH/lib" -type d -name "python*" -maxdepth 1)
+#set PYTHON_DIR (find . "$VENV_PATH/lib/" --type d --max-depth 1 | grep -i python)
+#set PYTHON_DIR (fd -t d '^python' "$VENV_PATH/lib/" --max-depth 1)
 
 if test -z "$PYTHON_DIR"
 	echo "No python library directory found" 

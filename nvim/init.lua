@@ -705,13 +705,13 @@ require("lazy").setup({
                 settings = {
                     typescript = {
                         format = {
-                            indentSize = 2,
+                            indentSize = 4,
                             convertTabsToSpaces = true,
                         }
                     },
                     javascript = {
                         format = {
-                            indentSize = 2,
+                            indentSize = 4,
                             convertTabsToSpaces = true,
                         }
                     }

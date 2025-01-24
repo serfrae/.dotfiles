@@ -159,7 +159,10 @@ ctrl + alt - s : yabai -m space --layout $(yabai -m query --spaces --space | jq 
 
 
 # Focus window of same app
-alt - tab: yabai -m window --focus "$(yabai -m query --windows | jq -re "map(select(.app == \"$(yabai -m query --windows --window | jq -re '.app')\" and .\"has-focus\" == false))[0].id")"
+ alt - tab: yabai -m window --focus "$(yabai -m query --windows | jq -re "map(select(.app == \"$(yabai -m query --windows --window | jq -re '.app')\")) | sort_by(.id) | .[([.[].id] | index($(yabai -m query --windows --window | jq -re '.id')) + 1) % length].id")"
+#alt - tab: yabai -m window --focus "$(yabai -m query --windows | jq -re "map(select(.app == \"$(yabai -m query --windows --window | jq -re '.app')\" and .\"has-focus\" == false)) | sort_by(.index) | .[0].id")"
+#alt - tab: yabai -m window --focus "$(yabai -m query --windows | jq -re "map(select(.app == \"$(yabai -m query --windows --window | jq -re '.app')\" and .\"has-focus\" == false and .index > $(yabai -m query --windows --window | jq -re '.index'))) | .[0].id // $(yabai -m query --windows | jq -re \"map(select(.app == '$(yabai -m query --windows --window | jq -re '.app')' and .\"has-focus\" == false))[0].id\")")"
+
 
 # Terminal
 cmd - return : ghostty

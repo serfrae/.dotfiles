@@ -25,6 +25,7 @@ abbr -a pip 'uv pip'
 abbr -a hypr 'Hyprland'
 abbr -a spl-t2 'spl-token --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb'
 abbr -a py "python"
+abbr -a lg "lazygit"
 
 setenv TERM alacritty
 setenv EDITOR nvim 
