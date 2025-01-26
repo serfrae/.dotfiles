@@ -1,3 +1,13 @@
+#########################
+###                   ###
+###    SKHD Config    ###
+###                   ###
+#########################
+
+########################
+### Window Placement ###
+########################
+
 # focus window
 alt - x : yabai -m window --focus recent
 alt - h : yabai -m window --focus west
@@ -7,43 +17,33 @@ alt - l : yabai -m window --focus east
 alt - z : yabai -m window --focus stack.prev
 alt - c : yabai -m window --focus stack.next
 
-# swap window
+# Swap
 shift + alt - x : yabai -m window --swap recent
 shift + alt - h : yabai -m window --swap west
 shift + alt - j : yabai -m window --swap south
 shift + alt - k : yabai -m window --swap north
 shift + alt - l : yabai -m window --swap east
 
-# move window
+# Move
+ctrl + alt - x : yabai -m window --swap recent
 ctrl + alt - h : yabai -m window --warp west
 ctrl + alt - j : yabai -m window --warp south
 ctrl + alt - k : yabai -m window --warp north
 ctrl + alt - l : yabai -m window --warp east
 
-# stack window
+# Stack
+cmd + alt + shift - x : yabai -m window --stack recent
 cmd + alt + shift - h : yabai -m window --stack west
 cmd + alt + shift - j : yabai -m window --stack south
 cmd + alt + shift - k : yabai -m window --stack north
 cmd + alt + shift - l : yabai -m window --stack east
 
-# set insertion point in focused container
+# Set insertion point in focused container
 ctrl + alt + cmd + shift - h : yabai -m window --insert west
 ctrl + alt + cmd + shift - j : yabai -m window --insert south
 ctrl + alt + cmd + shift - k : yabai -m window --insert north
 ctrl + alt + cmd + shift - l : yabai -m window --insert east
 ctrl + alt + cmd + shift - i : yabai -m window --insert stack
-
-# balance size of windows
-shift + alt - 0 : yabai -m space -balance
-
-# make floating window fill screen
-shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1
-
-# make floating window fill left-half of screen
-shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
-
-# make floating window fill right-half of screen
-shift + alt - right  : yabai -m window --grid 1:2:1:0:1:1
 
 # fast focus desktop
 ctrl - 1 : yabai -m space --focus 1
@@ -103,6 +103,22 @@ shift + ctrl - s : yabai -m window --move rel:0:20
 shift + ctrl - w : yabai -m window --move rel:0:-20
 shift + ctrl - d : yabai -m window --move rel:20:0
 
+##################
+### Appearance ###
+##################
+
+# balance size of windows
+shift + alt - 0 : yabai -m space -balance
+
+# make floating window fill screen
+shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1
+
+# make floating window fill left-half of screen
+shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
+
+# make floating window fill right-half of screen
+shift + alt - right  : yabai -m window --grid 1:2:1:0:1:1
+
 # increase window size
 shift + cmd + alt - a : yabai -m window --resize left:-20:0
 shift + cmd + alt - s : yabai -m window --resize bottom:0:20
@@ -115,28 +131,38 @@ shift + cmd + alt + ctrl - s : yabai -m window --resize bottom:0:-20
 shift + cmd + alt + ctrl - w : yabai -m window --resize top:0:20
 shift + cmd + alt + ctrl - d : yabai -m window --resize right:-20:0
 
+###################
+### Arrangement ###
+###################
+
 # rotate tree
 alt - r : yabai -m space --rotate 90
 alt + shift - r : yabai -m space --rotate 270
 
-# mirror tree y-axis
+# mirror tree on axis
 alt - v : yabai -m space --mirror y-axis
-
-# mirror tree x-axis
 alt + shift - v : yabai -m space --mirror x-axis
 
+# toggle window split type
+alt - e : yabai -m window --toggle split
+
+############
+### Zoom ###
+############
+
 # toggle window parent zoom
-#alt - d : yabai -m window --toggle zoom-parent
+#alt - <KEY> : yabai -m window --toggle zoom-parent
 
 # toggle window fullscreen zoom
-alt - f : yabai -m space --toggle padding && yabai -m space --toggle gap && yabai -m window --toggle zoom-fullscreen
-alt + shift - f : yabai -m window --toggle zoom-fullscreen
+#alt - c : yabai -m space --toggle padding && yabai -m space --toggle gap && yabai -m window --toggle zoom-fullscreen
+#alt + shift - c : yabai -m window --toggle zoom-fullscreen
 
 # toggle window native fullscreen
 #shift + alt - f : yabai -m window --toggle native-fullscreen
 
-# toggle window split type
-alt - e : yabai -m window --toggle split
+####################
+### Window State ###
+####################
 
 # float / unfloat window and restore position
 # alt - t : yabai -m window --toggle float && /tmp/yabai-restore/$(yabai -m query --windows --window | jq -re '.id').restore 2>/dev/null || true
@@ -157,11 +183,12 @@ ctrl + alt - a : yabai -m space --layout bsp
 ctrl + alt - d : yabai -m space --layout float
 ctrl + alt - s : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
 
-
 # Focus window of same app
  alt - tab: yabai -m window --focus "$(yabai -m query --windows | jq -re "map(select(.app == \"$(yabai -m query --windows --window | jq -re '.app')\")) | sort_by(.id) | .[([.[].id] | index($(yabai -m query --windows --window | jq -re '.id')) + 1) % length].id")"
-#alt - tab: yabai -m window --focus "$(yabai -m query --windows | jq -re "map(select(.app == \"$(yabai -m query --windows --window | jq -re '.app')\" and .\"has-focus\" == false)) | sort_by(.index) | .[0].id")"
-#alt - tab: yabai -m window --focus "$(yabai -m query --windows | jq -re "map(select(.app == \"$(yabai -m query --windows --window | jq -re '.app')\" and .\"has-focus\" == false and .index > $(yabai -m query --windows --window | jq -re '.index'))) | .[0].id // $(yabai -m query --windows | jq -re \"map(select(.app == '$(yabai -m query --windows --window | jq -re '.app')' and .\"has-focus\" == false))[0].id\")")"
+
+####################
+### Applications ###
+####################
 
 # Terminal
 cmd - return : open -a "Ghostty"
@@ -169,14 +196,13 @@ cmd - return : open -a "Ghostty"
 # Applications
 :: apps
 alt - a ; apps
-apps < t : osascript -e 'tell application "Telegram" to activate' -e 'tell application "Telegram" to reopen' ; skhd -k 'escape'
-apps < s : osascript -e 'tell application "Slack" to activate' -e 'tell application "Slack" to reopen' ; skhd -k 'escape'
-apps < d : osascript -e 'tell application "Discord" to activate' -e 'tell application "Discord" to reopen'; skhd -k 'escape'
-apps < w : osascript -e 'tell application "Whatsapp" to activate' -e 'tell application "Whatsapp" to reopen' ; skhd -k 'escape'
-apps < f : osascript -e 'tell application "Firefox" to activate' -e 'tell application "Firefox" to reopen' ; skhd -k 'escape'
-apps < b : osascript -e 'tell application "Brave Browser" to activate' -e 'tell application "Brave Browser" to reopen' ; skhd -k 'escape'
-apps < c : osascript -e 'tell application "Chrome" to activate' -e 'tell applicaiton "Chrome" to reopen' ; skhd -k 'escape'
-apps < n : osascript -e 'tell application "NordVPN" to activate' -e 'tell application "NordVPN" to reopen' ; skhd -k 'escape'
+apps < v : open -a "NordVPN" ; skhd -k 'escape'
+apps < m : open -a "Mail" ; skhd -k 'escape'
+apps < c : open -a "Calendar" ; skhd -k 'escape'
+apps < s : open -a "Spotify" ; skhd -k 'escape'
+apps < q : open -a "qBittorrent" ; skhd -k 'escape'
+apps < n : open -a "Notes" ; skhd -k 'escape'
+apps < r : open -a "Reminders" ; skhd -k 'escape'
 
 apps < return ; default
 apps < escape ; default
@@ -187,15 +213,36 @@ ctrl - space ; eng
 
 eng < e : open -a "Intellij IDEA" ; skhd -k 'escape'
 eng < w : open -a "WebStorm" ; skhd -k 'escape'
-eng < d : osascript -e 'tell application "DataGrip" to activate' -e 'tell application "DataGrip" to reopen' ; skhd -k 'escape'
-eng < r : osascript -e 'tell application "RustRover" to activate' -e 'tell application "RustRover" to reopen' ; skhd -k 'escape'
-eng < g : osascript -e 'tell application "GoLand" to activate' -e 'tell application "GoLand" to reopen' ; skhd -k 'escape'
-eng < p : osascript -e 'tell application "Postman" to activate' -e 'tell application "Postman" to reopen' ; skhd -k 'escape'
-eng < v : osascript -e 'tell application "Visual Studio Code" to activate' -e 'tell application "Visual Studio Code" to reopen' ; skhd -k 'escape'
+eng < d : open -a "DataGrip" ; skhd -k 'escape'
+eng < r : open -a "RustRover" ; skhd -k 'escape'
+eng < c : open -a "CLion" ; skhd -k 'escape'
+eng < g : open -a "GoLand" ; skhd -k 'escape'
+eng < p : open -a "Postman" ; skhd -k 'escape'
+eng < v : open -a "Visual Studio Code" ; skhd -k 'escape'
 
 eng < return ; default
 eng < escape ; default
 
-cmd + shift - k : \
-    yabai -m space --focus $(yabai -m query --spaces --space next || yabai -m query --spaces --space first) && \
-    yabai -m window --focus $(yabai -m query --spaces --space | jq -r '.windows[0]')
+# Social
+:: social
+alt - s ; social
+
+apps < t : open -a "Telegram" ; skhd -k 'escape'
+apps < s : open -a "Slack" ; skhd -k 'escape'
+apps < d : open -a "Discord" ; skhd -k 'escape'
+apps < w : open -a "WhatsApp" ; skhd -k 'escape'
+
+social < return ; default
+social < escape ; default
+
+# Web Browsers
+:: web
+alt - w ; web
+
+web < f : open -a "Firefox" ; skhd -k 'escape'
+web < b : open -a "Brave Browser" ; skhd -k 'escape'
+web < g : open -a "Google Chrome" ; skhd -k 'escape'
+web < s : open -a "Safari" ; skhd -k 'escape'
+
+web < return ; default
+web < escape ; default
