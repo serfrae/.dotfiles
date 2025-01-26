@@ -18,7 +18,6 @@ set wrapscan
 
 " Enable IdeaVim plugins
 set nerdtree
-set sneak
 set surround
 set multiple-cursors
 set commentary
@@ -27,10 +26,17 @@ set exchange
 set highlightedyank
 set textobj-entire
 set ReplaceWithRegister
-set AceAction
+"set AceAction
 
-map s :action AceAction<CR>
-map S :action AceLineAction<CR>
+"map s :action AceAction<CR>
+"map S :action AceLineAction<CR>
+
+set quickscope
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+set easymotion
+map s <Plug>(easymotion-s)
+map S <Plug>(easymotion-jumptoanywhere)
 
 " Basic mappings
 map H ^
@@ -90,6 +96,7 @@ nnoremap <leader>x :NERDTreeToggle<CR>
 nnoremap <leader>d :action Problems<CR>
 nnoremap [[ :action MethodUp
 nnoremap ]] :action MethodDown
+nnoremap <C-space>r :group RunMenu<CR>
 
 " Search everywhere
 nnoremap <leader>st :action GotoSymbol<CR>
@@ -106,6 +113,8 @@ nnoremap N Nzz
 nnoremap * *zz
 nnoremap # #zz
 nnoremap g* g*zz
+
+nnoremap ,r : action Run<CR>
 
 " IDE specific features
 set ideajoin

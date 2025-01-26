@@ -82,20 +82,20 @@ cmd + ctrl - 9 : yabai -m window --space  9
 cmd + ctrl - 0 : yabai -m window --space 10
 
 # focus monitor
-alt + shift + cmd - x  : yabai -m display --focus recent
-alt + shift + cmd - z  : yabai -m display --focus prev
-alt + shift + cmd - c  : yabai -m display --focus next
-alt + shift + cmd - 1  : yabai -m display --focus 1
-alt + shift + cmd - 2  : yabai -m display --focus 2
-alt + shift + cmd - 3  : yabai -m display --focus 3
+ctrl + alt + shift + cmd - x  : yabai -m display --focus recent
+ctrl + alt + shift + cmd - z  : yabai -m display --focus prev
+ctrl + alt + shift + cmd - c  : yabai -m display --focus next
+ctrl + alt + shift + cmd - 1  : yabai -m display --focus 1
+ctrl + alt + shift + cmd - 2  : yabai -m display --focus 2
+ctrl + alt + shift + cmd - 3  : yabai -m display --focus 3
 
 # send window to monitor and follow focus
-ctrl + alt + shift + cmd - x  : yabai -m window --display recent && yabai -m display --focus recent
-ctrl + alt + shift + cmd - z  : yabai -m window --display prev && yabai -m display --focus prev
-ctrl + alt + shift + cmd - c  : yabai -m window --display next && yabai -m display --focus next
-ctrl + alt + shift + cmd - 1  : yabai -m window --display 1 && yabai -m display --focus 1
-ctrl + alt + shift + cmd - 2  : yabai -m window --display 2 && yabai -m display --focus 2
-ctrl + alt + shift + cmd - 3  : yabai -m window --display 3 && yabai -m display --focus 3
+alt + shift + cmd - x  : yabai -m window --display recent && yabai -m display --focus recent
+alt + shift + cmd - z  : yabai -m window --display prev && yabai -m display --focus prev
+alt + shift + cmd - c  : yabai -m window --display next && yabai -m display --focus next
+alt + shift + cmd - 1  : yabai -m window --display 1 && yabai -m display --focus 1
+alt + shift + cmd - 2  : yabai -m window --display 2 && yabai -m display --focus 2
+alt + shift + cmd - 3  : yabai -m window --display 3 && yabai -m display --focus 3
 
 # move window
 shift + ctrl - a : yabai -m window --move rel:-20:0
@@ -104,16 +104,16 @@ shift + ctrl - w : yabai -m window --move rel:0:-20
 shift + ctrl - d : yabai -m window --move rel:20:0
 
 # increase window size
-shift + alt - a : yabai -m window --resize left:-20:0
-shift + alt - s : yabai -m window --resize bottom:0:20
-shift + alt - w : yabai -m window --resize top:0:-20
-shift + alt - d : yabai -m window --resize right:20:0
+shift + cmd + alt - a : yabai -m window --resize left:-20:0
+shift + cmd + alt - s : yabai -m window --resize bottom:0:20
+shift + cmd + alt - w : yabai -m window --resize top:0:-20
+shift + cmd + alt - d : yabai -m window --resize right:20:0
 
 # decrease window size
-shift + cmd - a : yabai -m window --resize left:20:0
-shift + cmd - s : yabai -m window --resize bottom:0:-20
-shift + cmd - w : yabai -m window --resize top:0:20
-shift + cmd - d : yabai -m window --resize right:-20:0
+shift + cmd + alt + ctrl - a : yabai -m window --resize left:20:0
+shift + cmd + alt + ctrl - s : yabai -m window --resize bottom:0:-20
+shift + cmd + alt + ctrl - w : yabai -m window --resize top:0:20
+shift + cmd + alt + ctrl - d : yabai -m window --resize right:-20:0
 
 # rotate tree
 alt - r : yabai -m space --rotate 90
@@ -163,22 +163,19 @@ ctrl + alt - s : yabai -m space --layout $(yabai -m query --spaces --space | jq 
 #alt - tab: yabai -m window --focus "$(yabai -m query --windows | jq -re "map(select(.app == \"$(yabai -m query --windows --window | jq -re '.app')\" and .\"has-focus\" == false)) | sort_by(.index) | .[0].id")"
 #alt - tab: yabai -m window --focus "$(yabai -m query --windows | jq -re "map(select(.app == \"$(yabai -m query --windows --window | jq -re '.app')\" and .\"has-focus\" == false and .index > $(yabai -m query --windows --window | jq -re '.index'))) | .[0].id // $(yabai -m query --windows | jq -re \"map(select(.app == '$(yabai -m query --windows --window | jq -re '.app')' and .\"has-focus\" == false))[0].id\")")"
 
-
 # Terminal
-cmd - return : ghostty
-alt - 1 : osascript -e 'tell application "Ghostty" to activate' -e 'tell application "Ghostty" to reopen'
-alt - 2 : osascript -e 'tell application "Intellij IDEA" to activate' -e 'tell application "Intellij IDEA" to reopen'
-alt - 3 : osascript -e 'tell application "WebStorm" to activate' -e 'tell application "WebStorm" to reopen'
+cmd - return : open -a "Ghostty"
 
 # Applications
 :: apps
-alt - s ; apps
+alt - a ; apps
 apps < t : osascript -e 'tell application "Telegram" to activate' -e 'tell application "Telegram" to reopen' ; skhd -k 'escape'
 apps < s : osascript -e 'tell application "Slack" to activate' -e 'tell application "Slack" to reopen' ; skhd -k 'escape'
 apps < d : osascript -e 'tell application "Discord" to activate' -e 'tell application "Discord" to reopen'; skhd -k 'escape'
 apps < w : osascript -e 'tell application "Whatsapp" to activate' -e 'tell application "Whatsapp" to reopen' ; skhd -k 'escape'
-apps < f : osascript -e 'tell application "Firefox" to activate' -e 'tell application "Firefox" to reopen' ; xkhd -k 'escape'
+apps < f : osascript -e 'tell application "Firefox" to activate' -e 'tell application "Firefox" to reopen' ; skhd -k 'escape'
 apps < b : osascript -e 'tell application "Brave Browser" to activate' -e 'tell application "Brave Browser" to reopen' ; skhd -k 'escape'
+apps < c : osascript -e 'tell application "Chrome" to activate' -e 'tell applicaiton "Chrome" to reopen' ; skhd -k 'escape'
 apps < n : osascript -e 'tell application "NordVPN" to activate' -e 'tell application "NordVPN" to reopen' ; skhd -k 'escape'
 
 apps < return ; default
@@ -186,7 +183,7 @@ apps < escape ; default
 
 # Engineering
 :: eng
-alt - a ; eng
+ctrl - space ; eng
 
 eng < e : open -a "Intellij IDEA" ; skhd -k 'escape'
 eng < w : open -a "WebStorm" ; skhd -k 'escape'

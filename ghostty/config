@@ -47,3 +47,4 @@ keybind = cmd+j=goto_split:bottom
 keybind = cmd+k=goto_split:top
 keybind = cmd+l=goto_split:right
 keybind = cmd+f=toggle_split_zoom
+keybind = cmd+shift+d=new_split:down
