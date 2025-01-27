@@ -65,3 +65,5 @@ yabai -m rule --add app="^Karabiner-Element$" manage=off
 yabai -m rule --add app="^App Store$" manage=off
 yabai -m rule --add app="^Calendar$" manage=off
 yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^Notes$" manage=off
+yabai -m rule --add app="^Reminders$" manage=off

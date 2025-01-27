@@ -198,14 +198,14 @@ alt - d : open -a "Ghostty"
 :: apps
 alt - a ; apps
 
-apps < f : open -a "Finder" ; skhd -k 'escape'
-apps < v : open -a "NordVPN" ; skhd -k 'escape'
-apps < m : open -a "Mail" ; skhd -k 'escape'
-apps < c : open -a "Calendar" ; skhd -k 'escape'
-apps < s : open -a "Spotify" ; skhd -k 'escape'
-apps < q : open -a "qBittorrent" ; skhd -k 'escape'
-apps < n : open -a "Notes" ; skhd -k 'escape'
-apps < r : open -a "Reminders" ; skhd -k 'escape'
+apps < f : osascript -e 'tell application "Finder" to activate' -e 'tell application "Finder" to reopen' ; skhd -k 'escape'
+apps < v : osascript -e 'tell application "NordVPN" to activate' -e 'tell application "NordVPN" to reopen' ; skhd -k 'escape'
+apps < m : osascript -e 'tell application "Mail" to activate' -e 'tell application "Mail" to reopen' ; skhd -k 'escape'
+apps < c : osascript -e 'tell application "Calendar" to activate' -e 'tell application "Calendar" to reopen' ; skhd -k 'escape'
+apps < s : osascript -e 'tell application "Spotify" to activate' -e 'tell application "Spotify" to reopen' ; skhd -k 'escape'
+apps < q : osascript -e 'tell application "qBittorrent" to activate' -e 'tell application "qBittorrent" to reopen' ; skhd -k 'escape'
+apps < n : osascript -e 'tell application "Notes" to activate' -e 'tell application "Notes" to reopen'; skhd -k 'escape'
+apps < r : osascript -e 'tell application "Reminders" to activate' -e 'tell application "Reminders" to reopen' ; skhd -k 'escape'
 
 apps < return ; default
 apps < escape ; default
@@ -214,14 +214,14 @@ apps < escape ; default
 :: eng
 ctrl - space ; eng
 
-eng < e : open -a "Intellij IDEA" ; skhd -k 'escape'
-eng < w : open -a "WebStorm" ; skhd -k 'escape'
-eng < d : open -a "DataGrip" ; skhd -k 'escape'
-eng < r : open -a "RustRover" ; skhd -k 'escape'
-eng < c : open -a "CLion" ; skhd -k 'escape'
-eng < g : open -a "GoLand" ; skhd -k 'escape'
-eng < p : open -a "Postman" ; skhd -k 'escape'
-eng < v : open -a "Visual Studio Code" ; skhd -k 'escape'
+eng < e : osascript -e 'tell application "Intellij IDEA" to activate' -e 'tell application "Intellij IDEA" to reopen' ; skhd -k 'escape'
+eng < w : osascript -e 'tell application "WebStorm" to activate' -e 'tell application "WebStorm" to reopen' ; skhd -k 'escape'
+eng < d : osascript -e 'tell application "DataGrip" to activate' -e 'tell application "DataGrip" to reopen' ; skhd -k 'escape'
+eng < r : osascript -e 'tell application "RustRover" to activate' -e 'tell application "RustRover" to reopen' ; skhd -k 'escape'
+eng < c : osascript -e 'tell application "CLion" to activate' -e 'tell application "CLion" to reopen' ; skhd -k 'escape'
+eng < g : osascript -e 'tell application "GoLand" to activate' -e 'tell application "GoLand" to reopen' ; skhd -k 'escape'
+eng < p : osascript -e 'tell application "Postman" to activate' -e 'tell application "Postman" to reopen' ; skhd -k 'escape'
+eng < v : osascript -e 'tell application "Visual Studio Code" to activate' -e 'tell application "Visual Studio Code" to reopen' ; skhd -k 'escape'
 
 eng < return ; default
 eng < escape ; default
@@ -230,10 +230,10 @@ eng < escape ; default
 :: social
 alt - s ; social
 
-social < t : open -a "Telegram" ; skhd -k 'escape'
-social < s : open -a "Slack" ; skhd -k 'escape'
-social < d : open -a "Discord" ; skhd -k 'escape'
-social < w : open -a "WhatsApp" ; skhd -k 'escape'
+social < t : osascript -e 'tell application "Telegram" to activate' -e 'tell application "Telegram" to reopen' ; skhd -k 'escape'
+social < s : osascript -e 'tell application "Slack" to activate' -e 'tell application "Slack" to reopen' ; skhd -k 'escape'
+social < d : osascript -e 'tell application "Discord" to activate' -e 'tell application "Discord" to reopen' ; skhd -k 'escape'
+social < w : osascript -e 'tell application "WhatsApp" to activate' -e 'tell application "WhatsApp" to reopen' ; skhd -k 'escape'
 
 social < return ; default
 social < escape ; default
@@ -242,10 +242,10 @@ social < escape ; default
 :: web
 alt - w ; web
 
-web < f : open -a "Firefox" ; skhd -k 'escape'
-web < b : open -a "Brave Browser" ; skhd -k 'escape'
-web < g : open -a "Google Chrome" ; skhd -k 'escape'
-web < s : open -a "Safari" ; skhd -k 'escape'
+web < f : osascript -e 'tell application "Firefox" to activate' -e 'tell application "Firefox" to reopen' ; skhd -k 'escape'
+web < b : osascript -e 'tell application "Brave Browser" to activate' -e 'tell application "Brave Browser" to reopen' ; skhd -k 'escape'
+web < g : osascript -e 'tell application "Google Chrome" to activate' -e 'tell application "Google Chrome" to reopen' ; skhd -k 'escape'
+web < s : osascript -e 'tell application "Safari" to activate' -e 'tell application "Safari" to reopen' ; skhd -k 'escape'
 
 web < return ; default
 web < escape ; default

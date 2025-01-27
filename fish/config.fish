@@ -9,6 +9,7 @@ abbr -a ct 'cargo test'
 abbr -a g git
 abbr -a gc 'git checkout'
 abbr -a ga 'git add -p'
+abbr -a ji 'just install'
 abbr -a rgp 'rg -p'
 abbr -a rgr 'rg -uuu'
 abbr -a nn note
