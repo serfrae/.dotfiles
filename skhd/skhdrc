@@ -192,10 +192,13 @@ ctrl + alt - s : yabai -m space --layout $(yabai -m query --spaces --space | jq 
 
 # Terminal
 cmd - return : open -a "Ghostty"
+alt - d : open -a "Ghostty"
 
 # Applications
 :: apps
 alt - a ; apps
+
+apps < f : open -a "Finder" ; skhd -k 'escape'
 apps < v : open -a "NordVPN" ; skhd -k 'escape'
 apps < m : open -a "Mail" ; skhd -k 'escape'
 apps < c : open -a "Calendar" ; skhd -k 'escape'
@@ -227,10 +230,10 @@ eng < escape ; default
 :: social
 alt - s ; social
 
-apps < t : open -a "Telegram" ; skhd -k 'escape'
-apps < s : open -a "Slack" ; skhd -k 'escape'
-apps < d : open -a "Discord" ; skhd -k 'escape'
-apps < w : open -a "WhatsApp" ; skhd -k 'escape'
+social < t : open -a "Telegram" ; skhd -k 'escape'
+social < s : open -a "Slack" ; skhd -k 'escape'
+social < d : open -a "Discord" ; skhd -k 'escape'
+social < w : open -a "WhatsApp" ; skhd -k 'escape'
 
 social < return ; default
 social < escape ; default
