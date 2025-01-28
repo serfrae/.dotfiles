@@ -64,7 +64,7 @@ vim.keymap.set('n', '<leader>c', ':close<cr>')
 vim.keymap.set('', 'H', '^')
 vim.keymap.set('', 'L', '$')
 
-vim.keymap.set('n', '<leader>p', '<cmd>read !wl-paste<cr>')
+vim.keymap.set('n', '<leader>p', '<cmd>read !pbpaste<cr>')
 vim.keymap.set('v', '<leader>y', '"+y')
 vim.keymap.set('n', '<S-z><S-x>', ':q!<cr>')
 

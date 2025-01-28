@@ -249,3 +249,5 @@ web < s : osascript -e 'tell application "Safari" to activate' -e 'tell applicat
 
 web < return ; default
 web < escape ; default
+
+cmd + shift + alt - m : osascript "/Users/a7rs/bin/menubar.scpt"
