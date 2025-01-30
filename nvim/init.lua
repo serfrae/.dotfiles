@@ -744,9 +744,13 @@ require("lazy").setup({
                     }
                 }
             }
+            -- C/C++
             lspconfig.clangd.setup {}
+            -- Markdown
             lspconfig.markdown_oxide.setup {}
+            -- Solidity
             lspconfig.solidity_ls_nomicfoundation.setup {}
+            -- Lua
             lspconfig.lua_ls.setup {
                 settings = {
                     Lua = {
@@ -756,7 +760,6 @@ require("lazy").setup({
                     }
                 }
             }
-            lspconfig.sqls.setup {}
 
             -- Bash LSP
             local configs = require 'lspconfig.configs'
@@ -887,27 +890,6 @@ require("lazy").setup({
                     enable = true,
                 },
                 additional_vim_regex_highlighting = false,
-            }
-        end
-    },
-    {
-        "mfussenegger/nvim-dap",
-        config = function()
-            require('dap').adapters.java = {
-                type = 'executable',
-                command = 'java',
-                args = {
-                    '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005'
-                }
-            }
-            require('dap').configurations.java = {
-                {
-                    type = 'java',
-                    name = 'Debug (Attach)',
-                    request = 'attach',
-                    hostName = 'localhost',
-                    port = 5005
-                }
             }
         end
     },
