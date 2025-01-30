@@ -1,5 +1,0 @@
---recurse=yes
---exclude=target
---exclude=node_modules/*
---exclude=.venv
---exclude=.git
