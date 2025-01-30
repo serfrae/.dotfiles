@@ -736,7 +736,6 @@ require("lazy").setup({
                     }
                 }
             }
-            lspconfig.jdtls.setup {}
             lspconfig.clangd.setup {}
             lspconfig.markdown_oxide.setup {}
             lspconfig.solidity_ls_nomicfoundation.setup {}
@@ -884,13 +883,6 @@ require("lazy").setup({
         end
     },
     {
-        "mfussenegger/nvim-jdtls",
-        lazy = true,
-        config = function()
-            require('jdtls').start_or_attach({ cmd = { 'jdtls' } })
-        end
-    },
-    {
         "mfussenegger/nvim-dap",
         config = function()
             require('dap').adapters.java = {
@@ -914,21 +906,6 @@ require("lazy").setup({
     {
         "stevearc/dressing.nvim",
         event = "VeryLazy",
-    },
-    {
-        "christoomey/vim-tmux-navigator",
-        cmd = {
-            "TmuxNavigateLeft",
-            "TmuxNavigateDown",
-            "TmuxNavigateUp",
-            "TmuxNavigateRight",
-        },
-        keys = {
-            { "<M-h>", "<cmd>TmuxNavigateLeft<cr>",  { noremap = true } },
-            { "<M-j>", "<cmd>TmuxNavigateDown<cr>",  { noremap = true } },
-            { "<M-k>", "<cmd>TmuxNavigateUp<cr>",    { noremap = true } },
-            { "<M-l>", "<cmd>TmuxNavigateRight<cr>", { noremap = true } },
-        },
     },
     {
         "folke/trouble.nvim",
@@ -972,6 +949,39 @@ require("lazy").setup({
         },
     },
     {
+        "mikavilpas/yazi.nvim",
+        event = "VeryLazy",
+        keys = {
+            -- 👇 in this section, choose your own keymappings!
+            {
+                "<leader>-",
+                mode = { "n", "v" },
+                "<cmd>Yazi<cr>",
+                desc = "Open yazi at the current file",
+            },
+            {
+                -- Open in the current working directory
+                "<leader>cw",
+                "<cmd>Yazi cwd<cr>",
+                desc = "Open the file manager in nvim's working directory",
+            },
+            {
+                -- NOTE: this requires a version of yazi that includes
+                -- https://github.com/sxyazi/yazi/pull/1305 from 2024-07-18
+                "<c-up>",
+                "<cmd>Yazi toggle<cr>",
+                desc = "Resume the last yazi session",
+            },
+        },
+        opts = {
+            -- if you want to open yazi instead of netrw, see below for more info
+            open_for_directories = false,
+            keymaps = {
+                show_help = "<f1>",
+            },
+        },
+    },
+    {
         'stevearc/oil.nvim',
         opts = {},
         -- Optional dependencies
@@ -980,5 +990,13 @@ require("lazy").setup({
     },
     {
         'github/copilot.vim'
-    }
+    },
+    {
+        "olimorris/codecompanion.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        config = true
+    },
 })
