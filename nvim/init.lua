@@ -404,6 +404,14 @@ vim.api.nvim_create_user_command("CopilotToggle", function()
     copilot_on = not copilot_on
 end, {})
 vim.keymap.set('', '<M-c>', ':CopilotToggle<cr>')
+
+-- Code Companion
+vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
+vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
+
+-- Expand 'cc' into 'CodeCompanion' in the command line
+vim.cmd([[cab cc CodeCompanion]])
 -------------------------------------------------------------------------------
 --
 -- autocommands
@@ -790,7 +798,7 @@ require("lazy").setup({
                     vim.keymap.set('n', 'gD', vim.lsp.buf.type_definition, opts)
                     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
                     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-                    vim.keymap.set({ 'n', 'v' }, '<leader>a', vim.lsp.buf.code_action, opts)
+                    --vim.keymap.set({ 'n', 'v' }, '<leader>a', vim.lsp.buf.code_action, opts)
                     vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)
                     vim.keymap.set('n', '<leader>f', function()
                         vim.lsp.buf.format { async = true }
@@ -997,6 +1005,17 @@ require("lazy").setup({
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
         },
-        config = true
+        config = function()
+            require("codecompanion").setup({
+                strategies = {
+                    chat = {
+                        adapter = "anthropic",
+                    },
+                    inline = {
+                        adapter = "anthropic",
+                    },
+                },
+            })
+        end
     },
 })
