@@ -1,5 +1,5 @@
 #!/bin/sh
 
-paru -Syu
+brew upgrade
 rustup update
 agave-install update

@@ -6,25 +6,23 @@ yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 # global settings
 #yabai -m config top_padding x + 24
 yabai -m config mouse_follows_focus          on
-yabai -m config focus_follows_mouse			 autoraise 
 yabai -m config window_placement             first_child
-yabai -m config window_topmost               off
 yabai -m config window_shadow                off
 yabai -m config window_opacity               off
 yabai -m config window_opacity_duration      0.0
 yabai -m config active_window_opacity        1.0
 yabai -m config normal_window_opacity        1.0
-#yabai -m config window_border                on
-#yabai -m config window_border_width          6
-#yabai -m config active_window_border_color   0xff81A1C1
-#yabai -m config normal_window_border_color   0xff7A808C
-#yabai -m config insert_feedback_color        0xff61afef
+yabai -m config window_border                on
+yabai -m config window_border_width          1
+yabai -m config active_window_border_color   0xff81A1C1
+yabai -m config normal_window_border_color   0xff7A808C
+yabai -m config insert_feedback_color        0xff61afef
 yabai -m config split_ratio                  0.50
 yabai -m config auto_balance                 off
 yabai -m config mouse_modifier               fn
 yabai -m config mouse_action1                move
 yabai -m config mouse_action2                resize
-yabai -m config mouse_drop_action            swap
+yabai -m config mouse_drop_action            stack 
 
 ### Tiling Options
 # bsp or float (default: bsp)
@@ -38,14 +36,14 @@ yabai -m config window_placement second_child
 
 ### Padding and Gaps
 # set all padding and gaps (default: 0)
-yabai -m config top_padding 8
-yabai -m config bottom_padding 8
-yabai -m config right_padding 8
-yabai -m config left_padding 8
-yabai -m config window_gap 8
+yabai -m config top_padding 1
+yabai -m config bottom_padding 1
+yabai -m config right_padding 1
+yabai -m config left_padding 1
+yabai -m config window_gap 1
 
 # set focus follows mouse mode (default: off, options: off, autoraise, autofocus)
-yabai -m config focus_follows_mouse autoraise
+yabai -m config focus_follows_mouse autofocus
 
 ### Window Modifications
 # floating windows are always on top
@@ -53,3 +51,19 @@ yabai -m config window_topmost on
 
 # modify window shadows (default: on, options: on, off, float)
 yabai -m config window_shadow float
+
+# Ghostty Tabs
+# yabai -m signal --add app='^Ghostty$' event=window_created action='yabai -m space --focus next; sleep 0.01; yabai -m space --focus prev'
+# yabai -m signal --add app='^Ghostty$' event=window_destroyed action='yabai -m space --focus next; sleep 0.01; yabai -m space --focus prev'
+# yabai -m signal --add app='^Finder$' event=window_created action='yabai -m space --focus next; sleep 0.01; yabai -m space --focus prev'
+# yabai -m signal --add app='^Finder$' event=window_destroyed action='yabai -m space --focus next; sleep 0.01; yabai -m space --focus prev'
+
+# Disable specific apps
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^Karabiner-Element$" manage=off
+yabai -m rule --add app="^App Store$" manage=off
+yabai -m rule --add app="^Calendar$" manage=off
+yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^Notes$" manage=off
+yabai -m rule --add app="^Reminders$" manage=off

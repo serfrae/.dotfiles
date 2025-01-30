@@ -64,7 +64,7 @@ vim.keymap.set('n', '<leader>c', ':close<cr>')
 vim.keymap.set('', 'H', '^')
 vim.keymap.set('', 'L', '$')
 
-vim.keymap.set('n', '<leader>p', '<cmd>read !wl-paste<cr>')
+vim.keymap.set('n', '<leader>p', '<cmd>read !pbpaste<cr>')
 vim.keymap.set('v', '<leader>y', '"+y')
 vim.keymap.set('n', '<S-z><S-x>', ':q!<cr>')
 
@@ -120,10 +120,9 @@ vim.keymap.set('n', '[T', ':tabfirst<cr>')
 vim.keymap.set('n', ']T', ':tablast<cr>')
 
 -- grep
-vim.keymap.set('n', '<leader>g', ':grep -g !tags <C-r><C-w><cr><cr><cmd>QFix 1 1<cr><cr>')
-vim.keymap.set('v', '<leader>g', ':grep -g !tags <C-r><C-w><cr><cr><cmd>QFix 1 1<cr><cr>')
-vim.keymap.set('n', '<leader>G', ':Fzf-Lua live_grep<CR>')
-vim.keymap.set('n', '<leader>/', ':Fzf-Lua lgrep_curbuf<CR>')
+vim.keymap.set('n', '<leader>g', ':FzfLua live_grep<CR>')
+vim.keymap.set('v', '<leader>g', ':FzfLua live_grep<CR>')
+vim.keymap.set('n', '<leader>/', ':FzfLua lgrep_curbuf<CR>')
 
 --resize
 vim.keymap.set('n', '<C-S-l>', ':resize +2<cr>')
@@ -147,13 +146,6 @@ vim.keymap.set('n', '<M-S-l>', ':vertical resize +2<cr>')
 vim.keymap.set('n', '<M-S-h>', ':vertical resize -2<cr>')
 vim.keymap.set('n', '<M-S-j>', ':resize +2<cr>')
 vim.keymap.set('n', '<M-S-k>', ':resize -2<cr>')
-
---leap
---vim.keymap.set('n',        's', '<Plug>(leap)')
---vim.keymap.set('n',        'S', '<Plug>(leap-from-window)')
---vim.keymap.set({'x', 'o'}, 's', '<Plug>(leap-forward)')
---vim.keymap.set({'x', 'o'}, 'S', '<Plug>(leap-backward)')
-
 
 -------------------------------------------------------------------------------
 --
@@ -363,7 +355,7 @@ end
 function NoteFind()
     local home = os.getenv("HOME")
     local docs_path = home .. "/docs/notes"
-    local rg_cmd = "rg -e '(^|[[:space:]])@(\\w\\S*)' -g '!tags' --no-heading --line-number --color=always"
+    local rg_cmd = "rg -e '(^|[[:space:]])#(\\w\\S*)' -g '!tags' --no-heading --line-number --color=always"
 
     local fzf = require('fzf-lua')
 
@@ -412,6 +404,14 @@ vim.api.nvim_create_user_command("CopilotToggle", function()
     copilot_on = not copilot_on
 end, {})
 vim.keymap.set('', '<M-c>', ':CopilotToggle<cr>')
+
+-- Code Companion
+vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
+vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
+
+-- Expand 'cc' into 'CodeCompanion' in the command line
+vim.cmd([[cab cc CodeCompanion]])
 -------------------------------------------------------------------------------
 --
 -- autocommands
@@ -585,9 +585,6 @@ require("lazy").setup({
         end
     },
     -- quick navigation
-    --{
-    --"ggandor/leap.nvim",
-    --},
     {
         'folke/flash.nvim',
         event = "VeryLazy",
@@ -634,7 +631,22 @@ require("lazy").setup({
                 keymap = {
                     fzf = {
                         ["ctrl-a"] = "select-all+accept",
-                        ["ctrl-s"] = "select-all+accept",
+                        ["ctrl-s"] = {
+                            fn = function(selected)
+                                require('trouble').open({
+                                    mode = "quickfix",
+                                    items = vim.tbl_map(function(entry)
+                                        local file, line, col, text = entry:match("([^:]+):(%d+):(%d+):(.*)")
+                                        return {
+                                            filename = file or entry,
+                                            lnum = tonumber(line) or 1,
+                                            col = tonumber(col) or 1,
+                                            text = text or entry,
+                                        }
+                                    end, selected)
+                                })
+                            end
+                        }
                     }
                 },
                 files = {
@@ -690,7 +702,22 @@ require("lazy").setup({
             -- Go
             lspconfig.gopls.setup {}
             -- JS/TS
-            lspconfig.ts_ls.setup {}
+            lspconfig.ts_ls.setup {
+                settings = {
+                    typescript = {
+                        format = {
+                            indentSize = 4,
+                            convertTabsToSpaces = true,
+                        }
+                    },
+                    javascript = {
+                        format = {
+                            indentSize = 4,
+                            convertTabsToSpaces = true,
+                        }
+                    }
+                }
+            }
             -- Python
             lspconfig.pylsp.setup {
                 settings = {
@@ -717,8 +744,6 @@ require("lazy").setup({
                     }
                 }
             }
-            lspconfig.omnisharp.setup {}
-            lspconfig.jdtls.setup {}
             lspconfig.clangd.setup {}
             lspconfig.markdown_oxide.setup {}
             lspconfig.solidity_ls_nomicfoundation.setup {}
@@ -773,7 +798,7 @@ require("lazy").setup({
                     vim.keymap.set('n', 'gD', vim.lsp.buf.type_definition, opts)
                     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
                     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-                    vim.keymap.set({ 'n', 'v' }, '<leader>a', vim.lsp.buf.code_action, opts)
+                    --vim.keymap.set({ 'n', 'v' }, '<leader>a', vim.lsp.buf.code_action, opts)
                     vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)
                     vim.keymap.set('n', '<leader>f', function()
                         vim.lsp.buf.format { async = true }
@@ -866,13 +891,6 @@ require("lazy").setup({
         end
     },
     {
-        "mfussenegger/nvim-jdtls",
-        lazy = true,
-        config = function()
-            require('jdtls').start_or_attach({ cmd = { 'jdtls' } })
-        end
-    },
-    {
         "mfussenegger/nvim-dap",
         config = function()
             require('dap').adapters.java = {
@@ -896,21 +914,6 @@ require("lazy").setup({
     {
         "stevearc/dressing.nvim",
         event = "VeryLazy",
-    },
-    {
-        "christoomey/vim-tmux-navigator",
-        cmd = {
-            "TmuxNavigateLeft",
-            "TmuxNavigateDown",
-            "TmuxNavigateUp",
-            "TmuxNavigateRight",
-        },
-        keys = {
-            { "<M-h>", "<cmd>TmuxNavigateLeft<cr>",  { noremap = true } },
-            { "<M-j>", "<cmd>TmuxNavigateDown<cr>",  { noremap = true } },
-            { "<M-k>", "<cmd>TmuxNavigateUp<cr>",    { noremap = true } },
-            { "<M-l>", "<cmd>TmuxNavigateRight<cr>", { noremap = true } },
-        },
     },
     {
         "folke/trouble.nvim",
@@ -954,13 +957,65 @@ require("lazy").setup({
         },
     },
     {
+        "mikavilpas/yazi.nvim",
+        event = "VeryLazy",
+        keys = {
+            -- 👇 in this section, choose your own keymappings!
+            {
+                "<leader>-",
+                mode = { "n", "v" },
+                "<cmd>Yazi<cr>",
+                desc = "Open yazi at the current file",
+            },
+            {
+                -- Open in the current working directory
+                "<leader>cw",
+                "<cmd>Yazi cwd<cr>",
+                desc = "Open the file manager in nvim's working directory",
+            },
+            {
+                -- NOTE: this requires a version of yazi that includes
+                -- https://github.com/sxyazi/yazi/pull/1305 from 2024-07-18
+                "<c-up>",
+                "<cmd>Yazi toggle<cr>",
+                desc = "Resume the last yazi session",
+            },
+        },
+        opts = {
+            -- if you want to open yazi instead of netrw, see below for more info
+            open_for_directories = false,
+            keymaps = {
+                show_help = "<f1>",
+            },
+        },
+    },
+    {
         'stevearc/oil.nvim',
         opts = {},
         -- Optional dependencies
         dependencies = { { "echasnovski/mini.icons", opts = {} } },
         -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
     },
-    --{
-    --    'github/copilot.vim'
-    --}
+    {
+        'github/copilot.vim'
+    },
+    {
+        "olimorris/codecompanion.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        config = function()
+            require("codecompanion").setup({
+                strategies = {
+                    chat = {
+                        adapter = "anthropic",
+                    },
+                    inline = {
+                        adapter = "anthropic",
+                    },
+                },
+            })
+        end
+    },
 })

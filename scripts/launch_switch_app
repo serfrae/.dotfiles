@@ -1,7 +1,0 @@
-#!/bin/sh
-
-if [ -n "$1" ]; then
-    wmctrl -a $1 || exec $1 &
-else
-	echo "Error: no argument provided"
-fi
