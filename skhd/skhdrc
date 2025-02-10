@@ -192,7 +192,7 @@ ctrl + alt - s : yabai -m space --layout $(yabai -m query --spaces --space | jq 
 
 # Terminal
 cmd - return : open -a "Ghostty"
-alt - d : open -a "Ghostty"
+alt - d : osascript -e 'tell application "Ghostty" to activate' -e 'tell application "Ghostty" to reopen'
 
 # Applications
 :: apps

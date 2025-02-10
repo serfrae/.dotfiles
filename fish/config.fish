@@ -8,7 +8,9 @@ abbr -a ci 'cargo install'
 abbr -a ct 'cargo test'
 abbr -a g git
 abbr -a gc 'git checkout'
+abbr -a gcb 'git checkout -b'
 abbr -a ga 'git add -p'
+abbr -a gp 'git pull origin --rebase --autostash'
 abbr -a ji 'just install'
 abbr -a rgp 'rg -p'
 abbr -a rgr 'rg -uuu'
@@ -27,6 +29,7 @@ abbr -a hypr 'Hyprland'
 abbr -a spl-t2 'spl-token --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb'
 abbr -a py "python"
 abbr -a lg "lazygit"
+abbr -a yi "yazi"
 
 setenv TERM alacritty
 setenv EDITOR nvim 

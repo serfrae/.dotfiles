@@ -52,13 +52,12 @@ vim.opt.tags = './tags;,tags'
 -- hotkeys
 --
 -------------------------------------------------------------------------------
-vim.keymap.set('n', '<leader>o', '<cmd>FzfLua files<cr>')
+--vim.keymap.set('n', '<leader>o', '<cmd>FzfLua files<cr>')
 vim.keymap.set('n', '<leader>i', '<cmd>:Oil<cr>')
-vim.keymap.set('n', '<leader>st', '<cmd>FzfLua tags<cr>')
-vim.keymap.set('n', '<leader>sd', '<cmd>FzfLua lsp_document_symbols<cr>')
-vim.keymap.set('n', '<leader>sw', '<cmd>FzfLua lsp_workspace_symbols<cr>')
-vim.keymap.set('n', '<leader>wd', '<cmd> FzfLua lsp_workspace_diagnostics<cr>')
-vim.keymap.set('n', '<leader>`', '<cmd>FzfLua<cr>')
+--vim.keymap.set('n', '<leader>sd', '<cmd>FzfLua lsp_document_symbols<cr>')
+--vim.keymap.set('n', '<leader>sw', '<cmd>FzfLua lsp_workspace_symbols<cr>')
+--vim.keymap.set('n', '<leader>wd', '<cmd> FzfLua lsp_workspace_diagnostics<cr>')
+--vim.keymap.set('n', '<leader>`', '<cmd>FzfLua<cr>')
 vim.keymap.set('n', '<leader>c', ':close<cr>')
 
 vim.keymap.set('', 'H', '^')
@@ -106,7 +105,7 @@ vim.keymap.set('n', '[L', ':lfirst<cr>')
 vim.keymap.set('n', ']L', ':llast<cr>')
 
 -- buffer toggle
-vim.keymap.set('n', '<leader>b', ':FzfLua buffers<cr>')
+--vim.keymap.set('n', '<leader>b', ':FzfLua buffers<cr>')
 vim.keymap.set('n', '[b', ':bprevious<cr>')
 vim.keymap.set('n', ']b', ':bnext<cr>')
 vim.keymap.set('n', '[B', ':bfirst<cr>')
@@ -120,9 +119,9 @@ vim.keymap.set('n', '[T', ':tabfirst<cr>')
 vim.keymap.set('n', ']T', ':tablast<cr>')
 
 -- grep
-vim.keymap.set('n', '<leader>g', ':FzfLua live_grep<CR>')
-vim.keymap.set('v', '<leader>g', ':FzfLua live_grep<CR>')
-vim.keymap.set('n', '<leader>/', ':FzfLua lgrep_curbuf<CR>')
+--vim.keymap.set('n', '<leader>g', ':FzfLua live_grep<CR>')
+--vim.keymap.set('v', '<leader>g', ':FzfLua live_grep<CR>')
+--vim.keymap.set('n', '<leader>/', ':FzfLua lgrep_curbuf<CR>')
 
 --resize
 vim.keymap.set('n', '<C-S-l>', ':resize +2<cr>')
@@ -224,62 +223,6 @@ end, { nargs = '*', bang = true })
 if vim.fn.executable("rg") == 1 then
     vim.o.grepprg = "rg --vimgrep --no-heading (commandline -q)"
     vim.o.grepformat = "%f:%l:%c:%m,%f:%l:%m"
-end
-
-function list_cmd()
-    local base = vim.fn.fnamemodify(vim.fn.expand('%'), ':h:.:S')
-    local command = ''
-
-    if base == '.' then
-        command = 'fd --type file --follow'
-    else
-        command = string.format('fd --type file --follow | proximity-sort %s', vim.fn.shellescape(vim.fn.expand('%')))
-    end
-
-    return command
-end
-
-_G.custom_qf_text = function(info)
-    local items = vim.fn.getqflist({ id = info.id, items = 0 }).items
-    local lines = {}
-    local max_length = 0
-
-    -- First pass: determine the maximum length of the combined indent, symbol type, and name
-    for i = info.start_idx, info.end_idx do
-        local item = items[i]
-        if item then
-            local text = item.text
-            local indent = text:match("^(%s*)")
-            local symbol_type = text:match("%[([^%s%]]+)")
-            local symbol_name = text:match("%]%s*(.-)%s*$") or text
-            local combined = indent .. (symbol_type or "") .. (symbol_type and " " or "") .. symbol_name
-            max_length = math.max(max_length, vim.fn.strdisplaywidth(combined))
-        end
-    end
-
-    -- Add 1 to max_length for the extra space
-    max_length = max_length + 1
-
-    -- Second pass: format the lines
-    for i = info.start_idx, info.end_idx do
-        local item = items[i]
-        if item then
-            local filename = vim.fn.bufname(item.bufnr)
-            filename = vim.fn.fnamemodify(filename, ":t")
-            local text = item.text
-
-            local indent = text:match("^(%s*)")
-            local symbol_type = text:match("%[([^%s%]]+)")
-            local symbol_name = text:match("%]%s*(.-)%s*$") or text
-
-            local combined = indent .. (symbol_type or "") .. (symbol_type and " " or "") .. symbol_name
-            local padding = string.rep(" ", max_length - vim.fn.strdisplaywidth(combined))
-
-            local line = string.format("%s%s| %s | [%d:%d]", combined, padding, filename, item.lnum, item.col)
-            lines[#lines + 1] = line
-        end
-    end
-    return lines
 end
 
 vim.api.nvim_create_autocmd('FileType', {
@@ -405,13 +348,6 @@ vim.api.nvim_create_user_command("CopilotToggle", function()
 end, {})
 vim.keymap.set('', '<M-c>', ':CopilotToggle<cr>')
 
--- Code Companion
-vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
-vim.keymap.set({ "n", "v" }, "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
-vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
-
--- Expand 'cc' into 'CodeCompanion' in the command line
-vim.cmd([[cab cc CodeCompanion]])
 -------------------------------------------------------------------------------
 --
 -- autocommands
@@ -487,13 +423,6 @@ vim.api.nvim_create_autocmd('FileType', {
     pattern = 'python',
     callback = function() pyss() end,
 })
-
-local function workspace_diagnostics_to_loclist()
-    local diagnostics = vim.diagnostic.get(nil, { severity = { min = vim.diagnostic.severity.HINT } })
-    local items = vim.diagnostic.toqflist(diagnostics)
-    vim.fn.setloclist(0, {}, ' ', { title = 'Workspace Diagnostics', items = items })
-end
-
 
 --- Workaround for Rust Analyzer https://github.com/neovim/neovim/issues/30985#issuecomment-2447329525
 for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) do
@@ -620,54 +549,53 @@ require("lazy").setup({
             { "R", mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
         },
     },
-    -- FZF
     {
-        'ibhagwan/fzf-lua',
-        config = function()
-            require('fzf-lua').setup {
-                fzf_opts = {
-                    ['--cycle'] = ''
-                },
-                keymap = {
-                    fzf = {
-                        ["ctrl-a"] = "select-all+accept",
-                        ["ctrl-s"] = {
-                            fn = function(selected)
-                                require('trouble').open({
-                                    mode = "quickfix",
-                                    items = vim.tbl_map(function(entry)
-                                        local file, line, col, text = entry:match("([^:]+):(%d+):(%d+):(.*)")
-                                        return {
-                                            filename = file or entry,
-                                            lnum = tonumber(line) or 1,
-                                            col = tonumber(col) or 1,
-                                            text = text or entry,
-                                        }
-                                    end, selected)
-                                })
-                            end
-                        }
-                    }
-                },
-                files = {
-                    fd_opts = "--type f --hidden --follow --exclude .git --exclude node_modules --exclude .venv --exclude .mypy_cache"
-                },
-                actions = {
-                    ["default"] = function(selected)
-                        -- First, perform the default action (which varies depending on the search type)
-                        actions.act(selected)
-
-                        -- Then, schedule opening the quickfix window
-                        vim.schedule(function()
-                            -- Check if the quickfix list is not empty
-                            if #vim.fn.getqflist() > 0 then
-                                vim.cmd('VFix')
-                            end
-                        end)
-                    end,
-                }
-            }
-        end
+        "folke/snacks.nvim",
+        priority = 1000,
+        lazy = false,
+        ---@diagnostic disable-next-line: undefined-doc-name
+        ---@type snacks.Config
+        opts = {
+            picker = { enabled = true },
+            explorer = { enabled = true },
+        },
+        keys = {
+            { "<leader>o",  function() Snacks.picker.smart() end,                 desc = "Smart Find Files" },
+            { "<leader>b",  function() Snacks.picker.buffers() end,               desc = "Buffers" },
+            { "<leader>g",  function() Snacks.picker.grep() end,                  desc = "Grep" },
+            { "<leader>'",  function() Snacks.explorer() end,                     desc = "File explorer" },
+            -- Search
+            { "<leader>:",  function() Snacks.picker.command_history() end,       desc = "Command History" },
+            { '<leader>s"', function() Snacks.picker.registers() end,             desc = "Registers" },
+            { '<leader>s/', function() Snacks.picker.search_history() end,        desc = "Search History" },
+            { "<leader>sa", function() Snacks.picker.autocmds() end,              desc = "Autocmds" },
+            { "<leader>sb", function() Snacks.picker.lines() end,                 desc = "Buffer Lines" },
+            { "<leader>sc", function() Snacks.picker.command_history() end,       desc = "Command History" },
+            { "<leader>sC", function() Snacks.picker.commands() end,              desc = "Commands" },
+            { "<leader>sd", function() Snacks.picker.diagnostics() end,           desc = "Diagnostics" },
+            { "<leader>sD", function() Snacks.picker.diagnostics_buffer() end,    desc = "Buffer Diagnostics" },
+            { "<leader>sh", function() Snacks.picker.help() end,                  desc = "Help Pages" },
+            { "<leader>sH", function() Snacks.picker.highlights() end,            desc = "Highlights" },
+            { "<leader>si", function() Snacks.picker.icons() end,                 desc = "Icons" },
+            { "<leader>sj", function() Snacks.picker.jumps() end,                 desc = "Jumps" },
+            { "<leader>sk", function() Snacks.picker.keymaps() end,               desc = "Keymaps" },
+            { "<leader>sl", function() Snacks.picker.loclist() end,               desc = "Location List" },
+            { "<leader>sm", function() Snacks.picker.marks() end,                 desc = "Marks" },
+            { "<leader>sM", function() Snacks.picker.man() end,                   desc = "Man Pages" },
+            { "<leader>sp", function() Snacks.picker.lazy() end,                  desc = "Search for Plugin Spec" },
+            { "<leader>sq", function() Snacks.picker.qflist() end,                desc = "Quickfix List" },
+            { "<leader>sR", function() Snacks.picker.resume() end,                desc = "Resume" },
+            { "<leader>su", function() Snacks.picker.undo() end,                  desc = "Undo History" },
+            { "<leader>uC", function() Snacks.picker.colorschemes() end,          desc = "Colorschemes" },
+            -- LSP
+            { "gd",         function() Snacks.picker.lsp_definitions() end,       desc = "Goto Definition" },
+            { "gD",         function() Snacks.picker.lsp_declarations() end,      desc = "Goto Declaration" },
+            { "gr",         function() Snacks.picker.lsp_references() end,        nowait = true,                  desc = "References" },
+            { "gI",         function() Snacks.picker.lsp_implementations() end,   desc = "Goto Implementation" },
+            { "gy",         function() Snacks.picker.lsp_type_definitions() end,  desc = "Goto T[y]pe Definition" },
+            { "<leader>ss", function() Snacks.picker.lsp_symbols() end,           desc = "LSP Symbols" },
+            { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+        },
     },
     -- LSP
     {
@@ -795,13 +723,7 @@ require("lazy").setup({
                     vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
                     local opts = { buffer = ev.buf }
-                    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-                    vim.keymap.set('n', 'gs', vim.lsp.buf.document_symbol, opts)
-                    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-                    vim.keymap.set('n', 'gD', vim.lsp.buf.type_definition, opts)
                     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-                    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-                    --vim.keymap.set({ 'n', 'v' }, '<leader>a', vim.lsp.buf.code_action, opts)
                     vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)
                     vim.keymap.set('n', '<leader>f', function()
                         vim.lsp.buf.format { async = true }
@@ -980,24 +902,5 @@ require("lazy").setup({
     },
     {
         'github/copilot.vim'
-    },
-    {
-        "olimorris/codecompanion.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-treesitter/nvim-treesitter",
-        },
-        config = function()
-            require("codecompanion").setup({
-                strategies = {
-                    chat = {
-                        adapter = "anthropic",
-                    },
-                    inline = {
-                        adapter = "anthropic",
-                    },
-                },
-            })
-        end
     },
 })

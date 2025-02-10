@@ -16,6 +16,8 @@ window-inherit-font-size = true
 window-decoration = true
 
 adjust-cursor-thickness = 3
+
+adjust-cell-height = -20%
 adjust-underline-position = 3
 bold-is-bright = true
 link-url = true
