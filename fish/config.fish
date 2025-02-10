@@ -1,14 +1,17 @@
 set -g fish_greeting
 
+abbr -a at 'anchor test'
 abbr -a c cargo
 abbr -a cb 'cargo build'
 abbr -a cbr 'cargo build --release'
 abbr -a cr 'cargo run'
-abbr -a ci 'cargo install'
+abbr -a ci 'cargo install --path .'
 abbr -a ct 'cargo test'
 abbr -a g git
 abbr -a gc 'git checkout'
+abbr -a gcb 'git checkout -b'
 abbr -a ga 'git add -p'
+abbr -a gp 'git pull origin --rebase --autostash'
 abbr -a rgp 'rg -p'
 abbr -a rgr 'rg -uuu'
 abbr -a nn note
