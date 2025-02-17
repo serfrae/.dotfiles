@@ -52,12 +52,7 @@ vim.opt.tags = './tags;,tags'
 -- hotkeys
 --
 -------------------------------------------------------------------------------
---vim.keymap.set('n', '<leader>o', '<cmd>FzfLua files<cr>')
 vim.keymap.set('n', '<leader>i', '<cmd>:Oil<cr>')
---vim.keymap.set('n', '<leader>sd', '<cmd>FzfLua lsp_document_symbols<cr>')
---vim.keymap.set('n', '<leader>sw', '<cmd>FzfLua lsp_workspace_symbols<cr>')
---vim.keymap.set('n', '<leader>wd', '<cmd> FzfLua lsp_workspace_diagnostics<cr>')
---vim.keymap.set('n', '<leader>`', '<cmd>FzfLua<cr>')
 vim.keymap.set('n', '<leader>c', ':close<cr>')
 
 vim.keymap.set('', 'H', '^')
@@ -545,8 +540,8 @@ require("lazy").setup({
         keys = {
             { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
             { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+            { "R", mode = { "n", "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
             { "r", mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
-            { "R", mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
         },
     },
     {
@@ -560,7 +555,9 @@ require("lazy").setup({
             explorer = { enabled = true },
         },
         keys = {
-            { "<leader>o",  function() Snacks.picker.smart() end,                 desc = "Smart Find Files" },
+            { "<leader>`",  function() Snacks.picker.all() end,                   desc = "All Pickers" },
+            { "<leader>s",  function() Snacks.picker.smart() end,                 desc = "Smart Find Files" },
+            { "<leader>o",  function() Snacks.picker.files() end,                 desc = "Find Files" },
             { "<leader>b",  function() Snacks.picker.buffers() end,               desc = "Buffers" },
             { "<leader>g",  function() Snacks.picker.grep() end,                  desc = "Grep" },
             { "<leader>'",  function() Snacks.explorer() end,                     desc = "File explorer" },
@@ -568,25 +565,14 @@ require("lazy").setup({
             { "<leader>:",  function() Snacks.picker.command_history() end,       desc = "Command History" },
             { '<leader>s"', function() Snacks.picker.registers() end,             desc = "Registers" },
             { '<leader>s/', function() Snacks.picker.search_history() end,        desc = "Search History" },
-            { "<leader>sa", function() Snacks.picker.autocmds() end,              desc = "Autocmds" },
-            { "<leader>sb", function() Snacks.picker.lines() end,                 desc = "Buffer Lines" },
             { "<leader>sc", function() Snacks.picker.command_history() end,       desc = "Command History" },
-            { "<leader>sC", function() Snacks.picker.commands() end,              desc = "Commands" },
             { "<leader>sd", function() Snacks.picker.diagnostics() end,           desc = "Diagnostics" },
             { "<leader>sD", function() Snacks.picker.diagnostics_buffer() end,    desc = "Buffer Diagnostics" },
-            { "<leader>sh", function() Snacks.picker.help() end,                  desc = "Help Pages" },
-            { "<leader>sH", function() Snacks.picker.highlights() end,            desc = "Highlights" },
-            { "<leader>si", function() Snacks.picker.icons() end,                 desc = "Icons" },
             { "<leader>sj", function() Snacks.picker.jumps() end,                 desc = "Jumps" },
-            { "<leader>sk", function() Snacks.picker.keymaps() end,               desc = "Keymaps" },
             { "<leader>sl", function() Snacks.picker.loclist() end,               desc = "Location List" },
             { "<leader>sm", function() Snacks.picker.marks() end,                 desc = "Marks" },
-            { "<leader>sM", function() Snacks.picker.man() end,                   desc = "Man Pages" },
-            { "<leader>sp", function() Snacks.picker.lazy() end,                  desc = "Search for Plugin Spec" },
             { "<leader>sq", function() Snacks.picker.qflist() end,                desc = "Quickfix List" },
-            { "<leader>sR", function() Snacks.picker.resume() end,                desc = "Resume" },
             { "<leader>su", function() Snacks.picker.undo() end,                  desc = "Undo History" },
-            { "<leader>uC", function() Snacks.picker.colorschemes() end,          desc = "Colorschemes" },
             -- LSP
             { "gd",         function() Snacks.picker.lsp_definitions() end,       desc = "Goto Definition" },
             { "gD",         function() Snacks.picker.lsp_declarations() end,      desc = "Goto Declaration" },
@@ -595,6 +581,47 @@ require("lazy").setup({
             { "gy",         function() Snacks.picker.lsp_type_definitions() end,  desc = "Goto T[y]pe Definition" },
             { "<leader>ss", function() Snacks.picker.lsp_symbols() end,           desc = "LSP Symbols" },
             { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+        },
+    },
+    {
+        "folke/trouble.nvim",
+        opts = {
+            keys = {
+                s = false
+            },
+        }, -- for default options, refer to the configuration section for custom setup.
+        cmd = "Trouble",
+        keys = {
+            {
+                "<leader>xx",
+                "<cmd>Trouble diagnostics toggle<cr>",
+                desc = "Diagnostics (Trouble)",
+            },
+            {
+                "<leader>xX",
+                "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+                desc = "Buffer Diagnostics (Trouble)",
+            },
+            {
+                "<leader>cs",
+                "<cmd>Trouble symbols toggle focus=false<cr>",
+                desc = "Symbols (Trouble)",
+            },
+            {
+                "<leader>cl",
+                "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+                desc = "LSP Definitions / references / ... (Trouble)",
+            },
+            {
+                "<leader>xL",
+                "<cmd>Trouble loclist toggle<cr>",
+                desc = "Location List (Trouble)",
+            },
+            {
+                "<leader>xQ",
+                "<cmd>Trouble qflist toggle<cr>",
+                desc = "Quickfix List (Trouble)",
+            },
         },
     },
     -- LSP
@@ -736,66 +763,6 @@ require("lazy").setup({
             })
         end
     },
-    -- LSP-based code-completion
-    {
-        "hrsh7th/nvim-cmp",
-        event = "InsertEnter",
-        dependencies = {
-            'neovim/nvim-lspconfig',
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-path",
-        },
-        config = function()
-            local cmp = require 'cmp'
-            cmp.setup({
-                snippet = {
-                    -- REQUIRED by nvim-cmp. get rid of it once we can
-                    expand = function(args)
-                        vim.fn["vsnip#anonymous"](args.body)
-                    end,
-                },
-                mapping = cmp.mapping.preset.insert({
-                    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-                    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-                    ['<C-Space>'] = cmp.mapping.complete(),
-                    ['<C-e>'] = cmp.mapping.abort(),
-                    -- Accept currently selected item.
-                    -- Set `select` to `false` to only confirm explicitly selected items.
-                    ['<CR>'] = cmp.mapping.confirm({ select = true }),
-                }),
-                sources = cmp.config.sources({
-                    { name = 'nvim_lsp' },
-                }, {
-                    { name = 'path' },
-                }),
-                --experimental = {
-                --  ghost_text = true,
-                --},
-            })
-
-            -- Enable completing paths in :
-            cmp.setup.cmdline(':', {
-                sources = cmp.config.sources({
-                    { name = 'path' }
-                })
-            })
-        end
-    },
-    {
-        "ray-x/lsp_signature.nvim",
-        event = "VeryLazy",
-        opts = {},
-        config = function(_, opts)
-            -- Get signatures (and _only_ signatures) when in argument lists.
-            require "lsp_signature".setup({
-                doc_lines = 0,
-                handler_opts = {
-                    border = "none"
-                },
-            })
-        end
-    },
     -- treesitter
     {
         "nvim-treesitter/nvim-treesitter",
@@ -818,47 +785,6 @@ require("lazy").setup({
     {
         "stevearc/dressing.nvim",
         event = "VeryLazy",
-    },
-    {
-        "folke/trouble.nvim",
-        opts = {
-            keys = {
-                s = false
-            },
-        }, -- for default options, refer to the configuration section for custom setup.
-        cmd = "Trouble",
-        keys = {
-            {
-                "<leader>xx",
-                "<cmd>Trouble diagnostics toggle<cr>",
-                desc = "Diagnostics (Trouble)",
-            },
-            {
-                "<leader>xX",
-                "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-                desc = "Buffer Diagnostics (Trouble)",
-            },
-            {
-                "<leader>cs",
-                "<cmd>Trouble symbols toggle focus=false<cr>",
-                desc = "Symbols (Trouble)",
-            },
-            {
-                "<leader>cl",
-                "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-                desc = "LSP Definitions / references / ... (Trouble)",
-            },
-            {
-                "<leader>xL",
-                "<cmd>Trouble loclist toggle<cr>",
-                desc = "Location List (Trouble)",
-            },
-            {
-                "<leader>xQ",
-                "<cmd>Trouble qflist toggle<cr>",
-                desc = "Quickfix List (Trouble)",
-            },
-        },
     },
     {
         "mikavilpas/yazi.nvim",
@@ -892,6 +818,129 @@ require("lazy").setup({
                 show_help = "<f1>",
             },
         },
+    },
+    {
+        'echasnovski/mini.surround',
+        version = false,
+        opts = {
+            mappings = {
+                replace = 'cs',
+                add = 'ys',
+                delete = 'ds',
+            },
+        },
+    },
+    -- LSP-based code-completion /w snippets
+    {
+        'saghen/blink.cmp',
+        dependencies = 'L3MON4D3/LuaSnip',
+        version = '*',
+        opts = {
+            -- https://cmp.saghen.dev/configuration/keymap
+            keymap = { preset = 'enter' },
+            -- https://cmp.saghen.dev/configuration/appearance.html
+            appearance = {
+                use_nvim_cmp_as_default = true,
+                nerd_font_variant = 'mono',
+            },
+            -- https://cmp.saghen.dev/configuration/completion.html
+            completion = {
+                -- https://cmp.saghen.dev/configuration/completion.html#accept
+                accept = { auto_brackets = { enabled = true } },
+                -- https://cmp.saghen.dev/configuration/completion.html#documentation
+                documentation = {
+                    auto_show = true,
+                    auto_show_delay_ms = 250,
+                    treesitter_highlighting = true,
+                    window = { border = "rounded" },
+                },
+                -- https://cmp.saghen.dev/configuration/completion.html#list
+                list = {
+                    selection = {
+                        auto_insert = true,
+                        preselect = function(ctx) return ctx.mode ~= 'cmdline' end,
+                    }
+                },
+                -- https://cmp.saghen.dev/configuration/completion.html#menu
+                menu = {
+                    -- DISABLED: Don't use autocomplete in Ex-mode.
+                    -- auto_show = function(ctx) return ctx.mode ~= 'cmdline' end,
+                    border = "rounded",
+                    draw = {
+                        treesitter = { 'lsp' }
+                    },
+                },
+                -- https://cmp.saghen.dev/configuration/reference#completion-ghost-text
+                ghost_text = { enabled = false },
+            },
+            -- https://cmp.saghen.dev/configuration/sources.html
+            sources = {
+                default = { 'lsp', 'path', 'snippets', 'buffer' },
+            },
+            -- https://cmp.saghen.dev/configuration/signature.html
+            signature = {
+                enabled = true,
+                window = {
+                    border = "rounded",
+                },
+            },
+            -- https://cmp.saghen.dev/configuration/snippets.html#luasnip
+            snippets = { preset = 'luasnip' }
+        },
+        opts_extend = { "sources.default" }
+    },
+    {
+        "L3MON4D3/LuaSnip",
+        -- follow latest release.
+        version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+        -- install jsregexp (optional!).
+        build = "make install_jsregexp",
+        config = function()
+            local ls = require("luasnip")
+
+            --vim.cmd("hi link LuasnipSnippetActive GruvboxRed")
+            ls.config.setup({
+                keep_roots = true,
+                link_roots = true,
+                link_children = true,
+                exit_roots = false,
+
+                loaders_store_source = true,
+                update_events = { "TextChangedI" },
+                enable_autosnippets = true,
+                region_check_events = { "CursorHold", "InsertLeave" },
+                delete_check_events = "TextChanged, InsertEnter, CursorMovedI",
+                store_selection_keys = "<Tab>",
+                ft_func = function()
+                    local fts = require("luasnip.extras.filetype_functions").from_pos_or_filetype()
+                    -- should be possible to extend `all`-filetype.
+                    table.insert(fts, "all")
+                    local effective_fts = {}
+
+                    local buflocal_extend = vim.b.luasnip_ft_extend
+                    if buflocal_extend then
+                        for _, ft in ipairs(fts) do
+                            vim.list_extend(effective_fts, buflocal_extend[ft] or {})
+                        end
+                        vim.list_extend(effective_fts, fts)
+                    else
+                        effective_fts = fts
+                    end
+
+                    return effective_fts
+                end,
+            })
+
+            ls.filetype_extend("*", { "all" })
+            ls.filetype_extend("rs", { "rust" })
+
+
+            vim.keymap.set({ "i", "s" }, "<C-K>", ls.expand, { silent = true })
+            vim.keymap.set({ "i", "s" }, "<C-L>", function() ls.jump(1) end, { silent = true })
+            vim.keymap.set({ "i", "s" }, "<C-J>", function() ls.jump(-1) end, { silent = true })
+
+            require("luasnip.loaders.from_lua").load({ paths = "./luasnippets" })
+        end
     },
     {
         'stevearc/oil.nvim',
