@@ -53,7 +53,6 @@ vim.opt.tags = './tags;,tags'
 --
 -------------------------------------------------------------------------------
 vim.keymap.set('n', '<leader>i', '<cmd>:Oil<cr>')
-vim.keymap.set('n', '<leader>c', ':close<cr>')
 
 vim.keymap.set('', 'H', '^')
 vim.keymap.set('', 'L', '$')
@@ -113,11 +112,6 @@ vim.keymap.set('n', ']t', ':tabnext<cr>')
 vim.keymap.set('n', '[T', ':tabfirst<cr>')
 vim.keymap.set('n', ']T', ':tablast<cr>')
 
--- grep
---vim.keymap.set('n', '<leader>g', ':FzfLua live_grep<CR>')
---vim.keymap.set('v', '<leader>g', ':FzfLua live_grep<CR>')
---vim.keymap.set('n', '<leader>/', ':FzfLua lgrep_curbuf<CR>')
-
 --resize
 vim.keymap.set('n', '<C-S-l>', ':resize +2<cr>')
 vim.keymap.set('n', '<C-S-h>', ':resize -2<cr>')
@@ -125,16 +119,23 @@ vim.keymap.set('n', '<C-S-j>', ':vertical resize +2<cr>')
 vim.keymap.set('n', '<C-S-k>', ':vertical resize -2<cr>')
 
 -- notes
-vim.keymap.set('n', '<leader>ncd', ':cd ~/docs/notes/<cr>')
+vim.keymap.set('n', '<leader>ncd', ':cd ~/Notes<cr>')
 -- ripgrep notes
-vim.keymap.set('n', '<leader>ng', ':cd ~/docs/notes/<cr>:Ngrep<space><C-r><C-w><cr>:QFix 1 0<cr><cr>')
-vim.keymap.set('n', '<leader>nr', ':cd ~/docs/notes/<cr>:Ngrep ')
+vim.keymap.set('n', '<leader>ng', ':cd ~/Notes/<cr>:Ngrep<space><C-r><C-w><cr>:QFix 1 0<cr><cr>')
+vim.keymap.set('n', '<leader>nr', ':cd ~/Notes/<cr>:Ngrep ')
 -- new note
 vim.keymap.set('n', '<leader>nn', ':NewNote')
 -- note link
 vim.api.nvim_set_keymap('n', '<leader>nl', '<cmd>lua NoteLink()<cr>', { noremap = true, silent = true })
 -- note find
 vim.api.nvim_set_keymap('n', '<leader>nf', '<cmd>lua NoteFind()<cr>', { noremap = true, silent = true })
+
+-- DAP
+vim.keymap.set('n', '<leader>dd', '<cmd>lua require("dapui").toggle()<CR>')
+vim.keymap.set('n', '<leader>ds', ':DapStepOver<CR>')
+vim.keymap.set('n', '<leader>dt', ':DapTerminate<CR>')
+vim.keymap.set('n', '<leader>dc', ':DapContinue<CR>')
+vim.keymap.set('n', '<leader>db', ':DapToggleBreakpoint<CR>')
 
 vim.keymap.set('n', '<M-S-l>', ':vertical resize +2<cr>')
 vim.keymap.set('n', '<M-S-h>', ':vertical resize -2<cr>')
@@ -235,7 +236,7 @@ vim.o.quickfixtextfunc = 'v:lua.custom_qf_text'
 function NewNote(name)
     -- Format the filename using the provided name and the current date/time
     local filename = name
-    local filepath = vim.fn.expand('~/docs/notes/') .. '/' .. os.date('%Y%m%d%H%M') .. '-' .. filename .. '.md'
+    local filepath = vim.fn.expand('~/Notes/') .. '/' .. os.date('%Y%m%d%H%M') .. '-' .. filename .. '.md'
 
     -- Create and edit the new note
     vim.cmd('edit ' .. filepath)
@@ -292,7 +293,7 @@ end
 
 function NoteFind()
     local home = os.getenv("HOME")
-    local docs_path = home .. "/docs/notes"
+    local docs_path = home .. "/Notes"
     local rg_cmd = "rg -e '(^|[[:space:]])#(\\w\\S*)' -g '!tags' --no-heading --line-number --color=always"
 
     local fzf = require('fzf-lua')
@@ -461,6 +462,7 @@ require("lazy").setup({
             vim.api.nvim_set_hl(0, 'Comment', bools)
         end
     },
+    -- Statusline
     {
         'nvim-lualine/lualine.nvim',
         lazy = false,
@@ -508,7 +510,7 @@ require("lazy").setup({
             }
         end
     },
-    -- quick navigation
+    -- Quick Navigation (easymotion / acejump)
     {
         'folke/flash.nvim',
         event = "VeryLazy",
@@ -544,6 +546,7 @@ require("lazy").setup({
             { "r", mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
         },
     },
+    -- FZF
     {
         "folke/snacks.nvim",
         priority = 1000,
@@ -583,6 +586,7 @@ require("lazy").setup({
             { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
         },
     },
+    -- Status Windows
     {
         "folke/trouble.nvim",
         opts = {
@@ -603,39 +607,65 @@ require("lazy").setup({
                 desc = "Buffer Diagnostics (Trouble)",
             },
             {
-                "<leader>cs",
+                "<leader>xs",
                 "<cmd>Trouble symbols toggle focus=false<cr>",
                 desc = "Symbols (Trouble)",
             },
             {
-                "<leader>cl",
-                "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-                desc = "LSP Definitions / references / ... (Trouble)",
-            },
-            {
-                "<leader>xL",
+                "<leader>xl",
                 "<cmd>Trouble loclist toggle<cr>",
                 desc = "Location List (Trouble)",
             },
             {
-                "<leader>xQ",
+                "<leader>xq",
                 "<cmd>Trouble qflist toggle<cr>",
                 desc = "Quickfix List (Trouble)",
             },
         },
     },
-    -- LSP
+    -- Lsp Managers
     {
-        'neovim/nvim-lspconfig',
+        "williamboman/mason.nvim",
         config = function()
-            -- Setup language servers.
-            local lspconfig = require('lspconfig')
+            require("mason").setup()
+        end
+    },
+    {
+        "williamboman/mason-lspconfig.nvim",
+        config = function()
+            require("mason-lspconfig").setup()
+        end
+    },
+    -- Rust
+    {
+        'mrcjkb/rustaceanvim',
+        version = '^5',
+        lazy = false,
+        config = function()
+            local rt = require("rustaceanvim")
+            local mason_registry = require("mason-registry")
+            local codelldb = mason_registry.get_package("codelldb")
+            local extension_path = codelldb:get_install_path() .. "/extension/"
+            local codelldb_path = extension_path .. "adapter/codelldb"
+            local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
 
-            -- Rust
-            lspconfig.rust_analyzer.setup {
-                -- Server-specific settings. See `:help lspconfig-setup`
-                settings = {
-                    ["rust-analyzer"] = {
+            local dap = require('dap')
+            local codelldb_install = require('mason-registry').get_package('codelldb'):get_install_path() .. '/codelldb'
+            dap.adapters.codelldb = {
+                type = 'server',
+                port = '${port}',
+                executable = {
+                    command = codelldb_install,
+                    args = { '--port', '${port}' },
+                },
+            }
+
+            server = {
+                on_attach = function(client, bufnr)
+                    vim.keymap.set("n", "<leader>k", rt.hover_actions.hover_actions, { buffer = bufnr })
+                end,
+                default_settings = {
+                    ['rust-analyzer'] = {
                         cargo = {
                             -- Have to set to false for:
                             -- https://github.com/coral-xyz/anchor/issues/3042
@@ -651,9 +681,40 @@ require("lazy").setup({
                                 enable = false,
                             },
                         },
+                        checkOnSave = {
+                            command = 'clippy',
+                        },
                     },
-                },
+                }
             }
+
+            tools = {
+                hover_actions = {
+                    auto_focus = true,
+                }
+            }
+
+            dap = {
+                adapter = function()
+                    return require('rustaceanvim.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
+                end,
+            }
+        end
+    },
+    -- LSP
+    {
+        'neovim/nvim-lspconfig',
+        opts = {
+            setup = {
+                rust_analayzer = function()
+                    return true
+                end
+            }
+        },
+        config = function()
+            -- Setup language servers.
+            local lspconfig = require('lspconfig')
+
             -- Go
             lspconfig.gopls.setup {}
             -- JS/TS
@@ -739,7 +800,7 @@ require("lazy").setup({
             vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
             vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
             vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-            vim.keymap.set('n', '<leader>d', vim.diagnostic.setloclist)
+            -- vim.keymap.set('n', '<leader>d', vim.diagnostic.setloclist)
 
             -- Use LspAttach autocommand to only map the following keys
             -- after the language server attaches to the current buffer
@@ -763,7 +824,7 @@ require("lazy").setup({
             })
         end
     },
-    -- treesitter
+    -- Treesitter
     {
         "nvim-treesitter/nvim-treesitter",
         lazy = false,
@@ -782,10 +843,12 @@ require("lazy").setup({
             }
         end
     },
+    -- Dialogue
     {
         "stevearc/dressing.nvim",
         event = "VeryLazy",
     },
+    -- File Explorer
     {
         "mikavilpas/yazi.nvim",
         event = "VeryLazy",
@@ -819,6 +882,19 @@ require("lazy").setup({
             },
         },
     },
+    -- File Explorer (Editing)
+    {
+        'stevearc/oil.nvim',
+        opts = {},
+        -- Optional dependencies
+        dependencies = { { "echasnovski/mini.icons", opts = {} } },
+        -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+    },
+    -- Bracket Highlighting
+    {
+        'HiPhish/rainbow-delimiters.nvim'
+    },
+    -- Surround Editing
     {
         'echasnovski/mini.surround',
         version = false,
@@ -827,10 +903,14 @@ require("lazy").setup({
                 replace = 'cs',
                 add = 'ys',
                 delete = 'ds',
+                find = '',
+                find_left = '',
+                update_n_lines = '',
+                highlight = '',
             },
         },
     },
-    -- LSP-based code-completion /w snippets
+    -- LSP-based code-completion / snippets
     {
         'saghen/blink.cmp',
         dependencies = 'L3MON4D3/LuaSnip',
@@ -889,16 +969,14 @@ require("lazy").setup({
         },
         opts_extend = { "sources.default" }
     },
+    -- Snippets
     {
         "L3MON4D3/LuaSnip",
-        -- follow latest release.
-        version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-        -- install jsregexp (optional!).
+        version = "v2.*",
         build = "make install_jsregexp",
         config = function()
             local ls = require("luasnip")
 
-            --vim.cmd("hi link LuasnipSnippetActive GruvboxRed")
             ls.config.setup({
                 keep_roots = true,
                 link_roots = true,
@@ -932,22 +1010,40 @@ require("lazy").setup({
             })
 
             ls.filetype_extend("*", { "all" })
-            ls.filetype_extend("rs", { "rust" })
-
+            ls.filetype_extend("rust", { "rust" })
+            ls.filetype_extend("typescript", { "typescript" })
 
             vim.keymap.set({ "i", "s" }, "<C-K>", ls.expand, { silent = true })
             vim.keymap.set({ "i", "s" }, "<C-L>", function() ls.jump(1) end, { silent = true })
             vim.keymap.set({ "i", "s" }, "<C-J>", function() ls.jump(-1) end, { silent = true })
 
-            require("luasnip.loaders.from_lua").load({ paths = "./luasnippets" })
+            require("luasnip.loaders.from_lua").load({ paths = "~/.dotfiles/snippets" })
+        end
+    },
+    -- DAP
+    {
+        'mfussenegger/nvim-dap',
+        config = function()
+            require("dapui").setup()
+            local dap, dapui = require("dap"), require("dapui")
+
+            dap.listeners.after.event_initialized['dapui_config'] = function()
+                dapui.open()
+            end
+            dap.listeners.before.event_terminated['dapui_config'] = function()
+                dapui.close()
+            end
+            dap.adapters.codelldb = {
+                type = "server",
+                executable = {
+                    command = "codelldb",
+                },
+            }
         end
     },
     {
-        'stevearc/oil.nvim',
-        opts = {},
-        -- Optional dependencies
-        dependencies = { { "echasnovski/mini.icons", opts = {} } },
-        -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+        "rcarriga/nvim-dap-ui",
+        dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }
     },
     {
         'github/copilot.vim'

@@ -41,7 +41,8 @@ shell-integration = fish
 shell-integration-features = no-cursor,sudo
 
 keybind = global:alt+space=toggle_quick_terminal
-quick-terminal-animation-duration = 0.1
+quick-terminal-animation-duration = 0.0
+quick-terminal-position = center
 
 keybind = cmd+x=close_surface
 keybind = cmd+h=goto_split:left
