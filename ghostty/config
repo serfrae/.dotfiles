@@ -5,8 +5,9 @@ mouse-hide-while-typing = true
 copy-on-select = clipboard
 cursor-style = block
 
-font-size = 14
-font-family = JetBrainsMono Nerd Font Mono
+font-size = 13
+font-family = 0xProto
+#font-family = JetBrainsMono Nerd Font Mono
 font-feature = calt
 font-feature = liga
 font-feature = dlig

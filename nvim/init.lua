@@ -545,6 +545,45 @@ require("lazy").setup({
             { "R", mode = { "n", "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
             { "r", mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
         },
+        optional = true,
+        specs = {
+            {
+                "folke/snacks.nvim",
+                opts = {
+                    picker = {
+                        win = {
+                            input = {
+                                keys = {
+                                    ["<a-s>"] = { "flash", mode = { "n", "i" } },
+                                    ["s"] = { "flash" },
+                                },
+                            },
+                        },
+                        actions = {
+                            flash = function(picker)
+                                require("flash").jump({
+                                    pattern = "^",
+                                    label = { after = { 0, 0 } },
+                                    search = {
+                                        mode = "search",
+                                        exclude = {
+                                            function(win)
+                                                return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~=
+                                                    "snacks_picker_list"
+                                            end,
+                                        },
+                                    },
+                                    action = function(match)
+                                        local idx = picker.list:row2idx(match.pos[1])
+                                        picker.list:_move(idx, true, true)
+                                    end,
+                                })
+                            end,
+                        },
+                    },
+                },
+            },
+        },
     },
     -- FZF
     {
@@ -622,6 +661,27 @@ require("lazy").setup({
                 desc = "Quickfix List (Trouble)",
             },
         },
+        optional = true,
+        specs = {
+            "folke/snacks.nvim",
+            opts = function(_, opts)
+                return vim.tbl_deep_extend("force", opts or {}, {
+                    picker = {
+                        actions = require("trouble.sources.snacks").actions,
+                        win = {
+                            input = {
+                                keys = {
+                                    ["<c-t>"] = {
+                                        "trouble_open",
+                                        mode = { "n", "i" },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                })
+            end,
+        },
     },
     -- Lsp Managers
     {
@@ -661,8 +721,17 @@ require("lazy").setup({
             }
 
             server = {
-                on_attach = function(client, bufnr)
-                    vim.keymap.set("n", "<leader>k", rt.hover_actions.hover_actions, { buffer = bufnr })
+                on_attach = function()
+                    local bufnr = vim.api.nvim_get_current_buf()
+                    vim.keymap.set("n", "<leader>k", function()
+                            vim.cmd.RustLsp({ 'hover', 'actions' })
+                        end,
+                        { buffer = bufnr })
+                    vim.keymap.set("n", "<leader>a", function()
+                            vim.cmd.RustLsp('codeAction')
+                        end,
+                        { silent = true, buffer = bufnr }
+                    )
                 end,
                 default_settings = {
                     ['rust-analyzer'] = {
@@ -807,9 +876,6 @@ require("lazy").setup({
             vim.api.nvim_create_autocmd('LspAttach', {
                 group = vim.api.nvim_create_augroup('UserLspConfig', {}),
                 callback = function(ev)
-                    -- Enable completion triggered by <c-x><c-o>
-                    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
-
                     local opts = { buffer = ev.buf }
                     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
                     vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)
