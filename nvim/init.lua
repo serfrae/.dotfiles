@@ -83,16 +83,16 @@ vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'k', 'gk')
 
 -- quickfix
-vim.keymap.set('n', '<leader>q', '<cmd>QFix 1 1<cr>')
-vim.keymap.set('n', '<leader>Q', '<cmd>QFix 0 1<cr>')
+-- vim.keymap.set('n', '<leader>q', '<cmd>QFix 1 1<cr>')
+-- vim.keymap.set('n', '<leader>Q', '<cmd>QFix 0 1<cr>')
 vim.keymap.set('n', '[q', '<cmd>cprev<cr>')
 vim.keymap.set('n', ']q', '<cmd>cnext<cr>')
 vim.keymap.set('n', '[Q', '<cmd>cfirst<cr>')
 vim.keymap.set('n', ']Q', '<cmd>clast<cr>')
-
--- location list
-vim.keymap.set('n', '<leader>l', ':LList 1 1<cr>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>L', ':LList 0 1<cr>', { noremap = true, silent = true })
+--
+-- -- location list
+-- vim.keymap.set('n', '<leader>l', ':LList 1 1<cr>', { noremap = true, silent = true })
+-- vim.keymap.set('n', '<leader>L', ':LList 0 1<cr>', { noremap = true, silent = true })
 vim.keymap.set('n', '[l', ':lprev<cr>')
 vim.keymap.set('n', ']l', ':lnext<cr>')
 vim.keymap.set('n', '[L', ':lfirst<cr>')
@@ -131,11 +131,11 @@ vim.api.nvim_set_keymap('n', '<leader>nl', '<cmd>lua NoteLink()<cr>', { noremap 
 vim.api.nvim_set_keymap('n', '<leader>nf', '<cmd>lua NoteFind()<cr>', { noremap = true, silent = true })
 
 -- DAP
-vim.keymap.set('n', '<leader>dd', '<cmd>lua require("dapui").toggle()<CR>')
-vim.keymap.set('n', '<leader>ds', ':DapStepOver<CR>')
-vim.keymap.set('n', '<leader>dt', ':DapTerminate<CR>')
-vim.keymap.set('n', '<leader>dc', ':DapContinue<CR>')
-vim.keymap.set('n', '<leader>db', ':DapToggleBreakpoint<CR>')
+vim.keymap.set('n', ',d', '<cmd>lua require("dapui").toggle()<CR>')
+vim.keymap.set('n', ',ds', ':DapStepOver<CR>')
+vim.keymap.set('n', ',dt', ':DapTerminate<CR>')
+vim.keymap.set('n', ',dc', ':DapContinue<CR>')
+vim.keymap.set('n', ',db', ':DapToggleBreakpoint<CR>')
 
 vim.keymap.set('n', '<M-S-l>', ':vertical resize +2<cr>')
 vim.keymap.set('n', '<M-S-h>', ':vertical resize -2<cr>')
@@ -230,13 +230,11 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
 })
 
--- Set the quickfixtextfunc option
-vim.o.quickfixtextfunc = 'v:lua.custom_qf_text'
 -- NewNote
 function NewNote(name)
     -- Format the filename using the provided name and the current date/time
     local filename = name
-    local filepath = vim.fn.expand('~/Notes/') .. '/' .. os.date('%Y%m%d%H%M') .. '-' .. filename .. '.md'
+    local filepath = vim.fn.expand('$NOTES/') .. '/' .. os.date('%Y%m%d%H%M') .. '-' .. filename .. '.md'
 
     -- Create and edit the new note
     vim.cmd('edit ' .. filepath)
@@ -262,38 +260,35 @@ vim.api.nvim_create_user_command('Ngrep', function(opts)
 end, { nargs = 1 })
 
 function NoteLink()
-    function NoteLink()
-        -- Define the action to take when a note is selected
-        local insert_link_action = function(selected)
-            -- Get the relative path to the selected note
-            local full_note_path = selected[1]
-            local note_path = vim.fn.fnamemodify(full_note_path, ':t')
-            local date_pattern = ('%d'):rep(8) .. '%-'
-            local date_pattern_ext = ('%d'):rep(12) .. '%-'
-            local trimmed_note_path = note_path:gsub(date_pattern_ext, ''):gsub(date_pattern, '')
-            local filename_without_ext = vim.fn.fnamemodify(trimmed_note_path, ':r')
+    -- Define the action to take when a note is selected
+    local insert_link_action = function(selected)
+        -- Get the relative path to the selected note
+        local full_note_path = selected[1]
+        local note_path = vim.fn.fnamemodify(full_note_path, ':t')
+        local date_pattern = ('%d'):rep(8) .. '%-'
+        local date_pattern_ext = ('%d'):rep(12) .. '%-'
+        local trimmed_note_path = note_path:gsub(date_pattern_ext, ''):gsub(date_pattern, '')
+        local filename_without_ext = vim.fn.fnamemodify(trimmed_note_path, ':r')
 
-            -- Insert the Markdown link at the cursor position
-            vim.api.nvim_put({ '[ ' .. filename_without_ext .. ' ]' .. '( ' .. note_path .. ' )' }, 'l', true, true)
-        end
-
-        -- Configure the finder
-        local opts = {
-            prompt = 'Select note: ',
-            cmd = 'rg --files --hidden --ignore ' .. vim.fn.expand('$HOME/docs/notes'),
-            actions = {
-                ['default'] = insert_link_action,
-            },
-        }
-
-        local fzf = require('fzf-lua')
-        fzf.fzf_exec(opts.cmd, opts)
+        -- Insert the Markdown link at the cursor position
+        vim.api.nvim_put({ '[ ' .. filename_without_ext .. ' ]' .. '( ' .. note_path .. ' )' }, 'l', true, true)
     end
+
+    -- Configure the finder
+    local opts = {
+        prompt = 'Select note: ',
+        cmd = 'rg --files --hidden --ignore ' .. vim.fn.expand('$NOTES'),
+        actions = {
+            ['default'] = insert_link_action,
+        },
+    }
+
+    local fzf = require('fzf-lua')
+    fzf.fzf_exec(opts.cmd, opts)
 end
 
 function NoteFind()
-    local home = os.getenv("HOME")
-    local docs_path = home .. "/Notes"
+    local note_path = os.getenv("NOTES")
     local rg_cmd = "rg -e '(^|[[:space:]])#(\\w\\S*)' -g '!tags' --no-heading --line-number --color=always"
 
     local fzf = require('fzf-lua')
@@ -309,7 +304,7 @@ function NoteFind()
     -- Configure fzf-lua options
     local opts = {
         prompt = 'Select note: ',
-        cwd = docs_path, -- Set the working directory for the command
+        cwd = note_path, -- Set the working directory for the command
         cmd = rg_cmd,
         previewer = "bat",
         actions = {
@@ -545,45 +540,6 @@ require("lazy").setup({
             { "R", mode = { "n", "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
             { "r", mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
         },
-        optional = true,
-        specs = {
-            {
-                "folke/snacks.nvim",
-                opts = {
-                    picker = {
-                        win = {
-                            input = {
-                                keys = {
-                                    ["<a-s>"] = { "flash", mode = { "n", "i" } },
-                                    ["s"] = { "flash" },
-                                },
-                            },
-                        },
-                        actions = {
-                            flash = function(picker)
-                                require("flash").jump({
-                                    pattern = "^",
-                                    label = { after = { 0, 0 } },
-                                    search = {
-                                        mode = "search",
-                                        exclude = {
-                                            function(win)
-                                                return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~=
-                                                    "snacks_picker_list"
-                                            end,
-                                        },
-                                    },
-                                    action = function(match)
-                                        local idx = picker.list:row2idx(match.pos[1])
-                                        picker.list:_move(idx, true, true)
-                                    end,
-                                })
-                            end,
-                        },
-                    },
-                },
-            },
-        },
     },
     -- FZF
     {
@@ -597,12 +553,12 @@ require("lazy").setup({
             explorer = { enabled = true },
         },
         keys = {
-            { "<leader>`",  function() Snacks.picker.all() end,                   desc = "All Pickers" },
-            { "<leader>s",  function() Snacks.picker.smart() end,                 desc = "Smart Find Files" },
+            { "<leader>`",  function() Snacks.picker() end,                       desc = "All Pickers" },
+            { "<leader>ss", function() Snacks.picker.smart() end,                 desc = "Smart Find Files" },
             { "<leader>o",  function() Snacks.picker.files() end,                 desc = "Find Files" },
             { "<leader>b",  function() Snacks.picker.buffers() end,               desc = "Buffers" },
             { "<leader>g",  function() Snacks.picker.grep() end,                  desc = "Grep" },
-            { "<leader>'",  function() Snacks.explorer() end,                     desc = "File explorer" },
+            { "<leader>x",  function() Snacks.explorer() end,                     desc = "File explorer" },
             -- Search
             { "<leader>:",  function() Snacks.picker.command_history() end,       desc = "Command History" },
             { '<leader>s"', function() Snacks.picker.registers() end,             desc = "Registers" },
@@ -636,51 +592,30 @@ require("lazy").setup({
         cmd = "Trouble",
         keys = {
             {
-                "<leader>xx",
+                "<leader>d",
                 "<cmd>Trouble diagnostics toggle<cr>",
                 desc = "Diagnostics (Trouble)",
             },
             {
-                "<leader>xX",
+                "<leader>D",
                 "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
                 desc = "Buffer Diagnostics (Trouble)",
             },
             {
-                "<leader>xs",
+                ",s",
                 "<cmd>Trouble symbols toggle focus=false<cr>",
                 desc = "Symbols (Trouble)",
             },
             {
-                "<leader>xl",
+                "<leader>l",
                 "<cmd>Trouble loclist toggle<cr>",
                 desc = "Location List (Trouble)",
             },
             {
-                "<leader>xq",
+                "<leader>q",
                 "<cmd>Trouble qflist toggle<cr>",
                 desc = "Quickfix List (Trouble)",
             },
-        },
-        optional = true,
-        specs = {
-            "folke/snacks.nvim",
-            opts = function(_, opts)
-                return vim.tbl_deep_extend("force", opts or {}, {
-                    picker = {
-                        actions = require("trouble.sources.snacks").actions,
-                        win = {
-                            input = {
-                                keys = {
-                                    ["<c-t>"] = {
-                                        "trouble_open",
-                                        mode = { "n", "i" },
-                                    },
-                                },
-                            },
-                        },
-                    },
-                })
-            end,
         },
     },
     -- Lsp Managers
@@ -720,9 +655,8 @@ require("lazy").setup({
                 },
             }
 
-            server = {
-                on_attach = function()
-                    local bufnr = vim.api.nvim_get_current_buf()
+            rt.server = {
+                on_attach = function(client, bufnr)
                     vim.keymap.set("n", "<leader>k", function()
                             vim.cmd.RustLsp({ 'hover', 'actions' })
                         end,
@@ -730,7 +664,7 @@ require("lazy").setup({
                     vim.keymap.set("n", "<leader>a", function()
                             vim.cmd.RustLsp('codeAction')
                         end,
-                        { silent = true, buffer = bufnr }
+                        { silent = false, buffer = bufnr }
                     )
                 end,
                 default_settings = {
@@ -757,7 +691,7 @@ require("lazy").setup({
                 }
             }
 
-            tools = {
+            rt.tools = {
                 hover_actions = {
                     auto_focus = true,
                 }
@@ -882,6 +816,7 @@ require("lazy").setup({
                     vim.keymap.set('n', '<leader>f', function()
                         vim.lsp.buf.format { async = true }
                     end, opts)
+                    vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action, opts)
 
                     local client = vim.lsp.get_client_by_id(ev.data.client_id)
 
@@ -913,40 +848,6 @@ require("lazy").setup({
     {
         "stevearc/dressing.nvim",
         event = "VeryLazy",
-    },
-    -- File Explorer
-    {
-        "mikavilpas/yazi.nvim",
-        event = "VeryLazy",
-        keys = {
-            -- 👇 in this section, choose your own keymappings!
-            {
-                "<leader>-",
-                mode = { "n", "v" },
-                "<cmd>Yazi<cr>",
-                desc = "Open yazi at the current file",
-            },
-            {
-                -- Open in the current working directory
-                "<leader>cw",
-                "<cmd>Yazi cwd<cr>",
-                desc = "Open the file manager in nvim's working directory",
-            },
-            {
-                -- NOTE: this requires a version of yazi that includes
-                -- https://github.com/sxyazi/yazi/pull/1305 from 2024-07-18
-                "<c-up>",
-                "<cmd>Yazi toggle<cr>",
-                desc = "Resume the last yazi session",
-            },
-        },
-        opts = {
-            -- if you want to open yazi instead of netrw, see below for more info
-            open_for_directories = false,
-            keymaps = {
-                show_help = "<f1>",
-            },
-        },
     },
     -- File Explorer (Editing)
     {
@@ -1021,7 +922,7 @@ require("lazy").setup({
             },
             -- https://cmp.saghen.dev/configuration/sources.html
             sources = {
-                default = { 'lsp', 'path', 'snippets', 'buffer' },
+                default = { 'lsp', 'path', 'snippets', 'buffer' }
             },
             -- https://cmp.saghen.dev/configuration/signature.html
             signature = {
@@ -1111,7 +1012,37 @@ require("lazy").setup({
         "rcarriga/nvim-dap-ui",
         dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }
     },
+    -- AI
+    -- {
+    --     'zbirenbaum/copilot.lua',
+    --     cmd = "Copilot",
+    --     event = 'InsertEnter',
+    --     config = function()
+    --         require('copilot').setup({})
+    --     end
+    -- },
     {
-        'github/copilot.vim'
+        'olimorris/codecompanion.nvim',
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'nvim-treesitter/nvim-treesitter'
+        },
+        config = function()
+            require('codecompanion').setup({
+                adapters = {
+                    strategies = {
+                        chat = {
+                            adapter = 'anthropic',
+                        },
+                        inline = {
+                            adapter = 'anthropic'
+                        },
+                    },
+                },
+            })
+            vim.keymap.set({ 'n', 'v' }, '<leader>cc', '<cmd>CodeCompanion<cr>')
+            vim.keymap.set({ 'n', 'v' }, '<leader>ca', '<cmd>CodeCompanionAction<cr>')
+            vim.keymap.set({ 'n', 'v' }, '<leader>cs', '<cmd>CodeCompanionChat<cr>')
+        end
     },
 })

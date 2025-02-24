@@ -69,7 +69,7 @@ nnoremap [b :action PreviousTab<CR>
 nnoremap ]B :action GoToLastTab<CR>
 nnoremap [B :action GoToFirstTab<CR>
 
-nnoremap <leader>c :q
+nnoremap <S-z><S-x> :q!
 
 " IDE specific actions
 nnoremap <leader>o :action GotoFile<CR>
@@ -84,7 +84,8 @@ nnoremap gf :action Forward<CR>
 nnoremap gb :action Back<CR>
 nnoremap K :action QuickJavaDoc<CR>
 nnoremap <leader>r :action RenameElement<CR>
-"nnoremap <leader>a :action ShowIntentionActions<CR>
+nnoremap <leader>a :action ShowIntentionActions<CR>
+nnoremap <leader>A :action ShowAiActions<CR>
 nnoremap <leader>x :NERDTreeToggle<CR>
 nnoremap <leader>d :action Problems<CR>
 nnoremap [[ :action MethodUp
