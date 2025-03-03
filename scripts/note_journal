@@ -21,5 +21,4 @@ CWD=$(pwd)
 cd "$NOTES_DIR/journal"
 git add -A
 git commit -m "$FILE"
-ctags -R .
 cd $CWD
