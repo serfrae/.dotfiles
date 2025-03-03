@@ -26,7 +26,7 @@ yabai -m config mouse_drop_action            stack
 
 ### Tiling Options
 # bsp or float (default: bsp)
-yabai -m config layout bsp
+yabai -m config layout float
 
 # new window spawns to the left if vertical split, or top if horizontal split
 yabai -m config window_placement first_child

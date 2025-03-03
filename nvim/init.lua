@@ -61,6 +61,11 @@ vim.keymap.set('n', '<leader>p', '<cmd>read !pbpaste<cr>')
 vim.keymap.set('v', '<leader>y', '"+y')
 vim.keymap.set('n', '<S-z><S-x>', ':q!<cr>')
 
+-- fzf
+vim.keymap.set('n', '<leader>o', '<cmd>FzfLua files<cr>')
+vim.keymap.set('n', '<leader>`', '<cmd>FzfLua<cr>')
+vim.keymap.set('n', '<leader>g', '<cmd>FzfLua live_grep<cr>')
+
 -- always center search results
 vim.keymap.set('n', 'n', 'nzz', { silent = true })
 vim.keymap.set('n', 'N', 'Nzz', { silent = true })
@@ -99,7 +104,7 @@ vim.keymap.set('n', '[L', ':lfirst<cr>')
 vim.keymap.set('n', ']L', ':llast<cr>')
 
 -- buffer toggle
---vim.keymap.set('n', '<leader>b', ':FzfLua buffers<cr>')
+vim.keymap.set('n', '<leader>b', ':FzfLua buffers<cr>')
 vim.keymap.set('n', '[b', ':bprevious<cr>')
 vim.keymap.set('n', ']b', ':bnext<cr>')
 vim.keymap.set('n', '[B', ':bfirst<cr>')
@@ -543,44 +548,77 @@ require("lazy").setup({
     },
     -- FZF
     {
-        "folke/snacks.nvim",
-        priority = 1000,
-        lazy = false,
-        ---@diagnostic disable-next-line: undefined-doc-name
-        ---@type snacks.Config
-        opts = {
-            picker = { enabled = true },
-            explorer = { enabled = true },
-        },
-        keys = {
-            { "<leader>`",  function() Snacks.picker() end,                       desc = "All Pickers" },
-            { "<leader>ss", function() Snacks.picker.smart() end,                 desc = "Smart Find Files" },
-            { "<leader>o",  function() Snacks.picker.files() end,                 desc = "Find Files" },
-            { "<leader>b",  function() Snacks.picker.buffers() end,               desc = "Buffers" },
-            { "<leader>g",  function() Snacks.picker.grep() end,                  desc = "Grep" },
-            { "<leader>x",  function() Snacks.explorer() end,                     desc = "File explorer" },
-            -- Search
-            { "<leader>:",  function() Snacks.picker.command_history() end,       desc = "Command History" },
-            { '<leader>s"', function() Snacks.picker.registers() end,             desc = "Registers" },
-            { '<leader>s/', function() Snacks.picker.search_history() end,        desc = "Search History" },
-            { "<leader>sc", function() Snacks.picker.command_history() end,       desc = "Command History" },
-            { "<leader>sd", function() Snacks.picker.diagnostics() end,           desc = "Diagnostics" },
-            { "<leader>sD", function() Snacks.picker.diagnostics_buffer() end,    desc = "Buffer Diagnostics" },
-            { "<leader>sj", function() Snacks.picker.jumps() end,                 desc = "Jumps" },
-            { "<leader>sl", function() Snacks.picker.loclist() end,               desc = "Location List" },
-            { "<leader>sm", function() Snacks.picker.marks() end,                 desc = "Marks" },
-            { "<leader>sq", function() Snacks.picker.qflist() end,                desc = "Quickfix List" },
-            { "<leader>su", function() Snacks.picker.undo() end,                  desc = "Undo History" },
-            -- LSP
-            { "gd",         function() Snacks.picker.lsp_definitions() end,       desc = "Goto Definition" },
-            { "gD",         function() Snacks.picker.lsp_declarations() end,      desc = "Goto Declaration" },
-            { "gr",         function() Snacks.picker.lsp_references() end,        nowait = true,                  desc = "References" },
-            { "gI",         function() Snacks.picker.lsp_implementations() end,   desc = "Goto Implementation" },
-            { "gy",         function() Snacks.picker.lsp_type_definitions() end,  desc = "Goto T[y]pe Definition" },
-            { "<leader>ss", function() Snacks.picker.lsp_symbols() end,           desc = "LSP Symbols" },
-            { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
-        },
+        'ibhagwan/fzf-lua',
+        config = function()
+            require('fzf-lua').setup {
+                fzf_opts = {
+                    ['--cycle'] = ''
+                },
+                keymap = {
+                    fzf = {
+                        ["ctrl-a"] = "select-all+accept",
+                        ["ctrl-s"] = "select-all+accept",
+                    }
+                },
+                files = {
+                    fd_opts = "--type f --hidden --follow --exclude .git --exclude node_modules --exclude .venv --exclude .mypy_cache"
+                },
+                actions = {
+                    ["default"] = function(selected)
+                        -- First, perform the default action (which varies depending on the search type)
+                        actions.act(selected)
+
+                        -- Then, schedule opening the quickfix window
+                        vim.schedule(function()
+                            -- Check if the quickfix list is not empty
+                            if #vim.fn.getqflist() > 0 then
+                                vim.cmd('VFix')
+                            end
+                        end)
+                    end,
+                }
+            }
+        end
     },
+    -- {
+    --     "folke/snacks.nvim",
+    --     priority = 1000,
+    --     lazy = false,
+    --     ---@diagnostic disable-next-line: undefined-doc-name
+    --     ---@type snacks.Config
+    --     opts = {
+    --         picker = { enabled = true },
+    --         explorer = { enabled = true },
+    --     },
+    --     keys = {
+    --         { "<leader>`",  function() Snacks.picker() end,                       desc = "All Pickers" },
+    --         { "<leader>ss", function() Snacks.picker.smart() end,                 desc = "Smart Find Files" },
+    --         { "<leader>o",  function() Snacks.picker.files() end,                 desc = "Find Files" },
+    --         { "<leader>b",  function() Snacks.picker.buffers() end,               desc = "Buffers" },
+    --         { "<leader>g",  function() Snacks.picker.grep() end,                  desc = "Grep" },
+    --         { "<leader>x",  function() Snacks.explorer() end,                     desc = "File explorer" },
+    --         -- Search
+    --         { "<leader>:",  function() Snacks.picker.command_history() end,       desc = "Command History" },
+    --         { '<leader>s"', function() Snacks.picker.registers() end,             desc = "Registers" },
+    --         { '<leader>s/', function() Snacks.picker.search_history() end,        desc = "Search History" },
+    --         { "<leader>sc", function() Snacks.picker.command_history() end,       desc = "Command History" },
+    --         { "<leader>sd", function() Snacks.picker.diagnostics() end,           desc = "Diagnostics" },
+    --         { "<leader>sD", function() Snacks.picker.diagnostics_buffer() end,    desc = "Buffer Diagnostics" },
+    --         { "<leader>sj", function() Snacks.picker.jumps() end,                 desc = "Jumps" },
+    --         { "<leader>sl", function() Snacks.picker.loclist() end,               desc = "Location List" },
+    --         { "<leader>sm", function() Snacks.picker.marks() end,                 desc = "Marks" },
+    --         { "<leader>sq", function() Snacks.picker.qflist() end,                desc = "Quickfix List" },
+    --         { "<leader>su", function() Snacks.picker.undo() end,                  desc = "Undo History" },
+    --         -- LSP
+    --         { "gd",         function() Snacks.picker.lsp_definitions() end,       desc = "Goto Definition" },
+    --         { "gD",         function() Snacks.picker.lsp_declarations() end,      desc = "Goto Declaration" },
+    --         { "gr",         function() Snacks.picker.lsp_references() end,        nowait = true,                  desc = "References" },
+    --         { "gI",         function() Snacks.picker.lsp_implementations() end,   desc = "Goto Implementation" },
+    --         { "gy",         function() Snacks.picker.lsp_type_definitions() end,  desc = "Goto T[y]pe Definition" },
+    --         { "<leader>ss", function() Snacks.picker.lsp_symbols() end,           desc = "LSP Symbols" },
+    --         { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+    --     },
+    -- },
     -- Status Windows
     {
         "folke/trouble.nvim",
@@ -638,22 +676,22 @@ require("lazy").setup({
         lazy = false,
         config = function()
             local rt = require("rustaceanvim")
-            local mason_registry = require("mason-registry")
-            local codelldb = mason_registry.get_package("codelldb")
-            local extension_path = codelldb:get_install_path() .. "/extension/"
-            local codelldb_path = extension_path .. "adapter/codelldb"
-            local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
+            -- local mason_registry = require("mason-registry")
+            -- local codelldb = mason_registry.get_package("codelldb")
+            -- local extension_path = codelldb:get_install_path() .. "/extension/"
+            -- local codelldb_path = extension_path .. "adapter/codelldb"
+            -- local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
 
-            local dap = require('dap')
-            local codelldb_install = require('mason-registry').get_package('codelldb'):get_install_path() .. '/codelldb'
-            dap.adapters.codelldb = {
-                type = 'server',
-                port = '${port}',
-                executable = {
-                    command = codelldb_install,
-                    args = { '--port', '${port}' },
-                },
-            }
+            -- local dap = require('dap')
+            -- local codelldb_install = require('mason-registry').get_package('codelldb'):get_install_path() .. '/codelldb'
+            -- dap.adapters.codelldb = {
+            --     type = 'server',
+            --     port = '${port}',
+            --     executable = {
+            --         command = codelldb_install,
+            --         args = { '--port', '${port}' },
+            --     },
+            -- }
 
             rt.server = {
                 on_attach = function(client, bufnr)
@@ -697,11 +735,11 @@ require("lazy").setup({
                 }
             }
 
-            dap = {
-                adapter = function()
-                    return require('rustaceanvim.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
-                end,
-            }
+            -- dap = {
+            --     adapter = function()
+            --         return require('rustaceanvim.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
+            --     end,
+            -- }
         end
     },
     -- LSP
@@ -811,7 +849,12 @@ require("lazy").setup({
                 group = vim.api.nvim_create_augroup('UserLspConfig', {}),
                 callback = function(ev)
                     local opts = { buffer = ev.buf }
+                    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+                    vim.keymap.set('n', 'gs', vim.lsp.buf.document_symbol, opts)
+                    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+                    vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, opts)
                     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+                    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
                     vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)
                     vim.keymap.set('n', '<leader>f', function()
                         vim.lsp.buf.format { async = true }
@@ -857,7 +900,40 @@ require("lazy").setup({
             distance_stop_animating = 0.5
         },
     },
-    -- File Explorer (Editing)
+    -- File Explorers
+    {
+        "mikavilpas/yazi.nvim",
+        event = "VeryLazy",
+        keys = {
+            -- 👇 in this section, choose your own keymappings!
+            {
+                "<leader>-",
+                mode = { "n", "v" },
+                "<cmd>Yazi<cr>",
+                desc = "Open yazi at the current file",
+            },
+            {
+                -- Open in the current working directory
+                "<leader>cw",
+                "<cmd>Yazi cwd<cr>",
+                desc = "Open the file manager in nvim's working directory",
+            },
+            {
+                -- NOTE: this requires a version of yazi that includes
+                -- https://github.com/sxyazi/yazi/pull/1305 from 2024-07-18
+                "<c-up>",
+                "<cmd>Yazi toggle<cr>",
+                desc = "Resume the last yazi session",
+            },
+        },
+        opts = {
+            -- if you want to open yazi instead of netrw, see below for more info
+            open_for_directories = false,
+            keymaps = {
+                show_help = "<f1>",
+            },
+        },
+    },
     {
         'stevearc/oil.nvim',
         opts = {},
@@ -995,40 +1071,69 @@ require("lazy").setup({
             require("luasnip.loaders.from_lua").load({ paths = "~/.dotfiles/snippets" })
         end
     },
-    -- DAP
-    {
-        'mfussenegger/nvim-dap',
-        config = function()
-            require("dapui").setup()
-            local dap, dapui = require("dap"), require("dapui")
-
-            dap.listeners.after.event_initialized['dapui_config'] = function()
-                dapui.open()
-            end
-            dap.listeners.before.event_terminated['dapui_config'] = function()
-                dapui.close()
-            end
-            dap.adapters.codelldb = {
-                type = "server",
-                executable = {
-                    command = "codelldb",
-                },
-            }
-        end
-    },
-    {
-        "rcarriga/nvim-dap-ui",
-        dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }
-    },
-    -- AI
+    -- -- DAP
     -- {
-    --     'zbirenbaum/copilot.lua',
-    --     cmd = "Copilot",
-    --     event = 'InsertEnter',
+    --     'mfussenegger/nvim-dap',
     --     config = function()
-    --         require('copilot').setup({})
+    --         require("dapui").setup()
+    --         local dap, dapui = require("dap"), require("dapui")
+    --
+    --         dap.listeners.after.event_initialized['dapui_config'] = function()
+    --             dapui.open()
+    --         end
+    --         dap.listeners.before.event_terminated['dapui_config'] = function()
+    --             dapui.close()
+    --         end
+    --         dap.adapters.codelldb = {
+    --             type = "server",
+    --             executable = {
+    --                 command = "codelldb",
+    --             },
+    --         }
     --     end
     -- },
+    -- {
+    --     "rcarriga/nvim-dap-ui",
+    --     dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }
+    -- },
+    -- AI
+    {
+        'zbirenbaum/copilot.lua',
+        cmd = "Copilot",
+        event = 'InsertEnter',
+        config = function()
+            require('copilot').setup({
+                panel = {
+                    enabled = true,
+                    keymap = {
+                        auto_refresh = true,
+                        jump_prev = "[[",
+                        jump_next = "]]",
+                        accept = "<CR>",
+                        refresh = "<leader>cr",
+                        open = "<M-CR>"
+                    },
+                    layout = {
+                        position = "right",
+                        ratio = 0.4
+                    }
+                },
+                suggestion = {
+                    enabled = true,
+                    auto_trigger = true,
+                    hide_during_completion = true,
+                    debounce = 75,
+                    keymap = {
+                        accept = '<Tab>',
+                        dismiss = '<C-\'>',
+                        jump_next = '<C-]>',
+                        jump_prev = '<C-[>'
+                    }
+                }
+            })
+            vim.keymap.set({ 'n', 'v' }, '<leader>cp', '<cmd>Copilot panel<cr>')
+        end
+    },
     {
         'olimorris/codecompanion.nvim',
         dependencies = {
@@ -1040,10 +1145,10 @@ require("lazy").setup({
                 adapters = {
                     strategies = {
                         chat = {
-                            adapter = 'anthropic',
+                            adapter = 'copilot',
                         },
                         inline = {
-                            adapter = 'anthropic'
+                            adapter = 'copilot'
                         },
                     },
                 },
