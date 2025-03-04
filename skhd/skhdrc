@@ -46,40 +46,31 @@ ctrl + alt + cmd + shift - l : yabai -m window --insert east
 ctrl + alt + cmd + shift - i : yabai -m window --insert stack
 
 # fast focus desktop
-ctrl - 1 : yabai -m space --focus 1
-ctrl - 2 : yabai -m space --focus 2
-ctrl - 3 : yabai -m space --focus 3
-ctrl - 4 : yabai -m space --focus 4
-ctrl - 5 : yabai -m space --focus 5
-ctrl - 6 : yabai -m space --focus 6
-ctrl - 7 : yabai -m space --focus 7
-ctrl - 8 : yabai -m space --focus 8
-ctrl - 9 : yabai -m space --focus 9
-ctrl - 0 : yabai -m space --focus 10
+ctrl - 1 : yabai -m space --focus cli
+ctrl - 2 : yabai -m space --focus web
+ctrl - 3 : yabai -m space --focus work
+ctrl - 4 : yabai -m space --focus comms
+ctrl - 5 : yabai -m space --focus m2s1
+ctrl - 6 : yabai -m space --focus m2s2
+
 
 # send window to desktop and follow focus
-alt + ctrl - 1 : yabai -m window --space  1 && yabai -m space --focus 1
-alt + ctrl - 2 : yabai -m window --space  2 && yabai -m space --focus 2
-alt + ctrl - 3 : yabai -m window --space  3 && yabai -m space --focus 3
-alt + ctrl - 4 : yabai -m window --space  4 && yabai -m space --focus 4
-alt + ctrl - 5 : yabai -m window --space  5 && yabai -m space --focus 5
-alt + ctrl - 6 : yabai -m window --space  6 && yabai -m space --focus 6
-alt + ctrl - 7 : yabai -m window --space  7 && yabai -m space --focus 7
-alt + ctrl - 8 : yabai -m window --space  8 && yabai -m space --focus 8
-alt + ctrl - 9 : yabai -m window --space  9 && yabai -m space --focus 9
-alt + ctrl - 0 : yabai -m window --space 10 && yabai -m space --focus 10
+alt + ctrl - 1 : yabai -m window --space  cli && yabai -m space --focus cli
+alt + ctrl - 2 : yabai -m window --space  web && yabai -m space --focus web
+alt + ctrl - 3 : yabai -m window --space  work && yabai -m space --focus work
+alt + ctrl - 4 : yabai -m window --space  comms && yabai -m space --focus comms
+alt + ctrl - 5 : yabai -m window --space  m2s1 && yabai -m space --focus m2s1
+alt + ctrl - 6 : yabai -m window --space  m2s2 && yabai -m space --focus m2s2
+
 
 # send window to desktop
-cmd + ctrl - 1 : yabai -m window --space  1
-cmd + ctrl - 2 : yabai -m window --space  2
-cmd + ctrl - 3 : yabai -m window --space  3
-cmd + ctrl - 4 : yabai -m window --space  4
-cmd + ctrl - 5 : yabai -m window --space  5
-cmd + ctrl - 6 : yabai -m window --space  6
-cmd + ctrl - 7 : yabai -m window --space  7
-cmd + ctrl - 8 : yabai -m window --space  8
-cmd + ctrl - 9 : yabai -m window --space  9
-cmd + ctrl - 0 : yabai -m window --space 10
+cmd + ctrl - 1 : yabai -m window --space  cli
+cmd + ctrl - 2 : yabai -m window --space  web
+cmd + ctrl - 3 : yabai -m window --space  work
+cmd + ctrl - 4 : yabai -m window --space  comms
+cmd + ctrl - 5 : yabai -m window --space  m2s1
+cmd + ctrl - 6 : yabai -m window --space  m2s2
+
 
 # focus monitor
 ctrl + alt + shift + cmd - x  : yabai -m display --focus recent
@@ -109,15 +100,6 @@ shift + ctrl - d : yabai -m window --move rel:20:0
 
 # balance size of windows
 shift + alt - 0 : yabai -m space -balance
-
-# make floating window fill screen
-shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1
-
-# make floating window fill left-half of screen
-shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
-
-# make floating window fill right-half of screen
-shift + alt - right  : yabai -m window --grid 1:2:1:0:1:1
 
 # increase window size
 shift + cmd + alt - a : yabai -m window --resize left:-20:0
@@ -165,7 +147,6 @@ alt - e : yabai -m window --toggle split
 ####################
 
 # float / unfloat window and restore position
-# alt - t : yabai -m window --toggle float && /tmp/yabai-restore/$(yabai -m query --windows --window | jq -re '.id').restore 2>/dev/null || true
 alt - t : yabai -m window --toggle float && yabai -m window --grid 4:4:1:1:2:2
 
 # toggle sticky (show on all spaces)
@@ -181,10 +162,7 @@ alt - p : yabai -m window --toggle border && \
 # change layout of desktop
 ctrl + alt - a : yabai -m space --layout bsp
 ctrl + alt - d : yabai -m space --layout float
-ctrl + alt - s : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
-
-# Focus window of same app
- alt - tab: yabai -m window --focus "$(yabai -m query --windows | jq -re "map(select(.app == \"$(yabai -m query --windows --window | jq -re '.app')\")) | sort_by(.id) | .[([.[].id] | index($(yabai -m query --windows --window | jq -re '.id')) + 1) % length].id")"
+ctrl + alt - s : yabai -m space --layout stack
 
 ####################
 ### Applications ###
@@ -192,7 +170,12 @@ ctrl + alt - s : yabai -m space --layout $(yabai -m query --spaces --space | jq 
 
 # Terminal
 cmd - return : open -a "Ghostty"
-alt - d : osascript -e 'tell application "Ghostty" to activate' -e 'tell application "Ghostty" to reopen'
+#alt - 1 : osascript -e 'tell application "Ghostty" to activate' -e 'tell application "Ghostty" to reopen' && 'tell application "System Events" to keystroke "`" using {command down}'
+#alt - 2 : osascript -e 'tell application "Intellij IDEA" to activate' -e 'tell application "Intellij IDEA" to reopen' && 'tell application "System Events" to keystroke "`" using {command down}'
+#alt - 3 : osascript -e 'tell application "Webstorm" to activate' -e 'tell application "WebStorm" to reopen' ; 'tell application "System Events" to keystroke "`" using {command down}' 
+#alt - 4 : osascript -e 'tell application "RustRover" to activate' -e 'tell application "RustRover" to reopen'
+#alt - 5 : osascript -e 'tell application "PyCharm" to activate' -e 'tell application "PyCharm" to reopen'
+#alt - 6 : osascript -e 'tell application "DataGrip" to activate' -e 'tell application "DataGrip" to reopen'
 
 # Applications
 :: apps
@@ -209,22 +192,6 @@ apps < r : osascript -e 'tell application "Reminders" to activate' -e 'tell appl
 
 apps < return ; default
 apps < escape ; default
-
-# Engineering
-:: eng
-ctrl - space ; eng
-
-eng < e : osascript -e 'tell application "Intellij IDEA" to activate' -e 'tell application "Intellij IDEA" to reopen' ; skhd -k 'escape'
-eng < w : osascript -e 'tell application "WebStorm" to activate' -e 'tell application "WebStorm" to reopen' ; skhd -k 'escape'
-eng < d : osascript -e 'tell application "DataGrip" to activate' -e 'tell application "DataGrip" to reopen' ; skhd -k 'escape'
-eng < r : osascript -e 'tell application "RustRover" to activate' -e 'tell application "RustRover" to reopen' ; skhd -k 'escape'
-eng < c : osascript -e 'tell application "CLion" to activate' -e 'tell application "CLion" to reopen' ; skhd -k 'escape'
-eng < g : osascript -e 'tell application "GoLand" to activate' -e 'tell application "GoLand" to reopen' ; skhd -k 'escape'
-eng < p : osascript -e 'tell application "Postman" to activate' -e 'tell application "Postman" to reopen' ; skhd -k 'escape'
-eng < v : osascript -e 'tell application "Visual Studio Code" to activate' -e 'tell application "Visual Studio Code" to reopen' ; skhd -k 'escape'
-
-eng < return ; default
-eng < escape ; default
 
 # Social
 :: social
@@ -244,7 +211,7 @@ alt - w ; web
 
 web < f : osascript -e 'tell application "Firefox" to activate' -e 'tell application "Firefox" to reopen' ; skhd -k 'escape'
 web < b : osascript -e 'tell application "Brave Browser" to activate' -e 'tell application "Brave Browser" to reopen' ; skhd -k 'escape'
-web < g : osascript -e 'tell application "Google Chrome" to activate' -e 'tell application "Google Chrome" to reopen' ; skhd -k 'escape'
+web < g : osascript ~/.dotfiles/scripts/app_cycle.scpt "Chrome" ; skhd -k 'escape'
 web < s : osascript -e 'tell application "Safari" to activate' -e 'tell application "Safari" to reopen' ; skhd -k 'escape'
 
 web < return ; default

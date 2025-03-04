@@ -26,7 +26,7 @@ yabai -m config mouse_drop_action            stack
 
 ### Tiling Options
 # bsp or float (default: bsp)
-yabai -m config layout float
+yabai -m config layout bsp
 
 # new window spawns to the left if vertical split, or top if horizontal split
 yabai -m config window_placement first_child
@@ -43,7 +43,7 @@ yabai -m config left_padding 1
 yabai -m config window_gap 1
 
 # set focus follows mouse mode (default: off, options: off, autoraise, autofocus)
-yabai -m config focus_follows_mouse autofocus
+yabai -m config focus_follows_mouse off 
 
 ### Window Modifications
 # floating windows are always on top
@@ -67,3 +67,12 @@ yabai -m rule --add app="^Calendar$" manage=off
 yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^Notes$" manage=off
 yabai -m rule --add app="^Reminders$" manage=off
+yabai -m rule --add app="^Intellij IDEA$" manage=off
+
+# Spaces
+yabai -m space 1 --label cli
+yabai -m space 2 --label web
+yabai -m space 3 --label work
+yabai -m space 4 --label comms
+yabai -m space 5 --label m2s1
+yabai -m space 6 --label m2s2
