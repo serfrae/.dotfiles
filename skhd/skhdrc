@@ -168,15 +168,6 @@ ctrl + alt - s : yabai -m space --layout stack
 ### Applications ###
 ####################
 
-# Terminal
-cmd - return : open -a "Ghostty"
-#alt - 1 : osascript -e 'tell application "Ghostty" to activate' -e 'tell application "Ghostty" to reopen' && 'tell application "System Events" to keystroke "`" using {command down}'
-#alt - 2 : osascript -e 'tell application "Intellij IDEA" to activate' -e 'tell application "Intellij IDEA" to reopen' && 'tell application "System Events" to keystroke "`" using {command down}'
-#alt - 3 : osascript -e 'tell application "Webstorm" to activate' -e 'tell application "WebStorm" to reopen' ; 'tell application "System Events" to keystroke "`" using {command down}' 
-#alt - 4 : osascript -e 'tell application "RustRover" to activate' -e 'tell application "RustRover" to reopen'
-#alt - 5 : osascript -e 'tell application "PyCharm" to activate' -e 'tell application "PyCharm" to reopen'
-#alt - 6 : osascript -e 'tell application "DataGrip" to activate' -e 'tell application "DataGrip" to reopen'
-
 # Applications
 :: apps
 alt - a ; apps
@@ -185,36 +176,15 @@ apps < f : osascript -e 'tell application "Finder" to activate' -e 'tell applica
 apps < v : osascript -e 'tell application "NordVPN" to activate' -e 'tell application "NordVPN" to reopen' ; skhd -k 'escape'
 apps < m : osascript -e 'tell application "Mail" to activate' -e 'tell application "Mail" to reopen' ; skhd -k 'escape'
 apps < c : osascript -e 'tell application "Calendar" to activate' -e 'tell application "Calendar" to reopen' ; skhd -k 'escape'
-apps < s : osascript -e 'tell application "Spotify" to activate' -e 'tell application "Spotify" to reopen' ; skhd -k 'escape'
 apps < q : osascript -e 'tell application "qBittorrent" to activate' -e 'tell application "qBittorrent" to reopen' ; skhd -k 'escape'
 apps < n : osascript -e 'tell application "Notes" to activate' -e 'tell application "Notes" to reopen'; skhd -k 'escape'
 apps < r : osascript -e 'tell application "Reminders" to activate' -e 'tell application "Reminders" to reopen' ; skhd -k 'escape'
+apps < t : osascript -e 'tell application "Telegram" to activate' -e 'tell application "Telegram" to reopen' ; skhd -k 'escape'
+apps < s : osascript -e 'tell application "Slack" to activate' -e 'tell application "Slack" to reopen' ; skhd -k 'escape'
+apps < d : osascript -e 'tell application "Discord" to activate' -e 'tell application "Discord" to reopen' ; skhd -k 'escape'
+apps < w : osascript -e 'tell application "WhatsApp" to activate' -e 'tell application "WhatsApp" to reopen' ; skhd -k 'escape'
 
 apps < return ; default
 apps < escape ; default
-
-# Social
-:: social
-alt - s ; social
-
-social < t : osascript -e 'tell application "Telegram" to activate' -e 'tell application "Telegram" to reopen' ; skhd -k 'escape'
-social < s : osascript -e 'tell application "Slack" to activate' -e 'tell application "Slack" to reopen' ; skhd -k 'escape'
-social < d : osascript -e 'tell application "Discord" to activate' -e 'tell application "Discord" to reopen' ; skhd -k 'escape'
-social < w : osascript -e 'tell application "WhatsApp" to activate' -e 'tell application "WhatsApp" to reopen' ; skhd -k 'escape'
-
-social < return ; default
-social < escape ; default
-
-# Web Browsers
-:: web
-alt - w ; web
-
-web < f : osascript -e 'tell application "Firefox" to activate' -e 'tell application "Firefox" to reopen' ; skhd -k 'escape'
-web < b : osascript -e 'tell application "Brave Browser" to activate' -e 'tell application "Brave Browser" to reopen' ; skhd -k 'escape'
-web < g : osascript ~/.dotfiles/scripts/app_cycle.scpt "Chrome" ; skhd -k 'escape'
-web < s : osascript -e 'tell application "Safari" to activate' -e 'tell application "Safari" to reopen' ; skhd -k 'escape'
-
-web < return ; default
-web < escape ; default
 
 cmd + shift + alt - m : osascript "/Users/a7rs/bin/menubar.scpt"
