@@ -48,7 +48,7 @@ ls.add_snippets("rust", {
             pub struct <NODE_1><<'info>> {
             }
 
-            impl<<'info>> <NODE_2><<'info>> {
+            impl <NODE_2><<'_>> {
             }
             ]],
             {

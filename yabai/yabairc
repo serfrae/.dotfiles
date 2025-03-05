@@ -76,5 +76,3 @@ yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^Notes$" manage=off
 yabai -m rule --add app="^Reminders$" manage=off
 yabai -m rule --add app="^Intellij IDEA$" manage=off
-
-

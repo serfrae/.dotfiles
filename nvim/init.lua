@@ -676,25 +676,25 @@ require("lazy").setup({
         lazy = false,
         config = function()
             local rt = require("rustaceanvim")
-            -- local mason_registry = require("mason-registry")
-            -- local codelldb = mason_registry.get_package("codelldb")
-            -- local extension_path = codelldb:get_install_path() .. "/extension/"
-            -- local codelldb_path = extension_path .. "adapter/codelldb"
-            -- local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
+            local mason_registry = require("mason-registry")
+            local codelldb = mason_registry.get_package("codelldb")
+            local extension_path = codelldb:get_install_path() .. "/extension/"
+            local codelldb_path = extension_path .. "adapter/codelldb"
+            local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
 
-            -- local dap = require('dap')
-            -- local codelldb_install = require('mason-registry').get_package('codelldb'):get_install_path() .. '/codelldb'
-            -- dap.adapters.codelldb = {
-            --     type = 'server',
-            --     port = '${port}',
-            --     executable = {
-            --         command = codelldb_install,
-            --         args = { '--port', '${port}' },
-            --     },
-            -- }
+            local dap = require('dap')
+            local codelldb_install = require('mason-registry').get_package('codelldb'):get_install_path() .. '/codelldb'
+            dap.adapters.codelldb = {
+                type = 'server',
+                port = '${port}',
+                executable = {
+                    command = codelldb_install,
+                    args = { '--port', '${port}' },
+                },
+            }
 
             rt.server = {
-                on_attach = function(client, bufnr)
+                on_attach = function(bufnr)
                     vim.keymap.set("n", "<leader>k", function()
                             vim.cmd.RustLsp({ 'hover', 'actions' })
                         end,
@@ -735,11 +735,11 @@ require("lazy").setup({
                 }
             }
 
-            -- dap = {
-            --     adapter = function()
-            --         return require('rustaceanvim.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
-            --     end,
-            -- }
+            dap = {
+                adapter = function()
+                    return require('rustaceanvim.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
+                end,
+            }
         end
     },
     -- LSP
@@ -968,7 +968,9 @@ require("lazy").setup({
         version = '*',
         opts = {
             -- https://cmp.saghen.dev/configuration/keymap
-            keymap = { preset = 'enter' },
+            keymap = {
+                ["<Tab>"] = { "accept" },
+            },
             -- https://cmp.saghen.dev/configuration/appearance.html
             appearance = {
                 use_nvim_cmp_as_default = true,
@@ -981,7 +983,7 @@ require("lazy").setup({
                 -- https://cmp.saghen.dev/configuration/completion.html#documentation
                 documentation = {
                     auto_show = true,
-                    auto_show_delay_ms = 250,
+                    auto_show_delay_ms = 50,
                     treesitter_highlighting = true,
                     window = { border = "rounded" },
                 },
@@ -1071,31 +1073,31 @@ require("lazy").setup({
             require("luasnip.loaders.from_lua").load({ paths = "~/.dotfiles/snippets" })
         end
     },
-    -- -- DAP
-    -- {
-    --     'mfussenegger/nvim-dap',
-    --     config = function()
-    --         require("dapui").setup()
-    --         local dap, dapui = require("dap"), require("dapui")
-    --
-    --         dap.listeners.after.event_initialized['dapui_config'] = function()
-    --             dapui.open()
-    --         end
-    --         dap.listeners.before.event_terminated['dapui_config'] = function()
-    --             dapui.close()
-    --         end
-    --         dap.adapters.codelldb = {
-    --             type = "server",
-    --             executable = {
-    --                 command = "codelldb",
-    --             },
-    --         }
-    --     end
-    -- },
-    -- {
-    --     "rcarriga/nvim-dap-ui",
-    --     dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }
-    -- },
+    -- DAP
+    {
+        'mfussenegger/nvim-dap',
+        config = function()
+            require("dapui").setup()
+            local dap, dapui = require("dap"), require("dapui")
+
+            dap.listeners.after.event_initialized['dapui_config'] = function()
+                dapui.open()
+            end
+            dap.listeners.before.event_terminated['dapui_config'] = function()
+                dapui.close()
+            end
+            dap.adapters.codelldb = {
+                type = "server",
+                executable = {
+                    command = "codelldb",
+                },
+            }
+        end
+    },
+    {
+        "rcarriga/nvim-dap-ui",
+        dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }
+    },
     -- AI
     {
         'zbirenbaum/copilot.lua',
@@ -1124,7 +1126,7 @@ require("lazy").setup({
                     hide_during_completion = true,
                     debounce = 75,
                     keymap = {
-                        accept = '<Tab>',
+                        accept = '<leader><Tab>',
                         dismiss = '<C-\'>',
                         jump_next = '<C-]>',
                         jump_prev = '<C-[>'
