@@ -28,10 +28,10 @@ return {
         end,
         -- stylua: ignore
         keys = {
-            { "s", mode = { "n", "x", "o" }, function() require("nvim.lua.plugins.editor.flash").jump() end,              desc = "Flash" },
-            { "S", mode = { "n", "x", "o" }, function() require("nvim.lua.plugins.editor.flash").treesitter() end,        desc = "Flash Treesitter" },
-            { "R", mode = { "n", "o", "x" }, function() require("nvim.lua.plugins.editor.flash").treesitter_search() end, desc = "Treesitter Search" },
-            { "r", mode = "o",               function() require("nvim.lua.plugins.editor.flash").remote() end,            desc = "Remote Flash" },
+            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+            { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+            { "R", mode = { "n", "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+            { "r", mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
         },
     }
 }
