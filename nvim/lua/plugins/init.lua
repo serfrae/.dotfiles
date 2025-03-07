@@ -13,12 +13,12 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     -- ui
-    { import = "plugins.ui.catppuccin" },
-    { import = "plugins.ui.tokyonight" },
     { import = "plugins.ui.lualine" },
     { import = "plugins.ui.rainbow-delimiters" },
-    { import = "plugins.ui.smear-cursor" },
     { import = "plugins.ui.noice" },
+    { import = "plugins.ui.catppuccin" },
+    --{ import = "plugins.ui.tokyonight" },
+    --{ import = "plugins.ui.smear-cursor" },
 
     -- lsp
     { import = "plugins.lsp.lspconfig" },
@@ -34,9 +34,9 @@ require("lazy").setup({
     { import = "plugins.completions.codecompanion" },
 
     -- explorers
-    { import = "plugins.explorers.neotree" },
     { import = "plugins.explorers.oil" },
-    { import = "plugins.explorers.yazi" },
+    --{ import = "plugins.explorers.neotree" },
+    --{ import = "plugins.explorers.yazi" },
     --{ import = "plugins.explorers.nvimtree" },
     --{ import = "plugins.explorers.mini" },
 
@@ -48,5 +48,5 @@ require("lazy").setup({
     { import = "plugins.editor.snacks" },
     { import = "plugins.editor.trouble" },
 
-    { import = "plugins.dap" },
+    --{ import = "plugins.dap" },
 })

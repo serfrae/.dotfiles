@@ -1,3 +1,4 @@
+#theme = tokyonight-storm
 theme = catppuccin-mocha
 cursor-click-to-move = true
 mouse-hide-while-typing = true

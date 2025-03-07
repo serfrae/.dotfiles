@@ -87,7 +87,7 @@ vim.api.nvim_set_keymap('n', '<leader>nl', '<cmd>lua NoteLink()<cr>', { noremap 
 vim.api.nvim_set_keymap('n', '<leader>nf', '<cmd>lua NoteFind()<cr>', { noremap = true, silent = true })
 
 -- DAP
-vim.keymap.set('n', ',d', '<cmd>lua require("dapui").toggle()<CR>')
+vim.keymap.set('n', ',dd', '<cmd>lua require("dapui").toggle()<CR>')
 vim.keymap.set('n', ',ds', ':DapStepOver<CR>')
 vim.keymap.set('n', ',dt', ':DapTerminate<CR>')
 vim.keymap.set('n', ',dc', ':DapContinue<CR>')
