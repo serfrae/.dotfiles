@@ -47,7 +47,14 @@ return {
             },
             -- https://cmp.saghen.dev/configuration/sources.html
             sources = {
-                default = { 'lsp', 'path', 'snippets', 'buffer' },
+                default = { 'lsp', 'path', 'snippets', 'buffer', 'codecompanion' },
+                providers = {
+                    codecompanion = {
+                        name = "CodeCompanion",
+                        module = "codecompanion.providers.completion.blink",
+                        enabled = true,
+                    }
+                },
                 per_filetype = {
                     codecompanion = { 'codecompanion' },
                 }

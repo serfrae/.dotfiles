@@ -129,3 +129,6 @@ set --export PATH $BUN_INSTALL/bin $PATH
 
 # nvm
 set --universal nvm_default_version latest 
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /Users/a7rs/.lmstudio/bin

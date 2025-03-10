@@ -13,10 +13,10 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     -- ui
-    { import = "plugins.ui.lualine" },
-    { import = "plugins.ui.rainbow-delimiters" },
-    { import = "plugins.ui.noice" },
     { import = "plugins.ui.catppuccin" },
+    { import = "plugins.ui.lualine" },
+    { import = "plugins.ui.noice" },
+    { import = "plugins.ui.rainbow-delimiters" },
     --{ import = "plugins.ui.tokyonight" },
     --{ import = "plugins.ui.smear-cursor" },
 
@@ -29,24 +29,29 @@ require("lazy").setup({
 
     -- completions/ai
     { import = "plugins.completions.blink" },
-    { import = "plugins.completions.luasnip" },
-    { import = "plugins.completions.copilot" },
     { import = "plugins.completions.codecompanion" },
+    { import = "plugins.completions.copilot" },
+    { import = "plugins.completions.luasnip" },
 
     -- explorers
+    { import = "plugins.explorers.neotree" },
     { import = "plugins.explorers.oil" },
-    --{ import = "plugins.explorers.neotree" },
     --{ import = "plugins.explorers.yazi" },
     --{ import = "plugins.explorers.nvimtree" },
     --{ import = "plugins.explorers.mini" },
+
+    -- git
+    { import = "plugins.git.gitsigns" },
+    { import = "plugins.git.neogit" },
 
     -- editor
     { import = "plugins.editor.conform" },
     { import = "plugins.editor.flash" },
     { import = "plugins.editor.fzf" },
-    { import = "plugins.editor.surround" },
     { import = "plugins.editor.snacks" },
+    { import = "plugins.editor.surround" },
     { import = "plugins.editor.trouble" },
 
-    --{ import = "plugins.dap" },
+    -- debug
+    { import = "plugins.dap" },
 })

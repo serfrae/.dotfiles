@@ -22,21 +22,23 @@ set surround
 set multiple-cursors
 set commentary
 set argtextobj
-set exchange
 set highlightedyank
 set textobj-entire
 set ReplaceWithRegister
-"set AceAction
 
-"map s :action AceAction<CR>
-"map S :action AceLineAction<CR>
+map s :action BlinkJump<CR>
+map S :action BlinkNodeJump<CR>
 
-set quickscope
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+"set quickscope
+"let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+"set easymotion
+"let g:EasyMotion_use_upper = 0
+"let g:EasyMotionKey_keys = 'abcdefghijklmnopqrstuvwxyz'
+"let g:EasyMotion_smartcase = 1
 
-set easymotion
-map s <Plug>(easymotion-s)
-map S <Plug>(easymotion-jumptoanywhere)
+"map s <Plug>(easymotion-s)
+"map S V<Plug>(easymotion-s)
+
 
 " Basic mappings
 map H ^
