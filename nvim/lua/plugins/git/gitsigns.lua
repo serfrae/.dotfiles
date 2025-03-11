@@ -59,9 +59,9 @@ return {
                 map('n', '<leader>hq', gs.setqflist)
 
                 -- Toggles
-                map('n', '<leader>tb', gs.toggle_current_line_blame)
-                map('n', '<leader>td', gs.toggle_deleted)
-                map('n', '<leader>tw', gs.toggle_word_diff)
+                map('n', '<leader>hc', gs.toggle_current_line_blame)
+                map('n', '<leader>hx', gs.toggle_deleted)
+                map('n', '<leader>hw', gs.toggle_word_diff)
 
                 -- Text object
                 map({ 'o', 'x' }, 'ih', gs.select_hunk)
