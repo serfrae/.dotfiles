@@ -31,8 +31,8 @@ return {
                         }
                     },
                     slash_commands = {
-                        ["files"] = { provider = "fzf_lua" },
-                        ["symbols"] = { provider = "fzf_lua" },
+                        ["file"] = { opts = { provider = "fzf_lua" } },
+                        ["symbols"] = { opts = { provider = "fzf_lua" } },
                     }
                 },
                 inline = {

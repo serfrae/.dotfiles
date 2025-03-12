@@ -8,18 +8,27 @@ return {
                 },
                 keymap = {
                     fzf = {
+                        true,
                         ["ctrl-a"] = "select-all+accept",
+                        ["ctrl-g"] = ""
                     }
                 },
                 files = {
                     fd_opts = "--type f --hidden --follow --exclude .git --exclude node_modules --exclude .venv --exclude .mypy_cache"
                 },
+                actions = {
+                    files = {
+                        true,
+                        ["ctrl-g"] = {
+                            function(selected, opts)
+                                local o = vim.tbl_deep_extend("keep", { resume = true }, opts.__call_opts)
+                                opts.__call_fn(o)
+                            end
+                        },
+                    },
+                }
             }
             require('fzf-lua').register_ui_select()
-
-            -- local actions = require("trouble.sources.fzf").actions
-            -- local config = require("fzf-lua.config")
-            -- config.defaults.actions.files["ctrl-s"] = actions.open
         end,
     }
 }

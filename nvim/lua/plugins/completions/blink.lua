@@ -18,7 +18,9 @@ return {
             -- https://cmp.saghen.dev/configuration/completion.html
             completion = {
                 -- https://cmp.saghen.dev/configuration/completion.html#accept
-                accept = { auto_brackets = { enabled = true } },
+                accept = {
+                    auto_brackets = { enabled = true },
+                },
                 -- https://cmp.saghen.dev/configuration/completion.html#documentation
                 documentation = {
                     auto_show = true,
