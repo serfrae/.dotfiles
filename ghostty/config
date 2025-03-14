@@ -7,7 +7,7 @@ copy-on-select = clipboard
 cursor-style = block
 
 font-size = 14
-font-family = 0xproto
+font-family = 0xproto Nerd Font
 #font-family = JetBrainsMono Nerd Font Mono
 font-feature = calt
 font-feature = liga
