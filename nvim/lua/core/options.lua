@@ -33,7 +33,8 @@ vim.opt.smartcase = true
 vim.opt.vb = true
 vim.opt.colorcolumn = '80'
 vim.api.nvim_create_autocmd('Filetype', { pattern = 'rust', command = 'set colorcolumn=100' })
-vim.opt.listchars = 'tab:▏-,nbsp:¬,extends:»,precedes:«,trail:•,multispace:▏---'
+-- vim.opt.listchars = 'tab:▏-,nbsp:¬,extends:»,precedes:«,trail:•,multispace:▏   '
+vim.opt.listchars = 'tab:▏-,nbsp:¬,extends:»,precedes:«,trail:•'
 vim.opt.list = true
 vim.opt.cursorline = true
 vim.opt.tags = './tags;,tags'

@@ -57,9 +57,6 @@ return {
                         enabled = true,
                     }
                 },
-                per_filetype = {
-                    codecompanion = { 'codecompanion' },
-                }
             },
             -- https://cmp.saghen.dev/configuration/signature.html
             signature = {
