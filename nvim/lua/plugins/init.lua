@@ -37,7 +37,7 @@ require("lazy").setup({
     -- explorers
     { import = "plugins.explorers.neotree" },
     { import = "plugins.explorers.oil" },
-    --{ import = "plugins.explorers.yazi" },
+    { import = "plugins.explorers.yazi" },
     --{ import = "plugins.explorers.nvimtree" },
     --{ import = "plugins.explorers.mini" },
 

@@ -31,8 +31,8 @@ abbr -a py "python"
 abbr -a lg "lazygit"
 abbr -a yi "yazi"
 
-setenv TERM ghostty
-setenv EDITOR nvim 
+setenv TERM xterm-ghostty
+setenv EDITOR nvim
 setenv BROWSER firefox-developer-edition
 setenv RUST_BACKTRACE 1
 
