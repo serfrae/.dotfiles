@@ -1,6 +1,6 @@
 backtraces_path = "/path/to/neovide_backtraces.log" # see below for the default platform specific location
 fork = false
-frame = "full"
+frame = "none"
 idle = true
 maximized = false
 mouse-cursor-icon = "arrow"

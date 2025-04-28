@@ -7,6 +7,7 @@ abbr -a cr 'cargo run'
 abbr -a ci 'cargo install'
 abbr -a ct 'cargo test'
 abbr -a g git
+abbr -a gpar 'git pull origin --rebase --autostash'
 abbr -a gc 'git checkout'
 abbr -a gcb 'git checkout -b'
 abbr -a ga 'git add -p'
@@ -25,13 +26,12 @@ abbr -a vd 'deactivate'
 abbr -a fzp 'fzf --preview "bat --color=always --style=header,grid --line-range :500 {}"'
 abbr -a uv 'uv pip'
 abbr -a pip 'uv pip'
-abbr -a hypr 'Hyprland'
 abbr -a spl-t2 'spl-token --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb'
 abbr -a py "python"
 abbr -a lg "lazygit"
 abbr -a yi "yazi"
 
-setenv TERM xterm-ghostty
+setenv TERM ghostty
 setenv EDITOR nvim
 setenv BROWSER firefox-developer-edition
 setenv RUST_BACKTRACE 1
