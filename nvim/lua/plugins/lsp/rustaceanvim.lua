@@ -46,6 +46,16 @@ return {
                             end,
                             { silent = false, buffer = bufnr }
                         )
+                        vim.keymap.set("n", "<leader>e", function()
+                                vim.cmd.RustLsp('renderDiagnostic')
+                            end,
+                            { silent = false, buffer = bufnr }
+                        )
+                        vim.keymap.set("n", "<leader>E", function()
+                                vim.cmd.RustLsp('expandMacro')
+                            end,
+                            { silent = false, buffer = bufnr }
+                        )
                     end,
                     default_settings = {
                         ['rust-analyzer'] = {

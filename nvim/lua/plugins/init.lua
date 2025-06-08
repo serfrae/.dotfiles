@@ -22,9 +22,7 @@ require("lazy").setup({
     --{ import = "plugins.ui.smear-cursor" },
 
     -- lsp
-    { import = "plugins.lsp.lspconfig" },
-    { import = "plugins.lsp.mason" },
-    { import = "plugins.lsp.rustaceanvim" },
+    -- { import = "plugins.lsp.rustaceanvim" },
     { import = "plugins.lsp.treesitter" },
     { import = "plugins.lsp.typescript-tools" },
 
