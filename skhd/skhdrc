@@ -70,20 +70,14 @@ ctrl + alt - l : yabai -m window --warp east || (yabai -m window --display east 
 # cmd + ctrl - 6 : yabai -m window --space  m2s2
 
 # focus monitor
-ctrl + alt + shift + cmd - x  : yabai -m display --focus recent
-ctrl + alt + shift + cmd - z  : yabai -m display --focus prev
-ctrl + alt + shift + cmd - c  : yabai -m display --focus next
-ctrl + alt + shift + cmd - 1  : yabai -m display --focus 1
-ctrl + alt + shift + cmd - 2  : yabai -m display --focus 2
-ctrl + alt + shift + cmd - 3  : yabai -m display --focus 3
+ctrl - 1  : yabai -m display --focus 1
+ctrl - 2  : yabai -m display --focus 2
+ctrl - 3  : yabai -m display --focus 3
 
 # send window to monitor and follow focus
-alt + shift + cmd - x  : yabai -m window --display recent && yabai -m display --focus recent
-alt + shift + cmd - z  : yabai -m window --display prev && yabai -m display --focus prev
-alt + shift + cmd - c  : yabai -m window --display next && yabai -m display --focus next
-alt + shift + cmd - 1  : yabai -m window --display 1 && yabai -m display --focus 1
-alt + shift + cmd - 2  : yabai -m window --display 2 && yabai -m display --focus 2
-alt + shift + cmd - 3  : yabai -m window --display 3 && yabai -m display --focus 3
+ctrl + cmd - 1  : yabai -m window --display 1 && yabai -m display --focus 1
+ctrl + cmd - 2  : yabai -m window --display 2 && yabai -m display --focus 2
+ctrl + cmd - 3  : yabai -m window --display 3 && yabai -m display --focus 3
 
 # move window
 shift + ctrl - a : yabai -m window --move rel:-20:0
