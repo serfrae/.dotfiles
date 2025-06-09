@@ -4,12 +4,12 @@ sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
 # Spaces
-yabai -m space 1 --label cli
-yabai -m space 2 --label web
-yabai -m space 3 --label work
-yabai -m space 4 --label comms
-yabai -m space 5 --label m2s1
-yabai -m space 6 --label m2s2
+# yabai -m space 1 --label cli
+# yabai -m space 2 --label web
+# yabai -m space 3 --label work
+# yabai -m space 4 --label comms
+# yabai -m space 5 --label m2s1
+# yabai -m space 6 --label m2s2
 
 # global settings
 #yabai -m config top_padding x + 24
@@ -70,3 +70,4 @@ yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^Notes$" manage=off
 yabai -m rule --add app="^Reminders$" manage=off
 yabai -m rule --add app="^Intellij IDEA$" manage=off
+yabai -m rule --add app="^Google Chrome$" manage=off

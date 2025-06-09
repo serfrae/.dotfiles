@@ -92,6 +92,3 @@ vim.keymap.set('n', ',ds', ':DapStepOver<CR>')
 vim.keymap.set('n', ',dt', ':DapTerminate<CR>')
 vim.keymap.set('n', ',dc', ':DapContinue<CR>')
 vim.keymap.set('n', ',db', ':DapToggleBreakpoint<CR>')
-
--- Terminal
-vim.keymap.set('n', '<leader><leader>', ':terminal<cr>')
