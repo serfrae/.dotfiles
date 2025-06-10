@@ -25,6 +25,7 @@ set argtextobj
 set highlightedyank
 set textobj-entire
 set ReplaceWithRegister
+set KJumpAction
 
 set quickscope
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -35,7 +36,6 @@ let g:EasyMotion_smartcase = 1
 
 map s <Plug>(easymotion-s)
 map S V<Plug>(easymotion-s)
-
 
 " Basic mappings
 map H ^
