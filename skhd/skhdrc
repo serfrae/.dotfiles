@@ -161,7 +161,10 @@ ctrl + alt - s : yabai -m space --layout stack
 
 alt - 1 : osascript -e 'tell application "Ghostty" to activate' -e 'tell application "Ghostty" to reopen' ; skhd -k 'escape'
 alt - 2 : osascript -e 'tell application "Intellij IDEA" to activate' -e 'tell application "Intellij IDEA" to reopen' ; skhd -k 'escape'
-alt - w : osascript -e 'tell application "Google Chrome" to activate' -e 'tell application "Google Chrome" to reopen' ; skhd -k 'escape'
+alt - 3 : osascript -e 'tell application "WebStorm" to activate' -e 'tell application "WebStorm" to reopen' ; skhd -k 'escape'
+alt - 4 : osascript -e 'tell application "RustRover" to activate' -e 'tell application "RustRover" to reopen' ; skhd -k 'escape'
+alt - 5 : osascript -e 'tell application "DataGrip" to activate' -e 'tell application "DataGrip" to reopen' ; skhd -k 'escape'
+alt - w : osascript -e 'tell application "Firefox Developer Edition" to activate' -e 'tell application "Firefox Developer Edition" to reopen' ; skhd -k 'escape'
 alt - s : osascript -e 'tell application "Slack" to activate' -e 'tell application "Slack" to reopen' ; skhd -k 'escape'
 
 # Applications
