@@ -166,6 +166,7 @@ alt - 4 : osascript -e 'tell application "RustRover" to activate' -e 'tell appli
 alt - 5 : osascript -e 'tell application "DataGrip" to activate' -e 'tell application "DataGrip" to reopen' ; skhd -k 'escape'
 alt - w : osascript -e 'tell application "Firefox Developer Edition" to activate' -e 'tell application "Firefox Developer Edition" to reopen' ; skhd -k 'escape'
 alt - s : osascript -e 'tell application "Slack" to activate' -e 'tell application "Slack" to reopen' ; skhd -k 'escape'
+alt - g : osascript -e 'tell application "Google Chrome" to activate' -e 'tell application "Google Chrome" to reopen' ; skhd -k 'escape'
 
 # Applications
 :: apps
