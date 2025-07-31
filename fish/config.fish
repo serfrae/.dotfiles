@@ -132,3 +132,5 @@ set --universal nvm_default_version latest
 
 # Added by LM Studio CLI (lms)
 set -gx PATH $PATH /Users/a7rs/.lmstudio/bin
+
+alias claude="/Users/a7rs/.claude/local/claude"

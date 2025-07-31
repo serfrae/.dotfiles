@@ -53,8 +53,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
 
         keymap("n", "gd", lsp.buf.definition, opt("Go to definition"))
-        keymap("n", "gi", function() lsp.buf.implementation({ border = "single" }) end, opt("Go to implementation"))
-        keymap("n", "gr", lsp.buf.references, opt("Show References"))
+        -- keymap("n", "gi", function() lsp.buf.implementation({ border = "single" }) end, opt("Go to implementation"))
+        -- keymap("n", "gr", lsp.buf.references.open_float, opt("Show References"))
         keymap("n", "<leader>e", vim.diagnostic.open_float, opt("Open diagnostic in float"))
         keymap("n", "<C-k>", lsp.buf.signature_help, opts)
         keymap("n", "<Leader>a", lsp.buf.code_action, opt("Code Action"))
