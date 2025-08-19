@@ -1,0 +1,58 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <branch_name>"
+    exit 1
+fi
+
+BRANCH_NAME="$1"
+
+REPO_PATHS=(
+    "/Users/a7rs/Projects/Dkoda/Backend"
+    "/Users/a7rs/Projects/Dkoda/Frontend"
+    "/Users/a7rs/Projects/Dkoda/Solana/coder"
+    "/Users/a7rs/Projects/Dkoda/Solana/ts-sdk"
+    "/Users/a7rs/Projects/Dkoda/Solana/program"
+)
+
+echo "Switching to branch: $BRANCH_NAME"
+echo "=================================="
+
+for repo_path in "${REPO_PATHS[@]}"; do
+    echo ""
+    echo "Processing: $repo_path"
+    
+    if [ ! -d "$repo_path" ]; then
+        echo "❌ Directory not found"
+        continue
+    fi
+    
+    cd "$repo_path"
+    
+    if ! git rev-parse --git-dir > /dev/null 2>&1; then
+        echo "❌ Not a git repository"
+        cd - > /dev/null
+        continue
+    fi
+    
+    # Stash changes if any
+    if ! git diff-index --quiet HEAD --; then
+        echo "📦 Stashing changes..."
+        git stash push -m "Auto-stash before switching to $BRANCH_NAME"
+    fi
+    
+    # Switch to branch
+    if git show-ref --verify --quiet refs/heads/"$BRANCH_NAME"; then
+        git checkout "$BRANCH_NAME"
+    elif git show-ref --verify --quiet refs/remotes/origin/"$BRANCH_NAME"; then
+        git checkout -b "$BRANCH_NAME" origin/"$BRANCH_NAME"
+    else
+        git checkout -b "$BRANCH_NAME"
+    fi
+    
+    echo "✅ Done"
+    cd - > /dev/null
+done
+
+echo ""
+echo "Finished switching all repositories to: $BRANCH_NAME"
