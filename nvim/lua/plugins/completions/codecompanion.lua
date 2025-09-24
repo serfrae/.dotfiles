@@ -8,20 +8,15 @@ return {
         },
         opts = {
             adapters = {
-                anthropic = function()
-                    return require("codecompanion.adapters").extend("anthropic", {
-                        env = {
-                            api_key = os.getenv("ANTHROPIC_API_KEY")
-                        }
-                    })
-                end,
-                ollama = function()
-                    return require("codecompanion.adapters").extend("openai_compatible", {
-                        env = {
-                            url = "http://127.0.0.1:1234",
-                        }
-                    })
-                end
+                http = {
+                    anthropic = function()
+                        return require("codecompanion.adapters").extend("anthropic", {
+                            env = {
+                                api_key = os.getenv("ANTHROPIC_API_KEY")
+                            }
+                        })
+                    end,
+                }
             },
             strategies = {
                 chat = {
