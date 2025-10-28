@@ -1,5 +1,11 @@
 #!/bin/sh
 
+find "$(npm root -g)/.." -name ".DS_Store" -delete 2>/dev/null || true
+npm update -g
+uv tool upgrade --all
+go install golang.org/x/tools/gopls@latest
 brew upgrade
 rustup update
 agave-install update
+avm update
+foundryup

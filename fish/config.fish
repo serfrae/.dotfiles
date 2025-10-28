@@ -134,3 +134,5 @@ set --universal nvm_default_version latest
 set -gx PATH $PATH /Users/a7rs/.lmstudio/bin
 
 alias claude="/Users/a7rs/.claude/local/claude"
+
+fish_add_path -a "/Users/andrewfraser/.foundry/bin"
