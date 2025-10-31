@@ -36,7 +36,7 @@ setenv EDITOR nvim
 setenv BROWSER firefox-developer-edition
 setenv RUST_BACKTRACE 1
 
-set NOTES ~/Documents/Notes/
+set NOTES ~/Notes/
 set DOTFILES ~/.dotfiles
 set XDG_CONFIG_HOME $HOME/.config
 set XDG_DATA_HOME $HOME/.local/share
