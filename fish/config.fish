@@ -127,12 +127,11 @@ end
 set --export BUN_INSTALL "$XDG_DATA_HOME/bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 
-# nvm
-set --universal nvm_default_version latest 
-
 # Added by LM Studio CLI (lms)
-set -gx PATH $PATH /Users/a7rs/.lmstudio/bin
+#set -gx PATH $PATH /Users/a7rs/.lmstudio/bin
 
-alias claude="/Users/a7rs/.claude/local/claude"
-
+# Foundry
 fish_add_path -a "/Users/andrewfraser/.foundry/bin"
+
+# Fast Node Manager
+fnm env --use-on-cd | source

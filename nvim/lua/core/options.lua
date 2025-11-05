@@ -40,3 +40,6 @@ vim.opt.cursorline = true
 vim.opt.tags = './tags;,tags'
 vim.opt.mouse = 'a'
 vim.opt.mousemodel = 'extend'
+vim.opt.fillchars:append({
+    diff = ' ',
+})

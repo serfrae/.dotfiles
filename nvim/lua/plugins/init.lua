@@ -24,7 +24,7 @@ require("lazy").setup({
     -- lsp
     -- { import = "plugins.lsp.rustaceanvim" },
     { import = "plugins.lsp.treesitter" },
-    { import = "plugins.lsp.typescript-tools" },
+    -- { import = "plugins.lsp.typescript-tools" },
 
     -- completions/ai
     { import = "plugins.completions.blink" },
@@ -42,6 +42,7 @@ require("lazy").setup({
     -- git
     { import = "plugins.git.gitsigns" },
     { import = "plugins.git.neogit" },
+    { import = "plugins.git.diffview" },
 
     -- editor
     { import = "plugins.editor.conform" },
