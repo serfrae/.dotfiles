@@ -36,7 +36,7 @@ setenv EDITOR nvim
 setenv BROWSER firefox-developer-edition
 setenv RUST_BACKTRACE 1
 
-set NOTES ~/Documents/Notes/
+set NOTES ~/Notes/
 set DOTFILES ~/.dotfiles
 set XDG_CONFIG_HOME $HOME/.config
 set XDG_DATA_HOME $HOME/.local/share
@@ -127,12 +127,11 @@ end
 set --export BUN_INSTALL "$XDG_DATA_HOME/bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 
-# nvm
-set --universal nvm_default_version latest 
-
 # Added by LM Studio CLI (lms)
-set -gx PATH $PATH /Users/a7rs/.lmstudio/bin
+#set -gx PATH $PATH /Users/a7rs/.lmstudio/bin
 
-alias claude="/Users/a7rs/.claude/local/claude"
-
+# Foundry
 fish_add_path -a "/Users/andrewfraser/.foundry/bin"
+
+# Fast Node Manager
+fnm env --use-on-cd | source

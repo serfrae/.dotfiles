@@ -4,6 +4,8 @@ return {
         cmd = "Copilot",
         event = 'InsertEnter',
         config = function()
+            vim.g.copilot_node_command = vim.fn.expand('~/.local/share/fnm/aliases/default/bin/node')
+
             require('copilot').setup({
                 suggestion = {
                     enabled = true,
