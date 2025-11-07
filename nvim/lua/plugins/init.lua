@@ -46,9 +46,11 @@ require("lazy").setup({
 
     -- editor
     { import = "plugins.editor.conform" },
+    { import = "plugins.editor.fff" },
     { import = "plugins.editor.flash" },
     { import = "plugins.editor.fzf" },
     { import = "plugins.editor.grug" },
+    { import = "plugins.editor.markview" },
     { import = "plugins.editor.snacks" },
     { import = "plugins.editor.surround" },
     { import = "plugins.editor.trouble" },
