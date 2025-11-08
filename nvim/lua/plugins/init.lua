@@ -14,10 +14,12 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     -- ui
     { import = "plugins.ui.catppuccin" },
-    { import = "plugins.ui.indent-blankline" },
+    -- { import = "plugins.ui.indent-blankline" },
+    { import = "plugins.ui.blink-indent" },
+    { import = "plugins.ui.blink-pairs" },
     { import = "plugins.ui.lualine" },
     { import = "plugins.ui.noice" },
-    { import = "plugins.ui.rainbow-delimiters" },
+    -- { import = "plugins.ui.rainbow-delimiters" },
     --{ import = "plugins.ui.tokyonight" },
     --{ import = "plugins.ui.smear-cursor" },
 
