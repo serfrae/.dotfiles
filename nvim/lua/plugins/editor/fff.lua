@@ -15,7 +15,7 @@ return {
     },
     -- No need to lazy-load with lazy.nvim.
     -- This plugin initializes itself lazily.
-    lazy = false,
+    lazy = true,
     keys = {
         {
             "<leader>o",
