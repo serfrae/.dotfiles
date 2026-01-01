@@ -24,14 +24,13 @@ abbr -a vim nvim
 abbr -a ve 'source .venv/bin/activate.fish > /dev/null || source venv/bin/activate.fish > /dev/null'
 abbr -a vd 'deactivate'
 abbr -a fzp 'fzf --preview "bat --color=always --style=header,grid --line-range :500 {}"'
-abbr -a uv 'uv pip'
 abbr -a pip 'uv pip'
 abbr -a spl-t2 'spl-token --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb'
 abbr -a py "python"
 abbr -a lg "lazygit"
 abbr -a yi "yazi"
 
-setenv TERM ghostty
+setenv TERM xterm-256color
 setenv EDITOR nvim
 setenv BROWSER firefox-developer-edition
 setenv RUST_BACKTRACE 1

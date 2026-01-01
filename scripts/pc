@@ -1,7 +1,5 @@
 #!/bin/sh
 
-poetry run isort --check-only .
-poetry run pyright -p pyrightconfig.json
-poetry run autopep8 --diff --exit-code -r --exclude env,.env,venv,.venv,.git,"services/*/node_modules","services/*/.serverless" .
-poetry run flake8
-
+uv run ruff check .
+uv run pyright -p pyrightconfig.json
+uv run run ruff format --check .
