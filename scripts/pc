@@ -1,5 +1,5 @@
 #!/bin/sh
 
-uv run ruff check .
+uv run ruff check --fix .
 uv run pyright -p pyrightconfig.json
-uv run run ruff format --check .
+uv run ruff format .

@@ -8,4 +8,5 @@ brew upgrade
 rustup update
 agave-install update
 avm update
+foundryup --update
 foundryup
