@@ -1,3 +1,4 @@
+vim.g.loaded_matchparen = 1
 vim.opt.background = 'dark'
 vim.o.termguicolors = true
 vim.opt.foldenable = false

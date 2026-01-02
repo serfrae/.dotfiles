@@ -2,9 +2,8 @@
 let mapleader=" "
 
 " Basic Settings
-set clipboard+=unnamed
+set clipboard=
 set scrolloff=10
-set relativenumber
 set number
 set ignorecase
 set smartcase
@@ -17,7 +16,6 @@ set history=1000
 set wrapscan
 
 " Enable IdeaVim plugins
-set nerdtree
 set surround
 set multiple-cursors
 set commentary
@@ -78,6 +76,7 @@ nnoremap <leader>o :action GotoFile<CR>
 nnoremap <leader>b :action RecentFiles<CR>
 nnoremap <leader>f :action ReformatCode<CR>
 nnoremap <leader>e :action ShowErrorDescription<CR>
+nnoremap <leader>g :action FindInPath<CR>
 nnoremap gs :action ViewSource<CR>
 nnoremap gr :action ShowUsages<CR>
 nnoremap gd :action GotoDeclaration<CR>
@@ -93,6 +92,10 @@ nnoremap <leader>d :action Problems<CR>
 nnoremap [[ :action MethodUp
 nnoremap ]] :action MethodDown
 nnoremap <C-space>r :group RunMenu<CR>
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nnoremap <leader>p "+p
+vnoremap <leader>p "+p
 
 " Search everywhere
 nnoremap <leader>st :action GotoSymbol<CR>
