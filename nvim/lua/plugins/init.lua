@@ -21,16 +21,12 @@ require("lazy").setup({
     { import = "plugins.ui.noice" },
     -- { import = "plugins.ui.rainbow-delimiters" },
     --{ import = "plugins.ui.tokyonight" },
-    --{ import = "plugins.ui.smear-cursor" },
 
     -- lsp
-    -- { import = "plugins.lsp.rustaceanvim" },
     { import = "plugins.lsp.treesitter" },
-    -- { import = "plugins.lsp.typescript-tools" },
 
     -- completions/ai
     -- { import = "plugins.completions.blink" },
-    -- { import = "plugins.completions.codecompanion" },
     { import = "plugins.completions.copilot" },
     -- { import = "plugins.completions.luasnip" },
 
@@ -38,22 +34,18 @@ require("lazy").setup({
     { import = "plugins.explorers.neotree" },
     { import = "plugins.explorers.oil" },
     -- { import = "plugins.explorers.yazi" },
-    --{ import = "plugins.explorers.nvimtree" },
-    --{ import = "plugins.explorers.mini" },
 
     -- git
     { import = "plugins.git.gitsigns" },
-    -- { import = "plugins.git.neogit" },
     -- { import = "plugins.git.diffview" },
 
     -- editor
     { import = "plugins.editor.conform" },
-    -- { import = "plugins.editor.fff" },
+    { import = "plugins.editor.fff" },
     { import = "plugins.editor.flash" },
     { import = "plugins.editor.fzf" },
     -- { import = "plugins.editor.grug" },
     -- { import = "plugins.editor.markview" },
-    -- { import = "plugins.editor.snacks" },
     { import = "plugins.editor.surround" },
     { import = "plugins.editor.trouble" },
 
