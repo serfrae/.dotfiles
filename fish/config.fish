@@ -24,14 +24,13 @@ abbr -a vim nvim
 abbr -a ve 'source .venv/bin/activate.fish > /dev/null || source venv/bin/activate.fish > /dev/null'
 abbr -a vd 'deactivate'
 abbr -a fzp 'fzf --preview "bat --color=always --style=header,grid --line-range :500 {}"'
-abbr -a uv 'uv pip'
 abbr -a pip 'uv pip'
 abbr -a spl-t2 'spl-token --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb'
 abbr -a py "python"
 abbr -a lg "lazygit"
 abbr -a yi "yazi"
 
-setenv TERM ghostty
+setenv TERM xterm-256color
 setenv EDITOR nvim
 setenv BROWSER firefox-developer-edition
 setenv RUST_BACKTRACE 1
@@ -48,10 +47,10 @@ set -x CARGO_HOME $HOME/.cargo
 set -x RUST_LOG info
 set -x GOPATH $XDG_DATA_HOME/go
 set -x GOMODCACHE $XDG_CACHE_HOME/go/pkg/mod
-set -x DOCKER_CONFIG $XDG_CONFIG_HOME/docker
 set -x GNUPGHOME $XDG_DATA_HOME/gnupg
 set -x NODE_REPL_HISTORY $XDG_DATA_HOME/node_repl_history
 set -x PYTHON_HISTORY $XDG_STATE_HOME/python/history
+set -x DOCKER_CONFIG $HOME/.docker
 set -gx PNPM_HOME $XDG_DATA_HOME/pnpm
 set -x NVM_DIR $HOME/.nvm
 set -x AVM_HOME $XDG_DATA_HOME/avm

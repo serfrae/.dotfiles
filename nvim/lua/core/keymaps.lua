@@ -7,7 +7,7 @@ vim.keymap.set('n', '<S-z><S-x>', ':q!<cr>')
 
 -- fzf
 vim.keymap.set('n', '<leader><leader>', '<cmd>FzfLua resume<cr>')
-vim.keymap.set('n', '<leader>o', '<cmd>FzfLua files<cr>')
+--vim.keymap.set('n', '<leader>o', '<cmd>FzfLua files<cr>')
 vim.keymap.set('n', '<leader>`', '<cmd>FzfLua<cr>')
 vim.keymap.set('n', '<leader>g', '<cmd>FzfLua live_grep<cr>')
 vim.keymap.set('n', 'gr', '<cmd>FzfLua lsp_references<CR>', { nowait = true })
