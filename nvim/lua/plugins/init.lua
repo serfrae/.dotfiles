@@ -14,21 +14,20 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     -- ui
     { import = "plugins.ui.catppuccin" },
-    -- { import = "plugins.ui.indent-blankline" },
     { import = "plugins.ui.blink-indent" },
     { import = "plugins.ui.blink-pairs" },
     { import = "plugins.ui.lualine" },
     { import = "plugins.ui.noice" },
-    -- { import = "plugins.ui.rainbow-delimiters" },
+    { import = "plugins.ui.rainbow-delimiters" },
     --{ import = "plugins.ui.tokyonight" },
 
     -- lsp
     { import = "plugins.lsp.treesitter" },
 
     -- completions/ai
-    -- { import = "plugins.completions.blink" },
+    { import = "plugins.completions.blink" },
     { import = "plugins.completions.copilot" },
-    -- { import = "plugins.completions.luasnip" },
+    { import = "plugins.completions.luasnip" },
 
     -- explorers
     { import = "plugins.explorers.neotree" },
@@ -45,7 +44,6 @@ require("lazy").setup({
     { import = "plugins.editor.flash" },
     { import = "plugins.editor.fzf" },
     -- { import = "plugins.editor.grug" },
-    -- { import = "plugins.editor.markview" },
     { import = "plugins.editor.surround" },
     { import = "plugins.editor.trouble" },
 

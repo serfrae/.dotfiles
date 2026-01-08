@@ -37,8 +37,7 @@ return {
                 },
                 -- https://cmp.saghen.dev/configuration/completion.html#menu
                 menu = {
-                    -- DISABLED: Don't use autocomplete in Ex-mode.
-                    -- auto_show = function(ctx) return ctx.mode ~= 'cmdline' end,
+                    auto_show = function(ctx) return ctx.mode ~= 'cmdline' end,
                     border = "rounded",
                     draw = {
                         treesitter = { 'lsp' }
