@@ -47,10 +47,10 @@ set -x CARGO_HOME $HOME/.cargo
 set -x RUST_LOG info
 set -x GOPATH $XDG_DATA_HOME/go
 set -x GOMODCACHE $XDG_CACHE_HOME/go/pkg/mod
-set -x DOCKER_CONFIG $XDG_CONFIG_HOME/docker
 set -x GNUPGHOME $XDG_DATA_HOME/gnupg
 set -x NODE_REPL_HISTORY $XDG_DATA_HOME/node_repl_history
 set -x PYTHON_HISTORY $XDG_STATE_HOME/python/history
+set -x DOCKER_CONFIG $HOME/.docker
 set -gx PNPM_HOME $XDG_DATA_HOME/pnpm
 set -x NVM_DIR $HOME/.nvm
 set -x AVM_HOME $XDG_DATA_HOME/avm
