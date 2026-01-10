@@ -113,7 +113,6 @@ function fish_user_key_bindings
     fish_vi_key_bindings --no-erase insert
 end
 
-pixi completion --shell fish | source
 zoxide init fish --cmd j | source
 
 # pnpm
@@ -134,3 +133,13 @@ fish_add_path -a "/Users/andrewfraser/.foundry/bin"
 
 # Fast Node Manager
 fnm env --use-on-cd | source
+
+# Yazi
+function y
+	set tmp (mktemp -t "yazi-cwd.XXXXXX")
+	command yazi $argv --cwd-file="$tmp"
+	if read -z cwd < "$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+		builtin cd -- "$cwd"
+	end
+	rm -f -- "$tmp"
+end

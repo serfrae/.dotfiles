@@ -9,9 +9,8 @@ alt - 4 : osascript -e 'tell application "GoLand" to activate' -e 'tell applicat
 alt - 5 : osascript -e 'tell application "WebStorm" to activate' -e 'tell application "WebStorm" to reopen' ; skhd -k 'escape'
 alt - 6 : osascript -e 'tell application "DataGrip" to activate' -e 'tell application "DataGrip" to reopen' ; skhd -k 'escape'
 alt - g : osascript -e 'tell application "Google Chrome" to activate' -e 'tell application "Google Chrome" to reopen' ; skhd -k 'escape'
-alt - n : osascript -e 'tell application "Notion" to activate' -e 'tell application "Notion" to reopen' ; skhd -k 'escape'
+alt - o : osascript -e 'tell application "Notion" to activate' -e 'tell application "Notion" to reopen' ; skhd -k 'escape'
 alt - s : osascript -e 'tell application "Slack" to activate' -e 'tell application "Slack" to reopen' ; skhd -k 'escape'
-alt - v : osascript -e 'tell application "Visual Studio Code" to activate' -e 'tell application "Visual Studio Code" to reopen' ; skhd -k 'escape'
 
 # Applications
 :: apps

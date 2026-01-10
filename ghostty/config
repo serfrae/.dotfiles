@@ -1,5 +1,6 @@
 #theme = tokyonight-storm
-theme = Catppuccin Mocha
+#theme = Catppuccin Mocha
+theme = islands-dark
 cursor-click-to-move = true
 mouse-hide-while-typing = true
 
@@ -8,8 +9,8 @@ copy-on-select = clipboard
 cursor-style = block
 
 font-size = 14
-font-family = 0xproto Nerd Font
-#font-family = JetBrainsMono Nerd Font Mono
+#font-family = 0xproto Nerd Font
+font-family = JetBrainsMono Nerd Font Mono
 font-feature = calt
 font-feature = liga
 font-feature = dlig
