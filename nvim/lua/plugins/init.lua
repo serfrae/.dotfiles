@@ -13,7 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     -- ui
-    -- { import = "plugins.ui.catppuccin" },
+    { import = "plugins.ui.catppuccin" },
     { import = "plugins.ui.blink-indent" },
     { import = "plugins.ui.blink-pairs" },
     { import = "plugins.ui.lualine" },

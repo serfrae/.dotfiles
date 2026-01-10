@@ -4,7 +4,7 @@ vim.lsp.enable({
     "gopls",
     "basedpyright",
     "ts_ls",
-    "solidity_ls_nomicfoundation",
+    "solidity_ls_nomicfoundation"
 })
 
 vim.diagnostic.config({
