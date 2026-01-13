@@ -1,6 +1,4 @@
-#theme = tokyonight-storm
-#theme = Catppuccin Mocha
-theme = islands-dark
+theme = Catppuccin Macchiato
 cursor-click-to-move = true
 mouse-hide-while-typing = true
 
@@ -10,7 +8,7 @@ cursor-style = block
 
 font-size = 14
 #font-family = 0xproto Nerd Font
-font-family = JetBrainsMono Nerd Font Mono
+#font-family = JetBrainsMono Nerd Font Mono
 font-feature = calt
 font-feature = liga
 font-feature = dlig
@@ -24,7 +22,7 @@ window-decoration = true
 adjust-cursor-thickness = 3
 
 adjust-cell-height = 0%
-adjust-cell-width = -10%
+adjust-cell-width = -5%
 adjust-underline-position = 3
 bold-is-bright = true
 link-url = true

@@ -143,3 +143,7 @@ function y
 	end
 	rm -f -- "$tmp"
 end
+
+# Fzf
+fzf --fish | source
+
