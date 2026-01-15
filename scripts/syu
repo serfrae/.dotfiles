@@ -2,6 +2,7 @@
 
 #find "$(npm root -g)/.." -name ".DS_Store" -delete 2>/dev/null || true
 bun upgrade && bun update -g
+pnpm self-update
 uv tool upgrade --all
 go install golang.org/x/tools/gopls@latest
 brew upgrade
