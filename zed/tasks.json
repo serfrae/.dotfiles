@@ -1,0 +1,32 @@
+[
+    {
+        "label": "file_finder",
+        "command": "zed \"$(tv files)\"",
+        "hide": "always",
+        "allow_concurrent_runs": true,
+        "use_new_terminal": true,
+        "shell": {
+            "program": "sh"
+        }
+    },
+    {
+        "label": "fulltext_search",
+        "command": "zed \"$(tv text)\"",
+        "hide": "always",
+        "allow_concurrent_runs": true,
+        "use_new_terminal": true,
+        "shell": {
+            "program": "sh"
+        }
+    },
+    {
+        "label": "tv:find_in_files",
+        "command": "zed \"$(tv --input '${ZED_SELECTED_TEXT:-}' --exact text)\"",
+        "hide": "always",
+        "allow_concurrent_runs": true,
+        "use_new_terminal": true,
+        "shell": {
+            "program": "sh"
+        }
+    }
+]
