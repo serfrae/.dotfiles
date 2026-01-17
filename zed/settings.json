@@ -11,8 +11,14 @@
   "features": {
     "edit_prediction_provider": "copilot",
   },
+  "go_to_definition_fallback": "find_all_references",
   "outline_panel": {
     "dock": "right",
+  },
+  "title_bar": {
+    "show_branch_icon": true,
+    "show_sign_in": false,
+    "show_user_picture": false,
   },
   "toolbar": {
     "breadcrumbs": false,
@@ -20,6 +26,9 @@
   },
   "tab_bar": {
     "show_nav_history_buttons": false,
+  },
+  "preview_tabs": {
+    "enabled": true,
   },
   "git_panel": {
     "dock": "left",
@@ -55,6 +64,7 @@
   "terminal": {
     "font_family": "JetBrains Mono",
     "font_size": 12,
+    "option_as_meta": true,
   },
   "minimap": {
     "show": "always",

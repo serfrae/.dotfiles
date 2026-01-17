@@ -7,15 +7,32 @@ return {
             "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
             "MunifTanjim/nui.nvim",
         },
-        config = function()
-            -- If you want icons for diagnostic errors, you'll need to define them somewhere:
+        keys = {
+            { "<leader>x", "<Cmd>Neotree toggle<CR>", desc = "Toggle Neo-tree" },
+        },
+        init = function()
+            -- Define diagnostic signs before plugin loads
             vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
             vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
             vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
             vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
+        end,
+        opts = function()
+            local function open_grug_far(prefills)
+                local grug_far = require("grug-far")
 
-            require("neo-tree").setup({
-                close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
+                if not grug_far.has_instance("explorer") then
+                    grug_far.open({ instanceName = "explorer" })
+                else
+                    grug_far.get_instance("explorer"):open()
+                end
+                -- doing it separately because multiple paths doesn't work when passed with open
+                -- updating the prefills without clearing the search and other fields
+                grug_far.get_instance("explorer"):update_input_values(prefills, false)
+            end
+
+            return {
+                close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
                 popup_border_style = "rounded",
                 enable_git_status = true,
                 enable_diagnostics = true,
@@ -120,7 +137,28 @@ return {
                 -- A list of functions, each representing a global custom command
                 -- that will be available in all sources (if not overridden in `opts[source_name].commands`)
                 -- see `:h neo-tree-custom-commands-global`
-                commands = {},
+                commands = {
+                    grug_far_replace = function(state)
+                        local node = state.tree:get_node()
+                        local prefills = {
+                            paths = node.type == "directory"
+                                    and vim.fn.fnameescape(vim.fn.fnamemodify(node:get_id(), ":p"))
+                                or vim.fn.fnameescape(vim.fn.fnamemodify(node:get_id(), ":h")),
+                        }
+                        open_grug_far(prefills)
+                    end,
+                    grug_far_replace_visual = function(state, selected_nodes)
+                        local paths = {}
+                        for _, node in pairs(selected_nodes) do
+                            local path = node.type == "directory"
+                                    and vim.fn.fnameescape(vim.fn.fnamemodify(node:get_id(), ":p"))
+                                or vim.fn.fnameescape(vim.fn.fnamemodify(node:get_id(), ":h"))
+                            table.insert(paths, path)
+                        end
+                        local prefills = { paths = table.concat(paths, "\n") }
+                        open_grug_far(prefills)
+                    end,
+                },
                 window = {
                     position = "left",
                     width = 40,
@@ -150,7 +188,8 @@ return {
                         --["P"] = "toggle_preview", -- enter preview mode, which shows the current node without focusing
                         ["C"] = "close_node",
                         -- ['C'] = 'close_all_subnodes',
-                        ["z"] = "close_all_nodes",
+                        ["z"] = "grug_far_replace",
+                        ["Z"] = "close_all_nodes",
                         --["Z"] = "expand_all_nodes",
                         ["a"] = {
                             "add",
@@ -326,9 +365,7 @@ return {
                         },
                     },
                 },
-            })
-
-            vim.keymap.set("n", "<leader>x", "<Cmd>Neotree toggle<CR>")
+            }
         end,
     }
 }

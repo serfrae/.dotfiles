@@ -12,6 +12,12 @@ vim.keymap.set('n', '<leader>`', '<cmd>FzfLua<cr>')
 vim.keymap.set('n', '<leader>g', '<cmd>FzfLua live_grep<cr>')
 vim.keymap.set('n', 'gr', '<cmd>FzfLua lsp_references<CR>', { nowait = true })
 vim.keymap.set('n', 'gi', '<cmd>FzfLua lsp_implementations<CR>')
+vim.keymap.set('n', '<leader>j', '<cmd>FzfLua jumps<cr>')
+vim.keymap.set('n', '<leader>m', '<cmd>FzfLua marks<cr>')
+
+--grug
+vim.keymap.set('n', ',g', ':GrugFar<cr>')
+vim.keymap.set('n', ',G', ':GrugFarWithin<cr>')
 
 -- always center search results
 vim.keymap.set('n', 'n', 'nzz', { silent = true })

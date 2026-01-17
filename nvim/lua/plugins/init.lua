@@ -19,7 +19,6 @@ require("lazy").setup({
     { import = "plugins.ui.lualine" },
     { import = "plugins.ui.noice" },
     { import = "plugins.ui.rainbow-delimiters" },
-    --{ import = "plugins.ui.tokyonight" },
 
     -- lsp
     { import = "plugins.lsp.treesitter" },
@@ -36,14 +35,14 @@ require("lazy").setup({
 
     -- git
     { import = "plugins.git.gitsigns" },
-    -- { import = "plugins.git.diffview" },
+    { import = "plugins.git.diffview" },
 
     -- editor
     { import = "plugins.editor.conform" },
     { import = "plugins.editor.fff" },
     { import = "plugins.editor.flash" },
     { import = "plugins.editor.fzf" },
-    -- { import = "plugins.editor.grug" },
+    { import = "plugins.editor.grug" },
     { import = "plugins.editor.surround" },
     { import = "plugins.editor.trouble" },
 

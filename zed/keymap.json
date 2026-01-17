@@ -2,6 +2,7 @@
   {
     "bindings": {
       "cmd-enter": "terminal_panel::ToggleFocus",
+      "cmd-shift-g": [ "task::Spawn", { "task_name": "lazygit", "reveal_target": "center" } ]
     },
   },
   {
