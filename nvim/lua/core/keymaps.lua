@@ -101,3 +101,32 @@ vim.keymap.set('n', ',ds', ':DapStepOver<CR>')
 vim.keymap.set('n', ',dt', ':DapTerminate<CR>')
 vim.keymap.set('n', ',dc', ':DapContinue<CR>')
 vim.keymap.set('n', ',db', ':DapToggleBreakpoint<CR>')
+
+-- global marks
+local function merge_tables(t1, t2)
+    local result = {}
+    for key, value in pairs(t1) do
+        result[key] = value
+    end
+    for key, value in pairs(t2) do
+        result[key] = value
+    end
+    return result
+end
+
+local keymap_opts = { noremap = true, silent = true }
+
+local keymap_set = function(mode, lhs, rhs, desc)
+    vim.keymap.set(mode, lhs, rhs, merge_tables(keymap_opts, { desc = desc }))
+end
+
+local prefixes = "m'"
+local letters = "abcdefghijklmnopqrstuvwxyz"
+for i = 1, #prefixes do
+    local prefix = prefixes:sub(i, i)
+    for j = 1, #letters do
+        local lower_letter = letters:sub(j, j)
+        local upper_letter = string.upper(lower_letter)
+        keymap_set({ "n", "v" }, prefix .. lower_letter, prefix .. upper_letter, "Mark " .. upper_letter)
+    end
+end
