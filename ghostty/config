@@ -8,7 +8,7 @@ cursor-style = block
 
 font-size = 14
 #font-family = 0xproto Nerd Font
-#font-family = JetBrainsMono Nerd Font Mono
+font-family = JetBrains Mono
 font-feature = calt
 font-feature = liga
 font-feature = dlig
