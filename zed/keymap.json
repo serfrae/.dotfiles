@@ -1,31 +1,37 @@
 [
-    {
-        "context": "Editor && vim_mode == normal",
-        "bindings": {
-          "shift-h": "vim::FirstNonWhitespace",
-          "shift-l": "vim::EndOfLine",
-          "space o": [
-            "task::Spawn",
-            { "task_name": "file_finder", "reveal_target": "center" },
-          ],
-          "space g": [
-            "task::Spawn",
-            { "task_name": "find_in_files", "reveal_target": "center" },
-          ],
-        },
+  {
+    "bindings": {
+      "cmd-enter": "terminal_panel::ToggleFocus",
     },
-    {
-      "context": "vim_operator == a || vim_operator == i || vim_operator == cs",
-      "bindings": {
-        "Q": "vim::MiniQuotes",
-        "B": "vim::MiniBrackets"
-      }
+  },
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual)",
+    "bindings": {
+      "space e": "editor::Hover",
+      "space d": "diagnostics::Deploy",
     },
-    {
-      "context": "vim_mode == normal || vim_mode == visual",
-      "bindings": {
-        "s": "vim::PushSneak",
-        "shift-s": "vim::PushSneakBackward"
-      }
-    }
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "shift-h": "vim::FirstNonWhitespace",
+      "shift-l": "vim::EndOfLine",
+      "space o": ["task::Spawn", { "task_name": "file_finder", "reveal_target": "center" }],
+      "space g": ["task::Spawn", { "task_name": "find_in_files", "reveal_target": "center" }],
+    },
+  },
+  {
+    "context": "vim_operator == a || vim_operator == i || vim_operator == cs",
+    "bindings": {
+      "Q": "vim::MiniQuotes",
+      "B": "vim::MiniBrackets",
+    },
+  },
+  {
+    "context": "vim_mode == normal || vim_mode == visual",
+    "bindings": {
+      "s": "vim::PushSneak",
+      "shift-s": "vim::PushSneakBackward",
+    },
+  },
 ]
