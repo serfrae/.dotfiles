@@ -28,6 +28,7 @@ abbr -a pip 'uv pip'
 abbr -a spl-t2 'spl-token --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb'
 abbr -a py "python"
 abbr -a lg "lazygit"
+abbr -a ld "lazydocker"
 abbr -a yi "yazi"
 
 setenv TERM xterm-256color
