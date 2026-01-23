@@ -6,6 +6,24 @@
     },
   },
   {
+    "context": "Editor && vim_mode == normal && vim_operator == none && !VimWaiting",
+    "bindings": {
+      "space m h": ["workspace::SendKeystrokes", "m shift-h"],
+      "space m j": ["workspace::SendKeystrokes", "m shift-j"],
+      "space m k": ["workspace::SendKeystrokes", "m shift-k"],
+      "space m l": ["workspace::SendKeystrokes", "m shift-l"]
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "ctrl-h": ["workspace::SendKeystrokes", "` shift-h"],
+      "ctrl-j": ["workspace::SendKeystrokes", "` shift-j"],
+      "ctrl-k": ["workspace::SendKeystrokes", "` shift-k"],
+      "ctrl-l": ["workspace::SendKeystrokes", "` shift-l"]
+    }
+  },
+  {
     "context": "Editor && (vim_mode == normal || vim_mode == visual)",
     "bindings": {
       "space e": "editor::Hover",
