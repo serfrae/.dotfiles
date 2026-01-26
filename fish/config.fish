@@ -30,6 +30,7 @@ abbr -a py "python"
 abbr -a lg "lazygit"
 abbr -a ld "lazydocker"
 abbr -a yi "yazi"
+abbr -a t "tv"
 
 setenv TERM xterm-256color
 setenv EDITOR nvim
@@ -59,6 +60,7 @@ set -x AGAVE $XDG_DATA_HOME/agave/target/debug
 set -x SOLANA_SDK_PATH $XDG_DATA_HOME/solana/install/active_release/bin/solana/sdk
 set -x HOMEBREW /opt/homebrew
 set -x HOMEBREW_NO_ENV_HINTS true
+set -x BAT_THEME "Catppuccin Macchiato"
 
 set PATH $PATH $RUSTUP_HOME $CARGO_HOME/bin $HOMEBREW/bin $AGAVE $GOPATH/bin $AVM_HOME $AVM_HOME/bin ~/bin ~/.local/bin ~/.local/share/solana/install/active_release/bin ~/.pixi/bin
 
@@ -111,7 +113,7 @@ end
 
 function fish_user_key_bindings
     fish_default_key_bindings -M insert
-    fish_vi_key_bindings --no-erase insert
+    # fish_vi_key_bindings --no-erase insert
 end
 
 zoxide init fish --cmd j | source

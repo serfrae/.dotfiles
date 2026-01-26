@@ -38,6 +38,7 @@ vim.api.nvim_create_autocmd('Filetype', { pattern = 'rust', command = 'set color
 vim.opt.listchars = 'tab:▏-,nbsp:¬,extends:»,precedes:«,trail:•'
 vim.opt.list = true
 vim.opt.cursorline = true
+vim.opt.showmatch = true
 vim.opt.tags = './tags;,tags'
 vim.opt.mouse = 'a'
 vim.opt.mousemodel = 'extend'

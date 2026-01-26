@@ -8,7 +8,7 @@ return {
                 ensure_installed = "all",
                 ignore_install = { "ipkg" },
                 highlight = {
-                    enable = true,
+                    enable = false, -- disable for performance reasons
                 },
                 indent = {
                     enable = true,

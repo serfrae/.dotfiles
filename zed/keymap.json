@@ -2,7 +2,8 @@
   {
     "bindings": {
       "cmd-enter": "terminal_panel::ToggleFocus",
-      "cmd-shift-g": [ "task::Spawn", { "task_name": "lazygit", "reveal_target": "center" } ]
+      "cmd-shift-g": ["task::Spawn", { "task_name": "lazygit", "reveal_target": "center" }],
+      "cmd-shift-d": ["task::Spawn", { "task_name": "lazydocker", "reveal_target": "center" }],
     },
   },
   {
@@ -11,8 +12,8 @@
       "space m h": ["workspace::SendKeystrokes", "m shift-h"],
       "space m j": ["workspace::SendKeystrokes", "m shift-j"],
       "space m k": ["workspace::SendKeystrokes", "m shift-k"],
-      "space m l": ["workspace::SendKeystrokes", "m shift-l"]
-    }
+      "space m l": ["workspace::SendKeystrokes", "m shift-l"],
+    },
   },
   {
     "context": "Editor && vim_mode == normal",
@@ -20,8 +21,8 @@
       "ctrl-h": ["workspace::SendKeystrokes", "` shift-h"],
       "ctrl-j": ["workspace::SendKeystrokes", "` shift-j"],
       "ctrl-k": ["workspace::SendKeystrokes", "` shift-k"],
-      "ctrl-l": ["workspace::SendKeystrokes", "` shift-l"]
-    }
+      "ctrl-l": ["workspace::SendKeystrokes", "` shift-l"],
+    },
   },
   {
     "context": "Editor && (vim_mode == normal || vim_mode == visual)",
