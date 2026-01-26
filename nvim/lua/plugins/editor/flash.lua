@@ -16,6 +16,9 @@ return {
                         backdrop = false,
                     },
                 },
+                search = {
+                    enabled = true
+                }
             },
         },
         config = function(_, opts)

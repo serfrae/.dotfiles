@@ -1,16 +1,15 @@
 return {
     {
-        'echasnovski/mini.surround',
+        'nvim-mini/mini.surround',
         version = false,
         opts = {
             mappings = {
-                replace = 'cs',
-                add = 'ys',
-                delete = 'ds',
-                find = '',
-                find_left = '',
-                update_n_lines = '',
-                highlight = '',
+                add = 'ys',    -- Add surrounding in Normal and Visual modes
+                delete = 'ds', -- Delete surrounding
+                find = 'gsf',  -- Find surrounding (to the right)
+                find_left = 'gsF', -- Find surrounding (to the left)
+                highlight = 'gsh', -- Highlight surrounding
+                replace = 'cs', -- Replace surrounding
             },
         },
     }
