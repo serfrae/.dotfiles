@@ -23,7 +23,7 @@ return {
             --vim.api.nvim_set_hl(0, 'FlashCursor', { fg = '#ffffff', bg = '#ff0000', bold = true })
             --vim.api.nvim_set_hl(0, 'FlashMatches', { fg = '#000000', bg = '#ffff00', bold = true })
             --vim.api.nvim_set_hl(0, 'FlashCurrent', { fg = '#ffffff', bg = '#0000ff', bold = true })
-            vim.api.nvim_set_hl(0, 'FlashLabel', { link = 'lualine_a_insert', bold = true })
+            vim.api.nvim_set_hl(0, 'FlashLabel', { fg='#24273a', bg='#a6da95', bold = true })
             -- Change the color codes (#ff0000 and #ffffff) to your desired colors
         end,
         -- stylua: ignore
