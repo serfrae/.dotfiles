@@ -19,11 +19,11 @@ require("lazy").setup({
     -- { import = "plugins.ui.indent-blankline" },
     -- { import = "plugins.ui.lualine" },
     { import = "plugins.ui.mini-statusline" },
-    { import = "plugins.ui.noice" },
-    { import = "plugins.ui.rainbow-delimiters" },
+    -- { import = "plugins.ui.noice" },
+    -- { import = "plugins.ui.rainbow-delimiters" },
 
     -- lsp
-    { import = "plugins.lsp.treesitter" },
+    -- { import = "plugins.lsp.treesitter" },
 
     -- completions/ai
     { import = "plugins.completions.blink" },
@@ -41,12 +41,11 @@ require("lazy").setup({
 
     -- editor
     { import = "plugins.editor.conform" },
-    { import = "plugins.editor.fff" },
+    -- { import = "plugins.editor.fff" },
     { import = "plugins.editor.flash" },
     { import = "plugins.editor.fzf" },
     { import = "plugins.editor.grug" },
-    -- { import = "plugins.editor.surround" },
-    { import = "plugins.editor.mini-surround" },
+    { import = "plugins.editor.surround" },
     { import = "plugins.editor.trouble" },
     -- { import = "plugins.editor.tv" },
 

@@ -1,19 +1,19 @@
 vim.keymap.set('', 'H', '^')
 vim.keymap.set('', 'L', '$')
 
+vim.keymap.set('n', '<leader>w', '<cmd>w<cr>')
 vim.keymap.set('n', '<leader>p', '<cmd>read !pbpaste<cr>')
 vim.keymap.set('v', '<leader>y', '"+y')
 vim.keymap.set('n', '<S-z><S-x>', ':q!<cr>')
 
 -- fzf
 vim.keymap.set('n', '<leader><leader>', '<cmd>FzfLua resume<cr>')
---vim.keymap.set('n', '<leader>o', '<cmd>FzfLua files<cr>')
+vim.keymap.set('n', '<leader>o', '<cmd>FzfLua files<cr>')
 vim.keymap.set('n', '<leader>`', '<cmd>FzfLua<cr>')
 vim.keymap.set('n', '<leader>g', '<cmd>FzfLua live_grep<cr>')
 vim.keymap.set('n', 'gr', '<cmd>FzfLua lsp_references<CR>', { nowait = true })
 vim.keymap.set('n', 'gi', '<cmd>FzfLua lsp_implementations<CR>')
-vim.keymap.set('n', '<leader>j', '<cmd>FzfLua jumps<cr>')
-vim.keymap.set('n', '<leader>m', '<cmd>FzfLua marks<cr>')
+vim.keymap.set('n', ',m', '<cmd>FzfLua marks<cr>')
 
 --grug
 vim.keymap.set('n', ',g', ':GrugFar<cr>')
@@ -39,12 +39,6 @@ vim.keymap.set('i', '<left>', '<nop>')
 vim.keymap.set('i', '<right>', '<nop>')
 vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'k', 'gk')
-
--- split navigation
-vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Move focus to the left split' })
-vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Move focus to the right split' })
-vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Move focus to the lower split' })
-vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Move focus to the upper split' })
 
 -- quickfix
 -- vim.keymap.set('n', '<leader>q', '<cmd>QFix 1 1<cr>')
@@ -94,13 +88,6 @@ vim.keymap.set('n', '<leader>nn', ':NewNote')
 vim.api.nvim_set_keymap('n', '<leader>nl', '<cmd>lua NoteLink()<cr>', { noremap = true, silent = true })
 -- note find
 vim.api.nvim_set_keymap('n', '<leader>nf', '<cmd>lua NoteFind()<cr>', { noremap = true, silent = true })
-
--- DAP
-vim.keymap.set('n', ',dd', '<cmd>lua require("dapui").toggle()<CR>')
-vim.keymap.set('n', ',ds', ':DapStepOver<CR>')
-vim.keymap.set('n', ',dt', ':DapTerminate<CR>')
-vim.keymap.set('n', ',dc', ':DapContinue<CR>')
-vim.keymap.set('n', ',db', ':DapToggleBreakpoint<CR>')
 
 -- global marks
 local function merge_tables(t1, t2)

@@ -34,7 +34,7 @@ abbr -a t "tv"
 
 setenv TERM xterm-256color
 setenv EDITOR nvim
-setenv BROWSER firefox-developer-edition
+setenv BROWSER brave-browser
 setenv RUST_BACKTRACE 1
 
 set NOTES ~/Notes/
@@ -135,7 +135,7 @@ set --export PATH $BUN_INSTALL/bin $PATH
 fish_add_path -a "/Users/andrewfraser/.foundry/bin"
 
 # Fast Node Manager
-fnm env --use-on-cd | source
+fnm env --use-on-cd --log-level quiet | source
 
 # Yazi
 function y
@@ -149,4 +149,3 @@ end
 
 # Fzf
 fzf --fish | source
-

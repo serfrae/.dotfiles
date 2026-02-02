@@ -8,8 +8,8 @@ vim.lsp.enable({
 })
 
 vim.diagnostic.config({
-    -- virtual_lines = true,
-    -- virtual_text = true,
+    virtual_lines = false,
+    virtual_text = true,
     underline = true,
     update_in_insert = false,
     severity_sort = true,
@@ -52,11 +52,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
             return vim.tbl_extend("force", opts, { desc = desc }, others or {})
         end
 
+        keymap('n', '<leader>q', vim.diagnostic.setloclist)
         keymap("n", "gd", lsp.buf.definition, opt("Go to definition"))
         -- keymap("n", "gi", function() lsp.buf.implementation({ border = "single" }) end, opt("Go to implementation"))
         -- keymap("n", "gr", lsp.buf.references.open_float, opt("Show References"))
         keymap("n", "<leader>e", vim.diagnostic.open_float, opt("Open diagnostic in float"))
-        keymap("n", "<C-k>", lsp.buf.signature_help, opts)
+        keymap("n", "<C-j>", lsp.buf.signature_help, opts)
         keymap("n", "<Leader>a", lsp.buf.code_action, opt("Code Action"))
         keymap("n", "<Leader>r", lsp.buf.rename, opt("Rename"))
     end
