@@ -23,7 +23,7 @@ require("lazy").setup({
     -- { import = "plugins.ui.rainbow-delimiters" },
 
     -- lsp
-    -- { import = "plugins.lsp.treesitter" },
+    { import = "plugins.lsp.treesitter" },
 
     -- completions/ai
     { import = "plugins.completions.blink" },
