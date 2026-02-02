@@ -46,7 +46,7 @@ set XDG_STATE_HOME $HOME/.local/state
 
 set -x RUSTUP_HOME $XDG_DATA_HOME/rustup
 set -x CARGO_HOME $HOME/.cargo
-set -x RUST_LOG info
+set -x RUST_LOG info,fnm=off
 set -x GOPATH $XDG_DATA_HOME/go
 set -x GOMODCACHE $XDG_CACHE_HOME/go/pkg/mod
 set -x GNUPGHOME $XDG_DATA_HOME/gnupg
