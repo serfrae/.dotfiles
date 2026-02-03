@@ -14,10 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     -- ui
     { import = "plugins.ui.catppuccin" },
-    -- { import = "plugins.ui.blink-indent" },
-    -- { import = "plugins.ui.blink-pairs" },
     -- { import = "plugins.ui.indent-blankline" },
-    -- { import = "plugins.ui.lualine" },
     { import = "plugins.ui.mini-statusline" },
     -- { import = "plugins.ui.noice" },
     -- { import = "plugins.ui.rainbow-delimiters" },
@@ -41,14 +38,9 @@ require("lazy").setup({
 
     -- editor
     { import = "plugins.editor.conform" },
-    -- { import = "plugins.editor.fff" },
     { import = "plugins.editor.flash" },
     { import = "plugins.editor.fzf" },
     { import = "plugins.editor.grug" },
     { import = "plugins.editor.surround" },
     { import = "plugins.editor.trouble" },
-    -- { import = "plugins.editor.tv" },
-
-    -- debug
-    --{ import = "plugins.dap" },
 })
