@@ -14,10 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     -- ui
     { import = "plugins.ui.catppuccin" },
-    -- { import = "plugins.ui.indent-blankline" },
     { import = "plugins.ui.mini-statusline" },
-    -- { import = "plugins.ui.noice" },
-    -- { import = "plugins.ui.rainbow-delimiters" },
 
     -- lsp
     { import = "plugins.lsp.treesitter" },
@@ -30,17 +27,16 @@ require("lazy").setup({
     -- explorers
     { import = "plugins.explorers.neotree" },
     { import = "plugins.explorers.oil" },
-    -- { import = "plugins.explorers.yazi" },
 
     -- git
-    { import = "plugins.git.gitsigns" },
+    -- { import = "plugins.git.gitsigns" },
     { import = "plugins.git.diffview" },
 
     -- editor
     { import = "plugins.editor.conform" },
     { import = "plugins.editor.flash" },
     { import = "plugins.editor.fzf" },
-    { import = "plugins.editor.grug" },
+    -- { import = "plugins.editor.grug" },
     { import = "plugins.editor.surround" },
     { import = "plugins.editor.trouble" },
 })

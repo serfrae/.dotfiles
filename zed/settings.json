@@ -7,11 +7,11 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "edit_predictions": {
+    "provider": "copilot"
+  },
   "show_edit_predictions": true,
   "autosave": "on_focus_change",
-  "features": {
-    "edit_prediction_provider": "copilot",
-  },
   "go_to_definition_fallback": "find_all_references",
   "outline_panel": {
     "dock": "right",
@@ -63,6 +63,8 @@
   "colorize_brackets": true,
   "preferred_line_length": 100,
   "terminal": {
+    "keep_selection_on_copy": false,
+    "copy_on_select": true,
     "font_family": "JetBrains Mono",
     "font_size": 12,
     "option_as_meta": true,
@@ -70,9 +72,6 @@
   "minimap": {
     "show": "always",
     "thumb": "always",
-  },
-  "scrollbar": {
-    "show": "never",
   },
   "git": {
     "git_gutter": "tracked_files",

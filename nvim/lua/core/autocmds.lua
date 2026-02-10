@@ -28,12 +28,6 @@ vim.api.nvim_create_autocmd(
         end
     }
 )
---- tex has so much syntax that a little wider is ok
-vim.api.nvim_create_autocmd('Filetype', {
-    pattern = 'tex',
-    group = text,
-    command = 'setlocal spell tw=80 colorcolumn=81',
-})
 
 -- set python path and virtual env when detecting .py files
 -- only works in the root directory of the project
