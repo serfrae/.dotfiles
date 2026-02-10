@@ -29,7 +29,7 @@ require("lazy").setup({
     { import = "plugins.explorers.oil" },
 
     -- git
-    { import = "plugins.git.gitsigns" },
+    -- { import = "plugins.git.gitsigns" },
     { import = "plugins.git.diffview" },
 
     -- editor

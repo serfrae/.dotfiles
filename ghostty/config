@@ -58,3 +58,4 @@ keybind = cmd+l=goto_split:right
 keybind = cmd+f=toggle_split_zoom
 keybind = cmd+shift+d=new_split:down
 keybind = shift+enter=text:\n
+keybind = cmd+shift+e=write_screen_file:paste
