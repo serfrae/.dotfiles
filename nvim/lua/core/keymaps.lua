@@ -41,16 +41,12 @@ vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'k', 'gk')
 
 -- quickfix
--- vim.keymap.set('n', '<leader>q', '<cmd>QFix 1 1<cr>')
--- vim.keymap.set('n', '<leader>Q', '<cmd>QFix 0 1<cr>')
 vim.keymap.set('n', '[q', '<cmd>cprev<cr>')
 vim.keymap.set('n', ']q', '<cmd>cnext<cr>')
 vim.keymap.set('n', '[Q', '<cmd>cfirst<cr>')
 vim.keymap.set('n', ']Q', '<cmd>clast<cr>')
 --
 -- -- location list
--- vim.keymap.set('n', '<leader>l', ':LList 1 1<cr>', { noremap = true, silent = true })
--- vim.keymap.set('n', '<leader>L', ':LList 0 1<cr>', { noremap = true, silent = true })
 vim.keymap.set('n', '[l', ':lprev<cr>')
 vim.keymap.set('n', ']l', ':lnext<cr>')
 vim.keymap.set('n', '[L', ':lfirst<cr>')
@@ -70,6 +66,7 @@ vim.keymap.set('n', '[t', ':tabprevious<cr>')
 vim.keymap.set('n', ']t', ':tabnext<cr>')
 vim.keymap.set('n', '[T', ':tabfirst<cr>')
 vim.keymap.set('n', ']T', ':tablast<cr>')
+vim.keymap.set('n', ',T', ':tabclose<cr>')
 
 --resize
 vim.keymap.set('n', '<C-S-l>', ':resize +2<cr>')
@@ -77,17 +74,8 @@ vim.keymap.set('n', '<C-S-h>', ':resize -2<cr>')
 vim.keymap.set('n', '<C-S-j>', ':vertical resize +2<cr>')
 vim.keymap.set('n', '<C-S-k>', ':vertical resize -2<cr>')
 
--- notes
-vim.keymap.set('n', '<leader>ncd', ':cd ~/Notes<cr>')
--- ripgrep notes
-vim.keymap.set('n', '<leader>ng', ':cd ~/Notes/<cr>:Ngrep<space><C-r><C-w><cr>:QFix 1 0<cr><cr>')
-vim.keymap.set('n', '<leader>nr', ':cd ~/Notes/<cr>:Ngrep ')
--- new note
-vim.keymap.set('n', '<leader>nn', ':NewNote')
 -- note link
 vim.api.nvim_set_keymap('n', '<leader>nl', '<cmd>lua NoteLink()<cr>', { noremap = true, silent = true })
--- note find
-vim.api.nvim_set_keymap('n', '<leader>nf', '<cmd>lua NoteFind()<cr>', { noremap = true, silent = true })
 
 -- global marks
 local function merge_tables(t1, t2)

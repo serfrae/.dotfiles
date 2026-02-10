@@ -29,14 +29,14 @@ require("lazy").setup({
     { import = "plugins.explorers.oil" },
 
     -- git
-    -- { import = "plugins.git.gitsigns" },
+    { import = "plugins.git.gitsigns" },
     { import = "plugins.git.diffview" },
 
     -- editor
     { import = "plugins.editor.conform" },
     { import = "plugins.editor.flash" },
     { import = "plugins.editor.fzf" },
-    -- { import = "plugins.editor.grug" },
+    { import = "plugins.editor.grug" },
     { import = "plugins.editor.surround" },
     { import = "plugins.editor.trouble" },
 })

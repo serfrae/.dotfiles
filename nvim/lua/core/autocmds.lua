@@ -1,7 +1,17 @@
-vim.api.nvim_create_autocmd("QuickFixCmdPost", {
-    callback = function()
-        vim.cmd('VFix')
-    end
+-- open quickfix/location list in Trouble
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "qf",
+  callback = function()
+    vim.schedule(function()
+      if vim.fn.getloclist(0, { filewinid = 0 }).filewinid ~= 0 then
+        vim.cmd.lclose()
+        vim.cmd("Trouble loclist open")
+      else
+        vim.cmd.cclose()
+        vim.cmd("Trouble qflist open")
+      end
+    end)
+  end,
 })
 
 -- highlight yanked text

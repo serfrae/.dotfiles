@@ -39,7 +39,6 @@ end
 
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(ev)
-        local bufnr = ev.buf
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
         if not client then
             return
@@ -52,7 +51,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             return vim.tbl_extend("force", opts, { desc = desc }, others or {})
         end
 
-        keymap('n', '<leader>q', vim.diagnostic.setloclist)
+        keymap('n', ',l', vim.diagnostic.setloclist)
         keymap("n", "gd", lsp.buf.definition, opt("Go to definition"))
         -- keymap("n", "gi", function() lsp.buf.implementation({ border = "single" }) end, opt("Go to implementation"))
         -- keymap("n", "gr", lsp.buf.references.open_float, opt("Show References"))

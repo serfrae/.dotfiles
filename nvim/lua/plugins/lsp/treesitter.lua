@@ -12,7 +12,7 @@ return {
                 -- primary
                 "rust", "go", "typescript", "javascript", "python", "lua",
                 -- web
-                "html", "css", "scss", "json", "jsonc", "yaml", "toml",
+                "html", "css", "scss", "json", "yaml", "toml",
                 -- shell
                 "bash", "fish",
                 -- config/docs  

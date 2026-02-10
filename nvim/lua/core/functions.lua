@@ -13,6 +13,34 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
 })
 
+function NoteLink()
+    -- Define the action to take when a note is selected
+    local insert_link_action = function(selected)
+        -- Get the relative path to the selected note
+        local full_note_path = selected[1]
+        local note_path = vim.fn.fnamemodify(full_note_path, ':t')
+        local date_pattern = ('%d'):rep(8) .. '%-'
+        local date_pattern_ext = ('%d'):rep(12) .. '%-'
+        local trimmed_note_path = note_path:gsub(date_pattern_ext, ''):gsub(date_pattern, '')
+        local filename_without_ext = vim.fn.fnamemodify(trimmed_note_path, ':r')
+
+        -- Insert the Markdown link at the cursor position
+        vim.api.nvim_put({ '[ ' .. filename_without_ext .. ' ]' .. '( ' .. note_path .. ' )' }, 'l', true, true)
+    end
+
+    -- Configure the finder
+    local opts = {
+        prompt = 'Select note: ',
+        cmd = 'rg --files --hidden --ignore ' .. vim.fn.expand('$NOTES'),
+        actions = {
+            ['default'] = insert_link_action,
+        },
+    }
+
+    local fzf = require('fzf-lua')
+    fzf.fzf_exec(opts.cmd, opts)
+end
+
 function MarkdownGf()
     local word = vim.fn.expand('<cword>')
     vim.fn.search(word, 'W')
