@@ -7,11 +7,12 @@ abbr -a cr 'cargo run'
 abbr -a ci 'cargo install'
 abbr -a ct 'cargo test'
 abbr -a g git
-abbr -a gpar 'git pull origin --rebase --autostash'
+abbr -a gp 'git pull origin --rebase --autostash'
 abbr -a gc 'git checkout'
 abbr -a gcb 'git checkout -b'
 abbr -a ga 'git add -p'
-abbr -a gp 'git pull origin --rebase --autostash'
+abbr -a gpo 'git push origin'
+abbr -a gs 'git stash'
 abbr -a ji 'just install'
 abbr -a rgp 'rg -p'
 abbr -a rgr 'rg -uuu'
@@ -25,12 +26,13 @@ abbr -a ve 'source .venv/bin/activate.fish > /dev/null || source venv/bin/activa
 abbr -a vd 'deactivate'
 abbr -a fzp 'fzf --preview "bat --color=always --style=header,grid --line-range :500 {}"'
 abbr -a pip 'uv pip'
-abbr -a spl-t2 'spl-token --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb'
+abbr -a spl2 'spl-token --program-2022'
 abbr -a py "python"
 abbr -a lg "lazygit"
 abbr -a ld "lazydocker"
 abbr -a yi "yazi"
 abbr -a t "tv"
+abbr -a cat "bat -p"
 
 setenv TERM xterm-256color
 setenv EDITOR nvim
