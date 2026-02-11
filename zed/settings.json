@@ -8,7 +8,7 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "edit_predictions": {
-    "provider": "copilot"
+    "provider": "copilot",
   },
   "show_edit_predictions": true,
   "autosave": "on_focus_change",
@@ -72,6 +72,9 @@
   "minimap": {
     "show": "always",
     "thumb": "always",
+  },
+  "scrollbar": {
+    "show": "never",
   },
   "git": {
     "git_gutter": "tracked_files",

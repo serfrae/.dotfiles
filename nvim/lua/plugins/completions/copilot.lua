@@ -1,26 +1,26 @@
 return {
-    {
-        'zbirenbaum/copilot.lua',
-        cmd = "Copilot",
-        event = 'InsertEnter',
-        config = function()
-            vim.g.copilot_node_command = vim.fn.expand('~/.local/share/fnm/aliases/default/bin/node')
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			vim.g.copilot_node_command = vim.fn.expand("~/.local/share/fnm/aliases/default/bin/node")
 
-            require('copilot').setup({
-                suggestion = {
-                    enabled = true,
-                    auto_trigger = true,
-                    hide_during_completion = true,
-                    debounce = 50,
-                    keymap = {
-                        accept = '<Tab>',
-                        dismiss = '<C-\'>',
-                        jump_next = '<C-]>',
-                        jump_prev = '<C-[>'
-                    }
-                }
-            })
-            vim.keymap.set({ 'n', 'v' }, '<leader>cp', '<cmd>Copilot panel<cr>')
-        end
-    }
+			require("copilot").setup({
+				suggestion = {
+					enabled = true,
+					auto_trigger = true,
+					hide_during_completion = true,
+					debounce = 50,
+					keymap = {
+						accept = "<Tab>",
+						dismiss = "<C-'>",
+						jump_next = "<C-]>",
+						jump_prev = "<C-[>",
+					},
+				},
+			})
+			vim.keymap.set({ "n", "v" }, "<leader>cp", "<cmd>Copilot panel<cr>")
+		end,
+	},
 }
