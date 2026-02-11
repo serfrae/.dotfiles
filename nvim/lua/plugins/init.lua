@@ -24,10 +24,6 @@ require("lazy").setup({
     { import = "plugins.completions.copilot" },
     { import = "plugins.completions.luasnip" },
 
-    -- explorers
-    { import = "plugins.explorers.neotree" },
-    { import = "plugins.explorers.oil" },
-
     -- editor
     { import = "plugins.editor.flash" },
     { import = "plugins.editor.fzf" },
