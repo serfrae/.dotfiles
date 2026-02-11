@@ -1,39 +1,6 @@
 vim.keymap.set("", "H", "^")
 vim.keymap.set("", "L", "$")
 
---vim.keymap.set('n', '<C-LeftMouse>', '<LeftMouse><cmd>lua vim.lsp.buf.definition()<cr>')
-vim.keymap.set("n", "<M-LeftMouse>", function()
-	-- Let Neovim move cursor to click position
-	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<LeftMouse>", true, false, true), "nx", false)
-
-	local params = vim.lsp.util.make_position_params()
-	local results = vim.lsp.buf_request_sync(0, "textDocument/definition", params, 1000)
-
-	if not results then
-		vim.lsp.buf.definition()
-		return
-	end
-
-	local current_uri = vim.uri_from_bufnr(0)
-	local current_line = vim.api.nvim_win_get_cursor(0)[1] - 1
-
-	for _, res in pairs(results) do
-		local defs = res.result
-		if defs and not vim.tbl_isempty(defs) then
-			-- Normalize: could be Location or LocationLink
-			local def = defs[1]
-			local uri = def.targetUri or def.uri
-			local range = def.targetRange or def.range
-
-			if uri == current_uri and range.start.line == current_line then
-				require("fzf-lua").lsp_references()
-				return
-			end
-		end
-	end
-
-	vim.lsp.buf.definition()
-end, { desc = "Go to def, or references if at def" })
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>")
 vim.keymap.set("n", "<leader>p", "<cmd>read !pbpaste<cr>")
 vim.keymap.set("v", "<leader>y", '"+y')
@@ -47,10 +14,6 @@ vim.keymap.set("n", "<leader>g", "<cmd>FzfLua live_grep<cr>")
 vim.keymap.set("n", "gr", "<cmd>FzfLua lsp_references<CR>", { nowait = true })
 vim.keymap.set("n", "gi", "<cmd>FzfLua lsp_implementations<CR>")
 vim.keymap.set("n", ",m", "<cmd>FzfLua marks<cr>")
-
---grug
-vim.keymap.set("n", ",g", ":GrugFar<cr>")
-vim.keymap.set("n", ",G", ":GrugFarWithin<cr>")
 
 -- always center search results
 vim.keymap.set("n", "n", "nzz", { silent = true })
