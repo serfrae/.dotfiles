@@ -5,6 +5,13 @@ return {
 			keys = {
 				s = false,
 			},
+			modes = {
+				symbols = {
+					win = {
+						size = 0.2,
+					},
+				},
+			},
 		}, -- for default options, refer to the configuration section for custom setup.
 		cmd = "Trouble",
 		keys = {

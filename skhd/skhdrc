@@ -19,8 +19,7 @@ apps < f : osascript -e 'tell application "Finder" to activate' -e 'tell applica
 apps < v : osascript -e 'tell application "NordVPN" to activate' -e 'tell application "NordVPN" to reopen' ; skhd -k 'escape'
 apps < d : osascript -e 'tell application "Docker Desktop" to activate' -e 'tell application "Docker Desktop" to reopen' ; skhd -k 'escape'
 apps < n : osascript -e 'tell application "Notion" to activate' -e 'tell application "Notion" to reopen' ; skhd -k 'escape'
+apps < d : osascript -e 'tell application "Docker Desktop" to activate' -e 'tell application "Docker Desktop" to reopen' ; skhd -k 'escape'
 
 apps < return ; default
 apps < escape ; default
-
-# cmd + shift + alt - m : osascript "/Users/a7rs/bin/menubar.scpt"

@@ -5,6 +5,7 @@ vim.keymap.set("n", "<leader>w", "<cmd>w<cr>")
 vim.keymap.set("n", "<leader>p", "<cmd>read !pbpaste<cr>")
 vim.keymap.set("v", "<leader>y", '"+y')
 vim.keymap.set("n", "<S-z><S-x>", ":q!<cr>")
+vim.keymap.set("n", "<leader>x", "q!")
 
 -- fzf
 vim.keymap.set("n", "<leader><leader>", "<cmd>FzfLua resume<cr>")
