@@ -7,6 +7,7 @@ alt - 2 : osascript -e 'tell application "RustRover" to activate' -e 'tell appli
 alt - 3 : osascript -e 'tell application "Intellij IDEA" to activate' -e 'tell application "Intellij IDEA" to reopen' ; skhd -k 'escape'
 alt - 4 : osascript -e 'tell application "GoLand" to activate' -e 'tell application "GoLand" to reopen' ; skhd -k 'escape'
 alt - 5 : osacsript -e 'tell application "DataGrip" to activate' -e 'tell application "Data Grip" to reopen' ; skhd -k 'escape'
+alt - 6 : osascript -e 'tell application "Air" to activate' -e 'tell application "Air" to reopen' ; skhd -k 'escape'
 alt - g : osascript -e 'tell application "Google Chrome" to activate' -e 'tell application "Google Chrome" to reopen' ; skhd -k 'escape'
 alt - s : osascript -e 'tell application "Slack" to activate' -e 'tell application "Slack" to reopen' ; skhd -k 'escape'
 alt - b : osascript -e 'tell application "Brave Browser" to activate' -e 'tell application "Brave Browser" to reopen' ; skhd -k 'escape'
@@ -20,6 +21,7 @@ apps < v : osascript -e 'tell application "NordVPN" to activate' -e 'tell applic
 apps < d : osascript -e 'tell application "Docker Desktop" to activate' -e 'tell application "Docker Desktop" to reopen' ; skhd -k 'escape'
 apps < n : osascript -e 'tell application "Notion" to activate' -e 'tell application "Notion" to reopen' ; skhd -k 'escape'
 apps < d : osascript -e 'tell application "Docker Desktop" to activate' -e 'tell application "Docker Desktop" to reopen' ; skhd -k 'escape'
+apps < t : osascript -e 'tell application "Telegram" to activate' -e 'tell application "Telegram" to reopen' ; skhd -k 'escape'
 
 apps < return ; default
 apps < escape ; default
