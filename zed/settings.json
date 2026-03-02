@@ -7,6 +7,37 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "inlay_hints": {
+    "enabled": true
+  },
+  "vim": {
+    "toggle_relative_line_numbers": false
+  },
+  "relative_line_numbers": "disabled",
+  "double_click_in_multibuffer": "open",
+  "agent": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-opus-4.6",
+      "enable_thinking": false
+    },
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "file_finder": {
+    "modal_max_width": "medium"
+  },
+  "semantic_tokens": "off",
+  "extend_comment_on_newline": false,
+  "middle_click_paste": false,
+  "show_signature_help_after_edits": true,
+  "auto_signature_help": true,
+  "tabs": {
+    "show_diagnostics": "all",
+    "git_status": true,
+    "file_icons": true
+  },
+  "use_system_window_tabs": true,
   "edit_predictions": {
     "provider": "copilot",
   },
@@ -22,10 +53,14 @@
     "show_user_picture": false,
   },
   "toolbar": {
+    "selections_menu": false,
+    "agent_review": false,
+    "code_actions": false,
     "breadcrumbs": false,
     "quick_actions": false,
   },
   "tab_bar": {
+    "show_pinned_tabs_in_separate_row": false,
     "show_nav_history_buttons": false,
   },
   "preview_tabs": {
@@ -36,12 +71,14 @@
     "tree_view": false,
   },
   "project_panel": {
+    "bold_folder_labels": false,
     "indent_size": 16.0,
     "entry_spacing": "standard",
   },
   "show_whitespaces": "trailing",
   "indent_guides": {
-    "coloring": "indent_aware",
+    "background_coloring": "disabled",
+    "coloring": "fixed",
   },
   "cursor_blink": false,
   "telemetry": {
@@ -74,9 +111,12 @@
     "thumb": "always",
   },
   "scrollbar": {
-    "show": "never",
+    "show": "auto",
   },
   "git": {
+    "blame": {
+      "show_avatar": false
+    },
     "git_gutter": "tracked_files",
     "inline_blame": {
       "enabled": false,

@@ -4,6 +4,7 @@
       "cmd-enter": "terminal_panel::ToggleFocus",
       "cmd-shift-g": ["task::Spawn", { "task_name": "lazygit", "reveal_target": "center" }],
       "cmd-shift-d": ["task::Spawn", { "task_name": "lazydocker", "reveal_target": "center" }],
+      "cmd-shift-v": "workspace::ToggleVimMode",
     },
   },
   {
@@ -52,6 +53,24 @@
     "bindings": {
       "s": "vim::PushSneak",
       "shift-s": "vim::PushSneakBackward",
+    },
+  },
+  {
+    "context": "(VimControl && !menu)",
+    "bindings": {
+      "space a": "editor::ToggleCodeActions",
+    },
+  },
+  {
+    "context": "(VimControl && !menu)",
+    "bindings": {
+      "g r": "editor::FindAllReferences",
+    },
+  },
+  {
+    "context": "(VimControl && !menu)",
+    "bindings": {
+      "space r": "editor::Rename",
     },
   },
 ]

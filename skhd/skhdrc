@@ -3,11 +3,8 @@
 ####################
 
 alt - 1 : osascript -e 'tell application "Ghostty" to activate' -e 'tell application "Ghostty" to reopen' ; skhd -k 'escape'
-alt - 2 : osascript -e 'tell application "RustRover" to activate' -e 'tell application "RustRover" to reopen' ; skhd -k 'escape'
-alt - 3 : osascript -e 'tell application "Intellij IDEA" to activate' -e 'tell application "Intellij IDEA" to reopen' ; skhd -k 'escape'
-alt - 4 : osascript -e 'tell application "GoLand" to activate' -e 'tell application "GoLand" to reopen' ; skhd -k 'escape'
-alt - 5 : osacsript -e 'tell application "DataGrip" to activate' -e 'tell application "Data Grip" to reopen' ; skhd -k 'escape'
-alt - 6 : osascript -e 'tell application "Air" to activate' -e 'tell application "Air" to reopen' ; skhd -k 'escape'
+alt - 2 : osascript -e 'tell application "Zed" to activate' -e 'tell application "Zed" to reopen' ; skhd -k 'escape'
+alt - 3 : osascript -e 'tell application "DataGrip" to activate' -e 'tell application "DataGrip" to reopen' ; skhd -k 'escape'
 alt - g : osascript -e 'tell application "Google Chrome" to activate' -e 'tell application "Google Chrome" to reopen' ; skhd -k 'escape'
 alt - s : osascript -e 'tell application "Slack" to activate' -e 'tell application "Slack" to reopen' ; skhd -k 'escape'
 alt - b : osascript -e 'tell application "Brave Browser" to activate' -e 'tell application "Brave Browser" to reopen' ; skhd -k 'escape'
