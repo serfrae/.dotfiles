@@ -65,6 +65,7 @@
     "context": "(VimControl && !menu)",
     "bindings": {
       "g r": "editor::FindAllReferences",
+      "g i": "editor::GoToImplementation",
     },
   },
   {
