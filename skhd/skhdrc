@@ -7,6 +7,7 @@ alt - 2 : osascript -e 'tell application "Zed" to activate' -e 'tell application
 alt - 3 : osascript -e 'tell application "DataGrip" to activate' -e 'tell application "DataGrip" to reopen' ; skhd -k 'escape'
 alt - s : osascript -e 'tell application "Slack" to activate' -e 'tell application "Slack" to reopen' ; skhd -k 'escape'
 alt - b : osascript -e 'tell application "Brave Browser" to activate' -e 'tell application "Brave Browser" to reopen' ; skhd -k 'escape'
+alt - f : osascript -e 'tell application "Firefox" to active' -e 'tell application "Firefox" to reopen'; skhd -k 'escape'
 
 # Applications
 :: apps
@@ -17,6 +18,7 @@ apps < v : osascript -e 'tell application "NordVPN" to activate' -e 'tell applic
 apps < d : osascript -e 'tell application "Docker Desktop" to activate' -e 'tell application "Docker Desktop" to reopen' ; skhd -k 'escape'
 apps < n : osascript -e 'tell application "Notion" to activate' -e 'tell application "Notion" to reopen' ; skhd -k 'escape'
 apps < t : osascript -e 'tell application "Telegram" to activate' -e 'tell application "Telegram" to reopen' ; skhd -k 'escape'
+apps < p : osascript -e 'tell application "Postico" to acitve' -e 'tell application "Postico" to reopen' ; skhd - k 'escape'
 
 apps < return ; default
 apps < escape ; default
