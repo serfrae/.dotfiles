@@ -9,14 +9,14 @@
 {
   "agent_servers": {
     "codex-acp": {
-      "type": "registry"
+      "type": "registry",
     },
     "gemini": {
-      "type": "registry"
+      "type": "registry",
     },
     "claude-acp": {
-      "type": "registry"
-    }
+      "type": "registry",
+    },
   },
   "audio": {
     "experimental.legacy_audio_compatible": false,
@@ -32,9 +32,10 @@
   "relative_line_numbers": "disabled",
   "double_click_in_multibuffer": "open",
   "agent": {
+    "dock": "left",
     "default_model": {
       "provider": "copilot_chat",
-      "model": "claude-opus-4.6",
+      "model": "claude-opus-4.7",
       "enable_thinking": false,
     },
     "favorite_models": [],
@@ -64,7 +65,7 @@
     "dock": "right",
   },
   "title_bar": {
-    "show_branch_icon": true,
+    "show_branch_status_icon": true,
     "show_sign_in": false,
     "show_user_picture": false,
   },
@@ -83,10 +84,11 @@
     "enabled": true,
   },
   "git_panel": {
-    "dock": "left",
+    "dock": "right",
     "tree_view": false,
   },
   "project_panel": {
+    "dock": "right",
     "bold_folder_labels": false,
     "indent_size": 16.0,
     "entry_spacing": "standard",
@@ -143,6 +145,7 @@
     },
   },
   "collaboration_panel": {
+    "dock": "right",
     "button": false,
   },
   "notification_panel": {

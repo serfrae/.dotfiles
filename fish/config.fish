@@ -34,6 +34,7 @@ abbr -a yi "yazi"
 abbr -a t "tv"
 abbr -a cat "bat -p"
 abbr -a br "bun run"
+abbr -a z "zed"
 
 setenv TERM xterm-256color
 setenv EDITOR nvim

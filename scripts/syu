@@ -8,6 +8,7 @@ go install golang.org/x/tools/gopls@latest
 brew upgrade
 rustup update
 agave-install update
+avm self-update
 avm update
 foundryup --update
 foundryup
