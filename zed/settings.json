@@ -7,6 +7,8 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "diff_view_style": "split",
+  "proxy": "",
   "agent_servers": {
     "codex-acp": {
       "type": "registry",
@@ -107,8 +109,8 @@
   "vim_mode": true,
   "base_keymap": "VSCode",
   "buffer_line_height": "standard",
-  "ui_font_size": 14.0,
-  "buffer_font_size": 14.0,
+  "ui_font_size": 11.0,
+  "buffer_font_size": 11.0,
   "buffer_font_family": "JetBrains Mono",
   "theme": {
     "mode": "system",

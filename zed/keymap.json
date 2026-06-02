@@ -74,4 +74,10 @@
       "space r": "editor::Rename",
     },
   },
+  {
+    "context": "(vim_mode == helix_normal || vim_mode == helix_select || vim_mode == normal) && !menu",
+    "bindings": {
+      "g w": "vim::HelixJumpToWord"
+    }
+  }
 ]

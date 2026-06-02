@@ -10,6 +10,7 @@ abbr -a g git
 abbr -a gpu 'git pull origin --rebase --autostash'
 abbr -a gc 'git checkout'
 abbr -a gcb 'git checkout -b'
+abbr -a gcm 'git checkout main'
 abbr -a ga 'git add -p'
 abbr -a gp 'git push origin'
 abbr -a gs 'git stash'
