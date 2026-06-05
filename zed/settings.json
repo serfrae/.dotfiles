@@ -113,7 +113,7 @@
   "buffer_font_size": 11.0,
   "buffer_font_family": "JetBrains Mono",
   "theme": {
-    "mode": "system",
+    "mode": "light",
     "light": "Catppuccin Latte",
     "dark": "Catppuccin Macchiato",
   },
@@ -122,7 +122,7 @@
   "terminal": {
     "keep_selection_on_copy": false,
     "copy_on_select": true,
-    "font_family": "JetBrains Mono",
+    "font_family": "0xProto",
     "font_size": 12,
     "option_as_meta": true,
   },
@@ -152,6 +152,20 @@
   },
   "notification_panel": {
     "button": false,
+  },
+  // Node that Zed launches extension language servers (and ACP agent servers)
+  // with. The Solidity extension requires Node >= 22, but its LSP's Hardhat
+  // validation worker loads solc-js, which assigns `globalThis.crypto` in strict
+  // mode and crashes on any Node >= 20 ("...crypto...only a getter"), failing
+  // every validation run. So an old Node won't start the extension and a stock
+  // new Node crashes it. The `node` here is a wrapper that runs Node 22 (LTS)
+  // with a preload shim (via NODE_OPTIONS, so it reaches the validation worker
+  // too) making globalThis.crypto writable. NOTE: Zed resolves `npm`/`npx` as
+  // siblings of this path, so it points into node-shim/, a bin-like dir holding
+  // wrapper `node`, `npm`, and `npx` together. See node-shim/node.
+  "node": {
+    "path": "/Users/andrewfraser/.dotfiles/zed/node-shim/node",
+    "ignore_system_version": true,
   },
   "lsp": {
     "solidity": {

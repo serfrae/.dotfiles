@@ -1,0 +1,23 @@
+#!/bin/sh
+# Wrapper "node" for Zed's `node.path` setting.
+#
+# Zed launches the Solidity LSP (and resolves `npm`/`npx` as siblings of this
+# file — that's why this lives in a dedicated bin-like dir next to wrapper `npm`
+# and `npx`). The Solidity extension requires Node >= 22, but its LSP's Hardhat
+# validation worker crashes on any Node >= 20: solc-js assigns `globalThis.crypto`
+# (a getter-only accessor) in strict mode -> "...crypto...only a getter", failing
+# every validation run. So an old Node won't start the extension and a stock new
+# Node crashes it.
+#
+# This runs Node 22 (LTS, satisfies the extension) with crypto-shim.cjs preloaded
+# via NODE_OPTIONS so the shim also reaches the forked validation worker. The shim
+# makes globalThis.crypto writable, so the assignment succeeds. See crypto-shim.cjs.
+#
+# Node is pinned to fnm's v22.12.0 rather than Zed's bundled Node, whose path
+# embeds a version that changes on Zed upgrades.
+
+NODE_BIN="/Users/andrewfraser/.local/share/fnm/node-versions/v22.12.0/installation/bin/node"
+SHIM="/Users/andrewfraser/.dotfiles/zed/node-shim/crypto-shim.cjs"
+
+export NODE_OPTIONS="--require $SHIM${NODE_OPTIONS:+ $NODE_OPTIONS}"
+exec "$NODE_BIN" "$@"
