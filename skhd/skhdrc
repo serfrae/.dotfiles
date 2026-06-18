@@ -7,6 +7,7 @@ alt - 2 : osascript -e 'tell application "Zed" to activate' -e 'tell application
 alt - 3 : osascript -e 'tell application "Postico 2" to activate' -e 'tell application "Postico 2" to reopen' ; skhd -k 'escape'
 alt - s : osascript -e 'tell application "Slack" to activate' -e 'tell application "Slack" to reopen' ; skhd -k 'escape'
 alt - b : osascript -e 'tell application "Brave Browser" to activate' -e 'tell application "Brave Browser" to reopen' ; skhd -k 'escape'
+alt - w : osascript -e 'tell application "Waterfox" to activate' -e 'tell application "Waterfox" to reopen' ; skhd -k 'escape'
 alt - f : osascript -e 'tell application "Finder" to active' -e 'tell application "Finder" to reopen'; skhd -k 'escape'
 
 # Applications
